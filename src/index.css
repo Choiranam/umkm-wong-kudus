@@ -7,3 +7,7 @@
   --color-yellow: #F6BE00;
   --color-light: #F9F6EE;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
