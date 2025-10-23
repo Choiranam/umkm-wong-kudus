@@ -37,7 +37,7 @@ const TentangKamiPage = () => {
           {/* Tombol Hubungi Kami */}
           <a
             href="/kontak"
-            className="block w-fit bg-orange text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
+            className="block w-fit bg-orange text-white font-medium px-6 py-3 rounded-md shadow-md transition-all duration-300 transform hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
           >
             Hubungi Kami
           </a>
@@ -85,7 +85,7 @@ const TentangKamiPage = () => {
           </div>
 
           {/* Garis horizontal penuh di bawah teks judul Visi & Misi */}
-          <div className="absolute left-0 right-0 top-10 md:top-[30px] h-[1px] bg-dark"></div>
+          <div className="absolute left-0 right-0 top-10 md:top-[30px] h-px bg-dark"></div>
         </section>
       </div>
 
