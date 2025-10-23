@@ -8,6 +8,17 @@ import UMKMCard from '../components/UMKMCard'
 import HeroContent from '../components/HeroContent'
 
 const HomePage = () => {
+    const umkmData = [
+        {
+            name: "Ramboo Chicken",
+            category: "Makanan",
+            description:
+                "Ramboo Chicken Kudus merupakan usaha kuliner yang menyajikan beragam olahan ayam khas.",
+            location: "Kota Kudus",
+            openHour: "10.00–21.00",
+            image: "/images/sampel_umkm.png",
+        },
+    ]
     return (
         <div className='bg-light min-h-screen'>
             <Navbar />
@@ -20,7 +31,9 @@ const HomePage = () => {
                 <ArtikelCard />
                 <ReviewCard />
                 <KecamatanCard />
-                <UMKMCard />
+                {umkmData.map((umkm, index) => (
+                    <UMKMCard key={index} data={umkm} />
+                ))}
             </div>
             <Footer />
         </div>

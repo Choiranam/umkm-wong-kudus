@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import { Icon } from "@iconify/react";
+import Footer from "../components/Footer";
 
 const KontakPage = () => {
   // ==== Hubungi Kami ====
@@ -34,9 +35,9 @@ const KontakPage = () => {
     );
     const body = encodeURIComponent(
       `Halo, saya ${formData["Nama Depan"]} ${formData["Nama Belakang"]}\n\n` +
-        `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
-        `Email: ${formData["Email"]}\n\n` +
-        `Pesan:\n${formData["Pesan"]}`
+      `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
+      `Email: ${formData["Email"]}\n\n` +
+      `Pesan:\n${formData["Pesan"]}`
     );
 
     window.location.href = `mailto:mchoiranam@gmail.com?subject=${subject}&body=${body}`;
@@ -67,9 +68,13 @@ const KontakPage = () => {
   const handleReviewSubmit = (e) => {
     e.preventDefault();
 
-    const allFilled = Object.values(reviewData).every((val) => val.trim() !== "");
+    const allFilled = Object.values(reviewData).every(
+      (val) => val.trim() !== ""
+    );
     if (!allFilled || rating === 0) {
-      setErrorReview("⚠️ Semua kolom dan rating wajib diisi sebelum mengirim penilaian.");
+      setErrorReview(
+        "⚠️ Semua kolom dan rating wajib diisi sebelum mengirim penilaian."
+      );
       return;
     }
 
@@ -78,7 +83,7 @@ const KontakPage = () => {
   };
 
   return (
-    <div className="bg-light min-h-screen font-poppins">
+    <div className="bg-light min-h-screen">
       <Navbar />
       <HeroContent
         image="/images/hero_content_kontak.png"
@@ -87,86 +92,95 @@ const KontakPage = () => {
       />
 
       {/* ===== Hubungi Kami ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-stretch">
+      {/* FIX 1: Mengubah 'items-center' menjadi 'items-start' 
+        agar peta sejajar dengan bagian atas form
+      */}
+      <div className="max-w-6xl mx-auto px-6 md:px-8 py-14 grid md:grid-cols-2 gap-12 items-start">
         {/* Form */}
-        <div className="flex flex-col justify-between">
-          <div>
-            <h2 className="text-4xl font-black mb-3 text-dark">Hubungi Kami</h2>
-            <p className="text-dark font-normal mb-10">
-              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di Kudus.
-            </p>
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-dark mb-2">
+            Hubungi Kami
+          </h2>
+          <p className="text-dark/80 mb-8 text-base leading-relaxed">
+            Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di
+            Kudus.
+          </p>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {Object.keys(formData).map((label, index) => (
-                <div key={index} className="relative">
-                  {label !== "Pesan" ? (
-                    <>
-                      <input
-                        type={label === "Email" ? "email" : "text"}
-                        id={label}
-                        value={formData[label]}
-                        onChange={(e) => handleChange(label, e.target.value)}
-                        className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-3"
-                      />
-                      <label
-                        htmlFor={label}
-                        className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out
-                          ${
-                            formData[label]
-                              ? "top-[-10px] text-sm text-dark"
-                              : "top-3 text-base text-dark/50"
-                          }
-                          peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange
-                        `}
-                      >
-                        {label} <span className="text-orange">*</span>
-                      </label>
-                    </>
-                  ) : (
-                    <>
-                      <textarea
-                        id={label}
-                        rows="3"
-                        value={formData[label]}
-                        onChange={(e) => handleChange(label, e.target.value)}
-                        className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-3 resize-y"
-                      ></textarea>
-                      <label
-                        htmlFor={label}
-                        className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out
-                          ${
-                            formData[label]
-                              ? "top-[-10px] text-sm text-dark"
-                              : "top-3 text-base text-dark/50"
-                          }
-                          peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange
-                        `}
-                      >
-                        {label} <span className="text-orange">*</span>
-                      </label>
-                    </>
-                  )}
-                </div>
-              ))}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {Object.keys(formData).map((label, index) => (
+              <div key={index} className="relative">
+                {label !== "Pesan" ? (
+                  <>
+                    <input
+                      type={label === "Email" ? "email" : "text"}
+                      id={label}
+                      value={formData[label]}
+                      onChange={(e) => handleChange(label, e.target.value)}
+                      className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
+                      placeholder=" " // Ditambahkan placeholder=" " untuk konsistensi
+                    />
+                    <label
+                      htmlFor={label}
+                      className={`absolute left-0 transition-all duration-200 ease-in-out
+                  ${formData[label]
+                          ? "-top-2 text-xs text-dark"
+                          : "top-2 text-sm text-dark/50"
+                        }
+                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                    >
+                      {label} <span className="text-orange">*</span>
+                    </label>
+                  </>
+                ) : (
+                  <>
+                    <textarea
+                      id={label}
+                      rows="1"
+                      value={formData[label]}
+                      onChange={(e) => handleChange(label, e.target.value)}
+                      onInput={(e) => {
+                        e.target.style.height = "auto"; // reset dulu
+                        e.target.style.height = e.target.scrollHeight + "px"; // sesuaikan tinggi otomatis
+                      }}
+                      /* FIX 3: Menghapus 'transition-all duration-200' 
+                        untuk menghilangkan lag/berat saat auto-expand
+                      */
+                      className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
+                      placeholder=" "
+                    ></textarea>
+                    <label
+                      htmlFor={label}
+                      className={`absolute left-0 transition-all duration-200 ease-in-out
+                  ${formData[label]
+                          ? "-top-2 text-xs text-dark"
+                          : "top-2 text-sm text-dark/50"
+                        }
+                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                    >
+                      {label} <span className="text-orange">*</span>
+                    </label>
+                  </>
+                )}
+              </div>
+            ))}
 
-              {errorHubungi && (
-                <p className="text-red-500 text-sm text-center font-medium -mt-2">
-                  {errorHubungi}
-                </p>
-              )}
+            {errorHubungi && (
+              <p className="text-red-500 text-sm text-center font-medium -mt-2">
+                {errorHubungi}
+              </p>
+            )}
 
-              <button
-                type="submit"
-                className="bg-orange text-light py-3 w-full rounded-[5px] uppercase font-semibold transition-all duration-300 cursor-pointer
-                  hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
+            <button
+              type="submit"
+              className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
+         hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
+            >
+              Kirim Pesan
+            </button>
+          </form>
 
           {/* Ikon sosial media */}
-          <div className="flex justify-center space-x-5 mt-8 text-orange text-3xl">
+          <div className="flex justify-center space-x-4 mt-8 text-orange text-2xl">
             {[
               {
                 href: "mailto:mchoiranam@gmail.com",
@@ -190,8 +204,7 @@ const KontakPage = () => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer transition-all duration-300 transform
-                  hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
+                className="transition-all duration-300 hover:scale-110 hover:text-[#D96230]"
               >
                 <Icon icon={item.icon} />
               </a>
@@ -200,7 +213,7 @@ const KontakPage = () => {
         </div>
 
         {/* Google Maps */}
-        <div className="overflow-hidden shadow-md h-full">
+        <div className="overflow-hidden rounded-[5px] shadow-md h-[550px]">
           <iframe
             src="https://www.google.com/maps?q=-6.792803,110.836430&hl=id&z=15&output=embed"
             width="100%"
@@ -215,9 +228,12 @@ const KontakPage = () => {
       </div>
 
       {/* ===== Beri Penilaian ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-stretch">
+      {/* FIX 1: Mengubah 'items-center' menjadi 'items-start' 
+        agar gambar sejajar dengan bagian atas form
+      */}
+      <div className="max-w-6xl mx-auto px-6 md:px-8 py-14 grid md:grid-cols-2 gap-12 items-start">
         {/* Gambar kiri */}
-        <div className="rounded-xl overflow-hidden shadow-lg h-full">
+        <div className="rounded-[5px] overflow-hidden shadow-md h-[530px]">
           <img
             src="/images/kudus.jpg"
             alt="Kudus"
@@ -227,21 +243,28 @@ const KontakPage = () => {
 
         {/* Form kanan */}
         <div>
-          <h2 className="text-4xl font-black mb-3 text-dark">Beri Penilaian</h2>
-          <p className="text-dark font-normal mb-10">
-            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi website ini.
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">
+            Beri Penilaian
+          </h2>
+          <p className="text-dark/80 mb-8 text-base leading-relaxed">
+            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi
+            website ini.
           </p>
 
           <form onSubmit={handleReviewSubmit} className="space-y-6">
             {/* Foto profil */}
-            <div className="flex items-center gap-8">
-              <div className="relative w-40 h-40 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
+            <div className="flex items-center gap-6">
+              <div className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
                 {profilePic ? (
-                  <img src={profilePic} alt="Profil" className="w-full h-full object-cover" />
+                  <img
+                    src={profilePic}
+                    alt="Profil"
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                  <div className="flex flex-col justify-center items-center h-full text-orange text-center px-3">
-                    <Icon icon="mdi:camera-outline" className="text-4xl mb-2" />
-                    <p className="text-xs font-medium leading-tight">Tambahkan Foto Profil</p>
+                  <div className="flex flex-col justify-center items-center h-full text-orange">
+                    <Icon icon="mdi:camera-outline" className="text-3xl mb-1" />
+                    <p className="text-[10px] font-medium">Tambah Foto</p>
                   </div>
                 )}
                 <input
@@ -252,23 +275,25 @@ const KontakPage = () => {
                 />
               </div>
 
-              <div className="flex flex-col flex-1 gap-6">
+              <div className="flex flex-col flex-1 gap-4">
                 {["Nama Depan", "Nama Belakang"].map((label) => (
                   <div key={label} className="relative">
                     <input
                       type="text"
                       id={`review-${label}`}
                       value={reviewData[label]}
-                      onChange={(e) => handleReviewChange(label, e.target.value)}
-                      className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-2"
+                      onChange={(e) =>
+                        handleReviewChange(label, e.target.value)
+                      }
+                      className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
+                      placeholder=" " // Ditambahkan placeholder=" "
                     />
                     <label
                       htmlFor={`review-${label}`}
-                      className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out ${
-                        reviewData[label]
-                          ? "top-[-10px] text-sm text-dark"
-                          : "top-2 text-base text-dark/50"
-                      } peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange`}
+                      className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData[label]
+                        ? "-top-2 text-xs text-dark"
+                        : "top-2 text-sm text-dark/50"
+                        } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
                     </label>
@@ -284,15 +309,15 @@ const KontakPage = () => {
                 id="review-email"
                 value={reviewData.Email}
                 onChange={(e) => handleReviewChange("Email", e.target.value)}
-                className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-2"
+                className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
+                placeholder=" " // Ditambahkan placeholder=" "
               />
               <label
                 htmlFor="review-email"
-                className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out ${
-                  reviewData.Email
-                    ? "top-[-10px] text-sm text-dark"
-                    : "top-2 text-base text-dark/50"
-                } peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange`}
+                className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData.Email
+                  ? "-top-2 text-xs text-dark"
+                  : "top-2 text-sm text-dark/50"
+                  } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
               </label>
@@ -300,39 +325,51 @@ const KontakPage = () => {
 
             {/* Rating */}
             <div>
-              <label className="text-dark font-medium block mb-2">
+              <label className="text-dark font-medium block mb-1">
                 Rating Kamu <span className="text-orange">*</span>
               </label>
-              <div className="flex space-x-2 cursor-pointer">
+              <div className="flex space-x-1 cursor-pointer">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <Icon
                     key={num}
                     icon="material-symbols-light:star"
                     onClick={() => setRating(num)}
-                    className={`text-[2.2rem] transition-transform hover:scale-110 ${
-                      num <= rating ? "text-yellow" : "text-black/50"
-                    }`}
+                    className={`text-[1.8rem] transition-transform hover:scale-110 ${num <= rating ? "text-yellow" : "text-dark/50"
+                      }`}
                   />
                 ))}
               </div>
             </div>
 
             {/* Pesan */}
+            {/* FIX 2: Menyamakan textarea ini dengan textarea "Hubungi Kami" 
+            */}
             <div className="relative">
               <textarea
                 id="review-pesan"
-                rows="3"
+                rows="1" // FIX 2: Diubah dari 3 menjadi 1
                 value={reviewData.Pesan}
-                onChange={(e) => handleReviewChange("Pesan", e.target.value)}
-                className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-3 resize-y"
+                onChange={(e) => {
+                  handleReviewChange("Pesan", e.target.value);
+                }} // FIX 2: Dihapus logika auto-expand dari sini
+                onInput={(e) => {
+                  // FIX 2: Ditambahkan onInput untuk auto-expand
+                  e.target.style.height = "auto";
+                  e.target.style.height = `${e.target.scrollHeight}px`;
+                }}
+                /* FIX 2 & 3: Disamakan className-nya & dihapus transisi
+                */
+                className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
+                placeholder=" " // FIX 2: Ditambahkan placeholder
               ></textarea>
               <label
                 htmlFor="review-pesan"
-                className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out ${
-                  reviewData.Pesan
-                    ? "top-[-10px] text-sm text-dark"
-                    : "top-3 text-base text-dark/50"
-                } peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange`}
+                className={`absolute left-0 transition-all duration-200 ease-in-out
+                  ${reviewData.Pesan
+                    ? "-top-2 text-xs text-dark"
+                    : "top-2 text-sm text-dark/50"
+                  }
+                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Pesan <span className="text-orange">*</span>
               </label>
@@ -346,14 +383,15 @@ const KontakPage = () => {
 
             <button
               type="submit"
-              className="bg-orange text-light py-3 w-full rounded-[5px] uppercase font-semibold transition-all duration-300 cursor-pointer
-              hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
+              className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
+        hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
             >
-              Submit
+              Kirim Penilaian
             </button>
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
