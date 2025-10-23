@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { useState } from "react";
 
 export default function UMKMCard() {
-  const [hovered, setHovered] = useState(null);
-
   const dummyUMKM = [
     {
       name: "Ramboo Chicken",
@@ -13,94 +10,62 @@ export default function UMKMCard() {
         "Ramboo Chicken Kudus merupakan usaha kuliner yang menyajikan beragam olahan ayam khas.",
       location: "Kota Kudus",
       openHour: "10.00–21.00",
-      imageUrl: "https://via.placeholder.com/400x250.png?text=UMKM+Image",
-    },
-    {
-      name: "Kopi Seduh Santai",
-      category: "Minuman",
-      description:
-        "Kopi Seduh Santai menawarkan berbagai minuman kopi lokal dengan cita rasa khas Indonesia.",
-      location: "Kota Kudus",
-      openHour: "08.00–22.00",
-      imageUrl: "https://via.placeholder.com/400x250.png?text=UMKM+Image",
-    },
-    {
-      name: "Batik Tulis Lestari",
-      category: "Kerajinan",
-      description:
-        "Batik Tulis Lestari menghadirkan kain batik khas Kudus dengan motif klasik dan modern.",
-      location: "Kota Kudus",
-      openHour: "09.00–17.00",
-      imageUrl: "https://via.placeholder.com/400x250.png?text=UMKM+Image",
-    },
-    {
-      name: "Roti Manis Bahagia",
-      category: "Kuliner",
-      description:
-        "Roti Manis Bahagia menjual aneka roti homemade yang lembut dan enak untuk segala suasana.",
-      location: "Kota Kudus",
-      openHour: "07.00–20.00",
-      imageUrl: "https://via.placeholder.com/400x250.png?text=UMKM+Image",
-    },
-    {
-      name: "Keripik Kress",
-      category: "Cemilan",
-      description:
-        "Keripik Kress memproduksi keripik singkong pedas dengan berbagai level rasa.",
-      location: "Kota Kudus",
-      openHour: "09.00–21.00",
-      imageUrl: "https://via.placeholder.com/400x250.png?text=UMKM+Image",
+      image: "/images/sampel_umkm.png", // ganti sesuai asetmu
     },
   ];
 
   return (
-    <div className="p-6 bg-[#f9f6ee]">
-      <div className="flex gap-4">
+    <div className="p-6 flex justify-center items-center">
+      <div className="flex gap-4 flex-wrap justify-center">
         {dummyUMKM.map((item, index) => (
           <motion.div
             key={index}
-            className="min-w-[220px] rounded-[5px] overflow-hidden bg-[#f9f6ee]"
-            onHoverStart={() => setHovered(index)}
-            onHoverEnd={() => setHovered(null)}
-            whileHover={{ scale: 1.02 }}
+            className="w-[260px] bg-light rounded-[5px] overflow-hidden cursor-pointer group"
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.2 }}
           >
             {/* Gambar */}
-            <div className="h-[200px] w-full bg-gray-200 flex items-center justify-center text-dark/50 text-sm rounded-[5px] overflow-hidden">
-              {item.name} Placeholder
+            <div className="relative rounded-[5px] overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-40 object-cover"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
             </div>
 
-            {/* Bagian teks */}
-            <div className="py-3 bg-light text-left">
-              <h3
-                className={`text-base font-bold transition-colors duration-200 ${
-                  hovered === index ? "text-orange" : "text-dark"
-                }`}
-              >
+            {/* Isi */}
+            <div className="pt-4 text-left">
+              <h3 className="text-[16px] font-bold text-dark leading-snug group-hover:text-orange transition-colors duration-300">
                 {item.name}
               </h3>
+              <p className="text-dark/60 text-sm font-medium mb-1 flex items-center gap-1">
+                <Icon icon="fluent:food-16-regular" width="15" height="15" />
+                {item.category}
+              </p>
 
-              <div className="flex items-center gap-1 text-sm text-dark/70 mb-1">
-                <Icon icon="fluent:food-16-regular" width="14" height="14" />
-                <span>{item.category}</span>
-              </div>
-
-              <p className="text-sm text-dark/70 font-medium line-clamp-2 mb-3">
+              <p className="text-dark/60 text-xs mt-1 line-clamp-2 mb-3">
                 {item.description}
               </p>
 
-              {/* Garis pemisah sebelum lokasi */}
-              <div className="border-t border-[#d6d3cc] mb-2"></div>
+              {/* Garis pemisah */}
+              <div className="border-t border-gray-200 my-3"></div>
 
-              <div className="flex justify-between items-center text-sm text-dark/70">
+              {/* Lokasi & jam buka + garis vertikal */}
+              <div className="flex justify-between items-center text-xs text-dark/50">
                 <div className="flex items-center gap-1">
-                  <Icon icon="gg:pin" width="14" height="14" color="#E9743B" />
+                  <Icon icon="gg:pin" width="12" height="12" color="#E9743B" />
                   <span>{item.location}</span>
                 </div>
+
+                {/* Garis vertikal pemisah */}
+                <div className="w-px h-4 bg-gray-300"></div>
+
                 <div className="flex items-center gap-1">
                   <Icon
                     icon="mdi:clock-outline"
-                    width="14"
-                    height="14"
+                    width="12"
+                    height="12"
                     color="#356859"
                   />
                   <span>{item.openHour}</span>
