@@ -104,7 +104,7 @@ const Navbar = () => {
                         Kontak
                     </a>
                     <a
-                        href="#"
+                        href="/tentang-kami"
                         className={`text-base font-medium pb-0.5 transition-colors duration-200 ${textColor} ${hoverText}`}
                     >
                         Tentang Kami

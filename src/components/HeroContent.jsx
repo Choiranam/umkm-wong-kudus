@@ -12,7 +12,7 @@ const HeroContent = ({ image, title, subtitle }) => {
                 />
                 <div className="absolute inset-0 bg-dark/80"></div>
             </div>
-
+            
             {/* Content */}
             <div className="relative z-10 px-6 md:px-12 max-w-4xl text-light">
                 <h1 className="text-3xl md:text-5xl leading-tight drop-shadow-lg font-bold">
