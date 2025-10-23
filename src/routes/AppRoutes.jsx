@@ -3,6 +3,7 @@ import TestColor from "../testing/TestColor";
 import HomePage from "../pages/HomePage";
 import KontakPage from "../pages/KontakPage";
 import TentangKamiPage from "../pages/TentangKamiPage";
+import PencarianPage from "../pages/PencarianPage";
 
 const AppRoutes = () => {
     return (
@@ -14,8 +15,11 @@ const AppRoutes = () => {
                 {/* Main Route */}
                 <Route path="/" element={<KontakPage />} />
 
-                {/* Main Route */}
+                {/* Tentang Kami Route */}
                 <Route path="/tentang-kami" element={<TentangKamiPage />} />
+
+                {/* Tentang Kami Route */}
+                <Route path="/pencarian" element={<PencarianPage />} />
             </Routes>
         </Router>
     );
