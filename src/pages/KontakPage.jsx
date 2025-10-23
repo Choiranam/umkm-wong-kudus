@@ -235,7 +235,7 @@ const KontakPage = () => {
           <form onSubmit={handleReviewSubmit} className="space-y-6">
             {/* Foto profil */}
             <div className="flex items-center gap-8">
-              <div className="relative w-40 h-40 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition flex-shrink-0">
+              <div className="relative w-40 h-40 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
                 {profilePic ? (
                   <img src={profilePic} alt="Profil" className="w-full h-full object-cover" />
                 ) : (
