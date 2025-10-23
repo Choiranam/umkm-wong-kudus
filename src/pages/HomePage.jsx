@@ -9,7 +9,7 @@ import HeroContent from '../components/HeroContent'
 
 const HomePage = () => {
     return (
-        <div className='bg-light min-h-screen '>
+        <div className='bg-light min-h-screen'>
             <Navbar />
             <HeroContent
                 image="/images/sampel_hero_content.jpeg"
