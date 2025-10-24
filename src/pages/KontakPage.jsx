@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import { Icon } from "@iconify/react";
 import Footer from "../components/Footer";
+import PageContainer from "../components/PageContainer";
 
 const KontakPage = () => {
   // ==== Hubungi Kami ====
@@ -91,78 +92,70 @@ const KontakPage = () => {
         subtitle="Jangan ragu untuk menghubungi kami agar kami dapat membantu Anda dengan informasi yang Anda butuhkan."
       />
 
-      {/* ===== Hubungi Kami ===== */}
-      {/* FIX 1: Mengubah 'items-center' menjadi 'items-start' 
-        agar peta sejajar dengan bagian atas form
-      */}
-      <div className="max-w-6xl mx-auto px-6 md:px-8 py-14 grid md:grid-cols-2 gap-12 items-start">
-        {/* Form */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-dark mb-2">
-            Hubungi Kami
-          </h2>
-          <p className="text-dark/80 mb-8 text-base leading-relaxed">
-            Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di
-            Kudus.
-          </p>
+      <PageContainer variant="default" className="grid md:grid-cols-2 gap-12 items-start py-14">
+        {/* Bagian Hubungi Kami */}
+        <div className="space-y-12">
+          {/* Form Hubungi Kami */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-dark mb-2">
+              Hubungi Kami
+            </h2>
+            <p className="text-dark/80 mb-8 text-base leading-relaxed">
+              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di Kudus.
+            </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {Object.keys(formData).map((label, index) => (
-              <div key={index} className="relative">
-                {label !== "Pesan" ? (
-                  <>
-                    <input
-                      type={label === "Email" ? "email" : "text"}
-                      id={label}
-                      value={formData[label]}
-                      onChange={(e) => handleChange(label, e.target.value)}
-                      className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
-                      placeholder=" " // Ditambahkan placeholder=" " untuk konsistensi
-                    />
-                    <label
-                      htmlFor={label}
-                      className={`absolute left-0 transition-all duration-200 ease-in-out
-                  ${formData[label]
-                          ? "-top-2 text-xs text-dark"
-                          : "top-2 text-sm text-dark/50"
-                        }
-                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
-                    >
-                      {label} <span className="text-orange">*</span>
-                    </label>
-                  </>
-                ) : (
-                  <>
-                    <textarea
-                      id={label}
-                      rows="1"
-                      value={formData[label]}
-                      onChange={(e) => handleChange(label, e.target.value)}
-                      onInput={(e) => {
-                        e.target.style.height = "auto"; // reset dulu
-                        e.target.style.height = e.target.scrollHeight + "px"; // sesuaikan tinggi otomatis
-                      }}
-                      /* FIX 3: Menghapus 'transition-all duration-200' 
-                        untuk menghilangkan lag/berat saat auto-expand
-                      */
-                      className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
-                      placeholder=" "
-                    ></textarea>
-                    <label
-                      htmlFor={label}
-                      className={`absolute left-0 transition-all duration-200 ease-in-out
-                  ${formData[label]
-                          ? "-top-2 text-xs text-dark"
-                          : "top-2 text-sm text-dark/50"
-                        }
-                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
-                    >
-                      {label} <span className="text-orange">*</span>
-                    </label>
-                  </>
-                )}
-              </div>
-            ))}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {Object.keys(formData).map((label, index) => (
+                <div key={index} className="relative">
+                  {label !== "Pesan" ? (
+                    <>
+                      <input
+                        type={label === "Email" ? "email" : "text"}
+                        id={label}
+                        value={formData[label]}
+                        onChange={(e) => handleChange(label, e.target.value)}
+                        className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
+                        placeholder=" "
+                      />
+                      <label
+                        htmlFor={label}
+                        className={`absolute left-0 transition-all duration-200 ease-in-out
+                        ${formData[label]
+                            ? "-top-2 text-xs text-dark"
+                            : "top-2 text-sm text-dark/50"}
+                        peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                      >
+                        {label} <span className="text-orange">*</span>
+                      </label>
+                    </>
+                  ) : (
+                    <>
+                      <textarea
+                        id={label}
+                        rows="1"
+                        value={formData[label]}
+                        onChange={(e) => handleChange(label, e.target.value)}
+                        onInput={(e) => {
+                          e.target.style.height = "auto";
+                          e.target.style.height = e.target.scrollHeight + "px";
+                        }}
+                        className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
+                        placeholder=" "
+                      ></textarea>
+                      <label
+                        htmlFor={label}
+                        className={`absolute left-0 transition-all duration-200 ease-in-out
+                        ${formData[label]
+                            ? "-top-2 text-xs text-dark"
+                            : "top-2 text-sm text-dark/50"}
+                        peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                      >
+                        {label} <span className="text-orange">*</span>
+                      </label>
+                    </>
+                  )}
+                </div>
+              ))}
 
             {errorHubungi && (
               <p className="text-red-500 text-sm text-center font-medium -mt-2">
@@ -170,45 +163,46 @@ const KontakPage = () => {
               </p>
             )}
 
-            <button
-              type="submit"
-              className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
-         hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
-            >
-              Kirim Pesan
-            </button>
-          </form>
-
-          {/* Ikon sosial media */}
-          <div className="flex justify-center space-x-4 mt-8 text-orange text-2xl">
-            {[
-              {
-                href: "mailto:mchoiranam@gmail.com",
-                icon: "streamline-logos:email-logo-block",
-              },
-              {
-                href: "https://wa.me/6285601211156",
-                icon: "fa6-brands:square-whatsapp",
-              },
-              {
-                href: "https://www.instagram.com/choiranamm/",
-                icon: "fa7-brands:instagram-square",
-              },
-              {
-                href: "https://t.me/choiranamm",
-                icon: "streamline-logos:telegram-logo-2-block",
-              },
-            ].map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-all duration-300 hover:scale-110 hover:text-[#D96230]"
+              <button
+                type="submit"
+                className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
+                hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
               >
-                <Icon icon={item.icon} />
-              </a>
-            ))}
+                Kirim Pesan
+              </button>
+            </form>
+
+            {/* Ikon sosial media */}
+            <div className="flex justify-center space-x-4 mt-8 text-orange text-2xl">
+              {[
+                {
+                  href: "mailto:mchoiranam@gmail.com",
+                  icon: "streamline-logos:email-logo-block",
+                },
+                {
+                  href: "https://wa.me/6285601211156",
+                  icon: "fa6-brands:square-whatsapp",
+                },
+                {
+                  href: "https://www.instagram.com/choiranamm/",
+                  icon: "fa7-brands:instagram-square",
+                },
+                {
+                  href: "https://t.me/choiranamm",
+                  icon: "streamline-logos:telegram-logo-2-block",
+                },
+              ].map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-300 hover:scale-110 hover:text-[#D96230]"
+                >
+                  <Icon icon={item.icon} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -225,14 +219,8 @@ const KontakPage = () => {
             title="Google Maps"
           />
         </div>
-      </div>
 
-      {/* ===== Beri Penilaian ===== */}
-      {/* FIX 1: Mengubah 'items-center' menjadi 'items-start' 
-        agar gambar sejajar dengan bagian atas form
-      */}
-      <div className="max-w-6xl mx-auto px-6 md:px-8 py-14 grid md:grid-cols-2 gap-12 items-start">
-        {/* Gambar kiri */}
+        {/* Gambar Kudus */}
         <div className="rounded-[5px] overflow-hidden shadow-md h-[530px]">
           <img
             src="/images/kudus.jpg"
@@ -241,14 +229,13 @@ const KontakPage = () => {
           />
         </div>
 
-        {/* Form kanan */}
+        {/* Form Beri Penilaian */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">
             Beri Penilaian
           </h2>
           <p className="text-dark/80 mb-8 text-base leading-relaxed">
-            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi
-            website ini.
+            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi website ini.
           </p>
 
           <form onSubmit={handleReviewSubmit} className="space-y-6">
@@ -282,17 +269,15 @@ const KontakPage = () => {
                       type="text"
                       id={`review-${label}`}
                       value={reviewData[label]}
-                      onChange={(e) =>
-                        handleReviewChange(label, e.target.value)
-                      }
+                      onChange={(e) => handleReviewChange(label, e.target.value)}
                       className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
-                      placeholder=" " // Ditambahkan placeholder=" "
+                      placeholder=" "
                     />
                     <label
                       htmlFor={`review-${label}`}
                       className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData[label]
-                        ? "-top-2 text-xs text-dark"
-                        : "top-2 text-sm text-dark/50"
+                          ? "-top-2 text-xs text-dark"
+                          : "top-2 text-sm text-dark/50"
                         } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
@@ -310,13 +295,13 @@ const KontakPage = () => {
                 value={reviewData.Email}
                 onChange={(e) => handleReviewChange("Email", e.target.value)}
                 className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
-                placeholder=" " // Ditambahkan placeholder=" "
+                placeholder=" "
               />
               <label
                 htmlFor="review-email"
                 className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData.Email
-                  ? "-top-2 text-xs text-dark"
-                  : "top-2 text-sm text-dark/50"
+                    ? "-top-2 text-xs text-dark"
+                    : "top-2 text-sm text-dark/50"
                   } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
@@ -347,29 +332,24 @@ const KontakPage = () => {
             <div className="relative">
               <textarea
                 id="review-pesan"
-                rows="1" // FIX 2: Diubah dari 3 menjadi 1
+                rows="1"
                 value={reviewData.Pesan}
-                onChange={(e) => {
-                  handleReviewChange("Pesan", e.target.value);
-                }} // FIX 2: Dihapus logika auto-expand dari sini
+                onChange={(e) => handleReviewChange("Pesan", e.target.value)}
                 onInput={(e) => {
-                  // FIX 2: Ditambahkan onInput untuk auto-expand
                   e.target.style.height = "auto";
                   e.target.style.height = `${e.target.scrollHeight}px`;
                 }}
-                /* FIX 2 & 3: Disamakan className-nya & dihapus transisi
-                */
                 className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
-                placeholder=" " // FIX 2: Ditambahkan placeholder
+                placeholder=" "
               ></textarea>
               <label
                 htmlFor="review-pesan"
                 className={`absolute left-0 transition-all duration-200 ease-in-out
-                  ${reviewData.Pesan
+                ${reviewData.Pesan
                     ? "-top-2 text-xs text-dark"
                     : "top-2 text-sm text-dark/50"
                   }
-                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Pesan <span className="text-orange">*</span>
               </label>
@@ -384,13 +364,13 @@ const KontakPage = () => {
             <button
               type="submit"
               className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
-        hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
+              hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
             >
               Kirim Penilaian
             </button>
           </form>
         </div>
-      </div>
+      </PageContainer>
       <Footer />
     </div>
   );

@@ -2,18 +2,21 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HeroContent from "../components/HeroContent";
+import PageContainer from "../components/PageContainer"; 
 
 const TentangKamiPage = () => {
   return (
     <div className="bg-light min-h-screen">
       <Navbar />
+
       <HeroContent
         image="/images/tentang_kami_hero_content.png"
         title="Dari Kudus, Untuk Kudus Cerita di Balik Kudus UMKM Explore"
         subtitle="Kami percaya setiap usaha lokal punya cerita dan semangat untuk tumbuh. Melalui platform ini, kami bantu mereka dikenal lebih luas dengan sentuhan digital"
       />
 
-      <div className="flex flex-col gap-10 max-w-6xl mx-auto px-4 md:px-8 py-12">
+      {/* 🧱 Ganti div wrapper lama dengan PageContainer */}
+      <PageContainer variant="default" className="flex flex-col gap-10">
         {/* Bagian Tentang Kami */}
         <section className="text-dark text-center">
           <h2 className="text-3xl font-black inline-block mr-2">Tentang</h2>
@@ -48,7 +51,7 @@ const TentangKamiPage = () => {
           {/* Grid dua kolom */}
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Visi */}
-            <div className="md:pr-8 md:border-r border-dark-300 pb-6">
+            <div className="md:pr-8 md:border-r-2 border-dark/50 pb-6">
               <h2 className="text-2xl font-semibold text-dark mb-2">Visi</h2>
               <p className="text-base leading-relaxed text-justify">
                 Visi kami adalah menjadikan Kudus sebagai pusat pengembangan dan
@@ -85,9 +88,9 @@ const TentangKamiPage = () => {
           </div>
 
           {/* Garis horizontal penuh di bawah teks judul Visi & Misi */}
-          <div className="absolute left-0 right-0 top-10 md:top-[30px] h-px bg-dark"></div>
+          <div className="absolute left-0 right-0 top-10 md:top-[30px] h-px bg-dark/50"></div>
         </section>
-      </div>
+      </PageContainer>
 
       <Footer />
     </div>

@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import HeroContent from "../components/HeroContent";
 import UMKMCard from "../components/UMKMCard";
 import { Icon } from "@iconify/react";
+import PageContainer from "../components/PageContainer"; // ✅ import PageContainer
 
 const PencarianPage = () => {
   // Data hasil pencarian (contoh bisa diganti dari API nanti)
@@ -41,8 +42,8 @@ const PencarianPage = () => {
         subtitle="Dukung pelaku UMKM lokal dan temukan produk, layanan, serta kuliner pilihan di Kudus."
       />
 
-      {/* Hasil Pencarian */}
-      <section className="max-w-6xl mx-auto w-full px-6 md:px-8 py-10">
+      {/* ===== Hasil Pencarian ===== */}
+      <PageContainer variant="default" className="py-10">
         <div className="mb-6">
           <div className="flex items-center gap-2">
             <Icon icon="hugeicons:idea-01" width="30" height="30" className="text-orange" />
@@ -61,7 +62,7 @@ const PencarianPage = () => {
             <UMKMCard key={index} data={umkm} />
           ))}
         </div>
-      </section>
+      </PageContainer>
 
       <Footer />
     </div>
