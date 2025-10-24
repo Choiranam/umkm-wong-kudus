@@ -7,12 +7,13 @@ import { Icon } from "@iconify/react";
 import PageContainer from "../components/PageContainer"; // ✅ import PageContainer
 
 const PencarianPage = () => {
-  // Data dummy untuk hasil pencarian
-  const umkmData = [
+  // Data hasil pencarian (contoh bisa diganti dari API nanti)
+  const hasilPencarian = [
     {
       name: "Ramboo Chicken",
       category: "Makanan",
-      description: "Ramboo Chicken Kudus merupakan usaha kuliner yang menyajikan beragam olahan ayam khas.",
+      description:
+        "Ramboo Chicken Kudus merupakan usaha kuliner yang menyajikan beragam olahan ayam khas.",
       location: "Kota Kudus",
       openHour: "10.00–21.00",
       image: "/images/sampel_umkm.png",
@@ -20,7 +21,8 @@ const PencarianPage = () => {
     {
       name: "Ramboo Chicken",
       category: "Makanan",
-      description: "Ramboo Chicken Kudus merupakan usaha kuliner yang menyajikan beragam olahan ayam khas.",
+      description:
+        "Ramboo Chicken Kudus merupakan usaha kuliner yang menyajikan beragam olahan ayam khas.",
       location: "Kota Kudus",
       openHour: "10.00–21.00",
       image: "/images/sampel_umkm.png",
@@ -30,14 +32,14 @@ const PencarianPage = () => {
   const keyword = "Ra";
 
   return (
-    <div className="bg-light min-h-screen flex flex-col">
+    <div className="bg-light min-h-screen">
       <Navbar />
 
       {/* Hero Section */}
       <HeroContent
         image="/images/pencarian_hero_content.png"
         title="Temukan berbagai usaha lokal sesuai kata kunci pilihanmu."
-        subtitle="Dukung pelaku UMKM lokal dan temukan produk, layanan serta kuliner pilihan di kudus."
+        subtitle="Dukung pelaku UMKM lokal dan temukan produk, layanan, serta kuliner pilihan di Kudus."
       />
 
       {/* ===== Hasil Pencarian ===== */}
@@ -49,21 +51,16 @@ const PencarianPage = () => {
               Hasil Pencarian untuk <span className="italic font-normal">"{keyword}"</span>
             </h2>
           </div>
+          <p className="text-dark/50 mt-2 pl-1">
+            Ditemukan <span className="font-medium">{hasilPencarian.length}</span> UMKM yang terkait
+          </p>
+        </div>
 
-          {/* List UMKM */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {umkmData.map((umkm, index) => (
-              <UMKMCard
-                key={index}
-                name={umkm.name}
-                category={umkm.category}
-                description={umkm.description}
-                location={umkm.location}
-                openHour={umkm.openHour}
-                image={umkm.image}
-              />
-            ))}
-          </div>
+        {/* Grid UMKM */}
+        <div className="flex flex-wrap gap-6 justify-center md:justify-start">
+          {hasilPencarian.map((umkm, index) => (
+            <UMKMCard key={index} data={umkm} />
+          ))}
         </div>
       </PageContainer>
 

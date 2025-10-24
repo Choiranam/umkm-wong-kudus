@@ -36,9 +36,9 @@ const KontakPage = () => {
     );
     const body = encodeURIComponent(
       `Halo, saya ${formData["Nama Depan"]} ${formData["Nama Belakang"]}\n\n` +
-        `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
-        `Email: ${formData["Email"]}\n\n` +
-        `Pesan:\n${formData["Pesan"]}`
+      `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
+      `Email: ${formData["Email"]}\n\n` +
+      `Pesan:\n${formData["Pesan"]}`
     );
 
     window.location.href = `mailto:mchoiranam@gmail.com?subject=${subject}&body=${body}`;
@@ -69,9 +69,13 @@ const KontakPage = () => {
   const handleReviewSubmit = (e) => {
     e.preventDefault();
 
-    const allFilled = Object.values(reviewData).every((val) => val.trim() !== "");
+    const allFilled = Object.values(reviewData).every(
+      (val) => val.trim() !== ""
+    );
     if (!allFilled || rating === 0) {
-      setErrorReview("⚠️ Semua kolom dan rating wajib diisi sebelum mengirim penilaian.");
+      setErrorReview(
+        "⚠️ Semua kolom dan rating wajib diisi sebelum mengirim penilaian."
+      );
       return;
     }
 
@@ -80,7 +84,7 @@ const KontakPage = () => {
   };
 
   return (
-    <div className="bg-light min-h-screen font-poppins">
+    <div className="bg-light min-h-screen">
       <Navbar />
       <HeroContent
         image="/images/hero_content_kontak.png"
@@ -153,11 +157,11 @@ const KontakPage = () => {
                 </div>
               ))}
 
-              {errorHubungi && (
-                <p className="text-red-500 text-sm text-center font-medium -mt-2">
-                  {errorHubungi}
-                </p>
-              )}
+            {errorHubungi && (
+              <p className="text-red-500 text-sm text-center font-medium -mt-2">
+                {errorHubungi}
+              </p>
+            )}
 
               <button
                 type="submit"
@@ -203,7 +207,7 @@ const KontakPage = () => {
         </div>
 
         {/* Google Maps */}
-        <div className="overflow-hidden shadow-md h-full">
+        <div className="overflow-hidden rounded-[5px] shadow-md h-[550px]">
           <iframe
             src="https://www.google.com/maps?q=-6.792803,110.836430&hl=id&z=15&output=embed"
             width="100%"
@@ -236,14 +240,18 @@ const KontakPage = () => {
 
           <form onSubmit={handleReviewSubmit} className="space-y-6">
             {/* Foto profil */}
-            <div className="flex items-center gap-8">
-              <div className="relative w-40 h-40 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
+            <div className="flex items-center gap-6">
+              <div className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
                 {profilePic ? (
-                  <img src={profilePic} alt="Profil" className="w-full h-full object-cover" />
+                  <img
+                    src={profilePic}
+                    alt="Profil"
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                  <div className="flex flex-col justify-center items-center h-full text-orange text-center px-3">
-                    <Icon icon="mdi:camera-outline" className="text-4xl mb-2" />
-                    <p className="text-xs font-medium leading-tight">Tambahkan Foto Profil</p>
+                  <div className="flex flex-col justify-center items-center h-full text-orange">
+                    <Icon icon="mdi:camera-outline" className="text-3xl mb-1" />
+                    <p className="text-[10px] font-medium">Tambah Foto</p>
                   </div>
                 )}
                 <input
@@ -254,7 +262,7 @@ const KontakPage = () => {
                 />
               </div>
 
-              <div className="flex flex-col flex-1 gap-6">
+              <div className="flex flex-col flex-1 gap-4">
                 {["Nama Depan", "Nama Belakang"].map((label) => (
                   <div key={label} className="relative">
                     <input
@@ -302,24 +310,25 @@ const KontakPage = () => {
 
             {/* Rating */}
             <div>
-              <label className="text-dark font-medium block mb-2">
+              <label className="text-dark font-medium block mb-1">
                 Rating Kamu <span className="text-orange">*</span>
               </label>
-              <div className="flex space-x-2 cursor-pointer">
+              <div className="flex space-x-1 cursor-pointer">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <Icon
                     key={num}
                     icon="material-symbols-light:star"
                     onClick={() => setRating(num)}
-                    className={`text-[2.2rem] transition-transform hover:scale-110 ${
-                      num <= rating ? "text-yellow" : "text-black/50"
-                    }`}
+                    className={`text-[1.8rem] transition-transform hover:scale-110 ${num <= rating ? "text-yellow" : "text-dark/50"
+                      }`}
                   />
                 ))}
               </div>
             </div>
 
             {/* Pesan */}
+            {/* FIX 2: Menyamakan textarea ini dengan textarea "Hubungi Kami" 
+            */}
             <div className="relative">
               <textarea
                 id="review-pesan"
@@ -357,7 +366,7 @@ const KontakPage = () => {
               className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
               hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
             >
-              Submit
+              Kirim Penilaian
             </button>
           </form>
         </div>

@@ -40,7 +40,7 @@ const TentangKamiPage = () => {
           {/* Tombol Hubungi Kami */}
           <a
             href="/kontak"
-            className="block w-fit bg-orange text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
+            className="block w-fit bg-orange text-white font-medium px-6 py-3 rounded-md shadow-md transition-all duration-300 transform hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
           >
             Hubungi Kami
           </a>

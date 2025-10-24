@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom'; // 1. IMPORT Link
 
 const Footer = () => {
     return (
@@ -8,16 +9,18 @@ const Footer = () => {
                 {/* GRID SECTION */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16 items-start">
 
-                    {/* Logo Section */}
+                    {/* Logo Section - Diubah menjadi Link */}
                     <div className="flex flex-col items-start justify-center">
-                        <img
-                            src="/images/logo_navbar_footer.png"
-                            alt="Kudus UMKM"
-                            className="w-44 md:w-48"
-                        />
+                        <Link to="/">
+                            <img
+                                src="/images/logo_navbar_footer.png"
+                                alt="Kudus UMKM"
+                                className="w-44 md:w-48"
+                            />
+                        </Link>
                     </div>
 
-                    {/* Kontak Info */}
+                    {/* Kontak Info (Tetap sama, tidak perlu Link router) */}
                     <div>
                         <h4 className="text-dark font-bold text-lg mb-4">Kontak Info</h4>
                         <div className="space-y-3 text-dark/50 font-medium text-sm">
@@ -36,44 +39,45 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Quick Links - Diubah menjadi Link */}
                     <div>
                         <h4 className="text-dark font-bold text-lg mb-4">Quick Links</h4>
                         <div className="space-y-2">
-                            <a href="/beranda" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            <Link to="/" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Beranda
-                            </a>
-                            <a href="/tentang-umkm" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            </Link>
+                            {/* Path disamakan dengan Navbar (asumsi /artikel) */}
+                            <Link to="/tentang-umkm" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Tentang UMKM
-                            </a>
-                            <a href="/kontak" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            </Link>
+                            <Link to="/kontak" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Kontak
-                            </a>
-                            <a href="/tentang-kami" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            </Link>
+                            <Link to="/tentang-kami" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Tentang Kami
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
-                    {/* Kategori UMKM */}
+                    {/* Kategori UMKM - Diubah menjadi Link ke /pencarian */}
                     <div>
                         <h4 className="text-dark font-bold text-lg mb-4">Kategori UMKM</h4>
                         <div className="space-y-2">
-                            <a href="/kategori/makanan" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            <Link to="/kategori?=makanan" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Makanan
-                            </a>
-                            <a href="/kategori/minuman" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            </Link>
+                            <Link to="/kategori?=minuman" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Minuman
-                            </a>
-                            <a href="/kategori/jasa" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            </Link>
+                            <Link to="/kategori?=jasa" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Jasa
-                            </a>
-                            <a href="/kategori/barang" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            </Link>
+                            <Link to="/kategori?=barang" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Barang
-                            </a>
-                            <a href="/kategori/lainnya" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            </Link>
+                            <Link to="/kategori?=lainnya" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Lainnya
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
