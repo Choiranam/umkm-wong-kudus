@@ -4,12 +4,14 @@ import HomePage from "../pages/HomePage";
 import KontakPage from "../pages/KontakPage";
 import TentangKamiPage from "../pages/TentangKamiPage";
 import PencarianPage from "../pages/PencarianPage";
-import ScrollToTop from "../components/ScrollTop"; 
+import ScrollToTop from "../components/ScrollTop";
+import KecamatanPage from "../pages/KecamatanPage";
+import KategoriPage from './../pages/KategoriPage';
 
 const AppRoutes = () => {
     return (
         <Router>
-            <ScrollToTop /> 
+            <ScrollToTop />
             <Routes>
                 {/* Color Testing Route */}
                 <Route path="/color" element={<TestColor />} />
@@ -25,6 +27,12 @@ const AppRoutes = () => {
 
                 {/* Pencarian Route */}
                 <Route path="/pencarian" element={<PencarianPage />} />
+
+                {/* Kecamatan Route */}
+                <Route path="/kecamatan" element={<KecamatanPage />} />
+
+                {/* Kategori Route */}
+                <Route path="/kategori" element={<KategoriPage />} />
             </Routes>
         </Router>
     );
