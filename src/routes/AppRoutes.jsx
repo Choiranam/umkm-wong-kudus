@@ -29,7 +29,7 @@ const AppRoutes = () => {
                 <Route path="/pencarian" element={<PencarianPage />} />
 
                 {/* Kecamatan Route */}
-                <Route path="/kecamatan" element={<KecamatanPage />} />
+                <Route path="/kecamatan/:slug" element={<KecamatanPage />} />
 
                 {/* Kategori Route */}
                 <Route path="/kategori" element={<KategoriPage />} />
