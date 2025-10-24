@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import { Link, useLocation } from "react-router-dom"; // 1. IMPORT Link dan useLocation
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-    // 2. DAPATKAN LOKASI PATH SAAT INI
     const { pathname, search } = useLocation();
-    const fullPath = pathname + search; // Untuk menangani query parameter
+    const fullPath = pathname + search;
 
-    // 3. TENTUKAN MENU AKTIF SECARA DINAMIS
+    // Tentukan menu aktif
     let activeMenu = "";
-    if (pathname === "/") {
-        activeMenu = "beranda";
-    } else if (pathname === "/artikel") {
-        // Asumsi: /artikel untuk "Tentang UMKM" dan tombol "Baca Artikel"
-        activeMenu = "tentang-umkm";
-    } else if (pathname === "/kontak") {
-        activeMenu = "kontak";
-    } else if (pathname === "/tentang-kami") {
-        activeMenu = "tentang-kami";
-    }
+    if (pathname === "/") activeMenu = "beranda";
+    else if (pathname === "/tentang-umkm") activeMenu = "tentang-umkm";
+    else if (pathname === "/kontak") activeMenu = "kontak";
+    else if (pathname === "/tentang-kami") activeMenu = "tentang-kami";
+    else if (pathname.startsWith("/kategori")) activeMenu = "kategori";
 
     const [scrollY, setScrollY] = useState(0);
 
@@ -28,44 +22,26 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Update posisi scroll saat route berubah agar efek transparan langsung aktif
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "instant" }); // scroll ke atas setiap kali pindah halaman
-        setScrollY(0); // pastikan efek transparan aktif di atas
-    }, [pathname]);
+        window.scrollTo({ top: 0, behavior: "instant" });
+        setScrollY(0);
+    }, [pathname, search]);
 
-    // Jika posisi paling atas (belum discroll)
     const isAtTop = scrollY <= 50;
-
-    // Warna dinamis
     const bgColor = isAtTop ? "bg-dark/0" : "bg-light shadow-sm";
     const textColor = isAtTop ? "text-white" : "text-dark";
     const hoverText = isAtTop ? "hover:text-orange/80" : "hover:text-orange";
 
-    // Logo dinamis
     const logoSrc = isAtTop
-        ? "/images/logo_kudus.png" // saat di atas
-        : "/images/logo_navbar_footer.png"; // saat scroll
+        ? "/images/logo_kudus.png"
+        : "/images/logo_navbar_footer.png";
 
-    // Data Kategori untuk Dropdown
     const kategoriItems = [
-        {
-            icon: "fluent:food-16-regular",
-            text: "Makanan",
-            slug: "makanan",
-        },
-        {
-            icon: "fluent:drink-to-go-24-regular",
-            text: "Minuman",
-            slug: "minuman",
-        },
+        { icon: "fluent:food-16-regular", text: "Makanan", slug: "makanan" },
+        { icon: "fluent:drink-to-go-24-regular", text: "Minuman", slug: "minuman" },
         { icon: "ph:wrench", text: "Jasa", slug: "jasa" },
         { icon: "lucide:package-open", text: "Barang", slug: "barang" },
-        {
-            icon: "basil:other-1-outline",
-            text: "Lainnya",
-            slug: "lainnya",
-        },
+        { icon: "basil:other-1-outline", text: "Lainnya", slug: "lainnya" },
     ];
 
     return (
@@ -73,7 +49,7 @@ const Navbar = () => {
             className={`fixed top-0 left-0 w-full ${bgColor} px-8 py-2.5 z-999 transition-all duration-500 ease-in-out`}
         >
             <div className="relative flex items-center justify-between max-w-7xl mx-auto">
-                {/* Logo - Diubah menjadi Link */}
+                {/* Logo */}
                 <Link to="/" className="flex items-center">
                     <img
                         src={logoSrc}
@@ -84,11 +60,11 @@ const Navbar = () => {
 
                 {/* Menu Tengah */}
                 <div className="absolute left-1/2 -translate-x-1/2 flex items-center space-x-8">
-                    {/* Link Beranda */}
+                    {/* Beranda */}
                     <Link
                         to="/"
                         className={`text-base transition-colors duration-200 flex items-center space-x-1 pb-0.5 ${activeMenu === "beranda"
-                            ? `${textColor} font-semibold border-b-3 border-orange`
+                            ? `${textColor} font-semibold border-b-4 border-orange`
                             : `${textColor} font-medium ${hoverText}`
                             }`}
                     >
@@ -99,7 +75,7 @@ const Navbar = () => {
                     <div className="relative group">
                         <button
                             className={`text-base transition-colors duration-200 flex items-center space-x-1 pb-0.5 cursor-pointer ${activeMenu === "kategori"
-                                ? `${textColor} font-semibold border-b-3 border-orange` // diubah dari font-bold
+                                ? `${textColor} font-medium`
                                 : `${textColor} font-medium ${hoverText}`
                                 }`}
                         >
@@ -111,11 +87,11 @@ const Navbar = () => {
                             />
                         </button>
 
-                        {/* Dropdown Menu Items - Diubah menjadi Link */}
+                        {/* Dropdown Items */}
                         <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl py-3 z-1000 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <div className="space-y-1">
                                 {kategoriItems.map(({ icon, text, slug }) => {
-                                    const kategoriPath = `/kategori?=${slug}`;
+                                    const kategoriPath = `/kategori?slug=${slug}`;
                                     const isKategoriActive = fullPath === kategoriPath;
                                     return (
                                         <Link
@@ -141,33 +117,33 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    {/* Link Tentang UMKM */}
+                    {/* Tentang UMKM */}
                     <Link
-                        to="/tentang-umkm" // Asumsi path, ganti jika perlu
+                        to="/tentang-umkm"
                         className={`text-base pb-0.5 transition-colors duration-200 ${activeMenu === "tentang-umkm"
-                            ? `${textColor} font-semibold border-b-3 border-orange`
+                            ? `${textColor} font-semibold border-b-4 border-orange`
                             : `${textColor} font-medium ${hoverText}`
                             }`}
                     >
                         Tentang UMKM
                     </Link>
 
-                    {/* Link Kontak */}
+                    {/* Kontak */}
                     <Link
                         to="/kontak"
                         className={`text-base pb-0.5 transition-colors duration-200 ${activeMenu === "kontak"
-                            ? `${textColor} font-semibold border-b-3 border-orange`
+                            ? `${textColor} font-semibold border-b-4 border-orange`
                             : `${textColor} font-medium ${hoverText}`
                             }`}
                     >
                         Kontak
                     </Link>
 
-                    {/* Link Tentang Kami */}
+                    {/* Tentang Kami */}
                     <Link
                         to="/tentang-kami"
                         className={`text-base pb-0.5 transition-colors duration-200 ${activeMenu === "tentang-kami"
-                            ? `${textColor} font-semibold border-b-3 border-orange`
+                            ? `${textColor} font-semibold border-b-4 border-orange`
                             : `${textColor} font-medium ${hoverText}`
                             }`}
                     >
@@ -175,10 +151,10 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Tombol kanan - Diubah menjadi Link */}
+                {/* Tombol kanan */}
                 <Link
-                    to="/artikel" // Asumsi path, ganti jika perlu
-                    className={`px-5 py-2.5 bg-orange text-white text-base font-medium rounded-md transition-all duration-300 transform hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97] whitespace-nowrap`}
+                    to="/artikel"
+                    className="px-5 py-2.5 bg-orange text-white text-base font-medium rounded-md transition-all duration-300 transform hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97] whitespace-nowrap"
                 >
                     Baca Artikel UMKM
                 </Link>
