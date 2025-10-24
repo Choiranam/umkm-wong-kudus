@@ -19,6 +19,20 @@ const HomePage = () => {
             image: "/images/sampel_umkm.png",
         },
     ]
+    const homeKecamatanData = [
+        {
+            name: "Bae",
+            slug: "bae", // 'slug' untuk URL
+            placeCount: 27,
+            image: "/images/sampel_kecamatan.png" // Ganti dengan gambar spesifik jika ada
+        },
+        {
+            name: "Kaliwungu",
+            slug: "kaliwungu", // 'slug' untuk URL
+            placeCount: 35,
+            image: "/images/sampel_kecamatan_2.png" // Ganti dengan gambar spesifik jika ada
+        },
+    ];
     return (
         <div className='bg-light min-h-screen'>
             <Navbar />
@@ -30,7 +44,13 @@ const HomePage = () => {
             <div className='flex flex-col gap-10 max-w-7xl mx-auto px-4 md:px-8 py-12'>
                 <ArtikelCard />
                 <ReviewCard />
-                <KecamatanCard />
+                <div className="p-6 flex justify-center items-center">
+                    <div className="flex gap-4 flex-wrap justify-center">
+                        {homeKecamatanData.map((kecamatan) => (
+                            <KecamatanCard key={kecamatan.slug} data={kecamatan} />
+                        ))}
+                    </div>
+                </div>
                 {umkmData.map((umkm, index) => (
                     <UMKMCard key={index} data={umkm} />
                 ))}
