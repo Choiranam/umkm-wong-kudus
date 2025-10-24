@@ -46,7 +46,6 @@ const Footer = () => {
                             <Link to="/" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Beranda
                             </Link>
-                            {/* Path disamakan dengan Navbar (asumsi /artikel) */}
                             <Link to="/tentang-umkm" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Tentang UMKM
                             </Link>
@@ -63,19 +62,19 @@ const Footer = () => {
                     <div>
                         <h4 className="text-dark font-bold text-lg mb-4">Kategori UMKM</h4>
                         <div className="space-y-2">
-                            <Link to="/kategori?=makanan" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            <Link to="/kategori?slug=makanan" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Makanan
                             </Link>
-                            <Link to="/kategori?=minuman" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            <Link to="/kategori?slug=minuman" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Minuman
                             </Link>
-                            <Link to="/kategori?=jasa" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            <Link to="/kategori?slug=jasa" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Jasa
                             </Link>
-                            <Link to="/kategori?=barang" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            <Link to="/kategori?slug=barang" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Barang
                             </Link>
-                            <Link to="/kategori?=lainnya" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                            <Link to="/kategori?slug=lainnya" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Lainnya
                             </Link>
                         </div>
