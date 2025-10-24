@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import { Icon } from "@iconify/react";
+import Footer from "../components/Footer";
+import PageContainer from "../components/PageContainer";
 
 const KontakPage = () => {
   // ==== Hubungi Kami ====
@@ -86,17 +88,19 @@ const KontakPage = () => {
         subtitle="Jangan ragu untuk menghubungi kami agar kami dapat membantu Anda dengan informasi yang Anda butuhkan."
       />
 
-      {/* ===== Hubungi Kami ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-stretch">
-        {/* Form */}
-        <div className="flex flex-col justify-between">
+      <PageContainer variant="default" className="grid md:grid-cols-2 gap-12 items-start py-14">
+        {/* Bagian Hubungi Kami */}
+        <div className="space-y-12">
+          {/* Form Hubungi Kami */}
           <div>
-            <h2 className="text-4xl font-black mb-3 text-dark">Hubungi Kami</h2>
-            <p className="text-dark font-normal mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-dark mb-2">
+              Hubungi Kami
+            </h2>
+            <p className="text-dark/80 mb-8 text-base leading-relaxed">
               Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di Kudus.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {Object.keys(formData).map((label, index) => (
                 <div key={index} className="relative">
                   {label !== "Pesan" ? (
@@ -106,18 +110,16 @@ const KontakPage = () => {
                         id={label}
                         value={formData[label]}
                         onChange={(e) => handleChange(label, e.target.value)}
-                        className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-3"
+                        className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
+                        placeholder=" "
                       />
                       <label
                         htmlFor={label}
-                        className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out
-                          ${
-                            formData[label]
-                              ? "top-[-10px] text-sm text-dark"
-                              : "top-3 text-base text-dark/50"
-                          }
-                          peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange
-                        `}
+                        className={`absolute left-0 transition-all duration-200 ease-in-out
+                        ${formData[label]
+                            ? "-top-2 text-xs text-dark"
+                            : "top-2 text-sm text-dark/50"}
+                        peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
                       </label>
@@ -126,21 +128,23 @@ const KontakPage = () => {
                     <>
                       <textarea
                         id={label}
-                        rows="3"
+                        rows="1"
                         value={formData[label]}
                         onChange={(e) => handleChange(label, e.target.value)}
-                        className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-3 resize-y"
+                        onInput={(e) => {
+                          e.target.style.height = "auto";
+                          e.target.style.height = e.target.scrollHeight + "px";
+                        }}
+                        className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
+                        placeholder=" "
                       ></textarea>
                       <label
                         htmlFor={label}
-                        className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out
-                          ${
-                            formData[label]
-                              ? "top-[-10px] text-sm text-dark"
-                              : "top-3 text-base text-dark/50"
-                          }
-                          peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange
-                        `}
+                        className={`absolute left-0 transition-all duration-200 ease-in-out
+                        ${formData[label]
+                            ? "-top-2 text-xs text-dark"
+                            : "top-2 text-sm text-dark/50"}
+                        peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
                       </label>
@@ -157,45 +161,44 @@ const KontakPage = () => {
 
               <button
                 type="submit"
-                className="bg-orange text-light py-3 w-full rounded-[5px] uppercase font-semibold transition-all duration-300 cursor-pointer
-                  hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
+                className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
+                hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
               >
-                Submit
+                Kirim Pesan
               </button>
             </form>
-          </div>
 
-          {/* Ikon sosial media */}
-          <div className="flex justify-center space-x-5 mt-8 text-orange text-3xl">
-            {[
-              {
-                href: "mailto:mchoiranam@gmail.com",
-                icon: "streamline-logos:email-logo-block",
-              },
-              {
-                href: "https://wa.me/6285601211156",
-                icon: "fa6-brands:square-whatsapp",
-              },
-              {
-                href: "https://www.instagram.com/choiranamm/",
-                icon: "fa7-brands:instagram-square",
-              },
-              {
-                href: "https://t.me/choiranamm",
-                icon: "streamline-logos:telegram-logo-2-block",
-              },
-            ].map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cursor-pointer transition-all duration-300 transform
-                  hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
-              >
-                <Icon icon={item.icon} />
-              </a>
-            ))}
+            {/* Ikon sosial media */}
+            <div className="flex justify-center space-x-4 mt-8 text-orange text-2xl">
+              {[
+                {
+                  href: "mailto:mchoiranam@gmail.com",
+                  icon: "streamline-logos:email-logo-block",
+                },
+                {
+                  href: "https://wa.me/6285601211156",
+                  icon: "fa6-brands:square-whatsapp",
+                },
+                {
+                  href: "https://www.instagram.com/choiranamm/",
+                  icon: "fa7-brands:instagram-square",
+                },
+                {
+                  href: "https://t.me/choiranamm",
+                  icon: "streamline-logos:telegram-logo-2-block",
+                },
+              ].map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-300 hover:scale-110 hover:text-[#D96230]"
+                >
+                  <Icon icon={item.icon} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -212,12 +215,9 @@ const KontakPage = () => {
             title="Google Maps"
           />
         </div>
-      </div>
 
-      {/* ===== Beri Penilaian ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-stretch">
-        {/* Gambar kiri */}
-        <div className="rounded-xl overflow-hidden shadow-lg h-full">
+        {/* Gambar Kudus */}
+        <div className="rounded-[5px] overflow-hidden shadow-md h-[530px]">
           <img
             src="/images/kudus.jpg"
             alt="Kudus"
@@ -225,10 +225,12 @@ const KontakPage = () => {
           />
         </div>
 
-        {/* Form kanan */}
+        {/* Form Beri Penilaian */}
         <div>
-          <h2 className="text-4xl font-black mb-3 text-dark">Beri Penilaian</h2>
-          <p className="text-dark font-normal mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">
+            Beri Penilaian
+          </h2>
+          <p className="text-dark/80 mb-8 text-base leading-relaxed">
             Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi website ini.
           </p>
 
@@ -260,15 +262,15 @@ const KontakPage = () => {
                       id={`review-${label}`}
                       value={reviewData[label]}
                       onChange={(e) => handleReviewChange(label, e.target.value)}
-                      className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-2"
+                      className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
+                      placeholder=" "
                     />
                     <label
                       htmlFor={`review-${label}`}
-                      className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out ${
-                        reviewData[label]
-                          ? "top-[-10px] text-sm text-dark"
-                          : "top-2 text-base text-dark/50"
-                      } peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange`}
+                      className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData[label]
+                          ? "-top-2 text-xs text-dark"
+                          : "top-2 text-sm text-dark/50"
+                        } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
                     </label>
@@ -284,15 +286,15 @@ const KontakPage = () => {
                 id="review-email"
                 value={reviewData.Email}
                 onChange={(e) => handleReviewChange("Email", e.target.value)}
-                className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-2"
+                className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
+                placeholder=" "
               />
               <label
                 htmlFor="review-email"
-                className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out ${
-                  reviewData.Email
-                    ? "top-[-10px] text-sm text-dark"
-                    : "top-2 text-base text-dark/50"
-                } peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange`}
+                className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData.Email
+                    ? "-top-2 text-xs text-dark"
+                    : "top-2 text-sm text-dark/50"
+                  } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
               </label>
@@ -321,18 +323,24 @@ const KontakPage = () => {
             <div className="relative">
               <textarea
                 id="review-pesan"
-                rows="3"
+                rows="1"
                 value={reviewData.Pesan}
                 onChange={(e) => handleReviewChange("Pesan", e.target.value)}
-                className="peer w-full border-b border-dark/50 bg-transparent focus:outline-none py-3 resize-y"
+                onInput={(e) => {
+                  e.target.style.height = "auto";
+                  e.target.style.height = `${e.target.scrollHeight}px`;
+                }}
+                className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
+                placeholder=" "
               ></textarea>
               <label
                 htmlFor="review-pesan"
-                className={`absolute left-0 text-dark/50 transition-all duration-200 ease-in-out ${
-                  reviewData.Pesan
-                    ? "top-[-10px] text-sm text-dark"
-                    : "top-3 text-base text-dark/50"
-                } peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-orange`}
+                className={`absolute left-0 transition-all duration-200 ease-in-out
+                ${reviewData.Pesan
+                    ? "-top-2 text-xs text-dark"
+                    : "top-2 text-sm text-dark/50"
+                  }
+                peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Pesan <span className="text-orange">*</span>
               </label>
@@ -346,14 +354,15 @@ const KontakPage = () => {
 
             <button
               type="submit"
-              className="bg-orange text-light py-3 w-full rounded-[5px] uppercase font-semibold transition-all duration-300 cursor-pointer
-              hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97]"
+              className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
+              hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
             >
               Submit
             </button>
           </form>
         </div>
-      </div>
+      </PageContainer>
+      <Footer />
     </div>
   );
 };

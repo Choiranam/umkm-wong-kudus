@@ -1,8 +1,10 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import HeroContent from '../components/HeroContent';
-import UMKMCard from '../components/UMKMCard';
+import React from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import HeroContent from "../components/HeroContent";
+import UMKMCard from "../components/UMKMCard";
+import { Icon } from "@iconify/react";
+import PageContainer from "../components/PageContainer"; // ✅ import PageContainer
 
 const PencarianPage = () => {
   // Data dummy untuk hasil pencarian
@@ -25,6 +27,8 @@ const PencarianPage = () => {
     },
   ];
 
+  const keyword = "Ra";
+
   return (
     <div className="bg-light min-h-screen flex flex-col">
       <Navbar />
@@ -36,16 +40,14 @@ const PencarianPage = () => {
         subtitle="Dukung pelaku UMKM lokal dan temukan produk, layanan serta kuliner pilihan di kudus."
       />
 
-      {/* Hasil Pencarian */}
-      <div className="color-yellow w-full py-12 px-4 md:px-16 flex-grow">
-        <div className="max-w-6xl mx-auto text-dark">
-          {/* Info Pencarian */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <span className="text-xl">💡</span>
-              <p>Hasil Pencarian untuk <span className="text-orange-500 font-bold">“Ra”</span></p>
-            </div>
-            <p className="text-gray-500 mt-2">Ditemukan 2 UMKM yang terkait</p>
+      {/* ===== Hasil Pencarian ===== */}
+      <PageContainer variant="default" className="py-10">
+        <div className="mb-6">
+          <div className="flex items-center gap-2">
+            <Icon icon="hugeicons:idea-01" width="30" height="30" className="text-orange" />
+            <h2 className="text-lg font-semibold text-dark flex items-center gap-2">
+              Hasil Pencarian untuk <span className="italic font-normal">"{keyword}"</span>
+            </h2>
           </div>
 
           {/* List UMKM */}
@@ -63,7 +65,7 @@ const PencarianPage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </PageContainer>
 
       <Footer />
     </div>
