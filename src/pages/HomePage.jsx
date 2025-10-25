@@ -42,7 +42,13 @@ const HomePage = () => {
                 subtitle="Temukan beragam produk lokal, kuliner, dan layanan terbaik dari pelaku UMKM asli Kaliwungu Kudus."
             />
             <div className='flex flex-col gap-10 max-w-7xl mx-auto px-4 md:px-8 py-12'>
-                <ArtikelCard />
+                <ArtikelCard
+                    image="/images/sampel_artikel.png"
+                    category="Makanan"
+                    title="Produk UMKM di Kudus masuk toko modern"
+                    date="12 Oktober 2024"
+                    author="admin"
+                />
                 <ReviewCard />
                 <div className="p-6 flex justify-center items-center">
                     <div className="flex gap-4 flex-wrap justify-center">
