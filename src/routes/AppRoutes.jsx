@@ -8,6 +8,7 @@ import ScrollToTop from "../components/ScrollTop";
 import KecamatanPage from "../pages/KecamatanPage";
 import KategoriPage from './../pages/KategoriPage';
 import TentangUMKMPage from "../pages/TentangUMKMPage";
+import ArtikelPage from "../pages/ArtikelPage";
 
 const AppRoutes = () => {
     return (
@@ -37,6 +38,9 @@ const AppRoutes = () => {
 
                 {/* Tentang UMKM Route */}
                 <Route path="/tentang-umkm" element={<TentangUMKMPage />} />
+
+                {/* Artikel Route */}
+                <Route path="/artikel" element={<ArtikelPage />} />
             </Routes>
         </Router>
     );

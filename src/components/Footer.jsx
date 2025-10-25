@@ -55,6 +55,9 @@ const Footer = () => {
                             <Link to="/tentang-kami" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
                                 Tentang Kami
                             </Link>
+                            <Link to="/artikel" className="block text-dark/50 font-medium text-sm hover:text-orange transition-colors">
+                                Baca Artikel
+                            </Link>
                         </div>
                     </div>
 
