@@ -43,7 +43,7 @@ const AppRoutes = () => {
         <Route path="/tentang-umkm" element={<TentangUMKMPage />} />
 
         {/* Detail UMKM Route */}
-        <Route path="/detailumkm" element={<DetailUMKMPage />} />
+        <Route path="/detail-umkm" element={<DetailUMKMPage />} />
 
         {/* Artikel Route */}
         <Route path="/artikel" element={<ArtikelPage />} />

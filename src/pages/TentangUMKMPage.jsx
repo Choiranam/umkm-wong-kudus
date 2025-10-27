@@ -16,7 +16,7 @@ const TentangUMKMPage = () => {
         subtitle="Pelajari pengertian, peran, dan potensi UMKM yang menjadi tulang punggung ekonomi daerah."
       />
 
-      <PageContainer variant="default" className="flex flex-col gap-6">
+      <PageContainer variant="default" className="flex flex-col gap-6 -mb-12">
         {/* Bagian Atas */}
         <div className="bg-light flex flex-col my-16">
           <h2 className="text-2xl md:text-3xl font-normal text-center mb-10">
@@ -233,13 +233,13 @@ const TentangUMKMPage = () => {
           {/* Ikon Dekoratif Kiri Atas (setengah keluar) */}
           <Icon
             icon="icon-park-outline:noodles"
-            className="absolute -top-5 -left-5 text-orange text-5xl opacity-60 rotate-315"
+            className="absolute -top-5 -left-5 text-orange text-5xl opacity-80 rotate-315"
           />
 
           {/* Ikon Dekoratif Kanan Bawah (setengah keluar) */}
           <Icon
             icon="ri:drinks-2-line"
-            className="absolute -bottom-5 -right-5 text-green text-5xl opacity-60 rotate-45"
+            className="absolute -bottom-5 -right-5 text-green text-5xl opacity-80 rotate-45"
           />
 
           {/* Ikon Kutip Kiri Bawah */}
