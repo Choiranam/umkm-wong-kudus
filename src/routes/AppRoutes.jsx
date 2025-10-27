@@ -9,6 +9,7 @@ import KecamatanPage from "../pages/KecamatanPage";
 import KategoriPage from './../pages/KategoriPage';
 import TentangUMKMPage from "../pages/TentangUMKMPage";
 import ArtikelPage from "../pages/ArtikelPage";
+import LoginPage from "../pages/admin/LoginPage";
 
 const AppRoutes = () => {
     return (
@@ -41,6 +42,8 @@ const AppRoutes = () => {
 
                 {/* Artikel Route */}
                 <Route path="/artikel" element={<ArtikelPage />} />
+                <Route path="/login" element={<LoginPage />} />
+
             </Routes>
         </Router>
     );
