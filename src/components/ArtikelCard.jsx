@@ -1,12 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ArtikelCard = ({ image, category, title, displayDate, author }) => {
+  const navigate = useNavigate();
+
+  // Fungsi untuk buat slug URL
+  const slugify = (text) =>
+    text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "") // hapus karakter aneh
+      .trim()
+      .replace(/\s+/g, "-"); // ganti spasi dengan "-"
+
+  const handleClick = () => {
+    navigate(`/artikel/${category.toLowerCase()}/${slugify(title)}`);
+  };
+
   return (
     <motion.div
       className="max-w-sm bg-light rounded-[5px] overflow-hidden cursor-pointer group"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
+      onClick={handleClick}
     >
       <div className="relative rounded-[5px] overflow-hidden">
         <img
