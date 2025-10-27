@@ -16,21 +16,16 @@ const TentangUMKMPage = () => {
         subtitle="Pelajari pengertian, peran, dan potensi UMKM yang menjadi tulang punggung ekonomi daerah."
       />
 
-      <PageContainer
-        variant="default"
-        className="flex flex-col gap-6 mt-10 md:mt-10"
-      >
-        {/* Judul Tengah */}
-        <h2 className="text-2xl md:text-3xl font-normal text-center">
-          <span className="font-bold">Apa</span> itu UMKM?
-        </h2>
-
+      <PageContainer variant="default" className="flex flex-col gap-6">
         {/* Bagian Atas */}
-        <div className="flex flex-col md:flex-row items-start justify-between gap-10 md:gap-16">
-          {/* Teks Kiri */}
-          <div className="md:w-1/2 text-dark leading-relaxed md:pl-10 relative top-3 text-lg">
-            <div className="text-left">
-              <p className="mb-3">
+        <div className="bg-light flex flex-col my-16">
+          <h2 className="text-2xl md:text-3xl font-normal text-center mb-10">
+            <span className="font-bold">Apa</span> itu UMKM?
+          </h2>
+          <div className="flex flex-col md:flex-row items-start justify-between md:gap-8 lg:gap-12">
+            {/* Teks Kiri */}
+            <div className="md:w-1/2 text-dark leading-relaxed md:text-left relative text-lg">
+              <p>
                 UMKM adalah singkatan dari Usaha Mikro, Kecil, dan Menengah.
                 Menurut Undang-Undang Nomor 20 Tahun 2008, UMKM merupakan
                 kegiatan ekonomi produktif yang dimiliki oleh perorangan maupun
@@ -43,48 +38,48 @@ const TentangUMKMPage = () => {
                 yang khas di masing-masing daerah.
               </p>
             </div>
+
+            {/* Gambar Kanan */}
+            <div className="md:w-1/2 flex justify-end relative">
+              <img
+                src="/images/apa_itu_umkm_1.png"
+                alt="Pelaku UMKM Kudus"
+                className="rounded-md shadow-md w-full max-w-lg object-cover"
+              />
+            </div>
           </div>
 
-          {/* Gambar Kanan */}
-          <div className="md:w-1/2 flex justify-end md:pr-16 relative top-3">
-            <img
-              src="/images/apa_itu_umkm_1.png"
-              alt="Pelaku UMKM Kudus"
-              className="rounded-md shadow-md w-full max-w-lg object-cover translate-x-4"
-            />
-          </div>
-        </div>
+          {/* Bagian Bawah */}
+          <div className="flex flex-col md:flex-row items-end justify-between md:gap-8 lg:gap-12 mt-0">
+            {/* Gambar Kiri */}
+            <div className="md:w-1/2 flex justify-start relative">
+              <img
+                src="/images/apa_itu_umkm_2.png"
+                alt="UMKM Produk Lokal Kudus"
+                className="rounded-md shadow-md w-full max-w-lg object-cover"
+              />
+            </div>
 
-        {/* Bagian Bawah */}
-        <div className="flex flex-col md:flex-row items-end justify-between gap-12 md:gap-20">
-          {/* Gambar Kiri */}
-          <div className="md:w-1/2 flex justify-start md:pl-16 relative -top-4">
-            <img
-              src="/images/apa_itu_umkm_2.png"
-              alt="UMKM Produk Lokal Kudus"
-              className="rounded-md shadow-md w-full max-w-lg object-cover -translate-x-4"
-            />
-          </div>
-
-          {/* Teks Kanan */}
-          <div className="md:w-1/2 text-dark leading-relaxed md:pr-10 md:text-right relative -top-4 text-lg">
-            <p>
-              UMKM berperan penting dalam mendorong pertumbuhan ekonomi nasional
-              dan menjadi tulang punggung perekonomian Indonesia. Lebih dari 90%
-              pelaku usaha di Indonesia berasal dari sektor UMKM dan
-              berkontribusi besar terhadap pembukaan lapangan kerja, pemerataan
-              ekonomi, serta peningkatan kesejahteraan masyarakat.
-            </p>
-            <p>
-              Selain itu, UMKM terus berkembang dengan memanfaatkan teknologi
-              digital, memperluas pasar, dan meningkatkan kualitas produk agar
-              lebih kompetitif di tingkat lokal maupun global.
-            </p>
+            {/* Teks Kanan */}
+            <div className="md:w-1/2 text-dark leading-relaxed md:text-right relative text-lg">
+              <p>
+                UMKM berperan penting dalam mendorong pertumbuhan ekonomi
+                nasional dan menjadi tulang punggung perekonomian Indonesia.
+                Lebih dari 90% pelaku usaha di Indonesia berasal dari sektor
+                UMKM dan berkontribusi besar terhadap pembukaan lapangan kerja,
+                pemerataan ekonomi, serta peningkatan kesejahteraan masyarakat.
+              </p>
+              <p>
+                Selain itu, UMKM terus berkembang dengan memanfaatkan teknologi
+                digital, memperluas pasar, dan meningkatkan kualitas produk agar
+                lebih kompetitif di tingkat lokal maupun global.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Bagian Tambahan: Kriteria & Klasifikasi UMKM */}
-        <div className="bg-light p-10 rounded-xl">
+        <div className="bg-light rounded-xl">
           <h2 className="text-2xl md:text-3xl font-normal text-center mb-6">
             <span className="font-bold">Kriteria</span> & Klasifikasi UMKM
           </h2>
@@ -94,33 +89,33 @@ const TentangUMKMPage = () => {
           </p>
 
           <div className="overflow-x-auto">
-            <table className="w-full border-l-2 border-r-2 border-t-2 border-dark rounded-lg overflow-hidden text-left">
-              <thead className="bg-light text-dark border-b border-dark">
+            <table className="w-full border-l-2 border-r-2 border-t-2 border-dark/50 rounded-lg overflow-hidden text-left">
+              <thead className="bg-light text-dark border-b border-dark/50">
                 <tr>
-                  <th className="py-3 px-4 font-bold border-r border-dark">
+                  <th className="py-3 px-4 font-bold border-r border-dark/50">
                     Jenis Usaha
                   </th>
-                  <th className="py-3 px-4 font-bold border-r border-dark">
+                  <th className="py-3 px-4 font-bold border-r border-dark/50">
                     Aset Maksimal
                   </th>
                   <th className="py-3 px-4 font-bold">Omzet Tahunan</th>
                 </tr>
               </thead>
               <tbody className="text-dark">
-                <tr className="border-b border-dark">
-                  <td className="py-3 px-4 border-r border-dark">
+                <tr className="border-b border-dark/50">
+                  <td className="py-3 px-4 border-r border-dark/50">
                     Usaha Mikro
                   </td>
-                  <td className="py-3 px-4 border-r border-dark">
+                  <td className="py-3 px-4 border-r border-dark/50">
                     ≤ Rp 50 juta
                   </td>
                   <td className="py-3 px-4">≤ Rp 300 juta</td>
                 </tr>
-                <tr className="border-b border-dark">
-                  <td className="py-3 px-4 border-r border-dark">
+                <tr className="border-b border-dark/50">
+                  <td className="py-3 px-4 border-r border-dark/50">
                     Usaha Kecil
                   </td>
-                  <td className="py-3 px-4 border-r border-dark">
+                  <td className="py-3 px-4 border-r border-dark/50">
                     &gt; Rp 50 juta – Rp 500 juta
                   </td>
                   <td className="py-3 px-4">
@@ -128,10 +123,10 @@ const TentangUMKMPage = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 border-r border-dark">
+                  <td className="py-3 px-4 border-r border-dark/50">
                     Usaha Menengah
                   </td>
-                  <td className="py-3 px-4 border-r border-dark">
+                  <td className="py-3 px-4 border-r border-dark/50">
                     &gt; Rp 500 juta – Rp 10 miliar
                   </td>
                   <td className="py-3 px-4">
@@ -144,7 +139,7 @@ const TentangUMKMPage = () => {
         </div>
 
         {/* === Bagian Baru: Peran UMKM di Kudus === */}
-        <div className="bg-light rounded-xl p-10">
+        <div className="bg-light rounded-xl my-16">
           <h2 className="text-2xl md:text-3xl font-normal text-center mb-6">
             <span className="font-bold">Peran</span> UMKM di Kudus
           </h2>
@@ -199,7 +194,7 @@ const TentangUMKMPage = () => {
           </div>
         </div>
         {/* === Bagian Baru: Tantangan & Dukungan === */}
-        <div className="bg-light rounded-xl p-10">
+        <div className="bg-light rounded-xl">
           <h2 className="text-2xl md:text-3xl font-normal text-center mb-4">
             <span className="font-bold">Tantangan</span> & Dukungan
           </h2>
@@ -234,17 +229,17 @@ const TentangUMKMPage = () => {
           </div>
         </div>
         {/* === Bagian Kutipan Penutup === */}
-        <div className="bg-light rounded-xl px-6 pt-6 pb-10 md:px-8 md:pt-8 md:pb-14 mt-8 mb-28 relative overflow-visible shadow-md max-w-4xl mx-auto">
+        <div className="bg-light rounded-xl px-6 pt-6 pb-10 md:px-8 md:pt-8 md:pb-14 mt-16 mb-28 relative overflow-visible shadow-md max-w-4xl mx-auto">
           {/* Ikon Dekoratif Kiri Atas (setengah keluar) */}
           <Icon
             icon="icon-park-outline:noodles"
-            className="absolute -top-5 -left-5 text-orange text-5xl opacity-80 rotate-315"
+            className="absolute -top-5 -left-5 text-orange text-5xl opacity-60 rotate-315"
           />
 
           {/* Ikon Dekoratif Kanan Bawah (setengah keluar) */}
           <Icon
             icon="ri:drinks-2-line"
-            className="absolute -bottom-5 -right-5 text-green text-5xl opacity-80 rotate-45"
+            className="absolute -bottom-5 -right-5 text-green text-5xl opacity-60 rotate-45"
           />
 
           {/* Ikon Kutip Kiri Bawah */}
