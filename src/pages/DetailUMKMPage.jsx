@@ -285,9 +285,9 @@ const DetailUMKM = () => {
       )}
 
       {/* Footer */}
-<div className="mt-40">
-  <Footer />
-</div>
+      <div className="mt-15">
+        <Footer />
+      </div>
     </div>
   );
 };
