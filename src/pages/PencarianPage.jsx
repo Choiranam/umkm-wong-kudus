@@ -4,10 +4,10 @@ import Footer from "../components/Footer";
 import HeroContent from "../components/HeroContent";
 import UMKMCard from "../components/UMKMCard";
 import { Icon } from "@iconify/react";
-import PageContainer from "../components/PageContainer"; // ✅ import PageContainer
+import PageContainer from "../components/PageContainer";
 
 const PencarianPage = () => {
-  // Data hasil pencarian (contoh bisa diganti dari API nanti)
+  // Data hasil pencarian
   const hasilPencarian = [
     {
       name: "Ramboo Chicken",
@@ -29,7 +29,7 @@ const PencarianPage = () => {
     },
   ];
 
-  const keyword = "Ra";
+  const keyword = "Ra"; // Contoh keyword
 
   return (
     <div className="bg-light min-h-screen">
@@ -43,21 +43,55 @@ const PencarianPage = () => {
       />
 
       {/* ===== Hasil Pencarian ===== */}
-      <PageContainer variant="default" className="py-10">
-        <div className="mb-6">
+      {/* PENYESUAIAN 1: Padding Container Responsif
+          - Sebelum: py-10
+          - Sesudah: py-6 sm:py-10
+      */}
+      <PageContainer variant="default" className="py-6 sm:py-10">
+        {/* PENYESUAIAN 2: Margin Bawah Responsif
+            - Sebelum: mb-6
+            - Sesudah: mb-4 sm:mb-6
+        */}
+        <div className="mb-4 sm:mb-6">
           <div className="flex items-center gap-2">
-            <Icon icon="hugeicons:idea-01" width="30" height="30" className="text-orange" />
-            <h2 className="text-lg font-semibold text-dark flex items-center gap-2">
+            {/* PENYESUAIAN 3: Ukuran Icon Responsif
+                - Sebelum: width="30" height="30"
+                - Sesudah: width="24" height="24" sm:width="30" sm:height="30"
+            */}
+            <Icon
+              icon="hugeicons:idea-01"
+              width="24"
+              height="24"
+              className="text-orange sm:w-[30px] sm:h-[30px]"
+            />
+            {/* PENYESUAIAN 4: Ukuran Font Judul Responsif
+                - Sebelum: text-lg
+                - Sesudah: text-base sm:text-lg
+            */}
+            <h2 className="text-base sm:text-lg font-semibold text-dark flex items-center gap-2">
               Hasil Pencarian untuk <span className="italic font-normal">"{keyword}"</span>
             </h2>
           </div>
-          <p className="text-dark/50 mt-2 pl-1">
+          {/* PENYESUAIAN 5: Alignment & Ukuran Font Sub-Judul
+                - Sebelum: text-dark/50 mt-2 pl-1
+                - Sesudah: text-sm sm:text-base ... mt-1 sm:mt-2 pl-[32px] sm:pl-[38px]
+                - Alasan: 'pl-[32px]' (24px icon + 8px gap) di mobile dan
+                  'sm:pl-[38px]' (30px icon + 8px gap) di desktop
+                  membuat teks ini lurus dengan judul di atasnya.
+            */}
+          <p className="text-sm sm:text-base text-dark/50 mt-1 sm:mt-2 pl-8 sm:pl-[38px]">
             Ditemukan <span className="font-medium">{hasilPencarian.length}</span> UMKM yang terkait
           </p>
         </div>
 
         {/* Grid UMKM */}
-        <div className="flex flex-wrap gap-6 justify-center md:justify-start">
+        {/* PENYESUAIAN 6: Spasi Grid Responsif
+            - Sebelum: gap-6
+            - Sesudah: gap-4 sm:gap-6
+            - Alasan: Mengurangi spasi antar kartu di mobile.
+            - justify-center md:justify-start (Sudah bagus!)
+        */}
+        <div className="flex flex-wrap gap-4 sm:gap-6 justify-center md:justify-start">
           {hasilPencarian.map((umkm, index) => (
             <UMKMCard key={index} data={umkm} />
           ))}
