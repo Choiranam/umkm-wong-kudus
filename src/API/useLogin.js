@@ -1,23 +1,19 @@
-// src/hooks/useLogin.js
 import { useState } from "react";
-import AuthService from "../API/authService";
+import AuthService from "./authService";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const login = async (email, password) => {
+  const login = async (email, password, remember = true) => {
     setLoading(true);
     setError(null);
 
     try {
-      const data = await AuthService.login(email, password);
-      console.log("Login response:", data);
-      return data;
+      const result = await AuthService.login(email, password, remember);
+      return result;
     } catch (err) {
-      const message = err.message || "Login gagal";
-      console.error("Login error:", err);
-      setError(message);
+      setError(err.message);
       return null;
     } finally {
       setLoading(false);

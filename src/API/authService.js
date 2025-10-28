@@ -1,8 +1,10 @@
-// src/services/authService.js
-import api from "../API/api";
+// ⬇️ UBAH BARIS INI
+// import api, { setAuthToken, clearAuthToken } from "../API/auth.js";
+
+// ⬇️ MENJADI SEPERTI INI (PATH SUDAH BENAR)
+import api, { setAuthToken, clearAuthToken } from "../API/Auth.js";
 
 const AuthService = {
-  // === LOGIN ===
   login: async (email, password, remember = true) => {
     try {
       const response = await api.post("/login", { email, password, remember });
@@ -10,57 +12,57 @@ const AuthService = {
 
       if (resData.status) {
         const { token, user, expired_at } = resData.data;
-        const { name, email: userEmail } = user;
-
         const storage = remember ? localStorage : sessionStorage;
+
+        // authService tetap bertanggung jawab atas penyimpanan data
         storage.setItem("token", token);
         storage.setItem(
           "user",
-          JSON.stringify({ name, email: userEmail, expired_at })
+          JSON.stringify({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            foto_profil: user.foto_profil,
+            expired_at,
+          })
         );
 
-        return {
-          token,
-          user: { name, email: userEmail, expired_at },
-        };
+        // Panggil helper untuk mengatur header axios
+        setAuthToken(token); 
+
+        return { token, user, expired_at };
       } else {
         throw new Error(resData.message || "Login gagal");
       }
     } catch (error) {
-      if (error.response) {
-        throw new Error(error.response.data.message || "Login gagal");
-      } else {
-        throw new Error("Terjadi kesalahan jaringan. Silakan coba lagi.");
-      }
+      throw new Error(
+        error.response?.data?.message || "Terjadi kesalahan jaringan"
+      );
     }
   },
 
-  // === LOGOUT (hanya hapus token lokal, tanpa panggil API) ===
   logout: () => {
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    localStorage.removeItem("user");
-    sessionStorage.removeItem("user");
-    return { message: "Logout berhasil (lokal)" };
+    clearAuthToken(); // Hapus header dari axios
+    localStorage.clear();
+    sessionStorage.clear();
+    return { message: "Logout berhasil" };
   },
 
-  // === GET USER LOGIN SAAT INI ===
   getCurrentUser: () => {
-    const user =
-      localStorage.getItem("user") || sessionStorage.getItem("user");
+    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
     return user ? JSON.parse(user) : null;
   },
 
-  // === CEK APAKAH SUDAH LOGIN ===
   isAuthenticated: () => {
     const token =
       localStorage.getItem("token") || sessionStorage.getItem("token");
+    
+    // ⬇️ Tambahan: Set token di header jika terautentikasi tapi header kosong (kasus refresh)
+    if (token && !api.defaults.headers.common["Authorization"]) {
+      setAuthToken(token);
+    }
+    
     return !!token;
-  },
-
-  // === AMBIL TOKEN ===
-  getToken: () => {
-    return localStorage.getItem("token") || sessionStorage.getItem("token");
   },
 };
 

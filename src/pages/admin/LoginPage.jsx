@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 import logo from "/images/logo_navbar_footer.png";
-import useLogin from "../../API/UseLogin";
+import useLogin from "../../API/useLogin";
+import AuthService from "../../API/authService";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,35 +15,43 @@ const LoginPage = () => {
 
   const { login, loading, error } = useLogin();
 
+  // Redirect kalau sudah login
+  useEffect(() => {
+    if (AuthService.isAuthenticated()) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [navigate]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    const success = await login(email, password, remember);
+    setShowPopup(true);
+    const res = await login(email, password, remember);
 
-    if (success) {
-      setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 2500);
+    if (res) {
+      navigate("/dashboard", { replace: true });
+    } else {
+      setShowPopup(false);
     }
   };
 
   return (
     <div className="bg-light min-h-screen h-screen overflow-hidden relative">
+      {/* Popup sukses instan */}
       {showPopup && (
-        <div className="absolute top-5 right-5 bg-green text-white px-4 py-2 rounded-md shadow-md text-sm animate-fade-in">
-          ✅ Login berhasil!
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white py-2 px-4 rounded shadow animate-fade-in z-50">
+          Login berhasil! Mengalihkan...
         </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
         <div className="flex flex-col justify-center items-center px-6 md:px-12 lg:px-16">
           <img src={logo} alt="Logo Kudus" className="w-28 mb-3" />
-
           <h1 className="text-2xl font-bold mb-1">Welcome Back</h1>
           <p className="text-dark/50 mb-6 text-center text-sm">
             Enter your email and password to access admin page
           </p>
 
           <form onSubmit={onSubmit} className="w-full max-w-sm">
-            {/* Email */}
             <div className="mb-3">
               <label className="block text-sm font-medium mb-1">Email</label>
               <input
@@ -52,7 +63,6 @@ const LoginPage = () => {
               />
             </div>
 
-            {/* Password */}
             <div className="mb-3">
               <label className="block text-sm font-medium mb-1">Password</label>
               <div className="relative">
@@ -64,7 +74,7 @@ const LoginPage = () => {
                   required
                 />
                 <Icon
-                  icon={showPassword ?  "mdi:eye": "mdi:eye-off"}
+                  icon={showPassword ? "mdi:eye" : "mdi:eye-off"}
                   className="absolute right-3 top-2.5 cursor-pointer text-dark/50"
                   width="18"
                   onClick={() => setShowPassword(!showPassword)}
@@ -82,15 +92,13 @@ const LoginPage = () => {
                 />
                 <span>Remember me</span>
               </label>
-
-
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className={`w-full bg-orange py-2.5 rounded-md text-white font-semibold text-sm transition-all cursor-pointer ${
-                loading ? "opacity-60 cursor-not-allowed" : "hover:bg-orange"
+              className={`w-full bg-orange py-2.5 rounded-md text-white font-semibold text-sm transition-all ${
+                loading ? "opacity-60 cursor-not-allowed" : "hover:bg-orange/90"
               }`}
             >
               {loading ? "Loading..." : "Login"}
