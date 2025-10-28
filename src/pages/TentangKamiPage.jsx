@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HeroContent from "../components/HeroContent";
@@ -6,175 +7,186 @@ import PageContainer from "../components/PageContainer";
 
 const TentangKamiPage = () => {
   return (
-    <div className="bg-light min-h-screen">
+    <div className="bg-light min-h-screen font-poppins">
       <Navbar />
 
       <HeroContent
         image="/images/tentang_kami_hero_content.png"
-        title="Dari Kudus, Untuk Kudus — Cerita di Balik Kudus UMKM Explore"
-        subtitle="Kami percaya setiap usaha lokal memiliki cerita dan semangat untuk tumbuh. Melalui platform ini, kami membantu mereka dikenal lebih luas dengan sentuhan digital."
+        title="Dari Kudus untuk Kudus — Cerita di Balik UMKM Wong Kudus"
+        subtitle="Kami percaya setiap usaha lokal memiliki potensi besar untuk berkembang. Melalui platform ini, kami hadir untuk membantu UMKM Kudus agar lebih dikenal luas dengan dukungan teknologi digital."
+        className="text-center px-4 md:px-0"
       />
 
-      <PageContainer variant="default" className="flex flex-col gap-16">
+      <PageContainer
+        variant="default"
+        className="flex flex-col gap-20 px-6 md:px-0"
+      >
         {/* Tentang Kami */}
         <section className="text-dark text-center">
-          <h2 className="text-3xl font-black inline-block mr-2">Tentang</h2>
-          <h2 className="text-3xl font-normal inline-block">Kami</h2>
+          <h2 className="text-xl md:text-3xl font-normal mb-6 mt-5">
+            <span className="font-bold">Tentang</span> Kami
+          </h2>
 
-          <p className="text-lg leading-relaxed mt-6 mb-4 text-justify">
-            <span className="font-semibold">
-              Kudus <i>The Taste of Java</i>
-            </span>{" "}
-            adalah platform yang bertujuan untuk memperkenalkan dan memajukan
-            usaha mikro, kecil, dan menengah (UMKM) di Kabupaten Kudus. Kami hadir
-            untuk membantu para pelaku UMKM memperluas jangkauan pasar,
-            meningkatkan promosi produk, serta memperkuat identitas lokal Kudus
-            sebagai pusat ekonomi kreatif yang berkembang.
-          </p>
+          <div className="max-3xl mx-auto text-justify text-base md:text-lg leading-relaxed">
+            <p>
+              <span className="font-semibold">UMKM Wong Kudus</span> adalah
+              sebuah website yang dikembangkan untuk memperkenalkan dan
+              memajukan usaha mikro, kecil, dan menengah (UMKM) di Kabupaten
+              Kudus. Website ini dibuat sebagai wadah digital untuk membantu
+              para pelaku UMKM memperluas jangkauan pasar, meningkatkan promosi
+              produk, serta memperkuat identitas lokal Kudus sebagai daerah
+              dengan semangat kewirausahaan yang tinggi.
+            </p>
 
-          <p className="text-lg leading-relaxed mb-6 text-justify">
-            Dengan dukungan teknologi digital, kami yakin setiap UMKM memiliki
-            potensi besar untuk dikenal lebih luas — tidak hanya di tingkat lokal,
-            tetapi juga nasional bahkan internasional.
-          </p>
-
-          <a
-            href="/kontak"
-            className="block w-fit bg-orange text-white font-medium px-6 py-3 rounded-md shadow-md transition-all duration-300 transform hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97] mx-auto"
-          >
-            Hubungi Kami
-          </a>
+            <p>
+              Melalui website ini, kami ingin mendorong pelaku UMKM agar lebih
+              siap menghadapi era digital dengan menyediakan platform yang mudah
+              digunakan, informatif, dan mendukung pertumbuhan ekonomi lokal.
+            </p>
+          </div>
         </section>
 
         {/* Visi & Misi */}
         <section className="relative text-dark mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 text-center md:text-left">
             {/* Visi */}
-            <div className="md:pr-8 md:border-r-2 border-dark/50 pb-6">
-              <h2 className="text-2xl font-semibold mb-3">Visi</h2>
+            <div className="md:pr-8 md:border-r-2 border-dark/50 pb-6 space-y-4">
+              <h2 className="text-2xl font-semibold mb-2">Visi</h2>
               <p className="text-base leading-relaxed text-justify">
                 Menjadikan Kudus sebagai pusat pengembangan dan promosi UMKM
-                unggulan berbasis digital yang berdaya saing tinggi serta
-                berkontribusi nyata bagi kemajuan ekonomi daerah. Kami berkomitmen
-                membangun ekosistem usaha yang inovatif, kolaboratif, dan
-                berkelanjutan, di mana setiap pelaku UMKM memiliki kesempatan yang
-                sama untuk berkembang melalui teknologi dan kreativitas.
+                berbasis digital yang berdaya saing tinggi serta berkontribusi
+                nyata bagi kemajuan ekonomi daerah. Kami berkomitmen membangun
+                ekosistem usaha yang inovatif, kolaboratif, dan berkelanjutan,
+                di mana setiap pelaku UMKM memiliki kesempatan yang sama untuk
+                berkembang melalui teknologi dan kreativitas.
               </p>
             </div>
 
             {/* Misi */}
-            <div className="md:pl-8 pb-6">
-              <h2 className="text-2xl font-semibold mb-3">Misi</h2>
+            <div className="md:pl-8 pb-6 space-y-4">
+              <h2 className="text-2xl font-semibold mb-2">Misi</h2>
               <p className="text-base leading-relaxed text-justify">
                 Memberikan wadah digital bagi pelaku UMKM di Kudus untuk
                 mempromosikan produk dan jasa mereka secara lebih luas. Kami
-                berupaya meningkatkan literasi digital, kemampuan pemasaran online,
-                serta mendorong kolaborasi antara UMKM, pemerintah daerah, dan
-                masyarakat guna menciptakan ekosistem bisnis yang berkelanjutan.
+                berupaya meningkatkan literasi digital, kemampuan pemasaran
+                online, serta mendorong kolaborasi antara UMKM, pemerintah
+                daerah, dan masyarakat guna menciptakan ekosistem bisnis yang
+                berkelanjutan.
               </p>
             </div>
           </div>
 
-          <div className="absolute left-0 right-0 top-10 md:top-[30px] h-px bg-dark/50"></div>
+          {/* Garis tengah (desktop only) */}
+          <div className="absolute left-0 right-0 hidden md:block top-10 md:top-[30px] h-px bg-dark/50"></div>
         </section>
 
-        {/* Tim Kami */}
-        <section className="mt-10">
-          <header className="bg-orange text-white py-6 rounded-lg text-center">
-            <h1 className="text-3xl font-bold">Siapa di Balik Website Ini</h1>
-            <p className="text-gray-100 mt-2 text-base">
-              Kenali lebih dekat orang-orang hebat di balik proyek ini.
+        {/* === Tim Kami === */}
+        <section className="text-light text-center space-y-2">
+          <div className="bg-orange rounded-2xl py-8 px-4 md:px-10 shadow-sm">
+            <h1 className="text-2xl md:text-3xl font-normal">
+              <span className="font-bold">Siapa</span> di Balik Website Ini?
+            </h1>
+            <p className="text-base max-w-2xl mx-auto mt-2 leading-relaxed">
+              Kenali lebih dekat orang-orang di balik pengembangan proyek ini.
             </p>
-          </header>
+          </div>
+        </section>
 
-          <div className="max-w-7xl mx-auto px-6 md:px-10 py-12">
-            {/* Tentang Tim */}
-            <section className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto py-8 mb-12">
-              <div className="flex-1 text-left">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                  Tim <span className="text-orange">Kami</span>
-                </h2>
-                <p className="text-gray-700 text-base leading-relaxed mb-4">
-                  <span className="font-medium">UMKM Wong Kudus</span> adalah
-                  platform yang dirancang oleh pelajar SMK Raden Umar Said Kudus,
-                  Jawa Tengah. Kami merupakan siswa jurusan Rekayasa Perangkat
-                  Lunak yang memiliki semangat untuk memperkenalkan dunia coding
-                  kepada masyarakat.
-                </p>
-                <p className="text-gray-700 text-base leading-relaxed">
-                  Kami percaya bahwa pemrograman merupakan keterampilan penting di
-                  era digital, dan melalui karya ini kami ingin menginspirasi serta
-                  memberikan manfaat nyata bagi lingkungan sekitar.
-                </p>
-              </div>
+        {/* Tentang Tim */}
+        <section className="flex flex-col md:flex-row items-center md:items-stretch justify-between gap-10">
+          {/* === Bagian Kiri (Teks) === */}
+          <div className="flex-1 flex flex-col justify-between space-y-6 text-dark">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-normal mb-4 text-center md:text-left">
+                <span className="font-bold">Tim</span> Kami
+              </h2>
 
-              <div className="flex-1 flex justify-center md:justify-end">
+              {/* === Gambar hanya muncul di mobile tepat di bawah judul === */}
+              <div className="block md:hidden mb-6">
                 <img
                   src="/images/team.png"
                   alt="Foto Tim"
-                  className="w-4/5 max-w-md rounded-lg shadow-md object-contain"
+                  className="w-full h-auto max-h-[350px] rounded-lg shadow-md object-cover"
                 />
               </div>
-            </section>
 
-            {/* Anggota Tim */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                <img
-                  src="/images/anam.jpg"
-                  alt="Muhammad Choirul'anam"
-                  className="w-full h-80 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange transition">
-                    Muhammad Choirul'anam
-                  </h3>
-                  <p className="text-gray-600 mt-2 text-justify">
-                    Sebagai <span className="font-medium">Lead Programmer</span>,
-                    saya berkomitmen untuk menghadirkan inovasi dan solusi digital
-                    yang bermanfaat bagi masyarakat.
-                  </p>
-                </div>
-              </div>
+              <div className="space-y-6 text-base leading-relaxed text-justify">
+                <p>
+                  <span className="font-medium">UMKM Wong Kudus</span> dibuat
+                  oleh siswa SMK Raden Umar Said Kudus, jurusan Rekayasa
+                  Perangkat Lunak. Kami berkolaborasi untuk menciptakan website
+                  yang dapat membantu UMKM Kudus berkembang di era digital.
+                </p>
 
-              <div className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                <img
-                  src="/images/isham.jpg"
-                  alt="Azzan Isham Alawiy"
-                  className="w-full h-80 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange transition">
-                    Azzan Isham Alawiy
-                  </h3>
-                  <p className="text-gray-600 mt-2 text-justify">
-                    Sebagai <span className="font-medium">UI/UX Designer</span>{" "}
-                    sekaligus frontend developer, saya senang dapat menciptakan
-                    pengalaman pengguna yang menarik dan bermanfaat.
-                  </p>
-                </div>
-              </div>
-
-              <div className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                <img
-                  src="/images/yusuf.jpg"
-                  alt="Yusuf Rizqy Mubarok"
-                  className="w-full h-80 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange transition">
-                    Yusuf Rizqy Mubarok
-                  </h3>
-                  <p className="text-gray-600 mt-2 text-justify">
-                    Sebagai <span className="font-medium">Backend Developer</span>,
-                    saya bangga bisa berkontribusi dalam pengembangan Website UMKM
-                    Wong Kudus dan memperluas dampak positifnya.
-                  </p>
-                </div>
+                <p>
+                  Kami percaya bahwa teknologi dapat menjadi sarana untuk
+                  memperkenalkan karya lokal ke dunia, sekaligus menjadi wadah
+                  pembelajaran yang bermakna bagi kami sebagai pelajar yang
+                  ingin terus berkontribusi untuk masyarakat Kudus melalui
+                  inovasi.
+                </p>
               </div>
             </div>
           </div>
+
+          {/* === Gambar hanya muncul di desktop === */}
+          <div className="hidden md:flex flex-1 justify-center md:justify-end">
+            <img
+              src="/images/team.png"
+              alt="Foto Tim"
+              className="w-full md:w-[85%] h-auto max-h-[350px] rounded-lg shadow-md object-cover"
+            />
+          </div>
         </section>
+
+        {/* Anggota Tim */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pb-10">
+          {[
+            {
+              name: "Azzan Isham Alawiy",
+              role: "Frontend Developer",
+              desc: "Sebagai Frontend Developer, aku fokus sama desain dan interaksi biar tiap halaman webnya keren dan enak dipake. Pengen bikin user betah dan enjoy tiap kali buka websitenya.",
+              image: "/images/isham.jpg",
+            },
+            {
+              name: "Muhammad Choirul'anam",
+              role: "Frontend Developer",
+              desc: "Sebagai Frontend Developer, saya fokus mengembangkan struktur dan fungsionalitas tampilan agar website terlihat rapi, responsif, serta mudah digunakan di berbagai perangkat.",
+              image: "/images/anam.jpg",
+            },
+            {
+              name: "Yusuf Rizqy Mubarok",
+              role: "Backend Developer",
+              desc: "Sebagai Backend Developer, saya mengelola logika server dan basis data untuk memastikan website berjalan dengan lancar, aman, efisien, serta mudah dikembangkan.",
+              image: "/images/yusuf.jpg",
+            },
+          ].map((data) => (
+            <motion.div
+              key={data.name}
+              className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group"
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="relative rounded-t-xl overflow-hidden">
+                <img
+                  src={data.image}
+                  alt={data.name}
+                  className="w-full h-72 sm:h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+              </div>
+
+              <div className="p-5 sm:p-6 space-y-2">
+                <h3 className="text-lg sm:text-xl font-bold text-dark group-hover:text-orange transition">
+                  {data.name}
+                </h3>
+                <p className="text-dark text-justify text-sm sm:text-base">
+                  {data.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </PageContainer>
 
       <Footer />
