@@ -25,7 +25,7 @@ const LoginPage = () => {
   return (
     <div className="bg-light min-h-screen h-screen overflow-hidden relative">
       {showPopup && (
-        <div className="absolute top-5 right-5 bg-green-500 text-white px-4 py-2 rounded-md shadow-md text-sm animate-fade-in">
+        <div className="absolute top-5 right-5 bg-green text-white px-4 py-2 rounded-md shadow-md text-sm animate-fade-in">
           ✅ Login berhasil!
         </div>
       )}
@@ -35,7 +35,7 @@ const LoginPage = () => {
           <img src={logo} alt="Logo Kudus" className="w-28 mb-3" />
 
           <h1 className="text-2xl font-bold mb-1">Welcome Back</h1>
-          <p className="text-dark/60 mb-6 text-center text-sm">
+          <p className="text-dark/50 mb-6 text-center text-sm">
             Enter your email and password to access admin page
           </p>
 
@@ -64,8 +64,8 @@ const LoginPage = () => {
                   required
                 />
                 <Icon
-                  icon={showPassword ? "mdi:eye-off" : "mdi:eye"}
-                  className="absolute right-3 top-2.5 cursor-pointer text-dark/60"
+                  icon={showPassword ?  "mdi:eye": "mdi:eye-off"}
+                  className="absolute right-3 top-2.5 cursor-pointer text-dark/50"
                   width="18"
                   onClick={() => setShowPassword(!showPassword)}
                 />
@@ -73,7 +73,7 @@ const LoginPage = () => {
             </div>
 
             <div className="flex items-center justify-between mb-4">
-              <label className="flex items-center gap-2 text-sm text-dark/80">
+              <label className="flex items-center gap-2 text-sm text-dark/50">
                 <input
                   type="checkbox"
                   className="w-4 h-4 accent-orange cursor-pointer"
@@ -89,8 +89,8 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full bg-orange py-2.5 rounded-md text-white font-semibold text-sm transition-all ${
-                loading ? "opacity-60 cursor-not-allowed" : "hover:bg-orange/90"
+              className={`w-full bg-orange py-2.5 rounded-md text-white font-semibold text-sm transition-all cursor-pointer ${
+                loading ? "opacity-60 cursor-not-allowed" : "hover:bg-orange"
               }`}
             >
               {loading ? "Loading..." : "Login"}
