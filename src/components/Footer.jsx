@@ -1,12 +1,16 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
-import { Link } from 'react-router-dom'; // 1. IMPORT Link
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
         <footer className="w-full bg-dark/5 py-12 px-4 md:px-8">
             <div className="max-w-7xl mx-auto">
                 {/* GRID SECTION */}
+                {/* Kode ini sudah responsif:
+                  - grid-cols-1: Default untuk mobile (satu kolom, vertikal)
+                  - md:grid-cols-4: Untuk tablet dan desktop (empat kolom, horizontal)
+                */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16 items-start">
 
                     {/* Logo Section - Diubah menjadi Link */}
@@ -15,6 +19,7 @@ const Footer = () => {
                             <img
                                 src="/images/logo_navbar_footer.png"
                                 alt="Kudus UMKM"
+                                // Ukuran logo juga sudah responsif
                                 className="w-44 md:w-48"
                             />
                         </Link>

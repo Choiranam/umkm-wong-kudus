@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
@@ -6,7 +7,8 @@ import PageContainer from "../components/PageContainer";
 import { Icon } from "@iconify/react";
 import ArtikelCard from "../components/ArtikelCard";
 
-const formatDate = (dateString) => {
+// PERUBAHAN: Tambahkan 'export' agar bisa dipakai di HomePage.js
+export const formatDate = (dateString) => {
   const months = [
     "Januari",
     "Februari",
@@ -206,10 +208,9 @@ const ArtikelPage = () => {
               key={item.id}
               onClick={() => setActiveCategory(item.name)}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-md font-medium text-sm transition-all duration-200 cursor-pointer shadow-lg 
-                ${
-                  activeCategory === item.name
-                    ? "bg-orange text-light shadow-orange/40"
-                    : "bg-light text-dark hover:bg-orange/10"
+        ${activeCategory === item.name
+                  ? "bg-orange text-light shadow-orange/40"
+                  : "bg-light text-dark hover:bg-orange/10"
                 }`}
             >
               <Icon icon={item.icon} width="18" height="18" />
