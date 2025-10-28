@@ -1,4 +1,3 @@
-// src/api/Auth.js
 import axios from "axios";
 
 const API_URL = "https://api-umkmwongkudus.rplrus.com/api";
@@ -11,23 +10,14 @@ const api = axios.create({
   },
 });
 
-// Fungsi login
-export const login = async (email, password) => {
-  try {
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
+// ⬇️ FUNGSI LOGIN DI HAPUS DARI SINI
+// Fungsi login yang diekspor sebelumnya tidak digunakan oleh authService,
+// jadi kita hapus agar tidak membingungkan.
 
-    const response = await api.post("/login", formData);
-    return response.data;
-  } catch (error) {
-    throw error.response?.data || { message: "Terjadi kesalahan koneksi" };
-  }
-};
-
-// Simpan token di localStorage
+// Simpan token di localStorage dan atur header default
 export const setAuthToken = (token) => {
-  localStorage.setItem("token", token);
+  // Simpan token (meskipun authService juga menyimpan, ini untuk header)
+  localStorage.setItem("token", token); 
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 

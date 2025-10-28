@@ -12,6 +12,10 @@ import ArtikelPage from "../pages/ArtikelPage";
 import DetailUMKMPage from "../pages/DetailUMKMPage";
 import LoginPage from "../pages/admin/LoginPage";
 import DetailArtikelPage from "../pages/DetailArtikelPage";
+import DashboardPage from "../pages/admin/DashboardPage";
+import NotFoundPage from "../pages/NotFoundPage";
+import UserRoute from "./userRoute.jsx";
+
 
 const AppRoutes = () => {
   return (
@@ -50,6 +54,12 @@ const AppRoutes = () => {
 
         {/* Login Route */}
         <Route path="/login" element={<LoginPage />} />
+
+        {/* Dashboard Route */}
+        <Route  path="/dashboard" element={ <UserRoute> <DashboardPage/> </UserRoute> } /> 
+
+        {/* NotFound Route */}
+        <Route path="*" element={<NotFoundPage />} />
 
         {/* Detail Artikel Route */}
         <Route path="/artikel/:category/:slug" element={<DetailArtikelPage />} />
