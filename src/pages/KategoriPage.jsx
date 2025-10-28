@@ -131,7 +131,7 @@ const KategoriPage = () => {
           - Alasan: Menggunakan 'gap' dan 'margin-top' yang sedikit lebih kecil 
             di mobile (gap-4, mt-6) agar lebih proporsional.
         */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 justify-items-center mt-6 sm:mt-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 justify-items-center mt-6 sm:mt-10">
           {kategoriData.umkmList.map((umkm, index) => (
             <UMKMCard key={index} data={umkm} />
           ))}

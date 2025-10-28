@@ -91,7 +91,7 @@ const PencarianPage = () => {
             - Alasan: Mengurangi spasi antar kartu di mobile.
             - justify-center md:justify-start (Sudah bagus!)
         */}
-        <div className="flex flex-wrap gap-4 sm:gap-6 justify-center md:justify-start">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 justify-items-center">
           {hasilPencarian.map((umkm, index) => (
             <UMKMCard key={index} data={umkm} />
           ))}

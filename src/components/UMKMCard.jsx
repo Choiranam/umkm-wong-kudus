@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 export default function UMKMCard({ data }) {
   return (
     <motion.div
-      className="w-[260px] bg-light rounded-[5px] overflow-hidden cursor-pointer group"
+      className="w-full max-w-[260px] bg-light rounded-[5px] overflow-hidden cursor-pointer group"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
@@ -35,11 +35,16 @@ export default function UMKMCard({ data }) {
         <div className="border-t border-gray-200 my-3"></div>
 
         {/* Lokasi & Jam Buka */}
-        <div className="flex items-center text-xs text-dark/50 gap-2">
+        <div className="flex items-center text-xs text-dark/50 gap-2 flex-nowrap">
           {/* Lokasi */}
-          <div className="flex items-center gap-1">
-            <Icon icon="gg:pin" width="12" height="12" className="text-orange" />
-            <span>{data.location}</span>
+          <div className="flex items-center gap-1 min-w-0">
+            <Icon
+              icon="gg:pin"
+              width="12"
+              height="12"
+              className="text-orange shrink-0"
+            />
+            <span className="truncate">{data.location}</span>
           </div>
 
           {/* Garis vertikal pemisah */}
@@ -48,9 +53,14 @@ export default function UMKMCard({ data }) {
           </div>
 
           {/* Jam buka */}
-          <div className="flex items-center gap-1">
-            <Icon icon="mdi:clock-outline" width="12" height="12" className="text-green" />
-            <span>{data.openHour}</span>
+          <div className="flex items-center gap-1 min-w-0">
+            <Icon
+              icon="mdi:clock-outline"
+              width="12"
+              height="12"
+              className="text-green shrink-0"
+            />
+            <span className="truncate">{data.openHour}</span>
           </div>
         </div>
       </div>
