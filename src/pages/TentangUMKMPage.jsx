@@ -44,7 +44,7 @@ const TentangUMKMPage = () => {
               </p>
             </div>
 
-            <div className="md:w-1/2 flex justify-center">
+            <div className="md:w-1/2 flex justify-end">
               <img
                 src="/images/apa_itu_umkm_1.png"
                 alt="Pelaku UMKM Kudus"
@@ -70,7 +70,7 @@ const TentangUMKMPage = () => {
               </p>
             </div>
 
-            <div className="md:w-1/2 flex justify-center">
+            <div className="md:w-1/2 flex justify-start">
               <img
                 src="/images/apa_itu_umkm_2.png"
                 alt="UMKM Produk Lokal Kudus"

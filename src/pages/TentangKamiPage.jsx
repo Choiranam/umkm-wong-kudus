@@ -12,7 +12,7 @@ const TentangKamiPage = () => {
 
       <HeroContent
         image="/images/tentang_kami_hero_content.png"
-        title="Dari Kudus untuk Kudus — Cerita di Balik UMKM Wong Kudus"
+        title={<>Dari Kudus untuk Kudus<br />Cerita di Balik UMKM Wong Kudus</>}
         subtitle="Kami percaya setiap usaha lokal memiliki potensi besar untuk berkembang. Melalui platform ini, kami hadir untuk membantu UMKM Kudus agar lebih dikenal luas dengan dukungan teknologi digital."
         className="text-center px-4 md:px-0"
       />
@@ -23,7 +23,7 @@ const TentangKamiPage = () => {
       >
         {/* Tentang Kami */}
         <section className="text-dark text-center">
-          <h2 className="text-xl md:text-3xl font-normal mb-6 mt-5">
+          <h2 className="text-2xl md:text-3xl font-normal mb-6 mt-5">
             <span className="font-bold">Tentang</span> Kami
           </h2>
 
@@ -47,10 +47,10 @@ const TentangKamiPage = () => {
         </section>
 
         {/* Visi & Misi */}
-        <section className="relative text-dark mt-6">
+        <section className="relative text-dark">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 text-center md:text-left">
             {/* Visi */}
-            <div className="md:pr-8 md:border-r-2 border-dark/50 pb-6 space-y-4">
+            <div className="md:pr-8 md:border-r-2 border-dark/50 space-y-4">
               <h2 className="text-2xl font-semibold mb-2">Visi</h2>
               <p className="text-base leading-relaxed text-justify">
                 Menjadikan Kudus sebagai pusat pengembangan dan promosi UMKM
@@ -63,7 +63,7 @@ const TentangKamiPage = () => {
             </div>
 
             {/* Misi */}
-            <div className="md:pl-8 pb-6 space-y-4">
+            <div className="md:pl-8 space-y-4">
               <h2 className="text-2xl font-semibold mb-2">Misi</h2>
               <p className="text-base leading-relaxed text-justify">
                 Memberikan wadah digital bagi pelaku UMKM di Kudus untuk
