@@ -80,6 +80,7 @@ const KontakPage = () => {
     }
 
     setErrorReview("");
+    // Ganti alert dengan modal custom jika tersedia di proyek Anda
     alert("Terima kasih atas penilaianmu! ⭐");
   };
 
@@ -92,7 +93,15 @@ const KontakPage = () => {
         subtitle="Jangan ragu untuk menghubungi kami agar kami dapat membantu Anda dengan informasi yang Anda butuhkan."
       />
 
-      <PageContainer variant="default" className="grid md:grid-cols-2 gap-12 items-start py-14">
+      {/* EDIT 1: 
+        - Mengurangi padding vertikal (py) di mobile menjadi 'py-8' (dari 14)
+        - Mengurangi celah (gap) di mobile menjadi 'gap-8' (dari 12)
+        - Tetap menggunakan 'md:py-14' dan 'md:gap-12' untuk desktop
+      */}
+      <PageContainer
+        variant="default"
+        className="grid md:grid-cols-2 gap-8 md:gap-12 items-start py-8 md:py-14"
+      >
         {/* Bagian Hubungi Kami */}
         <div className="space-y-12">
           {/* Form Hubungi Kami */}
@@ -101,7 +110,8 @@ const KontakPage = () => {
               Hubungi Kami
             </h2>
             <p className="text-dark/80 mb-8 text-base leading-relaxed">
-              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di Kudus.
+              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di
+              Kudus.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -120,10 +130,11 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                        ${formData[label]
+                          ${formData[label]
                             ? "-top-2 text-xs text-dark"
-                            : "top-2 text-sm text-dark/50"}
-                        peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                            : "top-2 text-sm text-dark/50"
+                          }
+                          peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
                       </label>
@@ -145,10 +156,11 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                        ${formData[label]
+                          ${formData[label]
                             ? "-top-2 text-xs text-dark"
-                            : "top-2 text-sm text-dark/50"}
-                        peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                            : "top-2 text-sm text-dark/50"
+                          }
+                          peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
                       </label>
@@ -157,11 +169,11 @@ const KontakPage = () => {
                 </div>
               ))}
 
-            {errorHubungi && (
-              <p className="text-red-500 text-sm text-center font-medium -mt-2">
-                {errorHubungi}
-              </p>
-            )}
+              {errorHubungi && (
+                <p className="text-red-500 text-sm text-center font-medium -mt-2">
+                  {errorHubungi}
+                </p>
+              )}
 
               <button
                 type="submit"
@@ -206,8 +218,11 @@ const KontakPage = () => {
           </div>
         </div>
 
-        {/* Google Maps */}
-        <div className="overflow-hidden rounded-[5px] shadow-md h-[550px]">
+        {/* EDIT 2:
+          - Mengubah tinggi (height) di mobile menjadi 'h-[350px]' (dari 550px)
+          - Tetap menggunakan 'md:h-[550px]' untuk desktop
+        */}
+        <div className="overflow-hidden rounded-[5px] shadow-md h-[350px] md:h-[550px]">
           <iframe
             src="https://www.google.com/maps?q=-6.792803,110.836430&hl=id&z=15&output=embed"
             width="100%"
@@ -220,8 +235,12 @@ const KontakPage = () => {
           />
         </div>
 
-        {/* Gambar Kudus */}
-        <div className="rounded-[5px] overflow-hidden shadow-md h-[530px]">
+        {/* EDIT 3 (MODIFIKASI SENPAI):
+          - Menambahkan 'hidden md:block' untuk hide di mobile, tampil di md+
+          - Mengubah tinggi (height) di mobile menjadi 'h-[350px]' (dari 530px)
+          - Tetap menggunakan 'md:h-[530px]' untuk desktop
+        */}
+        <div className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[530px] hidden md:block">
           <img
             src="/images/kudus.jpg"
             alt="Kudus"
@@ -235,12 +254,16 @@ const KontakPage = () => {
             Beri Penilaian
           </h2>
           <p className="text-dark/80 mb-8 text-base leading-relaxed">
-            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi website ini.
+            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi
+            website ini.
           </p>
 
           <form onSubmit={handleReviewSubmit} className="space-y-6">
-            {/* Foto profil */}
-            <div className="flex items-center gap-6">
+            {/* EDIT 4:
+              - Mengubah flex direction menjadi 'flex-col' di mobile
+              - Mengembalikan ke 'sm:flex-row' di layar 'sm' (small) ke atas
+            */}
+            <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
                 {profilePic ? (
                   <img
@@ -262,7 +285,11 @@ const KontakPage = () => {
                 />
               </div>
 
-              <div className="flex flex-col flex-1 gap-4">
+              {/* EDIT 5:
+                - Menambah 'w-full' agar input nama mengambil lebar penuh di mobile
+                - Menambah 'sm:w-auto' untuk mengembalikan ke lebar otomatis di layar 'sm' ke atas (agar 'flex-1' bisa berfungsi)
+              */}
+              <div className="flex flex-col flex-1 gap-4 w-full sm:w-auto">
                 {["Nama Depan", "Nama Belakang"].map((label) => (
                   <div key={label} className="relative">
                     <input
@@ -276,8 +303,8 @@ const KontakPage = () => {
                     <label
                       htmlFor={`review-${label}`}
                       className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData[label]
-                          ? "-top-2 text-xs text-dark"
-                          : "top-2 text-sm text-dark/50"
+                        ? "-top-2 text-xs text-dark"
+                        : "top-2 text-sm text-dark/50"
                         } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
@@ -300,8 +327,8 @@ const KontakPage = () => {
               <label
                 htmlFor="review-email"
                 className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData.Email
-                    ? "-top-2 text-xs text-dark"
-                    : "top-2 text-sm text-dark/50"
+                  ? "-top-2 text-xs text-dark"
+                  : "top-2 text-sm text-dark/50"
                   } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
@@ -327,8 +354,6 @@ const KontakPage = () => {
             </div>
 
             {/* Pesan */}
-            {/* FIX 2: Menyamakan textarea ini dengan textarea "Hubungi Kami" 
-            */}
             <div className="relative">
               <textarea
                 id="review-pesan"
