@@ -16,15 +16,20 @@ const TentangUMKMPage = () => {
         subtitle="Pelajari pengertian, peran, dan potensi UMKM yang menjadi tulang punggung ekonomi daerah."
       />
 
-      <PageContainer variant="default" className="flex flex-col gap-6 -mb-12">
-        {/* Bagian Atas */}
-        <div className="bg-light flex flex-col my-16">
-          <h2 className="text-2xl md:text-3xl font-normal text-center mb-10">
+      {/* ==================== ISI KONTEN ==================== */}
+      <PageContainer
+        variant="default"
+        className="flex flex-col gap-8 sm:gap-12 -mb-12"
+      >
+        {/* Bagian Atas: Apa itu UMKM? */}
+        <div className="bg-light flex flex-col my-12 sm:my-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-center mb-8 sm:mb-10">
             <span className="font-bold">Apa</span> itu UMKM?
           </h2>
-          <div className="flex flex-col md:flex-row items-start justify-between md:gap-8 lg:gap-12">
-            {/* Teks Kiri */}
-            <div className="md:w-1/2 text-dark leading-relaxed md:text-left relative text-lg">
+
+          {/* Teks + Gambar (Kanan) */}
+          <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 lg:gap-12">
+            <div className="md:w-1/2 text-dark leading-relaxed text-base sm:text-lg text-center md:text-left space-y-4">
               <p>
                 UMKM adalah singkatan dari Usaha Mikro, Kecil, dan Menengah.
                 Menurut Undang-Undang Nomor 20 Tahun 2008, UMKM merupakan
@@ -39,29 +44,18 @@ const TentangUMKMPage = () => {
               </p>
             </div>
 
-            {/* Gambar Kanan */}
-            <div className="md:w-1/2 flex justify-end relative">
+            <div className="md:w-1/2 flex justify-center">
               <img
                 src="/images/apa_itu_umkm_1.png"
                 alt="Pelaku UMKM Kudus"
-                className="rounded-md shadow-md w-full max-w-lg object-cover"
+                className="rounded-md shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-cover"
               />
             </div>
           </div>
 
-          {/* Bagian Bawah */}
-          <div className="flex flex-col md:flex-row items-end justify-between md:gap-8 lg:gap-12 mt-0">
-            {/* Gambar Kiri */}
-            <div className="md:w-1/2 flex justify-start relative">
-              <img
-                src="/images/apa_itu_umkm_2.png"
-                alt="UMKM Produk Lokal Kudus"
-                className="rounded-md shadow-md w-full max-w-lg object-cover"
-              />
-            </div>
-
-            {/* Teks Kanan */}
-            <div className="md:w-1/2 text-dark leading-relaxed md:text-right relative text-lg">
+          {/* Gambar + Teks (Kanan) */}
+          <div className="flex flex-col md:flex-row-reverse items-center md:items-end justify-between gap-8 lg:gap-12 mt-10 sm:mt-14">
+            <div className="md:w-1/2 text-dark leading-relaxed text-base sm:text-lg text-center md:text-right space-y-4">
               <p>
                 UMKM berperan penting dalam mendorong pertumbuhan ekonomi
                 nasional dan menjadi tulang punggung perekonomian Indonesia.
@@ -75,20 +69,29 @@ const TentangUMKMPage = () => {
                 lebih kompetitif di tingkat lokal maupun global.
               </p>
             </div>
+
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src="/images/apa_itu_umkm_2.png"
+                alt="UMKM Produk Lokal Kudus"
+                className="rounded-md shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-cover"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Bagian Tambahan: Kriteria & Klasifikasi UMKM */}
-        <div className="bg-light rounded-xl">
-          <h2 className="text-2xl md:text-3xl font-normal text-center mb-6">
+        {/* Kriteria & Klasifikasi UMKM – TABEL RESPONSIF */}
+        <div className="bg-light rounded-xl p-4 sm:p-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-center mb-5 sm:mb-6">
             <span className="font-bold">Kriteria</span> & Klasifikasi UMKM
           </h2>
-          <p className="text-center text-dark mb-8">
+          <p className="text-center text-dark mb-6 sm:mb-8 text-sm sm:text-base">
             Berdasarkan Undang-Undang Nomor 20 Tahun 2008, berikut klasifikasi
             UMKM berdasarkan jumlah aset dan omzet tahunan:
           </p>
 
-          <div className="overflow-x-auto">
+          {/* Desktop: tabel horizontal (sama persis seperti aslinya) */}
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full border-l-2 border-r-2 border-t-2 border-dark/50 rounded-lg overflow-hidden text-left">
               <thead className="bg-light text-dark border-b border-dark/50">
                 <tr>
@@ -136,27 +139,84 @@ const TentangUMKMPage = () => {
               </tbody>
             </table>
           </div>
+
+          {/* Mobile: stacked (dengan label jelas, tidak terpotong) */}
+         <div className="md:hidden space-y-6">
+  {/* Baris 1 – Usaha Mikro */}
+  <div className="bg-light rounded-xl border border-dark/50 overflow-hidden">
+    <div className="bg-light px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
+      Usaha Mikro
+    </div>
+    <div className="grid grid-cols-2 text-xs sm:text-sm">
+      <div className="px-3 py-2 bg-light border-r border-dark/50 text-center">
+        <p className="text-xs font-medium text-dark mb-1">Aset Maksimal</p>
+        <p className="block font-medium text-dark/50 text-xs">≤ Rp 50 juta</p>
+      </div>
+      <div className="px-3 py-2 text-center">
+        <p className="text-xs font-medium text-dark mb-1">Omzet Tahunan</p>
+        <p className="block font-medium text-dark/50 text-xs">≤ Rp 300 juta</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Baris 2 – Usaha Kecil */}
+  <div className="bg-light rounded-xl border border-dark/50 overflow-hidden">
+    <div className="bg-light px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
+      Usaha Kecil
+    </div>
+    <div className="grid grid-cols-2 text-xs sm:text-sm">
+      <div className="px-3 py-2 bg-light border-r border-dark/50 text-center">
+        <p className="text-xs font-medium text-dark mb-1">Aset Maksimal</p>
+        <p className="block font-medium text-dark/50 text-xs">&gt; Rp 50 juta – Rp 500 juta</p>
+      </div>
+      <div className="px-3 py-2 text-center">
+        <p className="text-xs font-medium text-dark mb-1">Omzet Tahunan</p>
+        <p className="block font-medium text-dark/50 text-xs">&gt; Rp 300 juta – Rp 2,5 miliar</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Baris 3 – Usaha Menengah */}
+  <div className="bg-light rounded-xl border border-dark/50 overflow-hidden">
+    <div className="bg-light px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
+      Usaha Menengah
+    </div>
+    <div className="grid grid-cols-2 text-xs sm:text-sm">
+      <div className="px-3 py-2 bg-light border-r border-dark/50 text-center">
+        <p className="text-xs font-medium text-dark mb-1">Aset Maksimal</p>
+        <p className="block font-medium text-dark/50 text-xs">&gt; Rp 500 juta – Rp 10 miliar</p>
+      </div>
+      <div className="px-3 py-2 text-center">
+        <p className="text-xs font-medium text-dark mb-1">Omzet Tahunan</p>
+        <p className="block font-medium text-dark/50 text-xs">&gt; Rp 2,5 miliar – Rp 50 miliar</p>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
 
-        {/* === Bagian Baru: Peran UMKM di Kudus === */}
-        <div className="bg-light rounded-xl my-16">
-          <h2 className="text-2xl md:text-3xl font-normal text-center mb-6">
+        {/* Peran UMKM di Kudus – 3 Card */}
+        <div className="bg-light rounded-xl my-12 sm:my-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-center mb-5 sm:mb-6 px-4">
             <span className="font-bold">Peran</span> UMKM di Kudus
           </h2>
-          <p className="text-center text-dark mb-10">
+          <p className="text-center text-dark mb-8 sm:mb-10 px-4 text-sm sm:text-base">
             UMKM di Kudus berkembang di berbagai bidang, mencerminkan
             kreativitas dan semangat masyarakat lokal dalam menggerakkan
             perekonomian daerah.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
             {/* Card 1 */}
-            <div className="bg-green text-light rounded-xl p-8 flex flex-col items-center text-center shadow-md">
-              <Icon icon="simple-icons:snapcraft" className="text-5xl mb-4" />
-              <h3 className="text-xl font-semibold mb-2">
+            <div className="bg-green text-light rounded-xl p-5 sm:p-8 flex flex-col items-center text-center shadow-md">
+              <Icon
+                icon="simple-icons:snapcraft"
+                className="text-4xl sm:text-5xl mb-3 sm:mb-4"
+              />
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">
                 Konveksi & Kerajinan
               </h3>
-              <p className="text-sm leading-relaxed">
+              <p className="text-xs sm:text-sm leading-relaxed">
                 Industri konveksi dan kerajinan di Kudus berkembang pesat dengan
                 berbagai produk seperti batik, bordir, serta kerajinan tangan
                 berbahan kayu. Banyak pelaku usaha yang berhasil menembus pasar
@@ -165,10 +225,15 @@ const TentangUMKMPage = () => {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-orange text-light rounded-xl p-8 flex flex-col items-center text-center shadow-md">
-              <Icon icon="hugeicons:noodles" className="text-5xl mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Kuliner Lokal</h3>
-              <p className="text-sm leading-relaxed">
+            <div className="bg-orange text-light rounded-xl p-5 sm:p-8 flex flex-col items-center text-center shadow-md">
+              <Icon
+                icon="hugeicons:noodles"
+                className="text-4xl sm:text-5xl mb-3 sm:mb-4"
+              />
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">
+                Kuliner Lokal
+              </h3>
+              <p className="text-xs sm:text-sm leading-relaxed">
                 Sektor kuliner menjadi daya tarik utama di Kudus, dengan beragam
                 makanan khas seperti lentog tanjung, jenang Kudus, dan sate
                 kerbau. UMKM kuliner tidak hanya melestarikan cita rasa
@@ -178,13 +243,15 @@ const TentangUMKMPage = () => {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-yellow text-light rounded-xl p-8 flex flex-col items-center text-center shadow-md">
+            <div className="bg-yellow text-light rounded-xl p-5 sm:p-8 flex flex-col items-center text-center shadow-md">
               <Icon
                 icon="streamline-flex:wrench-hand"
-                className="text-5xl mb-4"
+                className="text-4xl sm:text-5xl mb-3 sm:mb-4"
               />
-              <h3 className="text-xl font-semibold mb-2">Jasa & Layanan</h3>
-              <p className="text-sm leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">
+                Jasa & Layanan
+              </h3>
+              <p className="text-xs sm:text-sm leading-relaxed">
                 UMKM di bidang jasa seperti laundry, barbershop, percetakan,
                 hingga bengkel berperan penting dalam memenuhi kebutuhan harian
                 masyarakat. Sektor ini juga menjadi peluang besar bagi generasi
@@ -193,22 +260,24 @@ const TentangUMKMPage = () => {
             </div>
           </div>
         </div>
-        {/* === Bagian Baru: Tantangan & Dukungan === */}
-        <div className="bg-light rounded-xl">
-          <h2 className="text-2xl md:text-3xl font-normal text-center mb-4">
+
+        {/* Tantangan & Dukungan – 2 Kolom */}
+        <div className="bg-light rounded-xl px-4 sm:px-0">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-center mb-4 sm:mb-5">
             <span className="font-bold">Tantangan</span> & Dukungan
           </h2>
-          <p className="text-center text-dark mb-10 max-w-2xl mx-auto">
+          <p className="text-center text-dark mb-8 sm:mb-10 max-w-2xl mx-auto text-sm sm:text-base px-2">
             Perjalanan UMKM tidak lepas dari berbagai hambatan, namun dukungan
             dari pemerintah dan masyarakat terus menguatkan keberlanjutan usaha
             kecil di Kudus.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Kolom Tantangan */}
-            <div className="bg-dark/70 text-light rounded-lg p-8 shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-center">Tantangan</h3>
-              <ul className="list-disc pl-5 space-y-2 text-base">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            <div className="bg-dark/70 text-light rounded-lg p-5 sm:p-8 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-4 text-center">
+                Tantangan
+              </h3>
+              <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm">
                 <li>Akses permodalan yang terbatas.</li>
                 <li>Kurangnya literasi digital.</li>
                 <li>Persaingan dengan produk industri besar.</li>
@@ -216,10 +285,11 @@ const TentangUMKMPage = () => {
               </ul>
             </div>
 
-            {/* Kolom Dukungan */}
-            <div className="bg-orange text-light rounded-lg p-8 shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-center">Dukungan</h3>
-              <ul className="list-disc pl-5 space-y-2 text-base">
+            <div className="bg-orange text-light rounded-lg p-5 sm:p-8 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-4 text-center">
+                Dukungan
+              </h3>
+              <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm">
                 <li>Program pembiayaan dari pemerintah daerah.</li>
                 <li>Pelatihan digital marketing dan e-commerce.</li>
                 <li>Pendampingan dari lembaga dan komunitas.</li>
@@ -228,46 +298,45 @@ const TentangUMKMPage = () => {
             </div>
           </div>
         </div>
-        {/* === Bagian Kutipan Penutup === */}
-        <div className="bg-light rounded-xl px-6 pt-6 pb-10 md:px-8 md:pt-8 md:pb-14 mt-16 mb-28 relative overflow-visible shadow-md max-w-4xl mx-auto">
-          {/* Ikon Dekoratif Kiri Atas (setengah keluar) */}
-          <Icon
-            icon="icon-park-outline:noodles"
-            className="absolute -top-5 -left-5 text-orange text-5xl opacity-80 rotate-315"
-          />
 
-          {/* Ikon Dekoratif Kanan Bawah (setengah keluar) */}
-          <Icon
-            icon="ri:drinks-2-line"
-            className="absolute -bottom-5 -right-5 text-green text-5xl opacity-80 rotate-45"
-          />
+        {/* Kutipan Penutup – TETAP SAMA, TAPI MOBILE TIDAK MENEMPEL TEPI */}
+<div className="px-4 sm:px-0">
+  <div className="bg-light rounded-xl px-6 sm:px-8 pt-6 pb-10 md:pt-8 md:pb-14 mt-12 sm:mt-16 mb-20 sm:mb-28 relative overflow-visible shadow-md max-w-4xl mx-auto">
+    {/* Dekorasi Kiri Atas */}
+    <Icon
+      icon="icon-park-outline:noodles"
+      className="absolute -top-4 sm:-top-5 -left-4 sm:-left-5 text-orange text-4xl sm:text-5xl opacity-80 rotate-315"
+    />
+    {/* Dekorasi Kanan Bawah */}
+    <Icon
+      icon="ri:drinks-2-line"
+      className="absolute -bottom-4 sm:-bottom-5 -right-4 sm:-right-5 text-green text-4xl sm:text-5xl opacity-80 rotate-45"
+    />
+    {/* Kutip Kiri Bawah */}
+    <Icon
+      icon="iconoir:quote-solid"
+      className="absolute bottom-2 sm:bottom-3 left-5 sm:left-6 text-orange text-3xl sm:text-4xl rotate-y-180"
+    />
+    {/* Kutip Kanan Atas */}
+    <Icon
+      icon="iconoir:quote-solid"
+      className="absolute top-2 sm:top-3 right-5 sm:right-6 text-orange text-3xl sm:text-4xl"
+    />
 
-          {/* Ikon Kutip Kiri Bawah */}
-          <Icon
-            icon="iconoir:quote-solid"
-            className="absolute bottom-3 left-5 text-orange text-4xl rotate-y-180"
-          />
-
-          {/* Isi Teks */}
-          <div className="text-center max-w-2xl mx-auto text-dark leading-relaxed text-base md:text-lg relative z-10">
-            <p className="mb-3">
-              UMKM bukan sekadar usaha kecil, tetapi fondasi ekonomi yang
-              menggerakkan kehidupan masyarakat. Mari dukung pelaku UMKM di
-              Kudus agar terus berkembang, berinovasi, dan memberikan manfaat
-              bagi daerah.
-            </p>
-            <p>
-              Dengan mengenal dan mempromosikan produk lokal, kita turut
-              membangun perekonomian yang mandiri dan berdaya saing.
-            </p>
-          </div>
-
-          {/* Ikon Kutip Kanan Atas */}
-          <Icon
-            icon="iconoir:quote-solid"
-            className="absolute top-3 right-5 text-orange text-4xl"
-          />
-        </div>
+    <div className="text-center max-w-2xl mx-auto text-dark leading-relaxed text-sm sm:text-base md:text-lg relative z-10">
+      <p className="mb-3">
+        UMKM bukan sekadar usaha kecil, tetapi fondasi ekonomi yang
+        menggerakkan kehidupan masyarakat. Mari dukung pelaku UMKM di
+        Kudus agar terus berkembang, berinovasi, dan memberikan manfaat
+        bagi daerah.
+      </p>
+      <p>
+        Dengan mengenal dan mempromosikan produk lokal, kita turut
+        membangun perekonomian yang mandiri dan berdaya saing.
+      </p>
+    </div>
+  </div>
+</div>
       </PageContainer>
 
       <Footer />
