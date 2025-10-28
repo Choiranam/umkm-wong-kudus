@@ -8,15 +8,12 @@ import UMKMCard from "../components/UMKMCard";
 import { Icon } from "@iconify/react";
 
 // --- (S) MOCK DATABASE ---
-// Buat database tiruan untuk semua data Kecamatan dan UMKM
-// Nantinya, ini bisa diganti dengan panggilan API
-
 const allKecamatanInfo = {
   bae: {
     name: "Bae",
     title: "Daftar UMKM di Daerah Kecamatan Bae",
     subtitle: "Temukan beragam produk lokal, kuliner, dan layanan terbaik dari pelaku UMKM asli Bae Kudus.",
-    image: "/images/hero_bae.jpg", // Ganti gambar hero jika perlu
+    image: "/images/hero_bae.jpg",
   },
   kaliwungu: {
     name: "Kaliwungu",
@@ -24,6 +21,7 @@ const allKecamatanInfo = {
     subtitle: "Temukan beragam produk lokal, kuliner, dan layanan terbaik dari pelaku UMKM asli Kaliwungu Kudus.",
     image: "/images/sampel_hero_content.jpeg",
   }
+  // ... (kecamatan lain)
 };
 
 const allUmkmData = [
@@ -42,10 +40,9 @@ const allUmkmData = [
 
 
 const KecamatanPage = () => {
-  // 1. Ambil 'slug' dari URL (cth: "bae" atau "kaliwungu")
+  // 1. Ambil 'slug' dari URL
   const { slug } = useParams();
 
-  // Daftar kategori (sudah ada)
   const kategoriList = [
     { id: 1, name: "Makanan", icon: "fluent:food-16-regular" },
     { id: 2, name: "Minuman", icon: "fluent:drink-to-go-24-regular" },
@@ -54,31 +51,29 @@ const KecamatanPage = () => {
     { id: 5, name: "Lainnya", icon: "basil:other-1-outline" },
   ];
 
-  // 2. State untuk data dinamis
+  // 2. State
   const [activeCategory, setActiveCategory] = useState("Makanan");
   const [kecamatanInfo, setKecamatanInfo] = useState(null);
   const [filteredUmkm, setFilteredUmkm] = useState([]);
 
-  // 3. useEffect untuk memfilter data saat 'slug' atau 'activeCategory' berubah
+  // 3. useEffect
   useEffect(() => {
-    // Ambil info kecamatan berdasarkan slug
-    const info = allKecamatanInfo[slug] || null; // Cari info di mock DB
+    const info = allKecamatanInfo[slug] || null;
     setKecamatanInfo(info);
 
-    // Filter UMKM berdasarkan slug KECAMATAN dan KATEGORI aktif
     const umkms = allUmkmData.filter(
       (umkm) => umkm.kecamatanSlug === slug && umkm.category === activeCategory
     );
     setFilteredUmkm(umkms);
 
-  }, [slug, activeCategory]); // Dependency array
+  }, [slug, activeCategory]);
 
 
   return (
     <div className="bg-light min-h-screen">
       <Navbar />
 
-      {/* Hero Section - Dibuat Dinamis */}
+      {/* Hero Section */}
       <HeroContent
         image={kecamatanInfo?.image || "/images/sampel_hero_content.jpeg"}
         title={kecamatanInfo?.title || "Memuat Data Kecamatan..."}
@@ -86,14 +81,29 @@ const KecamatanPage = () => {
       />
 
       {/* Kategori Tabs + List UMKM */}
-      <PageContainer variant="wide" className="py-10">
-        {/* Tabs Kategori (Logik sudah benar) */}
-        <div className="flex flex-wrap justify-start gap-3 mb-10">
+      {/* PENYESUAIAN 1: Padding Container Responsif
+          - Sebelum: py-10
+          - Sesudah: py-6 sm:py-10
+          - Alasan: Mengurangi padding vertikal di mobile.
+      */}
+      <PageContainer variant="wide" className="py-6 sm:py-10">
+        {/* Tabs Kategori */}
+        {/* PENYESUAIAN 2: Spasi Tabs Responsif
+            - Sebelum: gap-3 mb-10
+            - Sesudah: gap-2 sm:gap-3 mb-6 sm:mb-10
+            - Alasan: Mengurangi 'gap' dan 'margin-bottom' di mobile.
+        */}
+        <div className="flex flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
           {kategoriList.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveCategory(item.name)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-md font-medium text-sm transition-all duration-200 cursor-pointer shadow-lg ${activeCategory === item.name
+              /* PENYESUAIAN 3: Padding Button Responsif
+                         - Sebelum: px-5 py-2.5
+                         - Sesudah: px-4 py-2 sm:px-5 sm:py-2.5
+                         - Alasan: Button sedikit lebih kecil di mobile agar muat lebih banyak.
+                     */
+              className={`flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-md font-medium text-sm transition-all duration-200 cursor-pointer shadow-lg ${activeCategory === item.name
                 ? "bg-orange text-light shadow-lg"
                 : "bg-light text-dark hover:bg-orange/10 hover:shadow-lg"
                 }`}
@@ -110,35 +120,45 @@ const KecamatanPage = () => {
           ))}
         </div>
 
-        {/* Grid UMKM - Dibuat Dinamis */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
-          {/* Ganti 'umkmData.map' menjadi 'filteredUmkm.map' */}
+        {/* Grid UMKM */}
+        {/* PENYESUAIAN 4: Spasi Grid Responsif
+            - Sebelum: gap-6
+            - Sesudah: gap-4 sm:gap-6
+            - Alasan: Mengurangi spasi antar kartu di mobile.
+        */}
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
           {filteredUmkm.length > 0 ? (
             filteredUmkm.map((umkm) => (
               <UMKMCard key={umkm.id} data={umkm} />
             ))
           ) : (
-            // Tampilkan pesan jika tidak ada data
-            <p className="col-span-full text-center text-dark/50">
+            /* PENYESUAIAN 5: Padding Pesan Kosong
+                      - Sebelum: (tidak ada)
+                      - Sesudah: py-10
+                      - Alasan: Memberi ruang vertikal jika pesan ini muncul.
+                  */
+            <p className="col-span-full text-center text-dark/50 py-10">
               Tidak ada UMKM yang ditemukan untuk kategori "{activeCategory}" di Kecamatan {kecamatanInfo?.name || slug}.
             </p>
           )}
         </div>
 
-        {/* Pagination (Anda bisa tambahkan logikanya nanti) */}
-        <div className="flex justify-center mt-10">
+        {/* Pagination */}
+        {/* PENYESUAIAN 6: Margin Atas Responsif
+            - Sebelum: mt-10
+            - Sesudah: mt-6 sm:mt-10
+            - Alasan: Konsistensi spasi di mobile.
+        */}
+        <div className="flex justify-center mt-6 sm:mt-10">
           <div className="flex items-center gap-2">
-            {/* Tombol kiri */}
             <button className="text-dark/50 hover:text-orange transition">
               <Icon icon="fluent:chevron-left-12-filled" width="22" height="22" />
             </button>
 
-            {/* Nomor halaman aktif */}
             <span className="px-4 py-1 rounded-md bg-orange text-white font-medium">
               1
             </span>
 
-            {/* Tombol kanan */}
             <button className="text-dark/50 hover:text-orange transition">
               <Icon icon="fluent:chevron-right-12-filled" width="22" height="22" />
             </button>
