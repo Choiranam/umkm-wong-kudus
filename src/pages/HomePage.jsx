@@ -8,14 +8,17 @@ import UMKMCard from "../components/UMKMCard";
 import ReviewCard from "../components/ReviewCard";
 import { Link, useNavigate } from "react-router-dom";
 import ArtikelCard from "../components/ArtikelCard";
+// PERUBAHAN 1: Impor dummyArticles dan formatDate dari ArtikelPage
+import { dummyArticles, formatDate } from "./ArtikelPage";
 
 const HomePage = () => {
+    // ... (Kode categories, steps, kecamatanData tidak berubah) ...
     const categories = [
-        { name: "Makanan", icon: "fluent:food-16-regular" },
-        { name: "Minuman", icon: "fluent:drink-to-go-24-regular" },
-        { name: "Jasa", icon: "ph:wrench" },
-        { name: "Barang", icon: "lucide:package-open" },
-        { name: "Lainnya", icon: "basil:other-1-outline" },
+        { name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
+        { name: "Minuman", slug: "minuman", icon: "fluent:drink-to-go-24-regular" },
+        { name: "Jasa", slug: "jasa", icon: "ph:wrench" },
+        { name: "Barang", slug: "barang", icon: "lucide:package-open" },
+        { name: "Lainnya", slug: "lainnya", icon: "basil:other-1-outline" },
     ];
 
     const steps = [
@@ -93,30 +96,7 @@ const HomePage = () => {
         },
     ];
 
-    const artikelData = [
-        {
-            image: "https://placehold.co/384x224/E2E8F0/334155?text=Artikel+1",
-            category: "Minuman",
-            title: "Kudus Kenalkan Produk UMKM Unggulan ke Tingkat Nasional",
-            displayDate: "Aug 17th, 2025",
-            author: "Admin"
-        },
-        {
-            image: "https://placehold.co/384x224/E2E8F0/334155?text=Artikel+2",
-            category: "Makanan",
-            title: "Produk UMKM di Kudus masuk toko modern",
-            displayDate: "Aug 17th, 2025",
-            author: "Admin"
-        },
-        {
-            image: "https://placehold.co/384x224/E2E8F0/334155?text=Artikel+3",
-            category: "Barang",
-            title: "UMKM Kudus Tampil Mengesankan di Jateng Fair 2025, Produk Ecoprint Curi Perhatian",
-            displayDate: "Aug 17th, 2025",
-            author: "Admin"
-        }
-    ];
-
+    // ... (Kode state, navigate, check/scroll Kecamatan tidak berubah) ...
     // Refs untuk masing-masing section
     const kecamatanScrollRef = useRef(null);
     const umkmScrollRef = useRef(null);
@@ -170,6 +150,8 @@ const HomePage = () => {
         }
     }, []);
 
+
+    // ... (Kode dummyData dan reviewData tidak berubah) ...
     // Data dummy untuk UMKM
     const dummyData = [
         {
@@ -267,7 +249,7 @@ const HomePage = () => {
     const reviewData = [
         {
             name: "Azzan Isham",
-            email: "a********s@gmail.com",
+            email: "azzanisham@gmail.com", // <-- Data asli (contoh)
             text: "Saya sangat terbantu atas adanya website ini, karena ketika saya bingung mau membeli makanan dimana, di website ini menyediakan arahan.",
             rating: 4,
             date: "17 Oktober 2025",
@@ -275,7 +257,7 @@ const HomePage = () => {
         },
         {
             name: "Jovanco",
-            email: "j********e@gmail.com",
+            email: "jovancoe@gmail.com", // <-- Data asli (contoh)
             text: "Website-nya keren! Tampilannya bersih dan gampang dipakai. Akhirnya ada direktori UMKM Kudus yang lengkap.",
             rating: 4,
             date: "17 Oktober 2025",
@@ -283,7 +265,7 @@ const HomePage = () => {
         },
         {
             name: "Budi Santoso",
-            email: "b********o@gmail.com",
+            email: "budis@gmail.com", // <-- Data asli (contoh)
             text: "Sangat informatif. Saya jadi tahu lokasi UMKM yang sebelumnya tidak saya ketahui. Mantap!",
             rating: 5,
             date: "18 Oktober 2025",
@@ -291,25 +273,21 @@ const HomePage = () => {
         }
     ];
 
-    // Effect untuk scroll otomatis UMKM
+
+    // Effect untuk scroll otomatis UMKM (Tidak Berubah)
     useEffect(() => {
         const el = umkmScrollRef.current;
         if (el) {
-            // PERBAIKAN 1: Mulai dari posisi scroll saat ini, BUKAN dari 0
             let scrollPosition = el.scrollLeft;
             const scrollStep = 1;
 
             const interval = setInterval(() => {
-                // Logic 'if (!isPausedUMKM)' tetap di dalam interval
                 if (!isPausedUMKM && el) {
                     const scrollWidth = el.scrollWidth / 2;
-
                     if (scrollWidth === 0) {
                         return;
                     }
-
                     scrollPosition += scrollStep;
-
                     if (scrollPosition >= scrollWidth) {
                         scrollPosition = 0;
                         el.scrollLeft = 0; // Reset ke awal
@@ -318,11 +296,33 @@ const HomePage = () => {
                     }
                 }
             }, 20);
-
             return () => clearInterval(interval);
         }
-    }, [isPausedUMKM]); // Dependency array tetap, ini sudah benar
+    }, [isPausedUMKM]);
 
+    // PERBAIKAN 2: Handler untuk manual scroll looping (UMKM)
+    const handleUMKMScroll = (e) => {
+        const el = e.currentTarget;
+        // Kita hanya jalankan logika looping manual ini jika user sedang hover (isPausedUMKM)
+        // agar tidak bentrok dengan logic auto-scroll dari useEffect
+        if (isPausedUMKM) {
+            const scrollLeft = el.scrollLeft;
+            const loopPoint = el.scrollWidth / 2; // Ini adalah lebar 1 set data
+
+            // Jika user scroll manual ke kanan dan melewati 'seam' (titik tengah)
+            if (scrollLeft >= loopPoint) {
+                // Pindahkan scroll ke posisi ekuivalen di set data pertama (sebelah kiri)
+                el.scrollLeft = scrollLeft - loopPoint;
+            }
+            // Jika user scroll manual ke kiri dan melewati 'awal' (0)
+            else if (scrollLeft <= 0) {
+                // Pindahkan ke posisi ekuivalen di set data kedua (sebelah kanan)
+                el.scrollLeft = scrollLeft + loopPoint;
+            }
+        }
+    };
+
+    // ... (Kode check/scroll Review dan effect-nya tidak berubah) ...
     // Fungsi check scroll untuk review
     const checkScrollReview = () => {
         const el = reviewScrollRef.current;
@@ -360,11 +360,12 @@ const HomePage = () => {
         }
     }, []);
 
+
     return (
         <div className="bg-light min-h-screen">
             <Navbar />
 
-            {/* HERO SECTION */}
+            {/* ... (Hero, HowToUse, Kecamatan - KODE TIDAK BERUBAH) ... */}
             <section
                 className="relative bg-cover bg-center px-60"
                 style={{ backgroundImage: "url('/images/hero_image_home.jpg')" }}
@@ -387,7 +388,7 @@ const HomePage = () => {
                         <input
                             type="text"
                             placeholder="Cari nama tempat UMKM disini...."
-                            className="grow py-4 px-5 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark shadow-lg bg-light"
+                            className="grow py-4 px-5 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark/50 shadow-lg bg-light"
                         />
                         <button className="bg-orange text-light py-4 px-6 rounded-lg flex items-center font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer">
                             <Icon icon="tabler:search" className="w-5 h-5 mr-2" />
@@ -399,13 +400,14 @@ const HomePage = () => {
                         <div className="mt-5 flex justify-start gap-3 md:gap-5 flex-wrap">
                             {categories.map((cat) => (
                                 <button
-                                    key={cat.name}
+                                    key={cat.slug}
                                     className={`
-                    rounded-xl w-20 h-20 flex flex-col items-center justify-center shadow-lg
-                    transition-all transform hover:-translate-y-1 cursor-pointer
-                    ${cat.active ? "bg-orange text-light" : "bg-light text-dark"}
-                    hover:bg-orange hover:text-light
-                  `}
+            rounded-xl w-20 h-20 flex flex-col items-center justify-center shadow-lg
+            transition-all transform hover:-translate-y-1 cursor-pointer
+            ${cat.active ? "bg-orange text-light" : "bg-light text-dark"}
+            hover:bg-orange hover:text-light
+            `}
+                                    onClick={() => navigate(`/kategori?slug=${cat.slug}`)}
                                 >
                                     <Icon icon={cat.icon} className="w-6 h-6 mb-1" />
                                     <span className="text-xs font-semibold">{cat.name}</span>
@@ -416,7 +418,6 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* HOW TO USE SECTION */}
             <section className="py-20 px-30 relative">
                 <div className="container mx-auto px-4">
                     <div className="bg-light rounded-2xl shadow-xl py-8 md:py-12 px-10 md:px-16 relative z-10 -mt-40">
@@ -429,7 +430,7 @@ const HomePage = () => {
                                 <div key={step.num} className="flex items-start gap-4">
                                     <div className="shrink-0 flex flex-col items-center">
                                         <Icon icon="gg:check-o" className="w-10 h-10 text-green/75" />
-                                        <span className="text-5xl font-bold text-dark/25 mt-1 leading-none">
+                                        <span className="text-4xl font-bold text-dark/25 mt-1 leading-none">
                                             {step.num}
                                         </span>
                                     </div>
@@ -444,7 +445,6 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* SECTION KECAMATAN */}
             <section className="pb-20 px-50 relative">
                 <div className="mb-2">
                     <h2 className="text-2xl text-start text-dark">
@@ -455,24 +455,23 @@ const HomePage = () => {
 
                 <style>
                     {`
-            .no-scrollbar::-webkit-scrollbar {
-              display: none;
-            }
-            .no-scrollbar {
-              -ms-overflow-style: none;
-              scrollbar-width: none;
-            }
-            .snap-x {
-              scroll-snap-type: x mandatory;
-            }
-            .snap-start {
-              scroll-snap-align: start;
-            }
-          `}
+   .no-scrollbar::-webkit-scrollbar {
+   display: none;
+   }
+   .no-scrollbar {
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+   }
+   .snap-x {
+   scroll-snap-type: x mandatory;
+   }
+   .snap-start {
+   scroll-snap-align: start;
+   }
+  `}
                 </style>
 
                 <div className="relative">
-                    {/* Gradient Fade Kiri */}
                     <div className="absolute top-0 left-0 w-6 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
 
                     <motion.div
@@ -488,29 +487,28 @@ const HomePage = () => {
                         ))}
                     </motion.div>
 
-                    {/* Gradient Fade Kanan */}
                     <div className="absolute top-0 right-0 w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
                 </div>
 
-                {/* Tombol Navigasi */}
-                {/* PERBAIKAN 2: Ubah z-index jadi z-20 agar di atas gradient */}
                 <button
                     onClick={() => scrollKecamatan("left")}
                     disabled={!canScrollLeftKecamatan}
-                    className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 left-30 z-20 cursor-pointer" // <-- z-20
+                    className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 left-30 z-20 cursor-pointer"
                 >
                     <Icon icon="tabler:chevron-left" className="w-5 h-5" />
                 </button>
                 <button
                     onClick={() => scrollKecamatan("right")}
                     disabled={!canScrollRightKecamatan}
-                    className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 right-30 z-20 cursor-pointer" // <-- z-20
+                    className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 right-30 z-20 cursor-pointer"
                 >
                     <Icon icon="tabler:chevron-right" className="w-5 h-5" />
                 </button>
             </section>
 
+
             <section className="px-50 mb-2 relative">
+                {/* ... (Judul Potret UMKM - KODE TIDAK BERUBAH) ... */}
                 <h2 className="text-2xl text-start text-dark">
                     <span className="font-bold">Potret</span> <span className="font-normal">UMKM Kudus</span>
                 </h2>
@@ -522,18 +520,18 @@ const HomePage = () => {
             <section className="pb-20 px-50 relative">
                 <style>
                     {`
-                    .no-scrollbar::-webkit-scrollbar {
-                        display: none;
-                    }
-                    .no-scrollbar {
-                        -ms-overflow-style: none;
-                        scrollbar-width: none;
-                    }
-                    `}
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+         }
+          `}
                 </style>
 
                 <div className="relative">
-                    {/* Gradient Fade Kiri */}
+                    {/* ... (Gradient fade) ... */}
                     <div className="absolute top-0 left-0 w-16 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
 
                     {/* INI ADALAH "VIEWPORT" (JENDELA) */}
@@ -542,6 +540,8 @@ const HomePage = () => {
                         ref={umkmScrollRef}
                         onMouseEnter={() => setIsPausedUMKM(true)}
                         onMouseLeave={() => setIsPausedUMKM(false)}
+                        // PERBAIKAN 2: Tambahkan onScroll di sini
+                        onScroll={handleUMKMScroll}
                     >
                         {/* INI ADALAH "CONTENT" YANG BERGERAK */}
                         <motion.div
@@ -562,14 +562,13 @@ const HomePage = () => {
                         </motion.div>
                     </div>
 
-                    {/* Gradient Fade Kanan */}
+                    {/* ... (Gradient fade) ... */}
                     <div className="absolute top-0 right-0 w-16 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
                 </div>
             </section>
 
             <section className="py-20 mb-20 px-50 bg-dark/5 relative">
-
-                {/* Judul Section (Serasi dengan di atas) */}
+                {/* ... (Review Section - KODE TIDAK BERUBAH) ... */}
                 <div className="mb-6 flex justify-between items-end">
                     <div>
                         <h2 className="text-2xl text-start text-dark">
@@ -582,22 +581,20 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                {/* Wrapper 'relative' untuk gradient fade */}
                 <div className="relative">
                     <motion.div
                         ref={reviewScrollRef}
                         onScroll={checkScrollReview}
-                        className="overflow-x-auto flex gap-5 py-12 no-scrollbar snap-x" // py-12 agar foto profil tidak terpotong
+                        className="overflow-x-auto flex gap-5 py-12 no-scrollbar snap-x"
                     >
                         {reviewData.map((review, index) => (
-                            <div key={index} className="snap-start shrink-0"> {/* shrink-0 agar card tidak penyet */}
+                            <div key={index} className="snap-start shrink-0">
                                 <ReviewCard review={review} />
                             </div>
                         ))}
                     </motion.div>
                 </div>
 
-                {/* Tombol Navigasi (Warna light untuk bg gelap) */}
                 <button
                     onClick={() => scrollReview("left")}
                     disabled={!canScrollLeftReview}
@@ -613,7 +610,6 @@ const HomePage = () => {
                     <Icon icon="tabler:chevron-right" className="w-5 h-5" />
                 </button>
 
-                {/* Tombol Beri Ulasan (sesuai gambar) */}
                 <div className="flex justify-end">
                     <button onClick={() => navigate('/kontak')} className="bg-orange text-light py-3 px-5 rounded-lg flex items-center font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer">
                         Beri Kami Ulasan
@@ -623,8 +619,7 @@ const HomePage = () => {
             </section>
 
             <section className="pb-20 px-50 relative">
-
-                {/* Judul Section (Serasi dengan di atas) */}
+                {/* ... (Artikel Section - KODE TIDAK BERUBAH) ... */}
                 <div className="mb-6 flex justify-between items-end">
                     <div>
                         <h2 className="text-2xl text-start text-dark">
@@ -633,7 +628,6 @@ const HomePage = () => {
                         </h2>
                     </div>
 
-                    {/* Link ke Halaman Artikel */}
                     <Link
                         to="/artikel"
                         className="flex items-center text-dark/70 hover:text-orange font-semibold transition-colors group shrink-0"
@@ -643,15 +637,14 @@ const HomePage = () => {
                     </Link>
                 </div>
 
-                {/* Grid untuk Artikel Card */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    {artikelData.map((artikel, index) => (
+                    {dummyArticles.slice(0, 3).map((artikel) => (
                         <ArtikelCard
-                            key={index}
+                            key={artikel.id}
                             image={artikel.image}
                             category={artikel.category}
                             title={artikel.title}
-                            displayDate={artikel.displayDate}
+                            displayDate={formatDate(artikel.date)}
                             author={artikel.author}
                         />
                     ))}
