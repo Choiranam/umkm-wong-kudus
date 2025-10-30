@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import { Icon } from "@iconify/react";
@@ -36,9 +37,9 @@ const KontakPage = () => {
     );
     const body = encodeURIComponent(
       `Halo, saya ${formData["Nama Depan"]} ${formData["Nama Belakang"]}\n\n` +
-      `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
-      `Email: ${formData["Email"]}\n\n` +
-      `Pesan:\n${formData["Pesan"]}`
+        `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
+        `Email: ${formData["Email"]}\n\n` +
+        `Pesan:\n${formData["Pesan"]}`
     );
 
     window.location.href = `mailto:mchoiranam@gmail.com?subject=${subject}&body=${body}`;
@@ -83,6 +84,24 @@ const KontakPage = () => {
     // Ganti alert dengan modal custom jika tersedia di proyek Anda
     alert("Terima kasih atas penilaianmu! ⭐");
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#review") {
+      const reviewSection = document.getElementById("review");
+      if (reviewSection) {
+        setTimeout(() => {
+          const yOffset = -100; // atur sesuai tinggi navbar
+          const y =
+            reviewSection.getBoundingClientRect().top +
+            window.scrollY +
+            yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }, 300);
+      }
+    }
+  }, [location]);
 
   return (
     <div className="bg-light min-h-screen">
@@ -130,9 +149,10 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${formData[label]
-                            ? "-top-2 text-xs text-dark"
-                            : "top-2 text-sm text-dark/50"
+                          ${
+                            formData[label]
+                              ? "-top-2 text-xs text-dark"
+                              : "top-2 text-sm text-dark/50"
                           }
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
@@ -156,9 +176,10 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${formData[label]
-                            ? "-top-2 text-xs text-dark"
-                            : "top-2 text-sm text-dark/50"
+                          ${
+                            formData[label]
+                              ? "-top-2 text-xs text-dark"
+                              : "top-2 text-sm text-dark/50"
                           }
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
@@ -249,7 +270,7 @@ const KontakPage = () => {
         </div>
 
         {/* Form Beri Penilaian */}
-        <div>
+        <div id="review">
           <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">
             Beri Penilaian
           </h2>
@@ -296,16 +317,19 @@ const KontakPage = () => {
                       type="text"
                       id={`review-${label}`}
                       value={reviewData[label]}
-                      onChange={(e) => handleReviewChange(label, e.target.value)}
+                      onChange={(e) =>
+                        handleReviewChange(label, e.target.value)
+                      }
                       className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
                       placeholder=" "
                     />
                     <label
                       htmlFor={`review-${label}`}
-                      className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData[label]
-                        ? "-top-2 text-xs text-dark"
-                        : "top-2 text-sm text-dark/50"
-                        } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                      className={`absolute left-0 transition-all duration-200 ease-in-out ${
+                        reviewData[label]
+                          ? "-top-2 text-xs text-dark"
+                          : "top-2 text-sm text-dark/50"
+                      } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
                     </label>
@@ -326,10 +350,11 @@ const KontakPage = () => {
               />
               <label
                 htmlFor="review-email"
-                className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData.Email
-                  ? "-top-2 text-xs text-dark"
-                  : "top-2 text-sm text-dark/50"
-                  } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                className={`absolute left-0 transition-all duration-200 ease-in-out ${
+                  reviewData.Email
+                    ? "-top-2 text-xs text-dark"
+                    : "top-2 text-sm text-dark/50"
+                } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
               </label>
@@ -346,8 +371,9 @@ const KontakPage = () => {
                     key={num}
                     icon="material-symbols-light:star"
                     onClick={() => setRating(num)}
-                    className={`text-[1.8rem] transition-transform hover:scale-110 ${num <= rating ? "text-yellow" : "text-dark/50"
-                      }`}
+                    className={`text-[1.8rem] transition-transform hover:scale-110 ${
+                      num <= rating ? "text-yellow" : "text-dark/50"
+                    }`}
                   />
                 ))}
               </div>
@@ -370,10 +396,11 @@ const KontakPage = () => {
               <label
                 htmlFor="review-pesan"
                 className={`absolute left-0 transition-all duration-200 ease-in-out
-                ${reviewData.Pesan
+                ${
+                  reviewData.Pesan
                     ? "-top-2 text-xs text-dark"
                     : "top-2 text-sm text-dark/50"
-                  }
+                }
                 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Pesan <span className="text-orange">*</span>
