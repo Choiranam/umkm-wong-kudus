@@ -46,14 +46,18 @@ const DetailUMKM = () => {
 
   // === ISI POPUP & SIDEBAR ===
   const StickyInfo = ({ onClose }) => (
-    <div className="bg-white rounded-2xl p-5 shadow-xl relative">
+    <div className="bg-white rounded-t-3xl p-5 shadow-2xl relative max-h-full">
+      {/* Tombol Close */}
       <button
         onClick={onClose}
-        className="absolute top-3 right-3 text-dark/60 hover:text-dark text-2xl z-10"
+        className="absolute top-4 right-4 text-dark/60 hover:text-dark text-2xl z-10"
         aria-label="Tutup"
       >
         <Icon icon="tabler:x" />
       </button>
+
+      {/* Handle Bar */}
+      <div className="w-12 h-1.5 bg-dark/20 rounded-full mx-auto mb-4" />
 
       <h3 className="text-[20px] font-bold text-dark mb-3 pr-8">Ramboo Chicken</h3>
       <ul className="text-sm text-dark/70 space-y-3 mb-4">
@@ -146,7 +150,7 @@ const DetailUMKM = () => {
               </p>
             </section>
 
-            {/* Menu — 3 KOLOM DI MOBILE (sama seperti desktop) */}
+            {/* Menu */}
             <section>
               <h2 className="text-2xl font-bold text-dark mb-4">
                 Menu <span className="font-normal text-dark-600">/ Produk Unggulan</span>
@@ -174,13 +178,12 @@ const DetailUMKM = () => {
               </div>
             </section>
 
-            {/* Galeri — Desktop: PERSIS seperti asli */}
+            {/* Galeri */}
             <section className="mt-8">
               <h2 className="text-2xl font-bold text-dark mb-4">
                 Galeri <span className="font-normal text-dark">Foto</span>
               </h2>
               <div className="grid grid-cols-2 gap-3 md:gap-4">
-                {/* Kolom kiri */}
                 <div className="flex flex-col gap-3 md:gap-4">
                   {galleryImages.slice(0, 2).map((img, idx) => (
                     <img
@@ -196,8 +199,6 @@ const DetailUMKM = () => {
                     />
                   ))}
                 </div>
-
-                {/* Kolom kanan */}
                 <div className="flex flex-col gap-2">
                   <div className="grid grid-cols-1 gap-2">
                     {galleryImages.slice(2, 4).map((img, idx) => (
@@ -293,12 +294,17 @@ const DetailUMKM = () => {
         </button>
       </div>
 
-      {/* POPUP CARD (Mobile Only) */}
+      {/* POPUP CARD (Mobile Only) - FIX SCROLL & CUT OFF */}
       {showMobilePopup && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-end justify-center p-4" onClick={() => setShowMobilePopup(false)}>
+        <div className="fixed inset-0 bg-black/50 z-50 flex flex-col" onClick={() => setShowMobilePopup(false)}>
+          {/* Overlay */}
+          <div className="flex-1" onClick={() => setShowMobilePopup(false)}></div>
+
+          {/* Card Popup - BISA DI-SCROLL */}
           <div
-            className="w-full max-w-md animate-slideUp"
-            onClick={(e) => e.stop-stopPropagation()}
+            className="bg-white w-full max-w-md mx-auto rounded-t-3xl overflow-y-auto"
+            style={{ maxHeight: "85vh" }}
+            onClick={(e) => e.stopPropagation()}
           >
             <StickyInfo onClose={() => setShowMobilePopup(false)} />
           </div>
