@@ -1,19 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 const ScrollToTop = () => {
-    const { pathname } = useLocation();
+  const { pathname } = useLocation();
+  const isMounted = useRef(false);
 
-    useEffect(() => {
-        // Gulir ke atas setiap kali path berubah
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth", // bisa diganti "auto" kalau mau langsung tanpa animasi
-        });
-    }, [pathname]);
+  useEffect(() => {
+    if (isMounted.current) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      isMounted.current = true;
+    }
+  }, [pathname]);
 
-    return null; // Komponen ini tidak merender apa pun
+  return null;
 };
 
 export default ScrollToTop;

@@ -16,9 +16,11 @@ const ReviewCard = ({ review }) => {
   const { name, email, text, rating, date, profileImage } = review;
 
   return (
-    <div className="relative bg-light rounded-lg shadow-sm p-6 pt-10 font-poppins 
+    <div
+      className="relative bg-light rounded-lg shadow-sm p-6 pt-10 font-poppins 
       overflow-visible flex flex-col h-full min-h-[260px] sm:min-h-[300px] 
-      min-w-[260px] sm:min-w-[300px] max-w-[320px]">
+      min-w-[260px] sm:min-w-[300px] max-w-[320px]"
+    >
       <div className="absolute -top-6 left-4 sm:left-6">
         <img
           src={profileImage}
@@ -50,8 +52,9 @@ const ReviewCard = ({ review }) => {
               <Icon
                 key={i}
                 icon="mdi:star"
-                className={`text-base ${i < rating ? "text-orange" : "text-dark/50"
-                  }`}
+                className={`text-base ${
+                  i < rating ? "text-orange" : "text-dark/50"
+                }`}
               />
             ))}
           </div>

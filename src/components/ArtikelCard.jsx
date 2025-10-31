@@ -5,13 +5,12 @@ import { useNavigate } from "react-router-dom";
 const ArtikelCard = ({ image, category, title, displayDate, author }) => {
   const navigate = useNavigate();
 
-  // Fungsi untuk buat slug URL
   const slugify = (text) =>
     text
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, "") // hapus karakter aneh
+      .replace(/[^a-z0-9\s-]/g, "")
       .trim()
-      .replace(/\s+/g, "-"); // ganti spasi dengan "-"
+      .replace(/\s+/g, "-");
 
   const handleClick = () => {
     navigate(`/artikel/${category.toLowerCase()}/${slugify(title)}`);
@@ -25,11 +24,7 @@ const ArtikelCard = ({ image, category, title, displayDate, author }) => {
       onClick={handleClick}
     >
       <div className="relative rounded-[5px] overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-56 object-cover"
-        />
+        <img src={image} alt={title} className="w-full h-56 object-cover" />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
       </div>
 
@@ -41,7 +36,8 @@ const ArtikelCard = ({ image, category, title, displayDate, author }) => {
           {title}
         </h3>
         <p className="text-dark/50 font-medium text-xs mt-2 text-left">
-          {displayDate} oleh <span className="text-dark font-medium">{author}</span>
+          {displayDate} oleh{" "}
+          <span className="text-dark font-medium">{author}</span>
         </p>
       </div>
     </motion.div>

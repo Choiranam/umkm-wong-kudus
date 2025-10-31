@@ -1,71 +1,54 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TestColor from "../testing/TestColor";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import AppLayout from "../components/AppLayout";
+
 import HomePage from "../pages/HomePage";
 import KontakPage from "../pages/KontakPage";
 import TentangKamiPage from "../pages/TentangKamiPage";
 import PencarianPage from "../pages/PencarianPage";
-import ScrollToTop from "../components/ScrollTop";
 import KecamatanPage from "../pages/KecamatanPage";
 import KategoriPage from "./../pages/KategoriPage";
 import TentangUMKMPage from "../pages/TentangUMKMPage";
-import ArtikelPage from "../pages/ArtikelPage";
 import DetailUMKMPage from "../pages/DetailUMKMPage";
+import ArtikelPage from "../pages/ArtikelPage";
 import LoginPage from "../pages/admin/LoginPage";
 import DetailArtikelPage from "../pages/DetailArtikelPage";
 import DashboardPage from "../pages/admin/DashboardPage";
-import NotFoundPage from "../pages/NotFoundPage";
-import UserRoute from "./userRoute.jsx";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
+import UserRoute from "./UserRoute.jsx";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/kontak", element: <KontakPage /> },
+      { path: "/tentang-kami", element: <TentangKamiPage /> },
+      { path: "/pencarian", element: <PencarianPage /> },
+      { path: "/kecamatan/:slug", element: <KecamatanPage /> },
+      { path: "/kategori", element: <KategoriPage /> },
+      { path: "/tentang-umkm", element: <TentangUMKMPage /> },
+      { path: "/detail-umkm", element: <DetailUMKMPage /> },
+      { path: "/artikel", element: <ArtikelPage /> },
+      { path: "/artikel/:category/:slug", element: <DetailArtikelPage /> },
+      { path: "/login", element: <LoginPage /> },
+      {
+        path: "/dashboard",
+        element: (
+          <UserRoute>
+            <DashboardPage />
+          </UserRoute>
+        ),
+      },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+]);
 
 const AppRoutes = () => {
-  return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        {/* Color Testing Route */}
-        <Route path="/color" element={<TestColor />} />
-
-        {/* Main Route */}
-        <Route path="/" element={<HomePage />} />
-
-        {/* Kontak Route */}
-        <Route path="/kontak" element={<KontakPage />} />
-
-        {/* Tentang Kami Route */}
-        <Route path="/tentang-kami" element={<TentangKamiPage />} />
-
-        {/* Pencarian Route */}
-        <Route path="/pencarian" element={<PencarianPage />} />
-
-        {/* Kecamatan Route */}
-        <Route path="/kecamatan/:slug" element={<KecamatanPage />} />
-
-        {/* Kategori Route */}
-        <Route path="/kategori" element={<KategoriPage />} />
-
-        {/* Tentang UMKM Route */}
-        <Route path="/tentang-umkm" element={<TentangUMKMPage />} />
-
-        {/* Detail UMKM Route */}
-        <Route path="/detail-umkm" element={<DetailUMKMPage />} />
-
-        {/* Artikel Route */}
-        <Route path="/artikel" element={<ArtikelPage />} />
-
-        {/* Login Route */}
-        <Route path="/login" element={<LoginPage />} />
-
-        {/* Dashboard Route */}
-        <Route  path="/dashboard" element={ <UserRoute> <DashboardPage/> </UserRoute> } /> 
-
-        {/* NotFound Route */}
-        <Route path="*" element={<NotFoundPage />} />
-
-        {/* Detail Artikel Route */}
-        <Route path="/artikel/:category/:slug" element={<DetailArtikelPage />} />
-      </Routes>
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default AppRoutes;

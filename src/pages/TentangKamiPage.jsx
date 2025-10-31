@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HeroContent from "../components/HeroContent";
 import PageContainer from "../components/PageContainer";
 
 const TentangKamiPage = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      delay: 200,
+      easing: "ease-out-cubic",
+      once: false,
+      offset: 120,
+      mirror: true,
+    });
+  }, []);
+
   return (
     <div className="bg-light min-h-screen font-poppins">
       <Navbar />
-
       <HeroContent
         image="/images/tentang_kami_hero_content.png"
-        title={<>Dari Kudus untuk Kudus<br />Cerita di Balik UMKM Wong Kudus</>}
+        title={
+          <>
+            Dari Kudus untuk Kudus
+            <br />
+            Cerita di Balik UMKM Wong Kudus
+          </>
+        }
         subtitle="Kami percaya setiap usaha lokal memiliki potensi besar untuk berkembang. Melalui platform ini, kami hadir untuk membantu UMKM Kudus agar lebih dikenal luas dengan dukungan teknologi digital."
         className="text-center px-4 md:px-0"
       />
@@ -21,13 +40,20 @@ const TentangKamiPage = () => {
         variant="default"
         className="flex flex-col gap-20 px-6 md:px-0"
       >
-        {/* Tentang Kami */}
-        <section className="text-dark text-center">
+        <section
+          className="text-dark text-center"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           <h2 className="text-2xl md:text-3xl font-normal mb-6 mt-5">
             <span className="font-bold">Tentang</span> Kami
           </h2>
 
-          <div className="max-3xl mx-auto text-justify text-base md:text-lg leading-relaxed">
+          <div
+            className="max-3xl mx-auto text-justify text-base md:text-lg leading-relaxed"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <p>
               <span className="font-semibold">UMKM Wong Kudus</span> adalah
               sebuah website yang dikembangkan untuk memperkenalkan dan
@@ -38,7 +64,7 @@ const TentangKamiPage = () => {
               dengan semangat kewirausahaan yang tinggi.
             </p>
 
-            <p>
+            <p className="mt-4">
               Melalui website ini, kami ingin mendorong pelaku UMKM agar lebih
               siap menghadapi era digital dengan menyediakan platform yang mudah
               digunakan, informatif, dan mendukung pertumbuhan ekonomi lokal.
@@ -46,11 +72,17 @@ const TentangKamiPage = () => {
           </div>
         </section>
 
-        {/* Visi & Misi */}
+        {/* === Visi & Misi === */}
         <section className="relative text-dark">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 text-center md:text-left">
-            {/* Visi */}
-            <div className="md:pr-8 md:border-r-2 border-dark/50 space-y-4">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 text-center md:text-left"
+            data-aos="fade-up"
+          >
+            <div
+              className="md:pr-8 md:border-r-2 border-dark/50 space-y-4"
+              data-aos="fade-right"
+              data-aos-delay="100"
+            >
               <h2 className="text-2xl font-semibold mb-2">Visi</h2>
               <p className="text-base leading-relaxed text-justify">
                 Menjadikan Kudus sebagai pusat pengembangan dan promosi UMKM
@@ -62,8 +94,11 @@ const TentangKamiPage = () => {
               </p>
             </div>
 
-            {/* Misi */}
-            <div className="md:pl-8 space-y-4">
+            <div
+              className="md:pl-8 space-y-4"
+              data-aos="fade-left"
+              data-aos-delay="300"
+            >
               <h2 className="text-2xl font-semibold mb-2">Misi</h2>
               <p className="text-base leading-relaxed text-justify">
                 Memberikan wadah digital bagi pelaku UMKM di Kudus untuk
@@ -76,12 +111,14 @@ const TentangKamiPage = () => {
             </div>
           </div>
 
-          {/* Garis tengah (desktop only) */}
           <div className="absolute left-0 right-0 hidden md:block top-10 md:top-[30px] h-px bg-dark/50"></div>
         </section>
 
-        {/* === Tim Kami === */}
-        <section className="text-light text-center space-y-2">
+        <section
+          className="text-light text-center space-y-2"
+          data-aos="zoom-in"
+          data-aos-delay="100"
+        >
           <div className="bg-orange rounded-2xl py-8 px-4 md:px-10 shadow-sm">
             <h1 className="text-2xl md:text-3xl font-normal">
               <span className="font-bold">Siapa</span> di Balik Website Ini?
@@ -92,17 +129,19 @@ const TentangKamiPage = () => {
           </div>
         </section>
 
-        {/* Tentang Tim */}
-        <section className="flex flex-col md:flex-row items-center md:items-stretch justify-between gap-10">
-          {/* === Bagian Kiri (Teks) === */}
+        <section
+          className="flex flex-col md:flex-row items-center md:items-stretch justify-between gap-10"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          {/* Teks */}
           <div className="flex-1 flex flex-col justify-between space-y-6 text-dark">
             <div>
               <h2 className="text-2xl md:text-3xl font-normal mb-4 text-center md:text-left">
                 <span className="font-bold">Tim</span> Kami
               </h2>
 
-              {/* === Gambar hanya muncul di mobile tepat di bawah judul === */}
-              <div className="block md:hidden mb-6">
+              <div className="block md:hidden mb-6" data-aos="fade-up">
                 <img
                   src="/images/team.png"
                   alt="Foto Tim"
@@ -110,7 +149,11 @@ const TentangKamiPage = () => {
                 />
               </div>
 
-              <div className="space-y-6 text-base leading-relaxed text-justify">
+              <div
+                className="space-y-6 text-base leading-relaxed text-justify"
+                data-aos="fade-up"
+                data-aos-delay="150"
+              >
                 <p>
                   <span className="font-medium">UMKM Wong Kudus</span> dibuat
                   oleh siswa SMK Raden Umar Said Kudus, jurusan Rekayasa
@@ -129,8 +172,11 @@ const TentangKamiPage = () => {
             </div>
           </div>
 
-          {/* === Gambar hanya muncul di desktop === */}
-          <div className="hidden md:flex flex-1 justify-center md:justify-end">
+          <div
+            className="hidden md:flex flex-1 justify-center md:justify-end"
+            data-aos="fade-left"
+            data-aos-delay="250"
+          >
             <img
               src="/images/team.png"
               alt="Foto Tim"
@@ -139,8 +185,11 @@ const TentangKamiPage = () => {
           </div>
         </section>
 
-        {/* Anggota Tim */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pb-10">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pb-10"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           {[
             {
               name: "Azzan Isham Alawiy",
@@ -160,10 +209,12 @@ const TentangKamiPage = () => {
               desc: "Sebagai Backend Developer, saya mengelola logika server dan basis data untuk memastikan website berjalan dengan lancar, aman, efisien, serta mudah dikembangkan.",
               image: "/images/yusuf.jpg",
             },
-          ].map((data) => (
+          ].map((data, index) => (
             <motion.div
               key={data.name}
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group"
+              data-aos="zoom-in"
+              data-aos-delay={index * 150}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.2 }}
             >

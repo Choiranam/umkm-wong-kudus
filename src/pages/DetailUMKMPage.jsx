@@ -4,6 +4,7 @@ import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
 import { Icon } from "@iconify/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const DetailUMKM = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -44,22 +45,25 @@ const DetailUMKM = () => {
     "/images/galerifoto5_rambochicken.png",
   ];
 
-  // === ISI POPUP & SIDEBAR ===
-  const StickyInfo = ({ onClose }) => (
-    <div className="bg-white rounded-t-3xl p-5 shadow-2xl relative max-h-full">
-      {/* Tombol Close */}
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 text-dark/60 hover:text-dark text-2xl z-10"
-        aria-label="Tutup"
-      >
-        <Icon icon="tabler:x" />
-      </button>
+  const StickyInfo = ({ onClose, isMobile }) => (
+    <div className="bg-white rounded-3xl p-5 shadow-2xl relative max-h-full">
+      {!isMobile ? null : (
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-dark/60 hover:text-dark text-2xl z-10"
+          aria-label="Tutup"
+        >
+          <Icon icon="tabler:x" />
+        </button>
+      )}
 
-      {/* Handle Bar */}
-      <div className="w-12 h-1.5 bg-dark/20 rounded-full mx-auto mb-4" />
+      {isMobile && (
+        <div className="w-12 h-1.5 bg-dark/20 rounded-full mx-auto mb-4" />
+      )}
 
-      <h3 className="text-[20px] font-bold text-dark mb-3 pr-8">Ramboo Chicken</h3>
+      <h3 className="text-[20px] font-bold text-dark mb-3 pr-8">
+        Ramboo Chicken
+      </h3>
       <ul className="text-sm text-dark/70 space-y-3 mb-4">
         <li className="flex items-center gap-2">
           <Icon icon="si:pin-fill" className="text-orange text-lg" />
@@ -74,7 +78,9 @@ const DetailUMKM = () => {
           4.8 / 5
         </li>
 
-        <h3 className="text-[18px] font-bold text-dark mb-3 mt-4">Kontak Kami</h3>
+        <h3 className="text-[18px] font-bold text-dark mb-3 mt-4">
+          Kontak Kami
+        </h3>
         <li className="flex items-center gap-2">
           <Icon icon="ic:sharp-whatsapp" className="text-orange text-lg" />
           <a
@@ -109,11 +115,15 @@ const DetailUMKM = () => {
       </ul>
 
       <p className="text-dark/70 text-sm leading-relaxed mb-4">
-        Ramboo Chicken dikenal dengan ayam geprek dan sambal koreknya yang pedas menggugah selera. Menggunakan bahan segar dan bumbu khas Kudus yang autentik.
+        Ramboo Chicken dikenal dengan ayam geprek dan sambal koreknya yang pedas
+        menggugah selera. Menggunakan bahan segar dan bumbu khas Kudus yang
+        autentik.
       </p>
 
       <button
-        onClick={() => window.open("https://maps.app.goo.gl/xVjQFurMT4EqQVaw6", "_blank")}
+        onClick={() =>
+          window.open("https://maps.app.goo.gl/xVjQFurMT4EqQVaw6", "_blank")
+        }
         className="w-full bg-orange text-white font-semibold py-2.5 rounded-xl hover:bg-[#d96230] transition-all duration-300 flex items-center justify-center gap-2"
       >
         <Icon icon="mdi:map-search-outline" className="text-lg" />
@@ -124,36 +134,35 @@ const DetailUMKM = () => {
 
   return (
     <div className="w-full min-h-screen bg-light/50">
-      {/* Navbar */}
       <Navbar />
-
-      {/* Hero Section */}
       <HeroContent
         image="/images/rambochicken_hero.png"
         title='Informasi Lengkap tentang UMKM "Ramboo Chicken"'
         subtitle="Nikmati cita rasa ayam geprek khas Kudus dengan berbagai pilihan menu lezat dan harga terjangkau."
       />
-
-      {/* Konten */}
       <PageContainer variant="default">
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 mt-6">
-          
-          {/* KONTEN UTAMA */}
           <div className="flex-1 space-y-8 md:space-y-10">
-            {/* Tentang UMKM */}
             <section>
-              <h2 className="text-2xl font-bold text-dark mb-4">
+              <h2 className="text-2xl font-bold text-dark mb-4 text-center md:text-left">
                 Tentang <span className="font-normal text-dark-600">UMKM</span>
               </h2>
               <p className="text-dark/70 leading-relaxed text-justify">
-                <strong>Ramboo Chicken</strong> adalah sebuah usaha kuliner populer di Kudus yang berlokasi di daerah Krandon. Tempat makan ini mengkhususkan diri pada sajian aneka hidangan olahan ayam yang beragam, menjadikannya pilihan favorit bagi warga lokal. Menu andalan mereka berfokus pada ayam geprek dan rice bowl dengan berbagai saus khas.
+                <strong>Ramboo Chicken</strong> adalah sebuah usaha kuliner
+                populer di Kudus yang berlokasi di daerah Krandon. Tempat makan
+                ini mengkhususkan diri pada sajian aneka hidangan olahan ayam
+                yang beragam, menjadikannya pilihan favorit bagi warga lokal.
+                Menu andalan mereka berfokus pada ayam geprek dan rice bowl
+                dengan berbagai saus khas.
               </p>
             </section>
 
-            {/* Menu */}
             <section>
-              <h2 className="text-2xl font-bold text-dark mb-4">
-                Menu <span className="font-normal text-dark-600">/ Produk Unggulan</span>
+              <h2 className="text-2xl font-bold text-dark mb-4 text-center md:text-left">
+                Menu{" "}
+                <span className="font-normal text-dark-600">
+                  / Produk Unggulan
+                </span>
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 {menus.map((menu, index) => (
@@ -170,7 +179,9 @@ const DetailUMKM = () => {
                       <h3 className="text-lg font-semibold text-dark group-hover:text-orange transition-colors duration-300">
                         {menu.name}
                       </h3>
-                      <p className="text-sm text-dark/60 mt-1">{menu.description}</p>
+                      <p className="text-sm text-dark/60 mt-1">
+                        {menu.description}
+                      </p>
                       <p className="text-orange font-bold mt-2">{menu.price}</p>
                     </div>
                   </div>
@@ -178,9 +189,8 @@ const DetailUMKM = () => {
               </div>
             </section>
 
-            {/* Galeri */}
             <section className="mt-8">
-              <h2 className="text-2xl font-bold text-dark mb-4">
+              <h2 className="text-2xl font-bold text-dark mb-4 text-center md:text-left">
                 Galeri <span className="font-normal text-dark">Foto</span>
               </h2>
               <div className="grid grid-cols-2 gap-3 md:gap-4">
@@ -229,9 +239,8 @@ const DetailUMKM = () => {
               </div>
             </section>
 
-            {/* Google Maps */}
             <section>
-              <h2 className="text-2xl font-bold text-dark mb-4">
+              <h2 className="text-2xl font-bold text-dark mb-4 text-center md:text-left">
                 Temukan <span className="font-normal text-dark">Kami</span>
               </h2>
               <div className="w-full h-[280px] rounded-xl overflow-hidden shadow-md">
@@ -246,21 +255,22 @@ const DetailUMKM = () => {
                 ></iframe>
               </div>
               <p className="mt-3 text-base text-dark leading-relaxed font-normal">
-                Jl. KH Moh. Arwani, Pejaten, Krandon, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59314
+                Jl. KH Moh. Arwani, Pejaten, Krandon, Kec. Kota Kudus, Kabupaten
+                Kudus, Jawa Tengah 59314
               </p>
             </section>
           </div>
 
-          {/* STICKY SIDEBAR (Desktop Only) */}
           <div className="hidden md:block md:w-80">
             <div className="sticky top-28">
-              <StickyInfo onClose={() => {}} />
+              <div className="rounded-3xl overflow-hidden shadow-2xl">
+                <StickyInfo onClose={() => {}} isMobile={false} />
+              </div>
             </div>
           </div>
         </div>
       </PageContainer>
 
-      {/* POPUP GAMBAR */}
       {selectedImage && (
         <div
           onClick={() => setSelectedImage(null)}
@@ -283,35 +293,44 @@ const DetailUMKM = () => {
         </div>
       )}
 
-      {/* FLOATING BUTTON (Mobile Only) */}
       <div className="fixed bottom-6 right-6 z-50 md:hidden">
         <button
           onClick={() => setShowMobilePopup(true)}
-          className="bg-gradient-to-r from-orange to-[#d96230] hover:from-[#d96230] hover:to-orange text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110"
+          className="bg-linear-to-r from-orange to-[#d96230] hover:from-[#d96230] hover:to-orange text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110"
           aria-label="Buka info UMKM"
         >
           <Icon icon="mdi:storefront-outline" className="text-2xl" />
         </button>
       </div>
 
-      {/* POPUP CARD (Mobile Only) - FIX SCROLL & CUT OFF */}
-      {showMobilePopup && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex flex-col" onClick={() => setShowMobilePopup(false)}>
-          {/* Overlay */}
-          <div className="flex-1" onClick={() => setShowMobilePopup(false)}></div>
-
-          {/* Card Popup - BISA DI-SCROLL */}
+      <AnimatePresence>
+        {showMobilePopup && (
           <div
-            className="bg-white w-full max-w-md mx-auto rounded-t-3xl overflow-y-auto"
-            style={{ maxHeight: "85vh" }}
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 bg-black/50 z-50 flex flex-col"
+            onClick={() => setShowMobilePopup(false)}
           >
-            <StickyInfo onClose={() => setShowMobilePopup(false)} />
+            <div
+              className="flex-1"
+              onClick={() => setShowMobilePopup(false)}
+            ></div>
+            <motion.div
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "100%", opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="bg-white w-full max-w-md mx-auto rounded-t-3xl overflow-y-auto"
+              style={{ maxHeight: "85vh" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <StickyInfo
+                onClose={() => setShowMobilePopup(false)}
+                isMobile={true}
+              />
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
 
-      {/* Footer */}
       <div className="mt-15">
         <Footer />
       </div>
