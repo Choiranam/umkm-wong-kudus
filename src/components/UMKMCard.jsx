@@ -8,7 +8,6 @@ export default function UMKMCard({ data }) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
-      {/* Gambar */}
       <div className="relative rounded-[5px] overflow-hidden">
         <img
           src={data.image}
@@ -18,7 +17,6 @@ export default function UMKMCard({ data }) {
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
       </div>
 
-      {/* Isi */}
       <div className="pt-4 pb-5 text-left">
         <h3 className="text-[16px] font-bold text-dark leading-snug group-hover:text-orange transition-colors duration-300">
           {data.name}
@@ -34,9 +32,7 @@ export default function UMKMCard({ data }) {
 
         <div className="border-t border-gray-200 my-3"></div>
 
-        {/* Lokasi & Jam Buka */}
         <div className="flex items-center text-xs text-dark/50 gap-2 flex-nowrap">
-          {/* Lokasi */}
           <div className="flex items-center gap-1 min-w-0">
             <Icon
               icon="gg:pin"
@@ -47,12 +43,10 @@ export default function UMKMCard({ data }) {
             <span className="truncate">{data.location}</span>
           </div>
 
-          {/* Garis vertikal pemisah */}
           <div className="flex items-center justify-center">
             <div className="w-px h-4 bg-gray-300" />
           </div>
 
-          {/* Jam buka */}
           <div className="flex items-center gap-1 min-w-0">
             <Icon
               icon="mdi:clock-outline"

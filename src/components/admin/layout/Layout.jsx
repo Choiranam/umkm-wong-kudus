@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Sidebar from "./sidebar";
-import Header from "./header";
-import FilesComponent from "../../components/ui/FilesComponent";
-import CalendarComponent from "../../components/ui/CalendarComponent";
-import AktivitasComponent from "../../components/ui/AktivitasComponent";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import FilesComponent from "../../admin/ui/FilesComponent";
+import CalendarComponent from "../../admin/ui/CalendarComponent";
+import AktivitasComponent from "../../admin/ui/AktivitasComponent";
 
 export default function Layout({ children }) {
   const [activeTab, setActiveTab] = useState(null);

@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
 
 const KontakPage = () => {
-  // ==== Hubungi Kami ====
   const [formData, setFormData] = useState({
     "Nama Depan": "",
     "Nama Belakang": "",
@@ -37,15 +36,14 @@ const KontakPage = () => {
     );
     const body = encodeURIComponent(
       `Halo, saya ${formData["Nama Depan"]} ${formData["Nama Belakang"]}\n\n` +
-        `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
-        `Email: ${formData["Email"]}\n\n` +
-        `Pesan:\n${formData["Pesan"]}`
+      `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
+      `Email: ${formData["Email"]}\n\n` +
+      `Pesan:\n${formData["Pesan"]}`
     );
 
     window.location.href = `mailto:mchoiranam@gmail.com?subject=${subject}&body=${body}`;
   };
 
-  // ==== Beri Penilaian ====
   const [rating, setRating] = useState(0);
   const [profilePic, setProfilePic] = useState(null);
   const [reviewData, setReviewData] = useState({
@@ -81,7 +79,6 @@ const KontakPage = () => {
     }
 
     setErrorReview("");
-    // Ganti alert dengan modal custom jika tersedia di proyek Anda
     alert("Terima kasih atas penilaianmu! ⭐");
   };
 
@@ -92,7 +89,7 @@ const KontakPage = () => {
       const reviewSection = document.getElementById("review");
       if (reviewSection) {
         setTimeout(() => {
-          const yOffset = -100; // atur sesuai tinggi navbar
+          const yOffset = -100;
           const y =
             reviewSection.getBoundingClientRect().top +
             window.scrollY +
@@ -112,18 +109,11 @@ const KontakPage = () => {
         subtitle="Jangan ragu untuk menghubungi kami agar kami dapat membantu Anda dengan informasi yang Anda butuhkan."
       />
 
-      {/* EDIT 1: 
-        - Mengurangi padding vertikal (py) di mobile menjadi 'py-8' (dari 14)
-        - Mengurangi celah (gap) di mobile menjadi 'gap-8' (dari 12)
-        - Tetap menggunakan 'md:py-14' dan 'md:gap-12' untuk desktop
-      */}
       <PageContainer
         variant="default"
         className="grid md:grid-cols-2 gap-8 md:gap-12 items-start py-8 md:py-14"
       >
-        {/* Bagian Hubungi Kami */}
-        <div className="space-y-12">
-          {/* Form Hubungi Kami */}
+        <div className="space-y-12" data-aos="fade-right">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-dark mb-2">
               Hubungi Kami
@@ -149,10 +139,9 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${
-                            formData[label]
-                              ? "-top-2 text-xs text-dark"
-                              : "top-2 text-sm text-dark/50"
+                          ${formData[label]
+                            ? "-top-2 text-xs text-dark"
+                            : "top-2 text-sm text-dark/50"
                           }
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
@@ -176,10 +165,9 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${
-                            formData[label]
-                              ? "-top-2 text-xs text-dark"
-                              : "top-2 text-sm text-dark/50"
+                          ${formData[label]
+                            ? "-top-2 text-xs text-dark"
+                            : "top-2 text-sm text-dark/50"
                           }
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
@@ -205,7 +193,6 @@ const KontakPage = () => {
               </button>
             </form>
 
-            {/* Ikon sosial media */}
             <div className="flex justify-center space-x-4 mt-8 text-orange text-2xl">
               {[
                 {
@@ -239,11 +226,7 @@ const KontakPage = () => {
           </div>
         </div>
 
-        {/* EDIT 2:
-          - Mengubah tinggi (height) di mobile menjadi 'h-[350px]' (dari 550px)
-          - Tetap menggunakan 'md:h-[550px]' untuk desktop
-        */}
-        <div className="overflow-hidden rounded-[5px] shadow-md h-[350px] md:h-[550px]">
+        <div className="overflow-hidden rounded-[5px] shadow-md h-[350px] md:h-[550px]" data-aos="fade-left">
           <iframe
             src="https://www.google.com/maps?q=-6.792803,110.836430&hl=id&z=15&output=embed"
             width="100%"
@@ -256,12 +239,7 @@ const KontakPage = () => {
           />
         </div>
 
-        {/* EDIT 3 (MODIFIKASI SENPAI):
-          - Menambahkan 'hidden md:block' untuk hide di mobile, tampil di md+
-          - Mengubah tinggi (height) di mobile menjadi 'h-[350px]' (dari 530px)
-          - Tetap menggunakan 'md:h-[530px]' untuk desktop
-        */}
-        <div className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[530px] hidden md:block">
+        <div className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[530px] hidden md:block" data-aos="fade-right">
           <img
             src="/images/kudus.jpg"
             alt="Kudus"
@@ -269,8 +247,7 @@ const KontakPage = () => {
           />
         </div>
 
-        {/* Form Beri Penilaian */}
-        <div id="review">
+        <div id="review" data-aos="fade-left">
           <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">
             Beri Penilaian
           </h2>
@@ -280,10 +257,6 @@ const KontakPage = () => {
           </p>
 
           <form onSubmit={handleReviewSubmit} className="space-y-6">
-            {/* EDIT 4:
-              - Mengubah flex direction menjadi 'flex-col' di mobile
-              - Mengembalikan ke 'sm:flex-row' di layar 'sm' (small) ke atas
-            */}
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
                 {profilePic ? (
@@ -306,10 +279,6 @@ const KontakPage = () => {
                 />
               </div>
 
-              {/* EDIT 5:
-                - Menambah 'w-full' agar input nama mengambil lebar penuh di mobile
-                - Menambah 'sm:w-auto' untuk mengembalikan ke lebar otomatis di layar 'sm' ke atas (agar 'flex-1' bisa berfungsi)
-              */}
               <div className="flex flex-col flex-1 gap-4 w-full sm:w-auto">
                 {["Nama Depan", "Nama Belakang"].map((label) => (
                   <div key={label} className="relative">
@@ -325,11 +294,10 @@ const KontakPage = () => {
                     />
                     <label
                       htmlFor={`review-${label}`}
-                      className={`absolute left-0 transition-all duration-200 ease-in-out ${
-                        reviewData[label]
-                          ? "-top-2 text-xs text-dark"
-                          : "top-2 text-sm text-dark/50"
-                      } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                      className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData[label]
+                        ? "-top-2 text-xs text-dark"
+                        : "top-2 text-sm text-dark/50"
+                        } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
                     </label>
@@ -338,7 +306,6 @@ const KontakPage = () => {
               </div>
             </div>
 
-            {/* Email */}
             <div className="relative">
               <input
                 type="email"
@@ -350,17 +317,15 @@ const KontakPage = () => {
               />
               <label
                 htmlFor="review-email"
-                className={`absolute left-0 transition-all duration-200 ease-in-out ${
-                  reviewData.Email
-                    ? "-top-2 text-xs text-dark"
-                    : "top-2 text-sm text-dark/50"
-                } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData.Email
+                  ? "-top-2 text-xs text-dark"
+                  : "top-2 text-sm text-dark/50"
+                  } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
               </label>
             </div>
 
-            {/* Rating */}
             <div>
               <label className="text-dark font-medium block mb-1">
                 Rating Kamu <span className="text-orange">*</span>
@@ -371,15 +336,13 @@ const KontakPage = () => {
                     key={num}
                     icon="material-symbols-light:star"
                     onClick={() => setRating(num)}
-                    className={`text-[1.8rem] transition-transform hover:scale-110 ${
-                      num <= rating ? "text-yellow" : "text-dark/50"
-                    }`}
+                    className={`text-[1.8rem] transition-transform hover:scale-110 ${num <= rating ? "text-yellow" : "text-dark/50"
+                      }`}
                   />
                 ))}
               </div>
             </div>
 
-            {/* Pesan */}
             <div className="relative">
               <textarea
                 id="review-pesan"
@@ -396,11 +359,10 @@ const KontakPage = () => {
               <label
                 htmlFor="review-pesan"
                 className={`absolute left-0 transition-all duration-200 ease-in-out
-                ${
-                  reviewData.Pesan
+                ${reviewData.Pesan
                     ? "-top-2 text-xs text-dark"
                     : "top-2 text-sm text-dark/50"
-                }
+                  }
                 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Pesan <span className="text-orange">*</span>

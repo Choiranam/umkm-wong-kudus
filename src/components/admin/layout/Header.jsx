@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import SearchBar from "../ui/SearchBar";
 import { Bell, ChevronDown, LogOut, User, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../../API/authService";
+import AuthService from "../../../API/authService";
 
 export default function Header({ activeTab, setActiveTab }) {
   const navigate = useNavigate();

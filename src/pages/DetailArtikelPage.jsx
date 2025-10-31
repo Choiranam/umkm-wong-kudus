@@ -33,7 +33,10 @@ const DetailArtikelPage = () => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
-    return `${date.toLocaleDateString("id-ID", options)} • ${hours}.${minutes} WIB`;
+    return `${date.toLocaleDateString(
+      "id-ID",
+      options
+    )} • ${hours}.${minutes} WIB`;
   };
 
   const article = dummyArticles.find(
@@ -120,16 +123,36 @@ const DetailArtikelPage = () => {
           <div className="flex items-center gap-3 mb-6 lg:ml-10">
             <span className="text-dark font-bold">Bagikan:</span>
 
-            <a href="#" className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8">
-              <Icon icon="mingcute:link-line" className="w-full h-full text-dark" />
+            <a
+              href="#"
+              className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8"
+            >
+              <Icon
+                icon="mingcute:link-line"
+                className="w-full h-full text-dark"
+              />
             </a>
 
-            <a href="#" className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8">
-              <Icon icon="basil:whatsapp-solid" className="w-full h-full" color="#25D366" />
+            <a
+              href="#"
+              className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8"
+            >
+              <Icon
+                icon="basil:whatsapp-solid"
+                className="w-full h-full"
+                color="#25D366"
+              />
             </a>
 
-            <a href="#" className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8">
-              <Icon icon="mdi:facebook" className="w-full h-full" color="#1877F2" />
+            <a
+              href="#"
+              className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8"
+            >
+              <Icon
+                icon="mdi:facebook"
+                className="w-full h-full"
+                color="#1877F2"
+              />
             </a>
           </div>
 
