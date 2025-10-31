@@ -149,7 +149,7 @@ const DetailUMKM = () => {
   );
 
   return (
-    <div className="w-full min-h-screen bg-light/50">
+    <div className="w-full min-h-screen bg-light overflow-x-hidden">
       <Navbar />
       <HeroContent
         image="/images/rambochicken_hero.png"

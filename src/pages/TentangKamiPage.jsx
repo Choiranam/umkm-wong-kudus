@@ -21,7 +21,7 @@ const TentangKamiPage = () => {
   }, []);
 
   return (
-    <div className="bg-light min-h-screen font-poppins">
+    <div className="bg-light min-h-screen font-poppins overflow-x-hidden w-full">
       <Navbar />
       <HeroContent
         image="/images/tentang_kami_hero_content.png"

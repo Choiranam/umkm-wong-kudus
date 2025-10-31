@@ -122,7 +122,7 @@ const KecamatanPage = () => {
   }, [slug, activeCategory]);
 
   return (
-    <div className="bg-light min-h-screen">
+    <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
       <HeroContent
         image={kecamatanInfo?.image || "/images/sampel_hero_content.jpeg"}
