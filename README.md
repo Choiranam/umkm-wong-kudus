@@ -1,16 +1,52 @@
-# React + Vite
+# UMKM Wong Kudus Website 🌾
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**UMKM Wong Kudus** is a website that helps promote and grow _UMKM_ in Kudus 💼✨.  
+It’s a simple digital platform where local entrepreneurs can showcase their products 🛍️ and support the growth of the local economy 💪🏽🌍.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used 🛠️
+- **React.js** ⚛️ (Main framework for frontend development)
+- **Tailwind CSS** 🎨 (For responsive and efficient styling)
+- **Google Fonts (Poppins)** ✍️ (Modern, clean, and easy-to-read font)
+- **Iconify** 🌟 (Lightweight and flexible icon collection)
 
-## React Compiler
+## How to Run the Project 🚀
+To run the project locally, follow these simple steps:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Clone the Repository** 📥  
+```bash
+git clone https://github.com/Choiranam/umkm-wong-kudus.git
+```
 
-## Expanding the ESLint configuration
+2. **Navigate to the Project Directory** 📂
+```bash
+cd umkm-wong-kudus
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. **Install All Package** 📦
+``` bash
+npm install
+```
+
+4. **Run the Project** 🚀
+``` bash
+npm run dev
+```
+
+5. **Open `localhost:5173` in Browser** 🌐
+
+## Current Progress 📈
+
+✅ All main pages have been completed  
+🧩 The UI structure is fully responsive and ready to use  
+🗂️ Only real product & UMKM data need to be added to complete the website content  
+
+**Status:** Almost Done — Waiting for Final Data
+
+Thanks for visiting **UMKM Wong Kudus**! 🚀 Let’s connect and grow local businesses together! 🌟
+
+---
+
+Copyright © 2025 Amethyst Team. All rights reserved.
+
