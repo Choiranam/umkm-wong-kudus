@@ -304,13 +304,15 @@ const HomePage = () => {
             <p className="text-light font-normal text-sm lg:text-base">
               Atau berdasarkan Kategori
             </p>
-            <div className="mt-4 pt-1 flex gap-2 md:gap-4 overflow-x-auto overflow-y-visible no-scrollbar flex-nowrap justify-start relative z-1">
+            <div className="mt-4 pt-1 flex flex-wrap justify-start gap-2 md:gap-4 relative z-1">
               {categories.map((cat, index) => (
                 <motion.button
                   key={cat.slug}
-                  className={`shrink-0 relative z-2 rounded-xl w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex flex-col items-center justify-center shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer ${
+                  className={`rounded-xl flex flex-col items-center justify-center shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer ${
                     cat.active ? "bg-orange text-light" : "bg-light text-dark"
-                  } hover:bg-orange hover:text-light`}
+                  } hover:bg-orange hover:text-light
+        w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+      `}
                   onClick={() => navigate(`/kategori?slug=${cat.slug}`)}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -323,7 +325,7 @@ const HomePage = () => {
                     icon={cat.icon}
                     className="w-5 h-5 sm:w-6 sm:h-6 mb-1"
                   />
-                  <span className="text-[10px] sm:text-xs font-semibold text-center line-clamp-1">
+                  <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-center line-clamp-1">
                     {cat.name}
                   </span>
                 </motion.button>

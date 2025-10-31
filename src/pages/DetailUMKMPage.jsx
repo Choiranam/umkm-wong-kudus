@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
@@ -9,6 +9,22 @@ import { motion, AnimatePresence } from "framer-motion";
 const DetailUMKM = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showMobilePopup, setShowMobilePopup] = useState(false);
+
+  useEffect(() => {
+    if (showMobilePopup || selectedImage) {
+      // Saat popup atau preview gambar terbuka
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [showMobilePopup, selectedImage]);
 
   const menus = [
     {
@@ -46,7 +62,7 @@ const DetailUMKM = () => {
   ];
 
   const StickyInfo = ({ onClose, isMobile }) => (
-    <div className="bg-white rounded-3xl p-5 shadow-2xl relative max-h-full">
+    <div className="bg-white rounded-t-3xl p-5 shadow-2xl relative max-h-full">
       {!isMobile ? null : (
         <button
           onClick={onClose}
@@ -318,6 +334,15 @@ const DetailUMKM = () => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0, bottom: 0.4 }}
+              onDrag={(e, info) => {
+                if (info.offset.y < 0) e.preventDefault();
+              }}
+              onDragEnd={(e, info) => {
+                if (info.offset.y > 100) setShowMobilePopup(false);
+              }}
               className="bg-white w-full max-w-md mx-auto rounded-t-3xl overflow-y-auto"
               style={{ maxHeight: "85vh" }}
               onClick={(e) => e.stopPropagation()}
