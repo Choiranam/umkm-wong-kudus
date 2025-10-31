@@ -31,7 +31,7 @@ const PencarianPage = () => {
   const keyword = "Ra";
 
   return (
-    <div className="bg-light min-h-screen">
+    <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
 
       {/* Hero Section */}

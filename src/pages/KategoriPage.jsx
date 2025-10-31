@@ -87,7 +87,7 @@ const KategoriPage = () => {
   const kategoriData = KATEGORI_DATA[kategoriSlug] || KATEGORI_DATA.makanan;
 
   return (
-    <div className="bg-light min-h-screen">
+    <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
       <HeroContent
         image={kategoriData.image}

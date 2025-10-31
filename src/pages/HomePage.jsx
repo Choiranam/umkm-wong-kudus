@@ -252,7 +252,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="bg-light min-h-screen">
+    <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
 
       <section

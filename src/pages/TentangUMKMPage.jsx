@@ -7,7 +7,7 @@ import PageContainer from "../components/PageContainer";
 
 const TentangUMKMPage = () => {
   return (
-    <div className="bg-light min-h-screen font-poppins">
+    <div className="bg-light min-h-screen font-poppins overflow-x-hidden w-full">
       <Navbar />
 
       <HeroContent

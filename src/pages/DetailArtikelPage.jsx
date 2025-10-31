@@ -84,7 +84,7 @@ const DetailArtikelPage = () => {
     .slice(0, 3);
 
   return (
-    <div className="bg-light min-h-screen font-poppins">
+    <div className="bg-light min-h-screen font-poppins overflow-x-hidden w-full">
       <Navbar />
       <HeroContent image={article.image} title={article.title} />
 
