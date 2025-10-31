@@ -15,36 +15,63 @@ const KontakPage = () => {
     Pesan: "",
   });
   const [errorHubungi, setErrorHubungi] = useState("");
+  const [successHubungi, setSuccessHubungi] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (label, value) => {
     setFormData({ ...formData, [label]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const allFilled = Object.values(formData).every((val) => val.trim() !== "");
-
     if (!allFilled) {
-      setErrorHubungi("⚠️ Semua kolom wajib diisi sebelum mengirim pesan.");
+      setErrorHubungi("Semua kolom wajib diisi sebelum mengirim pesan.");
+      setSuccessHubungi("");
       return;
     }
-
     setErrorHubungi("");
-
-    const subject = encodeURIComponent(
-      `Pesan dari ${formData["Nama Depan"]} ${formData["Nama Belakang"]}`
-    );
-    const body = encodeURIComponent(
-      `Halo, saya ${formData["Nama Depan"]} ${formData["Nama Belakang"]}\n\n` +
-      `Nomor Telepon: ${formData["Nomor Telepon"]}\n` +
-      `Email: ${formData["Email"]}\n\n` +
-      `Pesan:\n${formData["Pesan"]}`
-    );
-
-    window.location.href = `mailto:mchoiranam@gmail.com?subject=${subject}&body=${body}`;
+    setSuccessHubungi("");
+    setIsLoading(true);
+    const payload = {
+      sender_name: formData["Nama Depan"].trim(),
+      sender_name_last: formData["Nama Belakang"].trim(),
+      sender_email: formData.Email.trim(),
+      no_telepon: formData["Nomor Telepon"].trim(),
+      message: formData.Pesan.trim(),
+    };
+    try {
+      const response = await fetch(
+        "https://api-umkmwongkudus.rplrus.com/api/contact/send",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+      const result = await response.json();
+      if (response.ok && result.status) {
+        setSuccessHubungi("Pesan berhasil dikirim! Kami akan segera menghubungi Anda.");
+        setFormData({
+          "Nama Depan": "",
+          "Nama Belakang": "",
+          "Nomor Telepon": "",
+          Email: "",
+          Pesan: "",
+        });
+        setTimeout(() => setSuccessHubungi(""), 5000);
+      } else {
+        setErrorHubungi(result.message || "Gagal mengirim pesan. Silakan coba lagi.");
+      }
+    } catch (err) {
+      setErrorHubungi("Terjadi kesalahan jaringan. Periksa koneksi internet Anda.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const [rating, setRating] = useState(0);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
   const [reviewData, setReviewData] = useState({
     "Nama Depan": "",
@@ -53,6 +80,8 @@ const KontakPage = () => {
     Pesan: "",
   });
   const [errorReview, setErrorReview] = useState("");
+  const [successReview, setSuccessReview] = useState("");
+  const [isLoadingReview, setIsLoadingReview] = useState(false);
 
   const handleReviewChange = (label, value) => {
     setReviewData({ ...reviewData, [label]: value });
@@ -61,25 +90,86 @@ const KontakPage = () => {
   const handleProfileUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        setErrorReview("Ukuran foto terlalu besar. Maksimal 5MB.");
+        return;
+      }
+      if (!file.type.startsWith("image/")) {
+        setErrorReview("Hanya file gambar yang diperbolehkan.");
+        return;
+      }
+      setSelectedFile(file);
       setProfilePic(URL.createObjectURL(file));
+      setErrorReview("");
     }
   };
 
-  const handleReviewSubmit = (e) => {
-    e.preventDefault();
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
-    const allFilled = Object.values(reviewData).every(
-      (val) => val.trim() !== ""
-    );
-    if (!allFilled || rating === 0) {
-      setErrorReview(
-        "⚠️ Semua kolom dan rating wajib diisi sebelum mengirim penilaian."
-      );
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    const nameFirst = reviewData["Nama Depan"].trim();
+    const nameLast = reviewData["Nama Belakang"].trim();
+    const email = reviewData.Email.trim();
+    const comment = reviewData.Pesan.trim();
+    if (!nameFirst || !nameLast || !email || !comment || rating === 0) {
+      setErrorReview("Semua kolom nama, email, rating, dan komentar wajib diisi.");
+      setSuccessReview("");
       return;
     }
-
+    if (!isValidEmail(email)) {
+      setErrorReview("Format email tidak valid. Contoh: example@gmail.com");
+      setSuccessReview("");
+      return;
+    }
+    if (rating < 1 || rating > 5) {
+      setErrorReview("Rating harus antara 1-5 bintang.");
+      setSuccessReview("");
+      return;
+    }
+    if (comment.length < 5) {
+      setErrorReview("Komentar minimal 5 karakter.");
+      setSuccessReview("");
+      return;
+    }
     setErrorReview("");
-    alert("Terima kasih atas penilaianmu! ⭐");
+    setSuccessReview("");
+    setIsLoadingReview(true);
+    const formDataPayload = new FormData();
+    formDataPayload.append("name", nameFirst);
+    formDataPayload.append("name_last", nameLast);
+    formDataPayload.append("email", email);
+    formDataPayload.append("rating", rating);
+    formDataPayload.append("comment", comment);
+    if (selectedFile) formDataPayload.append("photo_profil", selectedFile);
+    try {
+      const response = await fetch(
+        "https://api-umkmwongkudus.rplrus.com/api/rating",
+        { method: "POST", body: formDataPayload }
+      );
+      const result = await response.json();
+      if (response.ok && result.status) {
+        setSuccessReview("Penilaian berhasil dikirim! Terima kasih atas feedback Anda.");
+        setRating(0);
+        setSelectedFile(null);
+        setProfilePic(null);
+        setReviewData({ "Nama Depan": "", "Nama Belakang": "", Email: "", Pesan: "" });
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = "";
+        setTimeout(() => setSuccessReview(""), 5000);
+      } else {
+        if (response.status === 422 && result.errors) {
+          const errorMsg = Object.values(result.errors).flat().join(", ");
+          setErrorReview(`Validasi gagal: ${errorMsg}`);
+        } else {
+          setErrorReview(result.message || `Gagal mengirim penilaian (Status: ${response.status}). Silakan coba lagi.`);
+        }
+      }
+    } catch (err) {
+      setErrorReview("Terjadi kesalahan jaringan. Periksa koneksi internet Anda.");
+    } finally {
+      setIsLoadingReview(false);
+    }
   };
 
   const location = useLocation();
@@ -90,10 +180,7 @@ const KontakPage = () => {
       if (reviewSection) {
         setTimeout(() => {
           const yOffset = -100;
-          const y =
-            reviewSection.getBoundingClientRect().top +
-            window.scrollY +
-            yOffset;
+          const y = reviewSection.getBoundingClientRect().top + window.scrollY + yOffset;
           window.scrollTo({ top: y, behavior: "smooth" });
         }, 300);
       }
@@ -108,7 +195,6 @@ const KontakPage = () => {
         title="Hubungi Kami untuk Info Lebih Lanjut"
         subtitle="Jangan ragu untuk menghubungi kami agar kami dapat membantu Anda dengan informasi yang Anda butuhkan."
       />
-
       <PageContainer
         variant="default"
         className="grid md:grid-cols-2 gap-8 md:gap-12 items-start py-8 md:py-14"
@@ -119,10 +205,8 @@ const KontakPage = () => {
               Hubungi Kami
             </h2>
             <p className="text-dark/80 mb-8 text-base leading-relaxed">
-              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di
-              Kudus.
+              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di Kudus.
             </p>
-
             <form onSubmit={handleSubmit} className="space-y-6">
               {Object.keys(formData).map((label, index) => (
                 <div key={index} className="relative">
@@ -135,14 +219,12 @@ const KontakPage = () => {
                         onChange={(e) => handleChange(label, e.target.value)}
                         className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
                         placeholder=" "
+                        disabled={isLoading}
                       />
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${formData[label]
-                            ? "-top-2 text-xs text-dark"
-                            : "top-2 text-sm text-dark/50"
-                          }
+                          ${formData[label] ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
@@ -159,16 +241,14 @@ const KontakPage = () => {
                           e.target.style.height = "auto";
                           e.target.style.height = e.target.scrollHeight + "px";
                         }}
-                        className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
+                        className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden resize-none"
                         placeholder=" "
+                        disabled={isLoading}
                       ></textarea>
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${formData[label]
-                            ? "-top-2 text-xs text-dark"
-                            : "top-2 text-sm text-dark/50"
-                          }
+                          ${formData[label] ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
@@ -177,40 +257,32 @@ const KontakPage = () => {
                   )}
                 </div>
               ))}
-
               {errorHubungi && (
                 <p className="text-red-500 text-sm text-center font-medium -mt-2">
                   {errorHubungi}
                 </p>
               )}
-
+              {successHubungi && (
+                <p className="text-green-600 text-sm text-center font-medium -mt-2 animate-pulse">
+                  {successHubungi}
+                </p>
+              )}
               <button
                 type="submit"
-                className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
-                hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
+                disabled={isLoading}
+                className={`bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
+                  hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer
+                  ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
               >
-                Kirim Pesan
+                {isLoading ? "Mengirim..." : "Kirim Pesan"}
               </button>
             </form>
-
             <div className="flex justify-center space-x-4 mt-8 text-orange text-2xl">
               {[
-                {
-                  href: "mailto:mchoiranam@gmail.com",
-                  icon: "streamline-logos:email-logo-block",
-                },
-                {
-                  href: "https://wa.me/6285601211156",
-                  icon: "fa6-brands:square-whatsapp",
-                },
-                {
-                  href: "https://www.instagram.com/choiranamm/",
-                  icon: "fa7-brands:instagram-square",
-                },
-                {
-                  href: "https://t.me/choiranamm",
-                  icon: "streamline-logos:telegram-logo-2-block",
-                },
+                { href: "mailto:mchoiranam@gmail.com", icon: "streamline-logos:email-logo-block" },
+                { href: "https://wa.me/6285601211156", icon: "fa6-brands:square-whatsapp" },
+                { href: "https://www.instagram.com/choiranamm/", icon: "fa7-brands:instagram-square" },
+                { href: "https://t.me/choiranamm", icon: "streamline-logos:telegram-logo-2-block" },
               ].map((item, index) => (
                 <a
                   key={index}
@@ -240,31 +312,19 @@ const KontakPage = () => {
         </div>
 
         <div className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[530px] hidden md:block" data-aos="fade-right">
-          <img
-            src="/images/kudus.jpg"
-            alt="Kudus"
-            className="w-full h-full object-cover"
-          />
+          <img src="/images/kudus.jpg" alt="Kudus" className="w-full h-full object-cover" />
         </div>
 
         <div id="review" data-aos="fade-left">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">
-            Beri Penilaian
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">Beri Penilaian</h2>
           <p className="text-dark/80 mb-8 text-base leading-relaxed">
-            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi
-            website ini.
+            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi website ini.
           </p>
-
           <form onSubmit={handleReviewSubmit} className="space-y-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
                 {profilePic ? (
-                  <img
-                    src={profilePic}
-                    alt="Profil"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={profilePic} alt="Profil" className="w-full h-full object-cover" />
                 ) : (
                   <div className="flex flex-col justify-center items-center h-full text-orange">
                     <Icon icon="mdi:camera-outline" className="text-3xl mb-1" />
@@ -278,7 +338,6 @@ const KontakPage = () => {
                   className="absolute inset-0 opacity-0 cursor-pointer"
                 />
               </div>
-
               <div className="flex flex-col flex-1 gap-4 w-full sm:w-auto">
                 {["Nama Depan", "Nama Belakang"].map((label) => (
                   <div key={label} className="relative">
@@ -286,18 +345,16 @@ const KontakPage = () => {
                       type="text"
                       id={`review-${label}`}
                       value={reviewData[label]}
-                      onChange={(e) =>
-                        handleReviewChange(label, e.target.value)
-                      }
+                      onChange={(e) => handleReviewChange(label, e.target.value)}
                       className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
                       placeholder=" "
+                      disabled={isLoadingReview}
                     />
                     <label
                       htmlFor={`review-${label}`}
-                      className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData[label]
-                        ? "-top-2 text-xs text-dark"
-                        : "top-2 text-sm text-dark/50"
-                        } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                      className={`absolute left-0 transition-all duration-200 ease-in-out
+                        ${reviewData[label] ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                        peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
                     </label>
@@ -314,13 +371,13 @@ const KontakPage = () => {
                 onChange={(e) => handleReviewChange("Email", e.target.value)}
                 className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
                 placeholder=" "
+                disabled={isLoadingReview}
               />
               <label
                 htmlFor="review-email"
-                className={`absolute left-0 transition-all duration-200 ease-in-out ${reviewData.Email
-                  ? "-top-2 text-xs text-dark"
-                  : "top-2 text-sm text-dark/50"
-                  } peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                className={`absolute left-0 transition-all duration-200 ease-in-out
+                  ${reviewData.Email ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
               </label>
@@ -336,11 +393,12 @@ const KontakPage = () => {
                     key={num}
                     icon="material-symbols-light:star"
                     onClick={() => setRating(num)}
-                    className={`text-[1.8rem] transition-transform hover:scale-110 ${num <= rating ? "text-yellow" : "text-dark/50"
-                      }`}
+                    className={`text-[1.8rem] transition-transform hover:scale-110
+                      ${num <= rating ? "text-yellow" : "text-dark/50"}`}
                   />
                 ))}
               </div>
+              {rating > 0 && <p className="text-xs text-dark/70 mt-1">Rating: {rating}/5</p>}
             </div>
 
             <div className="relative">
@@ -353,34 +411,39 @@ const KontakPage = () => {
                   e.target.style.height = "auto";
                   e.target.style.height = `${e.target.scrollHeight}px`;
                 }}
-                className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden"
+                className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden resize-none"
                 placeholder=" "
+                disabled={isLoadingReview}
               ></textarea>
               <label
                 htmlFor="review-pesan"
                 className={`absolute left-0 transition-all duration-200 ease-in-out
-                ${reviewData.Pesan
-                    ? "-top-2 text-xs text-dark"
-                    : "top-2 text-sm text-dark/50"
-                  }
-                peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
+                  ${reviewData.Pesan ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                  peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
-                Pesan <span className="text-orange">*</span>
+                Komentar <span className="text-orange">*</span>
               </label>
             </div>
 
             {errorReview && (
-              <p className="text-red-500 text-sm text-center font-medium -mt-2">
+              <p className="text-red-500 text-sm text-center font-medium -mt-2 bg-red-50 p-2 rounded">
                 {errorReview}
+              </p>
+            )}
+            {successReview && (
+              <p className="text-green-600 text-sm text-center font-medium -mt-2 bg-green-50 p-2 rounded animate-pulse">
+                {successReview}
               </p>
             )}
 
             <button
               type="submit"
-              className="bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
-              hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer"
+              disabled={isLoadingReview}
+              className={`bg-orange text-light py-2.5 w-full rounded-md uppercase font-semibold tracking-wide transition-all duration-300
+                hover:bg-[#D96230] hover:scale-[1.03] hover:shadow-md hover:shadow-orange/30 active:scale-[0.97] cursor-pointer
+                ${isLoadingReview ? "opacity-70 cursor-not-allowed" : ""}`}
             >
-              Kirim Penilaian
+              {isLoadingReview ? "Mengirim..." : "Kirim Penilaian"}
             </button>
           </form>
         </div>

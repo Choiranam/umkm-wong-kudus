@@ -5,7 +5,5 @@ import Header from "../../components/admin/layout/Header";
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("Files");
 
-  return <Layout>
-    sss
-  </Layout>;
+  return <Layout></Layout>;
 }

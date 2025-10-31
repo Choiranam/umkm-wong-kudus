@@ -1,7 +1,3 @@
-// ⬇️ UBAH BARIS INI
-// import api, { setAuthToken, clearAuthToken } from "../API/auth.js";
-
-// ⬇️ MENJADI SEPERTI INI (PATH SUDAH BENAR)
 import api, { setAuthToken, clearAuthToken } from "../API/Auth.js";
 
 const AuthService = {
@@ -14,7 +10,6 @@ const AuthService = {
         const { token, user, expired_at } = resData.data;
         const storage = remember ? localStorage : sessionStorage;
 
-        // authService tetap bertanggung jawab atas penyimpanan data
         storage.setItem("token", token);
         storage.setItem(
           "user",
@@ -27,41 +22,33 @@ const AuthService = {
           })
         );
 
-        // Panggil helper untuk mengatur header axios
-        setAuthToken(token); 
-
+        setAuthToken(token);
         return { token, user, expired_at };
       } else {
         throw new Error(resData.message || "Login gagal");
       }
     } catch (error) {
-      throw new Error(
-        error.response?.data?.message || "Terjadi kesalahan jaringan"
-      );
+      throw new Error(error.response?.data?.message || "Terjadi kesalahan jaringan");
     }
   },
 
   logout: () => {
-    clearAuthToken(); // Hapus header dari axios
+    clearAuthToken();
     localStorage.clear();
     sessionStorage.clear();
     return { message: "Logout berhasil" };
   },
 
   getCurrentUser: () => {
-    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
-    return user ? JSON.parse(user) : null;
+    const userStr = localStorage.getItem("user") || sessionStorage.getItem("user");
+    return userStr ? JSON.parse(userStr) : null;
   },
 
   isAuthenticated: () => {
-    const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
-    
-    // ⬇️ Tambahan: Set token di header jika terautentikasi tapi header kosong (kasus refresh)
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token && !api.defaults.headers.common["Authorization"]) {
       setAuthToken(token);
     }
-    
     return !!token;
   },
 };
