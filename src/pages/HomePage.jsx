@@ -288,7 +288,7 @@ const HomePage = () => {
             <input
               type="text"
               placeholder="Cari nama tempat UMKM disini...."
-              className="grow py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
+              className="grow py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange transition focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
             />
             <button className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer">
               <Icon icon="tabler:search" className="w-4 h-4 mr-2" /> Search

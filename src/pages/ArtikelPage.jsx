@@ -171,71 +171,46 @@ const ArtikelPage = () => {
     }),
   };
 
-  return (
-    <div className="bg-light min-h-screen overflow-x-hidden w-full">
-      <Navbar />
-      <HeroContent
-        image="/images/hero_artikel.jpg"
-        title="Temukan Cerita dan Inspirasi UMKM Kudus melalui Artikel"
-        subtitle="Kumpulan kisah, wawasan, dan inovasi pelaku UMKM di Kudus untuk menginspirasi langkah Anda."
-      />
-      <PageContainer variant="default">
-        <div className="bg-dark/5 border border-dark/10 rounded-lg px-4 py-2 text-sm mb-6 sm:mb-8">
-          <span className="font-semibold text-orange">Berita Terkini :</span>
-          <span className="text-dark mx-2">
-            Pemerintah umumkan jadwal libur nasional dan cuti bersama 2025
-          </span>
-        </div>
-
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
-          {kategoriList.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveCategory(item.name)}
-              className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-md font-medium text-sm transition-all duration-200 shadow-lg 
-              ${
-                activeCategory === item.name
-                  ? "bg-orange text-light shadow-orange/40"
-                  : "bg-light text-dark hover:bg-orange/10"
-              }`}
+  const renderArticleGrid = (isMobile = false) => (
+    <>
+      <div
+        className={`grid grid-cols-1 ${
+          isMobile
+            ? "sm:grid-cols-2"
+            : "sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
+        } gap-4 sm:gap-6`}
+      >
+        {filteredArticles.length > 0 ? (
+          filteredArticles.map((article, i) => (
+            <motion.div
+              key={article.id}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={cardVariant}
             >
-              <Icon icon={item.icon} width="18" height="18" />
-              {item.name}
-            </button>
-          ))}
-        </div>
+              <ArtikelCard
+                image={article.image}
+                category={article.category}
+                title={article.title}
+                author={article.author}
+                displayDate={
+                  activeCategory === "Semua Waktu"
+                    ? `${formatDate(article.date)}`
+                    : getTimeAgo(article.date)
+                }
+              />
+            </motion.div>
+          ))
+        ) : (
+          <div className="col-span-full text-center text-dark/70 py-10">
+            Tidak ada artikel yang ditemukan pada waktu ini.
+          </div>
+        )}
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-          {filteredArticles.length > 0 ? (
-            filteredArticles.map((article, i) => (
-              <motion.div
-                key={article.id}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={cardVariant}
-              >
-                <ArtikelCard
-                  image={article.image}
-                  category={article.category}
-                  title={article.title}
-                  author={article.author}
-                  displayDate={
-                    activeCategory === "Semua Waktu"
-                      ? `${formatDate(article.date)}`
-                      : getTimeAgo(article.date)
-                  }
-                />
-              </motion.div>
-            ))
-          ) : (
-            <div className="col-span-full text-center text-dark/70 py-10">
-              Tidak ada artikel yang ditemukan untuk kategori ini.
-            </div>
-          )}
-        </div>
-
+      {filteredArticles.length > 0 && (
         <div className="flex justify-center mt-6 sm:mt-10">
           <div className="flex items-center gap-2">
             <button className="p-2 rounded text-dark/50 hover:text-orange transition flex items-center justify-center">
@@ -247,6 +222,95 @@ const ArtikelPage = () => {
             <button className="p-2 rounded text-dark/50 hover:text-orange transition flex items-center justify-center">
               <Icon icon="fluent:chevron-right-12-filled" width="20" />
             </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+
+  return (
+    <div className="bg-light min-h-screen w-full">
+      <Navbar />
+      <HeroContent
+        image="/images/hero_artikel.jpg"
+        title="Temukan Cerita dan Inspirasi UMKM Kudus melalui Artikel"
+        subtitle="Kumpulan kisah, wawasan, dan inovasi pelaku UMKM di Kudus untuk menginspirasi langkah Anda."
+      />
+      {/* Tambahkan relative z-10 di PageContainer seperti referensi KecamatanPage */}
+      <PageContainer variant="default" className="relative z-10">
+        <div className="bg-dark/5 border border-dark/10 rounded-lg px-4 py-2 text-sm mb-6 sm:mb-8">
+          <span className="font-semibold text-orange">Berita Terkini :</span>
+          <span className="text-dark mx-2">
+            Pemerintah umumkan jadwal libur nasional dan cuti bersama 2025
+          </span>
+        </div>
+
+        <div className="flex flex-col gap-6 sm:gap-8">
+          {/* Mobile Tabs */}
+          <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
+            {kategoriList.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setActiveCategory(item.name)}
+                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-md font-medium text-sm transition-all duration-200 shadow-lg 
+                  ${
+                    activeCategory === item.name
+                      ? "bg-orange text-light shadow-orange/40"
+                      : "bg-light text-dark hover:bg-orange/10"
+                  }`}
+              >
+                <Icon icon={item.icon} width="18" height="18" />
+                {item.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden md:flex flex-row gap-6 sm:gap-8">
+            <motion.aside
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="w-full md:w-3/12 bg-white rounded-lg shadow-md p-4 md:p-6 border border-dark/5 md:sticky md:top-24 md:self-start z-20"
+            >
+              <h3 className="text-lg font-semibold text-dark mb-4">
+                Filter Waktu
+              </h3>
+              <div className="flex flex-col gap-2">
+                {kategoriList.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveCategory(item.name)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 shadow-sm border ${
+                      activeCategory === item.name
+                        ? "bg-orange text-light shadow-md border-orange"
+                        : "bg-white text-dark hover:bg-orange/5 hover:shadow-md border-dark/10 hover:border-orange/30"
+                    }`}
+                  >
+                    <Icon
+                      icon={item.icon}
+                      width="20"
+                      height="20"
+                      className={
+                        activeCategory === item.name
+                          ? "text-white"
+                          : "text-dark"
+                      }
+                    />
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            </motion.aside>
+
+            {/* Desktop Content */}
+            <div className="w-9/12">{renderArticleGrid(false)}</div>
+          </div>
+
+          {/* Mobile Content */}
+          <div className="md:hidden">
+            {/* Grid dan pagination diduplikasi di sini untuk mobile */}
+            {renderArticleGrid(true)}
           </div>
         </div>
       </PageContainer>
