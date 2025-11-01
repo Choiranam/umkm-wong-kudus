@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
@@ -7,6 +7,7 @@ import HeroContent from "../components/HeroContent";
 import ArtikelCard from "../components/ArtikelCard";
 import { dummyArticles } from "./ArtikelPage";
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
 
 const DetailArtikelPage = () => {
   const { category, slug } = useParams();
@@ -79,9 +80,20 @@ const DetailArtikelPage = () => {
     from the design itself.
   `;
 
+  const articleLength = articleContent.replace(/\s+/g, "").length;
+  let numRelatedArticles;
+
+  if (articleLength < 500) {
+    numRelatedArticles = 2;
+  } else if (articleLength < 1500) {
+    numRelatedArticles = 3;
+  } else {
+    numRelatedArticles = 4;
+  }
+
   const relatedArticles = dummyArticles
     .filter((a) => a.title !== article.title)
-    .slice(0, 3);
+    .slice(0, numRelatedArticles);
 
   return (
     <div className="bg-light min-h-screen font-poppins overflow-x-hidden w-full">
@@ -93,15 +105,33 @@ const DetailArtikelPage = () => {
         className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-6 sm:mt-8"
       >
         <div className="lg:w-2/3">
-          <div className="text-sm text-dark/70 mb-4">
-            <span className="text-orange cursor-pointer hover:underline">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center text-dark/70 text-sm sm:text-base mb-6"
+          >
+            <Link
+              to="/artikel"
+              className="hover:text-orange flex items-center gap-1"
+            >
+              <Icon icon="mdi:newspaper-variant-multiple-outline" />
               Artikel
+            </Link>
+
+            <Icon icon="mdi:chevron-right" className="mx-2" />
+
+            <span className="text-dark/50 capitalize">{article.category}</span>
+
+            <Icon icon="mdi:chevron-right" className="mx-2" />
+
+            <span
+              className="text-orange font-medium line-clamp-1"
+              title={article.title}
+            >
+              {article.title}
             </span>
-            {" > "}
-            <span className="text-dark/70">{article.category}</span>
-            {" > "}
-            <span className="text-dark font-medium">{article.title}</span>
-          </div>
+          </motion.nav>
 
           <div className="flex items-center gap-2 text-sm text-dark/50 mb-6">
             <Icon icon="mdi:account" className="text-orange text-base" />
