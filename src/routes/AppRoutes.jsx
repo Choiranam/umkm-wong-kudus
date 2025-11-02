@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       { path: "/kecamatan/:slug", element: <KecamatanPage /> },
       { path: "/kategori", element: <KategoriPage /> },
       { path: "/tentang-umkm", element: <TentangUMKMPage /> },
-      { path: "/detail-umkm", element: <DetailUMKMPage /> },
+      { path: "/detail-umkm/:slug", element: <DetailUMKMPage /> },
       { path: "/artikel", element: <ArtikelPage /> },
       { path: "/artikel/:category/:slug", element: <DetailArtikelPage /> },
       { path: "/login", element: <LoginPage /> },
