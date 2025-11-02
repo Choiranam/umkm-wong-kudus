@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import KecamatanCard from "../components/KecamatanCard";
-import { useRef, useState, useEffect } from "react";
 import UMKMCard from "../components/UMKMCard";
 import ReviewCard from "../components/ReviewCard";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,8 +10,15 @@ import ArtikelCard from "../components/ArtikelCard";
 import { dummyArticles, formatDate } from "./ArtikelPage";
 import AOS from "aos";
 import AnimatedIconBackground from "../components/AnimatedIconBackground";
+import { dataUMKM } from "../data/dataUMKM";
+import { dataKecamatan } from "../data/dataKecamatan";
+
+import { useRef, useState, useEffect } from "react";
 
 const HomePage = () => {
+  /* --------------------------------------------------------------- */
+  /*  Scroll to top + AOS refresh                                    */
+  /* --------------------------------------------------------------- */
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -20,6 +26,9 @@ const HomePage = () => {
     }, 200);
   }, []);
 
+  /* --------------------------------------------------------------- */
+  /*  Static data (categories & steps)                               */
+  /* --------------------------------------------------------------- */
   const categories = [
     { name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
     { name: "Minuman", slug: "minuman", icon: "fluent:drink-to-go-24-regular" },
@@ -46,73 +55,9 @@ const HomePage = () => {
     },
   ];
 
-  const kecamatanData = [
-    {
-      name: "Bae",
-      slug: "bae",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Bae",
-      placeCount: 27,
-    },
-    {
-      name: "Kaliwungu",
-      slug: "kaliwungu",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Kaliwungu",
-      placeCount: 19,
-    },
-    {
-      name: "Kota (Kudus)",
-      slug: "kota-kudus",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Kota+Kudus",
-      placeCount: 42,
-    },
-    {
-      name: "Gebog",
-      slug: "gebog",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Gebog",
-      placeCount: 5,
-    },
-    {
-      name: "Dawe",
-      slug: "dawe",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Dawe",
-      placeCount: 15,
-    },
-    {
-      name: "Jati",
-      slug: "jati",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Jati",
-      placeCount: 22,
-    },
-    {
-      name: "Jekulo",
-      slug: "jekulo",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Jekulo",
-      placeCount: 11,
-    },
-    {
-      name: "Mejobo",
-      slug: "mejobo",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Mejobo",
-      placeCount: 17,
-    },
-    {
-      name: "Undaan",
-      slug: "undaan",
-      image: "https://placehold.co/180x256/E2E8F0/334155?text=Undaan",
-      placeCount: 7,
-    },
-  ];
-
-  const dummyData = Array(10).fill({
-    name: "Ramboo Chicken",
-    category: "Makanan",
-    description:
-      "Ramboo Chicken Kudus merupakan usaha kuliner yang menyiapkan beragam olahan...",
-    location: "Kota Kudus",
-    openHour: "10:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Ramboo+Chicken",
-  });
-
+  /* --------------------------------------------------------------- */
+  /*  Reviews – fetch from API                                       */
+  /* --------------------------------------------------------------- */
   const [reviewData, setReviewData] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
   const [errorReviews, setErrorReviews] = useState("");
@@ -127,8 +72,7 @@ const HomePage = () => {
         const result = await response.json();
 
         if (result.status && Array.isArray(result.data)) {
-          const formattedReviews = result.data.map((item) => ({
-            // DIPERBAIKI: Menggunakan backtick (`) untuk template literal
+          const formatted = result.data.map((item) => ({
             name: `${item.name} ${item.name_last}`.trim(),
             email: item.email,
             text: item.comment,
@@ -140,11 +84,11 @@ const HomePage = () => {
             }),
             profileImage:
               item.photo_profil ||
-              "https://ui-avatars.com/api/?name=" +
-                encodeURIComponent(item.name) +
-                "&background=eee&color=666",
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                item.name
+              )}&background=eee&color=666`,
           }));
-          setReviewData(formattedReviews);
+          setReviewData(formatted);
         } else {
           throw new Error(result.message || "Gagal memuat ulasan");
         }
@@ -160,16 +104,24 @@ const HomePage = () => {
     fetchReviews();
   }, []);
 
+  /* --------------------------------------------------------------- */
+  /*  Scroll refs & states                                           */
+  /* --------------------------------------------------------------- */
   const kecamatanScrollRef = useRef(null);
   const umkmScrollRef = useRef(null);
   const reviewScrollRef = useRef(null);
+
   const [canScrollLeftKecamatan, setCanScrollLeftKecamatan] = useState(false);
   const [canScrollRightKecamatan, setCanScrollRightKecamatan] = useState(true);
   const [isPausedUMKM, setIsPausedUMKM] = useState(false);
   const [canScrollLeftReview, setCanScrollLeftReview] = useState(false);
   const [canScrollRightReview, setCanScrollRightReview] = useState(true);
+
   const navigate = useNavigate();
 
+  /* --------------------------------------------------------------- */
+  /*  Kecamatan scroll helpers                                       */
+  /* --------------------------------------------------------------- */
   const checkScrollKecamatan = () => {
     const el = kecamatanScrollRef.current;
     if (el) {
@@ -182,30 +134,36 @@ const HomePage = () => {
 
   const scrollKecamatan = (direction) => {
     const el = kecamatanScrollRef.current;
-    if (el)
+    if (el) {
       el.scrollBy({
         left: direction === "left" ? -200 : 200,
         behavior: "smooth",
       });
+    }
   };
 
   useEffect(() => {
     const el = kecamatanScrollRef.current;
-    if (el) {
-      checkScrollKecamatan();
-      const observer = new ResizeObserver(checkScrollKecamatan);
-      observer.observe(el);
-      window.addEventListener("resize", checkScrollKecamatan);
-      return () => {
-        observer.unobserve(el);
-        window.removeEventListener("resize", checkScrollKecamatan);
-      };
-    }
+    if (!el) return;
+
+    checkScrollKecamatan();
+    const observer = new ResizeObserver(checkScrollKecamatan);
+    observer.observe(el);
+    window.addEventListener("resize", checkScrollKecamatan);
+
+    return () => {
+      observer.unobserve(el);
+      window.removeEventListener("resize", checkScrollKecamatan);
+    };
   }, []);
 
+  /* --------------------------------------------------------------- */
+  /*  UMKM auto‑scroll (infinite)                                    */
+  /* --------------------------------------------------------------- */
   useEffect(() => {
     const el = umkmScrollRef.current;
     if (!el) return;
+
     let pos = el.scrollLeft;
     const interval = setInterval(() => {
       if (!isPausedUMKM && el) {
@@ -214,9 +172,12 @@ const HomePage = () => {
         if (pos >= half) {
           pos = 0;
           el.scrollLeft = 0;
-        } else el.scrollLeft = pos;
+        } else {
+          el.scrollLeft = pos;
+        }
       }
     }, 20);
+
     return () => clearInterval(interval);
   }, [isPausedUMKM]);
 
@@ -229,11 +190,16 @@ const HomePage = () => {
     }
   };
 
+  /* --------------------------------------------------------------- */
+  /*  Review scroll helpers                                          */
+  /* --------------------------------------------------------------- */
   const scrollReview = (direction) => {
     const el = reviewScrollRef.current;
     if (!el) return;
+
     const card = el.querySelector("div > div");
     const width = (card?.offsetWidth || 300) + 16;
+
     el.scrollBy({
       left: direction === "left" ? -width : width,
       behavior: "smooth",
@@ -252,47 +218,54 @@ const HomePage = () => {
 
   useEffect(() => {
     const el = reviewScrollRef.current;
-    if (el) {
-      checkScrollReview();
-      const observer = new ResizeObserver(checkScrollReview);
-      observer.observe(el);
-      window.addEventListener("resize", checkScrollReview);
-      return () => {
-        observer.unobserve(el);
-        window.removeEventListener("resize", checkScrollReview);
-      };
-    }
+    if (!el) return;
+
+    checkScrollReview();
+    const observer = new ResizeObserver(checkScrollReview);
+    observer.observe(el);
+    window.addEventListener("resize", checkScrollReview);
+
+    return () => {
+      observer.unobserve(el);
+      window.removeEventListener("resize", checkScrollReview);
+    };
   }, [reviewData]);
 
+  /* --------------------------------------------------------------- */
+  /*  Render                                                         */
+  /* --------------------------------------------------------------- */
   return (
     <div className="bg-light min-h-screen">
       <Navbar />
 
-      <section className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden">
-        {/* 🔹 Virtual Tour Live Sebagai Background */}
+      {/* ====================== HERO ====================== */}
+      <section
+        className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden"
+        style={{ backgroundImage: "url('/images/hero_image_home.jpg')" }}
+      >
+        {/* Virtual Tour (iframe) – tetap ada, tapi di‑overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <iframe
             src="https://tourism.kuduskab.go.id/virtualtour-live/"
             className="
-        absolute
-        -top-40 h-[190%]     /* 🔸 Default (HP kecil) */
-        sm:top-[-200px] sm:h-[200%]
-        md:-top-60 md:h-[210%]
-        lg:top-[-220px] lg:h-[200%]  /* 🔹 Sedikit turun di desktop biar gak kepotong */
-        xl:top-[-250px] xl:h-[210%]
-        left-0 w-full object-cover
-      "
+              absolute
+              -top-40 h-[190%]
+              sm:top-[-200px] sm:h-[200%]
+              md:-top-60 md:h-[210%]
+              lg:top-[-220px] lg:h-[200%]
+              xl:top-[-250px] xl:h-[210%]
+              left-0 w-full object-cover
+            "
             allowFullScreen
             frameBorder="0"
             title="Virtual Tour Kudus"
           ></iframe>
         </div>
 
-        {/* 🔹 Overlay gelap agar teks tetap jelas */}
         <div className="absolute inset-0 bg-dark/50"></div>
 
-        {/* 🔹 Isi hero tetap sama */}
         <div className="relative z-10 container mx-auto px-4 py-24 sm:py-20 md:py-24 lg:py-32">
+          {/* Title */}
           <motion.div
             className="max-w-3xl text-start"
             initial={{ opacity: 0, y: 40 }}
@@ -311,6 +284,7 @@ const HomePage = () => {
             </p>
           </motion.div>
 
+          {/* Search */}
           <motion.div
             className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4"
             initial={{ opacity: 0, y: 30 }}
@@ -327,6 +301,7 @@ const HomePage = () => {
             </button>
           </motion.div>
 
+          {/* Categories */}
           <motion.div
             className="mt-8 text-start"
             initial={{ opacity: 0, y: 20 }}
@@ -336,20 +311,17 @@ const HomePage = () => {
             <p className="text-light font-normal text-sm lg:text-base">
               Atau berdasarkan Kategori
             </p>
-            <div className="mt-4 pt-1 flex flex-wrap justify-start gap-2 md:gap-4 relative z-1">
-              {categories.map((cat, index) => (
+            <div className="mt-4 pt-1 flex flex-wrap justify-start gap-2 md:gap-4">
+              {categories.map((cat, i) => (
                 <motion.button
                   key={cat.slug}
                   className="rounded-xl flex flex-col items-center justify-center shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer bg-light text-dark hover:bg-orange hover:text-light w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
                   onClick={() => navigate(`/kategori?slug=${cat.slug}`)}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                  transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
                 >
-                  <Icon
-                    icon={cat.icon}
-                    className="w-5 h-5 sm:w-6 sm:h-6 mb-1"
-                  />
+                  <Icon icon={cat.icon} className="w-5 h-5 sm:w-6 sm:h-6 mb-1" />
                   <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-center line-clamp-1">
                     {cat.name}
                   </span>
@@ -360,13 +332,13 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ====================== CARA MENGGUNAKAN ====================== */}
       <section
         data-aos="fade-up"
         data-aos-delay="200"
         className="py-16 sm:py-20 px-4 md:px-12 lg:px-20 xl:px-30 relative"
       >
         <AnimatedIconBackground iconCount={15} color="text-orange" />
-
         <div className="container mx-auto px-4">
           <div className="bg-light rounded-2xl shadow-xl py-8 md:py-12 px-6 sm:px-10 md:px-16 relative z-10 -mt-24 sm:-mt-32 md:-mt-40">
             <h2 className="text-xl sm:text-2xl text-start text-dark mb-6 md:mb-10">
@@ -391,9 +363,7 @@ const HomePage = () => {
                     </span>
                   </div>
                   <div className="mt-1 pt-1">
-                    <h3 className="text-lg font-semibold text-dark">
-                      {step.title}
-                    </h3>
+                    <h3 className="text-lg font-semibold text-dark">{step.title}</h3>
                     <p className="text-dark/50 text-sm mt-1">{step.desc}</p>
                   </div>
                 </div>
@@ -403,6 +373,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ====================== KECAMATAN ====================== */}
       <section
         data-aos="fade-up"
         data-aos-delay="100"
@@ -411,7 +382,6 @@ const HomePage = () => {
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
       >
         <AnimatedIconBackground iconCount={15} color="text-orange" />
-
         <div className="mb-2 flex justify-between items-center">
           <h2 className="text-xl sm:text-2xl text-start text-dark">
             <span className="font-bold">Jelajahi</span>{" "}
@@ -435,34 +405,39 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* DIPERBAIKI: Membungkus string CSS dengan {`...`} */}
-        <style>{`.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}.snap-x{scroll-snap-type:x mandatory}.snap-start{scroll-snap-align:start}`}</style>
+        {/* CSS for scroll‑snap & hide scrollbar */}
+        <style jsx>{`
+          .no-scrollbar::-webkit-scrollbar { display: none; }
+          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+          .snap-x { scroll-snap-type: x mandatory; }
+          .snap-start { scroll-snap-align: start; }
+        `}</style>
 
         <div className="relative">
-          <div className="absolute top-0 left-0 w-4 sm:w-6 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-4 sm:w-6 h-full bg-gradient-to-r from-light to-transparent z-10 pointer-events-none" />
           <div
             ref={kecamatanScrollRef}
             onScroll={checkScrollKecamatan}
             className="overflow-x-auto flex gap-4 py-3 no-scrollbar snap-x"
           >
-            {kecamatanData.map((kecamatan, index) => (
+            {dataKecamatan.map((kec, i) => (
               <div
-                key={kecamatan.slug}
+                key={kec.slug}
                 className="snap-start"
                 data-aos="zoom-in"
-                data-aos-delay={150 + index * 100}
-                A
+                data-aos-delay={150 + i * 100}
                 data-aos-duration="800"
                 data-aos-easing="ease-in-out-sine"
                 data-aos-anchor-placement="bottom-bottom"
               >
-                <KecamatanCard data={kecamatan} />
+                <KecamatanCard data={kec} />
               </div>
             ))}
           </div>
-          <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-gradient-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
 
+        {/* Desktop arrows */}
         <button
           onClick={() => scrollKecamatan("left")}
           disabled={!canScrollLeftKecamatan}
@@ -479,10 +454,8 @@ const HomePage = () => {
         </button>
       </section>
 
-      <section
-        data-aos="fade-up"
-        className="px-4 md:px-8 lg:px-20 xl:px-50 mb-2 relative"
-      >
+      {/* ====================== POTRET UMKM ====================== */}
+      <section data-aos="fade-up" className="px-4 md:px-8 lg:px-20 xl:px-50 mb-2 relative">
         <h2 className="text-xl sm:text-2xl text-start text-dark">
           <span className="font-bold">Potret</span>{" "}
           <span className="font-normal">UMKM Kudus</span>
@@ -499,11 +472,13 @@ const HomePage = () => {
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
       >
         <AnimatedIconBackground iconCount={15} color="text-orange" />
+        <style jsx>{`
+          .no-scrollbar::-webkit-scrollbar { display: none; }
+          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        `}</style>
 
-        {/* DIPERBAIKI: Membungkus string CSS dengan {`...`} */}
-        <style>{`.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}`}</style>
         <div className="relative">
-          <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-gradient-to-r from-light to-transparent z-10 pointer-events-none" />
           <div
             className="relative w-full overflow-x-auto no-scrollbar"
             ref={umkmScrollRef}
@@ -511,26 +486,26 @@ const HomePage = () => {
             onMouseLeave={() => setIsPausedUMKM(false)}
             onScroll={handleUMKMScroll}
           >
-            <motion.div
-              style={{ width: "max-content" }}
-              className="flex gap-4 py-3"
-            >
-              {[...dummyData, ...dummyData].map((item, index) => (
+            <motion.div style={{ width: "max-content" }} className="flex gap-4 py-3">
+              {[...dataUMKM, ...dataUMKM].map((item, i) => (
                 <div
-                  key={index}
+                  key={i}
                   data-aos="fade-up"
-                  data-aos-delay={(index % 10) * 50}
+                  data-aos-delay={(i % 10) * 50}
                   className="snap-start"
                 >
-                  <UMKMCard data={item} />
+                  <Link to={`/detail-umkm/${item.slug}`} className="block">
+                    <UMKMCard data={item} />
+                  </Link>
                 </div>
               ))}
             </motion.div>
           </div>
-          <div className="absolute top-0 right-0 w-4 sm:w-16 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-4 sm:w-16 h-full bg-gradient-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
       </section>
 
+      {/* ====================== REVIEW ====================== */}
       <section
         data-aos="fade-up"
         className="py-16 sm:py-20 mb-16 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-dark/5 relative"
@@ -578,7 +553,7 @@ const HomePage = () => {
               onScroll={checkScrollReview}
               className="overflow-x-auto flex gap-4 py-10 no-scrollbar snap-x snap-mandatory items-stretch"
             >
-              {reviewData.map((review, i) => (
+              {reviewData.map((rev, i) => (
                 <div
                   key={i}
                   data-aos="fade-up"
@@ -587,13 +562,14 @@ const HomePage = () => {
                   data-aos-easing="ease-out-cubic"
                   className="snap-start shrink-0"
                 >
-                  <ReviewCard review={review} />
+                  <ReviewCard review={rev} />
                 </div>
               ))}
             </motion.div>
           )}
         </div>
 
+        {/* Desktop arrows */}
         <button
           onClick={() => scrollReview("left")}
           disabled={!canScrollLeftReview}
@@ -614,18 +590,17 @@ const HomePage = () => {
             onClick={() => navigate("/kontak#review")}
             className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center w-full sm:w-auto font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer"
           >
-            Beri Kami Ulasan{" "}
-            <Icon icon="mdi:arrow-right" className="w-5 h-5 ml-2" />
+            Beri Kami Ulasan <Icon icon="mdi:arrow-right" className="w-5 h-5 ml-2" />
           </button>
         </div>
       </section>
 
+      {/* ====================== ARTIKEL ====================== */}
       <section
         data-aos="fade-up"
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
       >
         <AnimatedIconBackground iconCount={15} color="text-orange" />
-
         <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-2">
           <div>
             <h2 className="text-xl sm:text-2xl text-start text-dark">
@@ -646,14 +621,14 @@ const HomePage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {dummyArticles.slice(0, 3).map((artikel) => (
-            <div key={artikel.id} data-aos="fade-up" data-aos-delay="100">
+          {dummyArticles.slice(0, 3).map((art) => (
+            <div key={art.id} data-aos="fade-up" data-aos-delay="100">
               <ArtikelCard
-                image={artikel.image}
-                category={artikel.category}
-                title={artikel.title}
-                displayDate={formatDate(artikel.date)}
-                author={artikel.author}
+                image={art.image}
+                category={art.category}
+                title={art.title}
+                displayDate={formatDate(art.date)}
+                author={art.author}
               />
             </div>
           ))}

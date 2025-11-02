@@ -1,91 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // Tambahkan ini
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const umkmData = {
-  name: "Ramboo Chicken",
-  slug: "ramboo-chicken",
-  heroImage: "/images/rambochicken_hero.png",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Ramboo Chicken"',
-  heroSubtitle:
-    "Nikmati cita rasa ayam geprek khas Kudus dengan berbagai pilihan menu lezat dan harga terjangkau.",
-  about:
-    "<strong>Ramboo Chicken</strong> adalah sebuah usaha kuliner populer di Kudus yang berlokasi di daerah Krandon. Tempat makan ini mengkhususkan diri pada sajian aneka hidangan olahan ayam yang beragam, menjadikannya pilihan favorit bagi warga lokal. Menu andalan mereka berfokus pada ayam geprek dan rice bowl dengan berbagai saus khas.",
-  menus: [
-    {
-      name: "Ayam Geprek",
-      description: "Ayam goreng tepung dengan sambal pedas khas Kudus.",
-      price: "Rp 18.000",
-      image: "/images/rambo_menu.png",
-    },
-    {
-      name: "Ayam Bakar Madu",
-      description: "Ayam bakar dengan olesan madu manis gurih.",
-      price: "Rp 20.000",
-      image: "/images/rambo_menu.png",
-    },
-    {
-      name: "Ayam Sambal Korek",
-      description: "Pedasnya nampol dengan sambal korek khas Ramboo Chicken.",
-      price: "Rp 19.000",
-      image: "/images/rambo_menu.png",
-    },
-    {
-      name: "Ayam Crispy",
-      description: "Ayam renyah gurih cocok untuk semua kalangan.",
-      price: "Rp 17.000",
-      image: "/images/rambo_menu.png",
-    },
-    {
-      name: "Ayam Geprek Mozza",
-      description: "Ayam geprek dengan lelehan keju mozzarella.",
-      price: "Rp 22.000",
-      image: "/images/rambo_menu.png",
-    },
-    {
-      name: "Paket Nasi Kulit",
-      description: "Nasi dengan kulit ayam crispy dan sambal.",
-      price: "Rp 15.000",
-      image: "/images/rambo_menu.png",
-    },
-  ],
-  galleryImages: [
-    "/images/galerifoto1_rambochicken.png",
-    "/images/galerifoto2_rambochicken.png",
-    "/images/galerifoto3_rambochicken.png",
-    "/images/galerifoto4_rambochicken.png",
-    "/images/galerifoto5_rambochicken.png",
-  ],
-  location: {
-    address: "Jl. Sunan Muria No.21, Kudus",
-    fullAddress:
-      "Jl. KH Moh. Arwani, Pejaten, Krandon, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59314",
-    mapsUrl: "https://maps.app.goo.gl/xVjQFurMT4EqQVaw6",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.792574,110.8408274&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "6289673183625",
-    email: "ramboo@gmail.com",
-    instagram: "ramboochicken",
-  },
-  rating: "4.8 / 5",
-  description:
-    "Ramboo Chicken dikenal dengan ayam geprek dan sambal koreknya yang pedas menggugah selera. Menggunakan bahan segar dan bumbu khas Kudus yang autentik.",
-  openingHours: [
-    { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Selasa", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Rabu", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Kamis", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Jumat", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Sabtu", hours: "09.00 - 22.00", isOpen: true },
-    { day: "Minggu", hours: "Tutup", isOpen: false },
-  ],
-};
+import { dataDetailUMKM } from "../data/dataDetailUMKM";
 
 const StickyInfo = ({ data, onClose, isMobile }) => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
@@ -237,17 +158,15 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
 };
 
 const DetailUMKMPage = () => {
+  const { slug } = useParams(); // Ambil slug dari URL
   const [selectedImage, setSelectedImage] = useState(null);
   const [showMobilePopup, setShowMobilePopup] = useState(false);
-  const {
-    heroImage,
-    heroTitle,
-    heroSubtitle,
-    about,
-    menus,
-    galleryImages,
-    location,
-  } = umkmData;
+  const [umkmData, setUmkmData] = useState(null);
+
+  useEffect(() => {
+    const data = dataDetailUMKM.find((item) => item.slug === slug);
+    setUmkmData(data || null);
+  }, [slug]);
 
   useEffect(() => {
     if (showMobilePopup || selectedImage) {
@@ -263,6 +182,32 @@ const DetailUMKMPage = () => {
       document.documentElement.style.overflow = "";
     };
   }, [showMobilePopup, selectedImage]);
+
+  // Jika data belum ada atau tidak ditemukan
+  if (!umkmData) {
+    return (
+      <div className="w-full min-h-screen bg-light flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-dark mb-2">
+            UMKM Tidak Ditemukan
+          </h2>
+          <p className="text-dark/70">
+            Maaf, halaman yang Anda cari tidak tersedia.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const {
+    heroImage,
+    heroTitle,
+    heroSubtitle,
+    about,
+    menus,
+    galleryImages,
+    location,
+  } = umkmData;
 
   return (
     <div className="w-full min-h-screen bg-light">
@@ -300,7 +245,6 @@ const DetailUMKMPage = () => {
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {/* Gambar */}
                     <div className="relative w-full aspect-4/3 overflow-hidden">
                       <img
                         src={menu.image}
@@ -309,8 +253,6 @@ const DetailUMKMPage = () => {
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
                     </div>
-
-                    {/* Konten */}
                     <div className="pt-2 sm:pt-3">
                       <h3 className="text-base sm:text-lg font-bold text-dark line-clamp-1 group-hover:text-orange transition-colors duration-300">
                         {menu.name}
@@ -370,19 +312,14 @@ const DetailUMKMPage = () => {
           </div>
 
           <div className="hidden md:block md:w-96 lg:w-[400px] shrink-0">
-            <div className="sticky top-28">
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <StickyInfo
-                  data={umkmData}
-                  onClose={() => {}}
-                  isMobile={false}
-                />
-              </div>
+            <div className="rounded-3xl overflow-hidden shadow-2xl">
+              <StickyInfo data={umkmData} onClose={() => {}} isMobile={false} />
             </div>
           </div>
         </div>
       </PageContainer>
 
+      {/* Lightbox Galeri */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -417,6 +354,7 @@ const DetailUMKMPage = () => {
         )}
       </AnimatePresence>
 
+      {/* Tombol Mobile */}
       <div className="fixed bottom-6 right-6 z-40 md:hidden">
         <button
           onClick={() => setShowMobilePopup(true)}
@@ -427,6 +365,7 @@ const DetailUMKMPage = () => {
         </button>
       </div>
 
+      {/* Popup Mobile */}
       <AnimatePresence>
         {showMobilePopup && (
           <div

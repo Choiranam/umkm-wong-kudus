@@ -1,7 +1,21 @@
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 
+const categories = [
+  { name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
+  { name: "Minuman", slug: "minuman", icon: "fluent:drink-to-go-24-regular" },
+  { name: "Jasa", slug: "jasa", icon: "ph:wrench" },
+  { name: "Barang", slug: "barang", icon: "lucide:package-open" },
+  { name: "Lainnya", slug: "lainnya", icon: "basil:other-1-outline" },
+];
+
 export default function UMKMCard({ data }) {
+  // Cari ikon berdasarkan kategori
+  const categoryIcon =
+    categories.find(
+      (cat) => cat.name.toLowerCase() === data.category.toLowerCase()
+    )?.icon || "fluent:food-16-regular"; // default ke makanan kalau tidak ditemukan
+
   return (
     <motion.div
       className="w-full max-w-[260px] bg-light rounded-[5px] overflow-hidden cursor-pointer group"
@@ -21,8 +35,9 @@ export default function UMKMCard({ data }) {
         <h3 className="text-[16px] font-bold text-dark leading-snug group-hover:text-orange transition-colors duration-300">
           {data.name}
         </h3>
+
         <p className="text-dark/60 text-sm font-medium mb-1 flex items-center gap-1">
-          <Icon icon="fluent:food-16-regular" width="15" height="15" />
+          <Icon icon={categoryIcon} width="15" height="15" />
           {data.category}
         </p>
 
