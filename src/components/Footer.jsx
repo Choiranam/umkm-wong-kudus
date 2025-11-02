@@ -18,7 +18,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-dark font-bold text-lg mb-4">Kontak Info</h4>
+            <h4 className="text-dark font-bold text-lg mb-4 pb-2 border-b-2 border-orange w-fit">
+              Kontak Info
+            </h4>
             <div className="space-y-3 text-dark/50 font-medium text-sm">
               <div className="flex items-center space-x-2">
                 <Icon icon="mynaui:location" className="w-5 h-5 text-dark/50" />
@@ -42,7 +44,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-dark font-bold text-lg mb-4">Quick Links</h4>
+            <h4 className="text-dark font-bold text-lg mb-4 pb-2 border-b-2 border-orange w-fit">
+              Quick Links
+            </h4>
             <div className="space-y-2">
               <Link
                 to="/"
@@ -78,7 +82,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-dark font-bold text-lg mb-4">Kategori UMKM</h4>
+            <h4 className="text-dark font-bold text-lg mb-4 pb-2 border-b-2 border-orange w-fit">
+              Kategori UMKM
+            </h4>
             <div className="space-y-2">
               <Link
                 to="/kategori?slug=makanan"
