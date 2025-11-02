@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ArtikelCard from "../components/ArtikelCard";
 import { dummyArticles, formatDate } from "./ArtikelPage";
 import AOS from "aos";
+import AnimatedIconBackground from "../components/AnimatedIconBackground";
 
 const HomePage = () => {
   useEffect(() => {
@@ -112,40 +113,52 @@ const HomePage = () => {
     image: "https://placehold.co/260x160/E2E8F0/334155?text=Ramboo+Chicken",
   });
 
-  const reviewData = [
-    {
-      name: "Azzan Isham",
-      email: "azzanisham@gmail.com",
-      text: "Saya sangat terbantu atas adanya website ini...",
-      rating: 4,
-      date: "17 Oktober 2025",
-      profileImage: "https://placehold.co/64x64/E2E8F0/334155?text=AI",
-    },
-    {
-      name: "Jovanco",
-      email: "jovancoe@gmail.com",
-      text: "Website-nya keren! Tampilannya bersih...",
-      rating: 4,
-      date: "17 Oktober 2025",
-      profileImage: "https://placehold.co/64x64/E2E8F0/334155?text=J",
-    },
-    {
-      name: "Budi Santoso",
-      email: "budis@gmail.com",
-      text: "Sangat informatif. Saya jadi tahu lokasi...",
-      rating: 5,
-      date: "18 Oktober 2025",
-      profileImage: "https://placehold.co/64x64/E2E8F0/334155?text=BS",
-    },
-    {
-      name: "Khoirul Anam",
-      email: "choriul@gmail.com",
-      text: "Subhanallah, website ini sangat membantu...",
-      rating: 5,
-      date: "29 Oktober 2025",
-      profileImage: "https://placehold.co/64x64/E2E8F0/334155?text=MC",
-    },
-  ];
+  const [reviewData, setReviewData] = useState([]);
+  const [loadingReviews, setLoadingReviews] = useState(true);
+  const [errorReviews, setErrorReviews] = useState("");
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        setLoadingReviews(true);
+        const response = await fetch(
+          "https://api-umkmwongkudus.rplrus.com/api/rating"
+        );
+        const result = await response.json();
+
+        if (result.status && Array.isArray(result.data)) {
+          const formattedReviews = result.data.map((item) => ({
+            // DIPERBAIKI: Menggunakan backtick (`) untuk template literal
+            name: `${item.name} ${item.name_last}`.trim(),
+            email: item.email,
+            text: item.comment,
+            rating: item.rating,
+            date: new Date(item.created_at).toLocaleDateString("id-ID", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }),
+            profileImage:
+              item.photo_profil ||
+              "https://ui-avatars.com/api/?name=" +
+                encodeURIComponent(item.name) +
+                "&background=eee&color=666",
+          }));
+          setReviewData(formattedReviews);
+        } else {
+          throw new Error(result.message || "Gagal memuat ulasan");
+        }
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+        setErrorReviews("Gagal memuat ulasan. Silakan coba lagi nanti.");
+        setReviewData([]);
+      } finally {
+        setLoadingReviews(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   const kecamatanScrollRef = useRef(null);
   const umkmScrollRef = useRef(null);
@@ -249,17 +262,36 @@ const HomePage = () => {
         window.removeEventListener("resize", checkScrollReview);
       };
     }
-  }, []);
+  }, [reviewData]);
 
   return (
-    <div className="bg-light min-h-screen overflow-x-hidden w-full">
+    <div className="bg-light min-h-screen">
       <Navbar />
 
-      <section
-        className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60"
-        style={{ backgroundImage: "url('/images/hero_image_home.jpg')" }}
-      >
+      <section className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden">
+        {/* 🔹 Virtual Tour Live Sebagai Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <iframe
+            src="https://tourism.kuduskab.go.id/virtualtour-live/"
+            className="
+        absolute
+        -top-40 h-[190%]     /* 🔸 Default (HP kecil) */
+        sm:top-[-200px] sm:h-[200%]
+        md:-top-60 md:h-[210%]
+        lg:top-[-220px] lg:h-[200%]  /* 🔹 Sedikit turun di desktop biar gak kepotong */
+        xl:top-[-250px] xl:h-[210%]
+        left-0 w-full object-cover
+      "
+            allowFullScreen
+            frameBorder="0"
+            title="Virtual Tour Kudus"
+          ></iframe>
+        </div>
+
+        {/* 🔹 Overlay gelap agar teks tetap jelas */}
         <div className="absolute inset-0 bg-dark/50"></div>
+
+        {/* 🔹 Isi hero tetap sama */}
         <div className="relative z-10 container mx-auto px-4 py-24 sm:py-20 md:py-24 lg:py-32">
           <motion.div
             className="max-w-3xl text-start"
@@ -288,7 +320,7 @@ const HomePage = () => {
             <input
               type="text"
               placeholder="Cari nama tempat UMKM disini...."
-              className="grow py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange transition focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
+              className="grow py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
             />
             <button className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer">
               <Icon icon="tabler:search" className="w-4 h-4 mr-2" /> Search
@@ -308,18 +340,11 @@ const HomePage = () => {
               {categories.map((cat, index) => (
                 <motion.button
                   key={cat.slug}
-                  className={`rounded-xl flex flex-col items-center justify-center shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer ${
-                    cat.active ? "bg-orange text-light" : "bg-light text-dark"
-                  } hover:bg-orange hover:text-light
-        w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
-      `}
+                  className="rounded-xl flex flex-col items-center justify-center shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer bg-light text-dark hover:bg-orange hover:text-light w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
                   onClick={() => navigate(`/kategori?slug=${cat.slug}`)}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.7 + index * 0.1,
-                  }}
+                  transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
                 >
                   <Icon
                     icon={cat.icon}
@@ -340,6 +365,8 @@ const HomePage = () => {
         data-aos-delay="200"
         className="py-16 sm:py-20 px-4 md:px-12 lg:px-20 xl:px-30 relative"
       >
+        <AnimatedIconBackground iconCount={15} color="text-orange" />
+
         <div className="container mx-auto px-4">
           <div className="bg-light rounded-2xl shadow-xl py-8 md:py-12 px-6 sm:px-10 md:px-16 relative z-10 -mt-24 sm:-mt-32 md:-mt-40">
             <h2 className="text-xl sm:text-2xl text-start text-dark mb-6 md:mb-10">
@@ -383,6 +410,8 @@ const HomePage = () => {
         data-aos-easing="ease-out-cubic"
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
       >
+        <AnimatedIconBackground iconCount={15} color="text-orange" />
+
         <div className="mb-2 flex justify-between items-center">
           <h2 className="text-xl sm:text-2xl text-start text-dark">
             <span className="font-bold">Jelajahi</span>{" "}
@@ -406,11 +435,11 @@ const HomePage = () => {
           </div>
         </div>
 
+        {/* DIPERBAIKI: Membungkus string CSS dengan {`...`} */}
         <style>{`.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}.snap-x{scroll-snap-type:x mandatory}.snap-start{scroll-snap-align:start}`}</style>
 
         <div className="relative">
           <div className="absolute top-0 left-0 w-4 sm:w-6 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
-
           <div
             ref={kecamatanScrollRef}
             onScroll={checkScrollKecamatan}
@@ -422,6 +451,7 @@ const HomePage = () => {
                 className="snap-start"
                 data-aos="zoom-in"
                 data-aos-delay={150 + index * 100}
+                A
                 data-aos-duration="800"
                 data-aos-easing="ease-in-out-sine"
                 data-aos-anchor-placement="bottom-bottom"
@@ -430,7 +460,6 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-
           <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
 
@@ -469,6 +498,9 @@ const HomePage = () => {
         data-aos-delay="100"
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
       >
+        <AnimatedIconBackground iconCount={15} color="text-orange" />
+
+        {/* DIPERBAIKI: Membungkus string CSS dengan {`...`} */}
         <style>{`.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}`}</style>
         <div className="relative">
           <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
@@ -532,24 +564,34 @@ const HomePage = () => {
         </div>
 
         <div className="relative">
-          <motion.div
-            ref={reviewScrollRef}
-            onScroll={checkScrollReview}
-            className="overflow-x-auto flex gap-4 py-10 no-scrollbar snap-x snap-mandatory items-stretch"
-          >
-            {reviewData.map((review, i) => (
-              <div
-                key={i}
-                data-aos="fade-up"
-                data-aos-delay={i * 150}
-                data-aos-duration="600"
-                data-aos-easing="ease-out-cubic"
-                className="snap-start shrink-0"
-              >
-                <ReviewCard review={review} />
-              </div>
-            ))}
-          </motion.div>
+          {loadingReviews ? (
+            <div className="flex justify-center items-center py-10">
+              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-orange"></div>
+            </div>
+          ) : errorReviews ? (
+            <p className="text-center text-red-500 py-10">{errorReviews}</p>
+          ) : reviewData.length === 0 ? (
+            <p className="text-center text-dark/60 py-10">Belum ada ulasan.</p>
+          ) : (
+            <motion.div
+              ref={reviewScrollRef}
+              onScroll={checkScrollReview}
+              className="overflow-x-auto flex gap-4 py-10 no-scrollbar snap-x snap-mandatory items-stretch"
+            >
+              {reviewData.map((review, i) => (
+                <div
+                  key={i}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 150}
+                  data-aos-duration="600"
+                  data-aos-easing="ease-out-cubic"
+                  className="snap-start shrink-0"
+                >
+                  <ReviewCard review={review} />
+                </div>
+              ))}
+            </motion.div>
+          )}
         </div>
 
         <button
@@ -582,6 +624,8 @@ const HomePage = () => {
         data-aos="fade-up"
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
       >
+        <AnimatedIconBackground iconCount={15} color="text-orange" />
+
         <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-2">
           <div>
             <h2 className="text-xl sm:text-2xl text-start text-dark">
