@@ -10,15 +10,14 @@ const categories = [
 ];
 
 export default function UMKMCard({ data }) {
-  // Cari ikon berdasarkan kategori
   const categoryIcon =
     categories.find(
       (cat) => cat.name.toLowerCase() === data.category.toLowerCase()
-    )?.icon || "fluent:food-16-regular"; // default ke makanan kalau tidak ditemukan
+    )?.icon || "fluent:food-16-regular";
 
   return (
     <motion.div
-      className="w-full max-w-[260px] bg-light rounded-[5px] overflow-hidden cursor-pointer group"
+      className="w-full max-w-[260px] bg-transparent rounded-[5px] overflow-hidden cursor-pointer group"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
@@ -32,7 +31,7 @@ export default function UMKMCard({ data }) {
       </div>
 
       <div className="pt-4 pb-5 text-left">
-        <h3 className="text-[16px] font-bold text-dark leading-snug group-hover:text-orange transition-colors duration-300">
+        <h3 className="text-[16px] font-bold text-dark leading-snug group-hover:text-orange transition-colors duration-300 truncate block max-w-full">
           {data.name}
         </h3>
 

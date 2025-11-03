@@ -15,10 +15,102 @@ import { dataKecamatan } from "../data/dataKecamatan";
 
 import { useRef, useState, useEffect } from "react";
 
+const UMKMScrollSection = () => {
+  const umkmScrollRef = useRef(null);
+  const posRef = useRef(0);
+  const [isPausedUMKM, setIsPausedUMKM] = useState(false);
+
+  useEffect(() => {
+    const el = umkmScrollRef.current;
+    if (!el) return;
+
+    let frameId;
+
+    const animateScroll = () => {
+      if (!isPausedUMKM && el) {
+        const half = el.scrollWidth / 2;
+        posRef.current += 1;
+        if (posRef.current >= half) {
+          posRef.current = 0;
+        }
+        el.scrollLeft = posRef.current;
+      }
+      frameId = requestAnimationFrame(animateScroll);
+    };
+
+    frameId = requestAnimationFrame(animateScroll);
+    return () => cancelAnimationFrame(frameId);
+  }, [isPausedUMKM]);
+
+  const handleUMKMScroll = (e) => {
+    const el = e.currentTarget;
+    if (isPausedUMKM) {
+      const loop = el.scrollWidth / 2;
+
+      if (el.scrollLeft >= loop - 1) {
+        el.scrollLeft -= loop;
+      } else if (el.scrollLeft <= 0) {
+        el.scrollLeft += loop;
+      }
+      posRef.current = el.scrollLeft;
+    }
+  };
+
+  return (
+    <section
+      data-aos="fade-up"
+      data-aos-delay="100"
+      className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
+    >
+      <AnimatedIconBackground iconCount={15} color="text-orange" />
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+
+      <div className="relative">
+        <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
+        <div
+          className="relative w-full overflow-x-auto no-scrollbar"
+          ref={umkmScrollRef}
+          onMouseEnter={() => setIsPausedUMKM(true)}
+          onMouseLeave={() => setIsPausedUMKM(false)}
+          onTouchStart={() => setIsPausedUMKM(true)}
+          onTouchEnd={() => setIsPausedUMKM(false)}
+          onScroll={handleUMKMScroll}
+        >
+          <motion.div
+            style={{ width: "max-content" }}
+            className="flex gap-4 py-3"
+          >
+            {[...dataUMKM, ...dataUMKM].map((item, i) => (
+              <div
+                key={i}
+                data-aos="fade-up"
+                data-aos-delay={(i % 10) * 50}
+                className="snap-start"
+              >
+                <Link to={`/detail-umkm/${item.slug}`} className="block">
+                  <UMKMCard data={item} />
+                </Link>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+        <div className="absolute top-0 right-0 w-4 sm:w-16 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
+      </div>
+    </section>
+  );
+};
+
 const HomePage = () => {
-  /* --------------------------------------------------------------- */
-  /*  Scroll to top + AOS refresh                                    */
-  /* --------------------------------------------------------------- */
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -26,9 +118,6 @@ const HomePage = () => {
     }, 200);
   }, []);
 
-  /* --------------------------------------------------------------- */
-  /*  Static data (categories & steps)                               */
-  /* --------------------------------------------------------------- */
   const categories = [
     { name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
     { name: "Minuman", slug: "minuman", icon: "fluent:drink-to-go-24-regular" },
@@ -55,9 +144,6 @@ const HomePage = () => {
     },
   ];
 
-  /* --------------------------------------------------------------- */
-  /*  Reviews – fetch from API                                       */
-  /* --------------------------------------------------------------- */
   const [reviewData, setReviewData] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
   const [errorReviews, setErrorReviews] = useState("");
@@ -104,24 +190,16 @@ const HomePage = () => {
     fetchReviews();
   }, []);
 
-  /* --------------------------------------------------------------- */
-  /*  Scroll refs & states                                           */
-  /* --------------------------------------------------------------- */
   const kecamatanScrollRef = useRef(null);
-  const umkmScrollRef = useRef(null);
   const reviewScrollRef = useRef(null);
 
   const [canScrollLeftKecamatan, setCanScrollLeftKecamatan] = useState(false);
   const [canScrollRightKecamatan, setCanScrollRightKecamatan] = useState(true);
-  const [isPausedUMKM, setIsPausedUMKM] = useState(false);
   const [canScrollLeftReview, setCanScrollLeftReview] = useState(false);
   const [canScrollRightReview, setCanScrollRightReview] = useState(true);
 
   const navigate = useNavigate();
 
-  /* --------------------------------------------------------------- */
-  /*  Kecamatan scroll helpers                                       */
-  /* --------------------------------------------------------------- */
   const checkScrollKecamatan = () => {
     const el = kecamatanScrollRef.current;
     if (el) {
@@ -157,42 +235,6 @@ const HomePage = () => {
     };
   }, []);
 
-  /* --------------------------------------------------------------- */
-  /*  UMKM auto‑scroll (infinite)                                    */
-  /* --------------------------------------------------------------- */
-  useEffect(() => {
-    const el = umkmScrollRef.current;
-    if (!el) return;
-
-    let pos = el.scrollLeft;
-    const interval = setInterval(() => {
-      if (!isPausedUMKM && el) {
-        const half = el.scrollWidth / 2;
-        pos += 1;
-        if (pos >= half) {
-          pos = 0;
-          el.scrollLeft = 0;
-        } else {
-          el.scrollLeft = pos;
-        }
-      }
-    }, 20);
-
-    return () => clearInterval(interval);
-  }, [isPausedUMKM]);
-
-  const handleUMKMScroll = (e) => {
-    if (isPausedUMKM) {
-      const el = e.currentTarget;
-      const loop = el.scrollWidth / 2;
-      if (el.scrollLeft >= loop) el.scrollLeft -= loop;
-      else if (el.scrollLeft <= 0) el.scrollLeft += loop;
-    }
-  };
-
-  /* --------------------------------------------------------------- */
-  /*  Review scroll helpers                                          */
-  /* --------------------------------------------------------------- */
   const scrollReview = (direction) => {
     const el = reviewScrollRef.current;
     if (!el) return;
@@ -231,23 +273,15 @@ const HomePage = () => {
     };
   }, [reviewData]);
 
-  /* --------------------------------------------------------------- */
-  /*  Render                                                         */
-  /* --------------------------------------------------------------- */
   return (
     <div className="bg-light min-h-screen">
       <Navbar />
 
-      {/* ====================== HERO ====================== */}
-      <section
-        className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden"
-        style={{ backgroundImage: "url('/images/hero_image_home.jpg')" }}
-      >
-        {/* Virtual Tour (iframe) – tetap ada, tapi di‑overlay */}
+      <section className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <iframe
             src="https://tourism.kuduskab.go.id/virtualtour-live/"
-            className="
+            className={`
               absolute
               -top-40 h-[190%]
               sm:top-[-200px] sm:h-[200%]
@@ -255,7 +289,10 @@ const HomePage = () => {
               lg:top-[-220px] lg:h-[200%]
               xl:top-[-250px] xl:h-[210%]
               left-0 w-full object-cover
-            "
+              transition-opacity duration-1000
+              ${iframeLoaded ? "opacity-100" : "opacity-0"}
+            `}
+            onLoad={() => setIframeLoaded(true)}
             allowFullScreen
             frameBorder="0"
             title="Virtual Tour Kudus"
@@ -265,7 +302,6 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-dark/50"></div>
 
         <div className="relative z-10 container mx-auto px-4 py-24 sm:py-20 md:py-24 lg:py-32">
-          {/* Title */}
           <motion.div
             className="max-w-3xl text-start"
             initial={{ opacity: 0, y: 40 }}
@@ -284,7 +320,6 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          {/* Search */}
           <motion.div
             className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4"
             initial={{ opacity: 0, y: 30 }}
@@ -301,7 +336,6 @@ const HomePage = () => {
             </button>
           </motion.div>
 
-          {/* Categories */}
           <motion.div
             className="mt-8 text-start"
             initial={{ opacity: 0, y: 20 }}
@@ -321,7 +355,10 @@ const HomePage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
                 >
-                  <Icon icon={cat.icon} className="w-5 h-5 sm:w-6 sm:h-6 mb-1" />
+                  <Icon
+                    icon={cat.icon}
+                    className="w-5 h-5 sm:w-6 sm:h-6 mb-1"
+                  />
                   <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-center line-clamp-1">
                     {cat.name}
                   </span>
@@ -332,7 +369,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ====================== CARA MENGGUNAKAN ====================== */}
       <section
         data-aos="fade-up"
         data-aos-delay="200"
@@ -363,7 +399,9 @@ const HomePage = () => {
                     </span>
                   </div>
                   <div className="mt-1 pt-1">
-                    <h3 className="text-lg font-semibold text-dark">{step.title}</h3>
+                    <h3 className="text-lg font-semibold text-dark">
+                      {step.title}
+                    </h3>
                     <p className="text-dark/50 text-sm mt-1">{step.desc}</p>
                   </div>
                 </div>
@@ -373,7 +411,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ====================== KECAMATAN ====================== */}
       <section
         data-aos="fade-up"
         data-aos-delay="100"
@@ -405,16 +442,24 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* CSS for scroll‑snap & hide scrollbar */}
         <style jsx>{`
-          .no-scrollbar::-webkit-scrollbar { display: none; }
-          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          .snap-x { scroll-snap-type: x mandatory; }
-          .snap-start { scroll-snap-align: start; }
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          .snap-x {
+            scroll-snap-type: x mandatory;
+          }
+          .snap-start {
+            scroll-snap-align: start;
+          }
         `}</style>
 
         <div className="relative">
-          <div className="absolute top-0 left-0 w-4 sm:w-6 h-full bg-gradient-to-r from-light to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-4 sm:w-6 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
           <div
             ref={kecamatanScrollRef}
             onScroll={checkScrollKecamatan}
@@ -434,10 +479,9 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-          <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-gradient-to-l from-light to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
 
-        {/* Desktop arrows */}
         <button
           onClick={() => scrollKecamatan("left")}
           disabled={!canScrollLeftKecamatan}
@@ -454,8 +498,10 @@ const HomePage = () => {
         </button>
       </section>
 
-      {/* ====================== POTRET UMKM ====================== */}
-      <section data-aos="fade-up" className="px-4 md:px-8 lg:px-20 xl:px-50 mb-2 relative">
+      <section
+        data-aos="fade-up"
+        className="px-4 md:px-8 lg:px-20 xl:px-50 mb-2 relative"
+      >
         <h2 className="text-xl sm:text-2xl text-start text-dark">
           <span className="font-bold">Potret</span>{" "}
           <span className="font-normal">UMKM Kudus</span>
@@ -466,46 +512,8 @@ const HomePage = () => {
         </p>
       </section>
 
-      <section
-        data-aos="fade-up"
-        data-aos-delay="100"
-        className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
-      >
-        <AnimatedIconBackground iconCount={15} color="text-orange" />
-        <style jsx>{`
-          .no-scrollbar::-webkit-scrollbar { display: none; }
-          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
+      <UMKMScrollSection />
 
-        <div className="relative">
-          <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-gradient-to-r from-light to-transparent z-10 pointer-events-none" />
-          <div
-            className="relative w-full overflow-x-auto no-scrollbar"
-            ref={umkmScrollRef}
-            onMouseEnter={() => setIsPausedUMKM(true)}
-            onMouseLeave={() => setIsPausedUMKM(false)}
-            onScroll={handleUMKMScroll}
-          >
-            <motion.div style={{ width: "max-content" }} className="flex gap-4 py-3">
-              {[...dataUMKM, ...dataUMKM].map((item, i) => (
-                <div
-                  key={i}
-                  data-aos="fade-up"
-                  data-aos-delay={(i % 10) * 50}
-                  className="snap-start"
-                >
-                  <Link to={`/detail-umkm/${item.slug}`} className="block">
-                    <UMKMCard data={item} />
-                  </Link>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-          <div className="absolute top-0 right-0 w-4 sm:w-16 h-full bg-gradient-to-l from-light to-transparent z-10 pointer-events-none" />
-        </div>
-      </section>
-
-      {/* ====================== REVIEW ====================== */}
       <section
         data-aos="fade-up"
         className="py-16 sm:py-20 mb-16 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-dark/5 relative"
@@ -569,7 +577,6 @@ const HomePage = () => {
           )}
         </div>
 
-        {/* Desktop arrows */}
         <button
           onClick={() => scrollReview("left")}
           disabled={!canScrollLeftReview}
@@ -590,12 +597,12 @@ const HomePage = () => {
             onClick={() => navigate("/kontak#review")}
             className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center w-full sm:w-auto font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer"
           >
-            Beri Kami Ulasan <Icon icon="mdi:arrow-right" className="w-5 h-5 ml-2" />
+            Beri Kami Ulasan{" "}
+            <Icon icon="mdi:arrow-right" className="w-5 h-5 ml-2" />
           </button>
         </div>
       </section>
 
-      {/* ====================== ARTIKEL ====================== */}
       <section
         data-aos="fade-up"
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"

@@ -13,6 +13,7 @@ const Navbar = () => {
   else if (pathname === "/tentang-kami") activeMenu = "tentang-kami";
   else if (pathname.startsWith("/kategori")) activeMenu = "kategori";
 
+  const activeKategoriSlug = new URLSearchParams(search).get("slug");
   const [scrollY, setScrollY] = useState(0);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -83,8 +84,8 @@ const Navbar = () => {
           <div className="relative group">
             <button
               className={`text-base transition-colors duration-200 flex items-center space-x-1 pb-0.5 cursor-pointer ${
-                activeMenu === "kategori"
-                  ? `${textColor} font-medium`
+                activeMenu === "kategori" && !activeKategoriSlug
+                  ? `${textColor} font-semibold border-b-4 border-orange`
                   : `${textColor} font-medium ${hoverText}`
               }`}
             >
@@ -101,7 +102,7 @@ const Navbar = () => {
               <div className="space-y-1">
                 {kategoriItems.map(({ icon, text, slug }) => {
                   const kategoriPath = `/kategori?slug=${slug}`;
-                  const isKategoriActive = fullPath === kategoriPath;
+                  const isKategoriActive = activeKategoriSlug === slug;
                   return (
                     <Link
                       key={text}
@@ -226,7 +227,7 @@ const Navbar = () => {
               <div className="flex flex-col space-y-1 pt-2 pl-4">
                 {kategoriItems.map(({ icon, text, slug }) => {
                   const kategoriPath = `/kategori?slug=${slug}`;
-                  const isKategoriActive = fullPath === kategoriPath;
+                  const isKategoriActive = activeKategoriSlug === slug;
                   return (
                     <Link
                       key={slug}

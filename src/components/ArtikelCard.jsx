@@ -18,7 +18,7 @@ const ArtikelCard = ({ image, category, title, displayDate, author }) => {
 
   return (
     <motion.div
-      className="max-w-sm bg-light rounded-[5px] overflow-hidden cursor-pointer group"
+      className="max-w-sm bg-transparent rounded-[5px] overflow-hidden cursor-pointer group"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
       onClick={handleClick}

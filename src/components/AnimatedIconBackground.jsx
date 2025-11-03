@@ -49,7 +49,7 @@ const AnimatedIconBackground = ({
         delay: Math.random() * 5,
       };
     });
-  }, [iconCount, opacityRange]);
+  }, []);
 
   return (
     <div

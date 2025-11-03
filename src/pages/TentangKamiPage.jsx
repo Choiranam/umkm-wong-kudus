@@ -71,8 +71,6 @@ const TentangKamiPage = () => {
             </p>
           </div>
         </section>
-
-        {/* === Visi & Misi === */}
         <section className="relative text-dark">
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 text-center md:text-left"
@@ -134,7 +132,6 @@ const TentangKamiPage = () => {
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          {/* Teks */}
           <div className="flex-1 flex flex-col justify-between space-y-6 text-dark">
             <div>
               <h2 className="text-2xl md:text-3xl font-normal mb-4 text-center md:text-left">

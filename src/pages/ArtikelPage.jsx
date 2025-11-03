@@ -236,7 +236,6 @@ const ArtikelPage = () => {
         title="Temukan Cerita dan Inspirasi UMKM Kudus melalui Artikel"
         subtitle="Kumpulan kisah, wawasan, dan inovasi pelaku UMKM di Kudus untuk menginspirasi langkah Anda."
       />
-      {/* Tambahkan relative z-10 di PageContainer seperti referensi KecamatanPage */}
       <PageContainer variant="default" className="relative z-10">
         <div className="bg-dark/5 border border-dark/10 rounded-lg px-4 py-2 text-sm mb-6 sm:mb-8">
           <span className="font-semibold text-orange">Berita Terkini :</span>
@@ -246,7 +245,6 @@ const ArtikelPage = () => {
         </div>
 
         <div className="flex flex-col gap-6 sm:gap-8">
-          {/* Mobile Tabs */}
           <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
             {kategoriList.map((item) => (
               <button
@@ -264,8 +262,6 @@ const ArtikelPage = () => {
               </button>
             ))}
           </div>
-
-          {/* Desktop Layout */}
           <div className="hidden md:flex flex-row gap-6 sm:gap-8">
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
@@ -302,14 +298,9 @@ const ArtikelPage = () => {
                 ))}
               </div>
             </motion.aside>
-
-            {/* Desktop Content */}
             <div className="w-9/12">{renderArticleGrid(false)}</div>
           </div>
-
-          {/* Mobile Content */}
           <div className="md:hidden">
-            {/* Grid dan pagination diduplikasi di sini untuk mobile */}
             {renderArticleGrid(true)}
           </div>
         </div>
