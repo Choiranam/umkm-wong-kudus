@@ -9,11 +9,8 @@ import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
 import UMKMCard from "../components/UMKMCard";
 
-import { dataUMKM } from "../data/dataUMKM";   // <-- import dinamis
+import { dataUMKM } from "../data/dataUMKM";
 
-/* -------------------------------------------------
-   Data statis tetap untuk info kecamatan (hero)
-   ------------------------------------------------- */
 const allKecamatanInfo = {
   bae: {
     name: "Bae",
@@ -80,9 +77,6 @@ const allKecamatanInfo = {
   },
 };
 
-/* -------------------------------------------------
-   Kategori tetap (bisa di‑generate otomatis juga)
-   ------------------------------------------------- */
 const kategoriList = [
   { id: 1, name: "Makanan", icon: "fluent:food-16-regular" },
   { id: 2, name: "Minuman", icon: "fluent:drink-to-go-24-regular" },
@@ -91,9 +85,6 @@ const kategoriList = [
   { id: 5, name: "Lainnya", icon: "basil:other-1-outline" },
 ];
 
-/* -------------------------------------------------
-   Komponen utama
-   ------------------------------------------------- */
 const KecamatanPage = () => {
   const { slug } = useParams();
 
@@ -103,9 +94,6 @@ const KecamatanPage = () => {
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  /* -------------------------------------------------
-     1. Ambil info kecamatan + semua UMKM miliknya
-     ------------------------------------------------- */
   useEffect(() => {
     const info = allKecamatanInfo[slug] || null;
     const umkms = dataUMKM.filter((u) => u.kecamatanSlug === slug);
@@ -120,19 +108,12 @@ const KecamatanPage = () => {
     setSearch("");
   }, [slug]);
 
-  /* -------------------------------------------------
-     2. Filter berdasarkan kategori + pencarian
-     ------------------------------------------------- */
   const filteredUmkm = useMemo(() => {
     if (!umkmInKecamatan.length) return [];
 
     return umkmInKecamatan
-      .filter(
-        (u) => u.category.toLowerCase() === activeCategory.toLowerCase()
-      )
-      .filter((u) =>
-        u.name.toLowerCase().includes(search.toLowerCase())
-      );
+      .filter((u) => u.category.toLowerCase() === activeCategory.toLowerCase())
+      .filter((u) => u.name.toLowerCase().includes(search.toLowerCase()));
   }, [umkmInKecamatan, activeCategory, search]);
 
   const hasUmkmInCategory = umkmInKecamatan.some(
@@ -140,9 +121,6 @@ const KecamatanPage = () => {
   );
   const hasSearchResult = filteredUmkm.length > 0;
 
-  /* -------------------------------------------------
-     Render
-     ------------------------------------------------- */
   return (
     <div className="bg-light min-h-screen w-full relative">
       <Navbar />
@@ -153,7 +131,6 @@ const KecamatanPage = () => {
       />
 
       <PageContainer variant="wide" className="py-6 sm:py-10 relative z-10">
-        {/* ---------- Breadcrumb ---------- */}
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -194,7 +171,7 @@ const KecamatanPage = () => {
                         : "text-dark/70 hover:bg-orange hover:text-white"
                     }`}
                   >
-                    {key}
+                    {allKecamatanInfo[key].name}
                   </Link>
                 ))}
               </motion.div>
@@ -205,8 +182,6 @@ const KecamatanPage = () => {
             {slug || "—"}
           </span>
         </motion.nav>
-
-        {/* ---------- Mobile Tabs ---------- */}
         <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
           {kategoriList.map((item) => {
             const disabled = !umkmInKecamatan.some(
@@ -238,10 +213,7 @@ const KecamatanPage = () => {
             );
           })}
         </div>
-
-        {/* ---------- Desktop Layout ---------- */}
         <div className="hidden md:flex flex-row gap-6 sm:gap-8">
-          {/* ---- Sidebar Kategori ---- */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -274,7 +246,9 @@ const KecamatanPage = () => {
                       width="20"
                       height="20"
                       className={
-                        activeCategory === item.name ? "text-white" : "text-dark"
+                        activeCategory === item.name
+                          ? "text-white"
+                          : "text-dark"
                       }
                     />
                     {item.name}
@@ -283,8 +257,6 @@ const KecamatanPage = () => {
               })}
             </div>
           </motion.aside>
-
-          {/* ---- Konten Utama ---- */}
           <div className="w-9/12">
             {/* Search */}
             <div className="flex justify-start mb-8">
@@ -304,8 +276,6 @@ const KecamatanPage = () => {
                 />
               </div>
             </div>
-
-            {/* Grid UMKM */}
             <div
               key={`${slug}-${activeCategory}-${search}`}
               className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center"
@@ -325,9 +295,12 @@ const KecamatanPage = () => {
                     viewport={{ once: true }}
                     className="w-full flex justify-center"
                   >
-                    <Link to={`/detail-umkm/${umkm.slug}`} className="block w-full">
-                  <UMKMCard data={umkm} />
-                </Link>
+                    <Link
+                      to={`/detail-umkm/${umkm.slug}`}
+                      className="block w-full"
+                    >
+                      <UMKMCard data={umkm} />
+                    </Link>
                   </motion.div>
                 ))
               ) : hasUmkmInCategory ? (
@@ -346,8 +319,6 @@ const KecamatanPage = () => {
                 </div>
               )}
             </div>
-
-            {/* Pagination (placeholder) */}
             {filteredUmkm.length > 0 && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -378,8 +349,6 @@ const KecamatanPage = () => {
             )}
           </div>
         </div>
-
-        {/* ---------- Mobile Content ---------- */}
         <div className="md:hidden">
           {/* Search */}
           <div className="flex justify-center mb-8">
@@ -426,8 +395,8 @@ const KecamatanPage = () => {
             ) : hasUmkmInCategory ? (
               <div className="col-span-full text-center text-dark/60 italic py-10">
                 Tidak ditemukan hasil untuk pencarian{" "}
-                <span className="font-semibold text-orange">"{search}"</span>{" "}
-                di kategori "<strong>{activeCategory}</strong>".
+                <span className="font-semibold text-orange">"{search}"</span> di
+                kategori "<strong>{activeCategory}</strong>".
               </div>
             ) : (
               <div className="col-span-full text-center text-dark/60 italic py-10">
@@ -439,8 +408,6 @@ const KecamatanPage = () => {
               </div>
             )}
           </div>
-
-          {/* Pagination mobile */}
           {filteredUmkm.length > 0 && (
             <motion.div
               initial={{ opacity: 0 }}

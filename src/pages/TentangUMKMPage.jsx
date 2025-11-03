@@ -18,10 +18,10 @@ const TentangUMKMPage = () => {
 
       <PageContainer
         variant="default"
-        className="flex flex-col gap-8 sm:gap-12 -mb-12"
+        className="flex flex-col gap-8 sm:gap-12"
       >
         <div
-          className="bg-light flex flex-col my-5 sm:mb-16"
+          className="bg-transparent flex flex-col my-5 sm:mb-16"
           data-aos="fade-up"
           data-aos-mirror="true"
         >
@@ -89,7 +89,7 @@ const TentangUMKMPage = () => {
         </div>
 
         <div
-          className="bg-light rounded-xl p-4 sm:p-6"
+          className="bg-transparent rounded-xl p-4 sm:p-6"
           data-aos="fade-up"
           data-aos-mirror="true"
         >
@@ -103,7 +103,7 @@ const TentangUMKMPage = () => {
 
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full border-l-2 border-r-2 border-t-2 border-dark/50 rounded-lg overflow-hidden text-left">
-              <thead className="bg-light text-dark border-b border-dark/50">
+              <thead className="bg-transparent text-dark border-b border-dark/50">
                 <tr>
                   <th className="py-3 px-4 font-bold border-r border-dark/50">
                     Jenis Usaha
@@ -151,12 +151,12 @@ const TentangUMKMPage = () => {
           </div>
 
           <div className="md:hidden space-y-6">
-            <div className="bg-light rounded-xl border border-dark/50 overflow-hidden">
-              <div className="bg-light px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
+            <div className="bg-transparent rounded-xl border border-dark/50 overflow-hidden">
+              <div className="bg-transparent px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
                 Usaha Mikro
               </div>
               <div className="grid grid-cols-2 text-xs sm:text-sm">
-                <div className="px-3 py-2 bg-light border-r border-dark/50 text-center">
+                <div className="px-3 py-2 bg-transparent border-r border-dark/50 text-center">
                   <p className="text-xs font-medium text-dark mb-1">
                     Aset Maksimal
                   </p>
@@ -175,12 +175,12 @@ const TentangUMKMPage = () => {
               </div>
             </div>
 
-            <div className="bg-light rounded-xl border border-dark/50 overflow-hidden">
-              <div className="bg-light px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
+            <div className="bg-transparent rounded-xl border border-dark/50 overflow-hidden">
+              <div className="bg-transparent px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
                 Usaha Kecil
               </div>
               <div className="grid grid-cols-2 text-xs sm:text-sm">
-                <div className="px-3 py-2 bg-light border-r border-dark/50 text-center">
+                <div className="px-3 py-2 bg-transparent border-r border-dark/50 text-center">
                   <p className="text-xs font-medium text-dark mb-1">
                     Aset Maksimal
                   </p>
@@ -199,12 +199,12 @@ const TentangUMKMPage = () => {
               </div>
             </div>
 
-            <div className="bg-light rounded-xl border border-dark/50 overflow-hidden">
-              <div className="bg-light px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
+            <div className="bg-transparent rounded-xl border border-dark/50 overflow-hidden">
+              <div className="bg-transparent px-4 py-2 text-sm font-bold text-center border-b border-dark/50">
                 Usaha Menengah
               </div>
               <div className="grid grid-cols-2 text-xs sm:text-sm">
-                <div className="px-3 py-2 bg-light border-r border-dark/50 text-center">
+                <div className="px-3 py-2 bg-transparent border-r border-dark/50 text-center">
                   <p className="text-xs font-medium text-dark mb-1">
                     Aset Maksimal
                   </p>
@@ -226,7 +226,7 @@ const TentangUMKMPage = () => {
         </div>
 
         <div
-          className="bg-light rounded-xl my-12 sm:my-16"
+          className="bg-transparent rounded-xl my-12 sm:my-16"
           data-aos="fade-up"
           data-aos-mirror="true"
         >
@@ -304,7 +304,7 @@ const TentangUMKMPage = () => {
         </div>
 
         <div
-          className="bg-light rounded-xl px-4 sm:px-0"
+          className="bg-transparent rounded-xl px-4 sm:px-0"
           data-aos="fade-up"
           data-aos-mirror="true"
         >

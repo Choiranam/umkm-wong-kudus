@@ -7,7 +7,7 @@ const KecamatanCard = ({ data }) => {
     <Link to={`/kecamatan/${data.slug}`}>
       <motion.div
         key={data.name}
-        className="min-w-[180px] bg-light rounded-[5px] overflow-hidden cursor-pointer group"
+        className="min-w-[180px] bg-transparent rounded-[5px] overflow-hidden cursor-pointer group"
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
       >

@@ -33,8 +33,6 @@ const PencarianPage = () => {
   return (
     <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
-
-      {/* Hero Section */}
       <HeroContent
         image="/images/pencarian_hero_content.png"
         title="Temukan berbagai usaha lokal sesuai kata kunci pilihanmu."

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Tambahkan ini
+import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
@@ -158,7 +158,7 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
 };
 
 const DetailUMKMPage = () => {
-  const { slug } = useParams(); // Ambil slug dari URL
+  const { slug } = useParams();
   const [selectedImage, setSelectedImage] = useState(null);
   const [showMobilePopup, setShowMobilePopup] = useState(false);
   const [umkmData, setUmkmData] = useState(null);
@@ -183,7 +183,6 @@ const DetailUMKMPage = () => {
     };
   }, [showMobilePopup, selectedImage]);
 
-  // Jika data belum ada atau tidak ditemukan
   if (!umkmData) {
     return (
       <div className="w-full min-h-screen bg-light flex items-center justify-center">
@@ -218,7 +217,7 @@ const DetailUMKMPage = () => {
         subtitle={heroSubtitle}
       />
       <PageContainer variant="default">
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 mt-8 md:mt-10">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 mt-8 md:mt-10 md:items-start">
           <div className="flex-1 space-y-12 md:space-y-16">
             <section>
               <h2 className="text-3xl font-bold text-dark mb-4 text-center md:text-left">
@@ -241,7 +240,7 @@ const DetailUMKMPage = () => {
                 {menus.map((menu, index) => (
                   <motion.div
                     key={index}
-                    className="bg-light rounded-[5px] overflow-hidden cursor-pointer group"
+                    className="bg-transparent rounded-[5px] overflow-hidden cursor-pointer group"
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -311,15 +310,14 @@ const DetailUMKMPage = () => {
             </section>
           </div>
 
-          <div className="hidden md:block md:w-96 lg:w-[400px] shrink-0">
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
+          <div className="hidden md:block md:w-96 lg:w-[400px] shrink-0 sticky top-24">
+            <div className="rounded-lg overflow-hidden shadow-2xl">
               <StickyInfo data={umkmData} onClose={() => {}} isMobile={false} />
             </div>
           </div>
         </div>
       </PageContainer>
 
-      {/* Lightbox Galeri */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -354,7 +352,6 @@ const DetailUMKMPage = () => {
         )}
       </AnimatePresence>
 
-      {/* Tombol Mobile */}
       <div className="fixed bottom-6 right-6 z-40 md:hidden">
         <button
           onClick={() => setShowMobilePopup(true)}
@@ -365,7 +362,6 @@ const DetailUMKMPage = () => {
         </button>
       </div>
 
-      {/* Popup Mobile */}
       <AnimatePresence>
         {showMobilePopup && (
           <div

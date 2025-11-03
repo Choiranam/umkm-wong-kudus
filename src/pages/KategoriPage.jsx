@@ -55,8 +55,6 @@ const KategoriPage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(() =>
     window.innerWidth < 640 ? 8 : 15
   );
-
-  // 🔎 Filter UMKM
   const filteredUMKM = useMemo(() => {
     return dataUMKM.filter((item) => {
       const matchesCategory =
@@ -74,18 +72,12 @@ const KategoriPage = () => {
     const start = (currentPage - 1) * itemsPerPage;
     return filteredUMKM.slice(start, start + itemsPerPage);
   }, [filteredUMKM, currentPage, itemsPerPage]);
-
-  // 🧠 Reset halaman kalau ganti kategori / search
   useEffect(() => {
     setCurrentPage(1);
   }, [kategoriSlug, search]);
-
-  // 🔄 Sinkronkan URL dengan halaman aktif
   useEffect(() => {
     setSearchParams({ slug: kategoriSlug, page: currentPage });
   }, [kategoriSlug, currentPage, setSearchParams]);
-
-  // 📱 Responsif: ubah items per page saat resize
   useEffect(() => {
     const handleResize = () => {
       const newItemsPerPage = window.innerWidth < 640 ? 8 : 15;
@@ -97,8 +89,6 @@ const KategoriPage = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [itemsPerPage]);
-
-  // ⏩ Navigasi halaman
   const goToPage = (page) => {
     if (page < 1 || page > totalPages || page === currentPage) return;
     setCurrentPage(page);
@@ -116,7 +106,6 @@ const KategoriPage = () => {
       />
 
       <PageContainer variant="wide" className="py-6 sm:py-10 relative z-10">
-        {/* Breadcrumb */}
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -129,8 +118,6 @@ const KategoriPage = () => {
           </Link>
 
           <Icon icon="mdi:chevron-right" className="mx-2" />
-
-          {/* Dropdown Kategori */}
           <div
             className="relative"
             onMouseEnter={() => setIsOpen(true)}
@@ -174,8 +161,6 @@ const KategoriPage = () => {
             {kategoriSlug}
           </span>
         </motion.nav>
-
-        {/* Search Bar */}
         <div className="flex justify-center mb-8">
           <div className="relative w-full sm:w-1/2">
             <input
@@ -193,8 +178,6 @@ const KategoriPage = () => {
             />
           </div>
         </div>
-
-        {/* Title */}
         <h2 className="text-center text-xl sm:text-2xl font-semibold text-dark mb-6">
           Menampilkan {filteredUMKM.length} UMKM Kudus <br />
           <span className="font-normal text-dark/80">
@@ -204,8 +187,6 @@ const KategoriPage = () => {
             </span>
           </span>
         </h2>
-
-        {/* UMKM Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 justify-items-center mt-6 sm:mt-10">
           {paginatedUMKM.length > 0 ? (
             paginatedUMKM.map((umkm, index) => (
@@ -223,8 +204,8 @@ const KategoriPage = () => {
                 className="w-full flex justify-center"
               >
                 <Link to={`/detail-umkm/${umkm.slug}`} className="block w-full">
-                  <UMKMCard data={umkm} />
-                </Link>
+                  <UMKMCard data={umkm} />
+                </Link>
               </motion.div>
             ))
           ) : (
@@ -235,8 +216,6 @@ const KategoriPage = () => {
             </div>
           )}
         </div>
-
-        {/* Pagination */}
         {totalPages > 1 && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -253,7 +232,11 @@ const KategoriPage = () => {
                   : "text-dark/70 hover:text-orange"
               }`}
             >
-              <Icon icon="fluent:chevron-left-12-filled" width="22" height="22" />
+              <Icon
+                icon="fluent:chevron-left-12-filled"
+                width="22"
+                height="22"
+              />
             </button>
 
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -279,7 +262,11 @@ const KategoriPage = () => {
                   : "text-dark/70 hover:text-orange"
               }`}
             >
-              <Icon icon="fluent:chevron-right-12-filled" width="22" height="22" />
+              <Icon
+                icon="fluent:chevron-right-12-filled"
+                width="22"
+                height="22"
+              />
             </button>
           </motion.div>
         )}
