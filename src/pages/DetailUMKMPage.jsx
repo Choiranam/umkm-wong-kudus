@@ -7,6 +7,7 @@ import PageContainer from "../components/PageContainer";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { dataDetailUMKM } from "../data/dataDetailUMKM";
+import NotFoundPage from "./NotFoundPage";
 
 const StickyInfo = ({ data, onClose, isMobile }) => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
@@ -184,18 +185,7 @@ const DetailUMKMPage = () => {
   }, [showMobilePopup, selectedImage]);
 
   if (!umkmData) {
-    return (
-      <div className="w-full min-h-screen bg-light flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-dark mb-2">
-            UMKM Tidak Ditemukan
-          </h2>
-          <p className="text-dark/70">
-            Maaf, halaman yang Anda cari tidak tersedia.
-          </p>
-        </div>
-      </div>
-    );
+    return <NotFoundPage />;
   }
 
   const {
