@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { Link, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ forceDark = false }) => {
   const { pathname, search } = useLocation();
-  const fullPath = pathname + search;
 
   let activeMenu = "";
   if (pathname === "/") activeMenu = "beranda";
@@ -14,8 +13,8 @@ const Navbar = () => {
   else if (pathname.startsWith("/kategori")) activeMenu = "kategori";
 
   const activeKategoriSlug = new URLSearchParams(search).get("slug");
-  const [scrollY, setScrollY] = useState(0);
 
+  const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isKategoriOpen, setIsKategoriOpen] = useState(false);
 
@@ -32,34 +31,43 @@ const Navbar = () => {
     setIsKategoriOpen(false);
   }, [pathname, search]);
 
-  const isAtTop = scrollY <= 50;
-  const bgColor =
-    isAtTop && !isMobileMenuOpen ? "bg-dark/0" : "bg-light shadow-sm";
-  const textColor = isAtTop && !isMobileMenuOpen ? "text-white" : "text-dark";
-  const hoverText =
-    isAtTop && !isMobileMenuOpen ? "hover:text-orange/80" : "hover:text-orange";
+  // ✅ JIKA forceDark = true → abaikan efek transparan
+  const isAtTop = forceDark ? false : scrollY <= 50;
 
-  const logoSrc =
-    isAtTop && !isMobileMenuOpen
-      ? "/images/logo_kudus.png"
-      : "/images/logo_navbar_footer.png";
+  const bgColor = forceDark
+    ? "bg-light shadow-sm"
+    : isAtTop && !isMobileMenuOpen
+    ? "bg-dark/0"
+    : "bg-light shadow-sm";
+
+  const textColor = forceDark
+    ? "text-dark"
+    : isAtTop && !isMobileMenuOpen
+    ? "text-white"
+    : "text-dark";
+
+  const hoverText = forceDark
+    ? "hover:text-orange"
+    : isAtTop && !isMobileMenuOpen
+    ? "hover:text-orange/80"
+    : "hover:text-orange";
+
+  const logoSrc = forceDark
+    ? "/images/logo_navbar_footer.png"
+    : isAtTop && !isMobileMenuOpen
+    ? "/images/logo_kudus.png"
+    : "/images/logo_navbar_footer.png";
 
   const kategoriItems = [
     { icon: "fluent:food-16-regular", text: "Makanan", slug: "makanan" },
-    {
-      icon: "fluent:drink-to-go-24-regular",
-      text: "Minuman",
-      slug: "minuman",
-    },
+    { icon: "fluent:drink-to-go-24-regular", text: "Minuman", slug: "minuman" },
     { icon: "ph:wrench", text: "Jasa", slug: "jasa" },
     { icon: "lucide:package-open", text: "Barang", slug: "barang" },
     { icon: "basil:other-1-outline", text: "Lainnya", slug: "lainnya" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full ${bgColor} px-8 py-2.5 z-50 transition-all duration-500 ease-in-out`}
-    >
+    <nav className={`fixed top-0 left-0 w-full ${bgColor} px-8 py-2.5 z-50 transition-all duration-500 ease-in-out`}>
       <div className="relative flex items-center justify-between max-w-7xl mx-auto">
         <Link to="/" className="shrink-0">
           <img
@@ -69,6 +77,7 @@ const Navbar = () => {
           />
         </Link>
 
+        {/* DESKTOP MENU */}
         <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center space-x-8">
           <Link
             to="/"
@@ -93,22 +102,27 @@ const Navbar = () => {
               <Icon
                 icon="tabler:chevron-down"
                 className={`w-3 h-3 transition-transform duration-200 group-hover:rotate-180 ${
-                  isAtTop && !isMobileMenuOpen ? "text-white" : "text-dark"
+                  forceDark
+                    ? "text-dark"
+                    : isAtTop && !isMobileMenuOpen
+                    ? "text-white"
+                    : "text-dark"
                 }`}
               />
             </button>
 
+            {/* DROPDOWN */}
             <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl py-3 z-50 border border-dark/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div className="space-y-1">
                 {kategoriItems.map(({ icon, text, slug }) => {
                   const kategoriPath = `/kategori?slug=${slug}`;
-                  const isKategoriActive = activeKategoriSlug === slug;
+                  const isActive = activeKategoriSlug === slug;
                   return (
                     <Link
-                      key={text}
+                      key={slug}
                       to={kategoriPath}
                       className={`group flex items-center px-5 py-3 text-sm font-normal transition-all duration-200 ${
-                        isKategoriActive
+                        isActive
                           ? "bg-linear-to-r from-orange/5 to-orange/10 text-orange"
                           : "text-dark/70 hover:bg-linear-to-r hover:from-orange/5 hover:to-orange/10 hover:text-orange"
                       }`}
@@ -116,7 +130,7 @@ const Navbar = () => {
                       <Icon
                         icon={icon}
                         className={`w-4 h-4 mr-3 ${
-                          isKategoriActive
+                          isActive
                             ? "text-orange"
                             : "text-dark/50 group-hover:text-orange"
                         }`}
@@ -170,6 +184,7 @@ const Navbar = () => {
           Baca Artikel UMKM
         </Link>
 
+        {/* MOBILE MENU BUTTON */}
         <button
           className={`lg:hidden p-2 rounded-md transition-colors cursor-pointer ${textColor} ${hoverText}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -182,6 +197,7 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* MOBILE MENU DROPDOWN */}
       <div
         className={`lg:hidden absolute top-full left-0 w-full bg-light shadow-lg ${
           isMobileMenuOpen
@@ -219,6 +235,7 @@ const Navbar = () => {
                 }`}
               />
             </button>
+
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
                 isKategoriOpen ? "max-h-96" : "max-h-0"
@@ -227,13 +244,13 @@ const Navbar = () => {
               <div className="flex flex-col space-y-1 pt-2 pl-4">
                 {kategoriItems.map(({ icon, text, slug }) => {
                   const kategoriPath = `/kategori?slug=${slug}`;
-                  const isKategoriActive = activeKategoriSlug === slug;
+                  const isActive = activeKategoriSlug === slug;
                   return (
                     <Link
                       key={slug}
                       to={kategoriPath}
                       className={`group flex items-center px-3 py-2.5 text-sm font-normal rounded-lg ${
-                        isKategoriActive
+                        isActive
                           ? "text-orange font-medium"
                           : "text-dark/70 hover:bg-orange/5 hover:text-orange"
                       }`}
@@ -241,7 +258,7 @@ const Navbar = () => {
                       <Icon
                         icon={icon}
                         className={`w-4 h-4 mr-3 ${
-                          isKategoriActive
+                          isActive
                             ? "text-orange"
                             : "text-dark/50 group-hover:text-orange"
                         }`}
