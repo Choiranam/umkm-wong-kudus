@@ -17,6 +17,10 @@ import DetailArtikelPage from "../pages/DetailArtikelPage";
 import DashboardPage from "../pages/admin/DashboardPage";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
 import UserRoute from "./UserRoute.jsx";
+import UMKMPage from "../pages/admin/UMKMPage.jsx";
+import KategoriAdminPage from "../pages/admin/KategoriPage.jsx";
+import ArtikelAdmin from "../pages/admin/ArtikelPage.jsx";
+import CreateArtikelPage from "../pages/admin/CreateArtikelPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,14 +38,11 @@ const router = createBrowserRouter([
       { path: "/artikel", element: <ArtikelPage /> },
       { path: "/artikel/:category/:slug", element: <DetailArtikelPage /> },
       { path: "/login", element: <LoginPage /> },
-      {
-        path: "/dashboard",
-        element: (
-          <UserRoute>
-            <DashboardPage />
-          </UserRoute>
-        ),
-      },
+      {path: "/dashboard",element: (<UserRoute><DashboardPage /></UserRoute>),},
+      {path: "/kategori-admin",element: (<UserRoute><KategoriAdminPage /></UserRoute>),},
+      {path: "/artikel-admin",element: (<UserRoute><ArtikelAdmin /></UserRoute>),},
+      { path: "/artikel-admin/create", element: <CreateArtikelPage /> },
+      {path: "/UMKM",element: (<UserRoute><UMKMPage /></UserRoute>),},
       { path: "*", element: <NotFoundPage /> },
     ],
   },
