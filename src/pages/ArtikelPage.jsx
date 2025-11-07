@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
@@ -8,22 +9,13 @@ import { Icon } from "@iconify/react";
 import ArtikelCard from "../components/ArtikelCard";
 import { motion } from "framer-motion";
 
+// Format tanggal lengkap
 export const formatDate = (dateString) => {
+  const date = new Date(dateString); // Langsung parse ISO
   const months = [
-    "Januari",
-    "Februari",
-    "Maret",
-    "April",
-    "Mei",
-    "Juni",
-    "Juli",
-    "Agustus",
-    "September",
-    "Oktober",
-    "November",
-    "Desember",
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember",
   ];
-  const date = new Date(`${dateString}T00:00:00+07:00`);
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();
@@ -32,102 +24,35 @@ export const formatDate = (dateString) => {
   return `${day} ${month} ${year}, ${hours}.${minutes} WIB`;
 };
 
+// Waktu lalu
 const getTimeAgo = (dateString) => {
   const now = new Date();
-  const date = new Date(`${dateString}T00:00:00+07:00`);
+  const date = new Date(dateString);
   const diffMs = now - date;
   const diffMinutes = Math.floor(diffMs / 1000 / 60);
   const diffHours = Math.floor(diffMinutes / 60);
   const diffDays = Math.floor(diffHours / 24);
+
   if (diffMinutes < 60) return `${diffMinutes} menit yang lalu`;
   if (diffHours < 24) return `${diffHours} jam yang lalu`;
   return `${diffDays} hari yang lalu`;
 };
 
-export const dummyArticles = [
-  {
-    id: 1,
-    image: "/images/sampel_artikel.png",
-    category: "Minuman",
-    title: "Kudus Kenalkan Produk UMKM Unggulan ke Tingkat Nasional",
-    date: "2025-08-17",
-    author: "Admin",
-  },
-  {
-    id: 2,
-    image: "/images/sampel_artikel.png",
-    category: "Makanan",
-    title: "Inovasi Kuliner UMKM Kudus di Pasar Global",
-    date: "2025-10-23",
-    author: "Admin",
-  },
-  {
-    id: 3,
-    image: "/images/sampel_artikel.png",
-    category: "Kerajinan",
-    title: "Kerajinan Tangan Kudus Mendunia",
-    date: "2025-10-21",
-    author: "Admin",
-  },
-  {
-    id: 4,
-    image: "/images/sampel_artikel.png",
-    category: "Fashion",
-    title: "UMKM Fashion Kudus Curi Perhatian di Pameran Internasional",
-    date: "2025-10-18",
-    author: "Admin",
-  },
-  {
-    id: 5,
-    image: "/images/sampel_artikel.png",
-    category: "Minuman",
-    title: "Minuman Tradisional Kudus Kembali Populer",
-    date: "2025-09-25",
-    author: "Admin",
-  },
-  {
-    id: 6,
-    image: "/images/sampel_artikel.png",
-    category: "Makanan",
-    title: "Resep Sukses UMKM Kuliner di Kudus",
-    date: "2025-10-22",
-    author: "Admin",
-  },
-  {
-    id: 7,
-    image: "/images/sampel_artikel.png",
-    category: "Kerajinan",
-    title: "Kisah Sukses Pengrajin Lokal Kudus",
-    date: "2025-10-17",
-    author: "Admin",
-  },
-  {
-    id: 8,
-    image: "/images/sampel_artikel.png",
-    category: "Fashion",
-    title: "Batik Kudus: Warisan yang Mendunia",
-    date: "2025-09-15",
-    author: "Admin",
-  },
-  {
-    id: 9,
-    image: "/images/sampel_artikel.png",
-    category: "Minuman",
-    title: "UMKM Kudus Luncurkan Minuman Inovatif",
-    date: "2025-08-10",
-    author: "Admin",
-  },
-  {
-    id: 10,
-    image: "/images/sampel_artikel.png",
-    category: "Uji",
-    title: "Artikel Uji untuk 24 Jam",
-    date: "2025-10-28",
-    author: "Admin",
-  },
-];
+// Slugify
+const slugify = (text) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
 
 const ArtikelPage = () => {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [blogCategories, setBlogCategories] = useState({});
+  const [activeCategory, setActiveCategory] = useState("Semua Waktu");
+
   const kategoriList = [
     { id: 1, name: "Semua Waktu", icon: "mdi:clock-outline" },
     { id: 2, name: "24 Jam Terakhir", icon: "mdi:clock-time-four-outline" },
@@ -136,31 +61,90 @@ const ArtikelPage = () => {
     { id: 5, name: "30 Hari Terakhir", icon: "mdi:calendar-month-outline" },
   ];
 
-  const [activeCategory, setActiveCategory] = useState("Semua Waktu");
+  // === 1. Fetch Kategori Blog ===
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/categories-blog");
+        if (!response.ok) throw new Error("Gagal memuat kategori");
+        const result = await response.json();
+
+        if (result.status && Array.isArray(result.data)) {
+          const map = {};
+          result.data.forEach((cat) => {
+            map[cat.id] = cat.title;
+          });
+          setBlogCategories(map);
+        } else {
+          setBlogCategories({ 1: "UMKM", 2: "Lainnya" });
+        }
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+        setBlogCategories({ 1: "UMKM", 2: "Lainnya" });
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  // === 2. Fetch Artikel (hanya active) ===
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/articles");
+        if (!response.ok) throw new Error("Gagal memuat artikel");
+        const result = await response.json();
+
+        if (result.status && Array.isArray(result.data)) {
+          const formatted = result.data
+            .filter((item) => item.status === "active") // Pastikan hanya active
+            .map((item) => ({
+              id: item.id,
+              image: item.image || "/images/sampel_artikel.png",
+              category_blog_id: item.category_blog_id,
+              title: item.title,
+              created_at: item.created_at, // Full datetime
+              author: item.author,
+            }));
+          setArticles(formatted);
+        } else {
+          throw new Error("Data tidak valid");
+        }
+      } catch (err) {
+        console.error("Error fetching articles:", err);
+        setError("Gagal memuat artikel. Silakan coba lagi.");
+        setArticles([]);
+       } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  // === Filter & Sort ===
   const now = new Date();
-  let filteredArticles = dummyArticles.filter((article) => {
-    const articleDate = new Date(`${article.date}T00:00:00+07:00`);
-    const diffMs = now - articleDate;
-    const diffHours = diffMs / (1000 * 60 * 60);
-    const diffDays = Math.floor(diffHours / 24);
-    switch (activeCategory) {
-      case "24 Jam Terakhir":
-        return diffHours >= 0 && diffHours <= 24;
-      case "3 Hari Terakhir":
-        return diffDays >= 0 && diffDays <= 3;
-      case "7 Hari Terakhir":
-        return diffDays >= 0 && diffDays <= 7;
-      case "30 Hari Terakhir":
-        return diffDays >= 0 && diffDays <= 30;
-      default:
-        return true;
-    }
-  });
-  filteredArticles = filteredArticles.sort(
-    (a, b) =>
-      new Date(`${b.date}T00:00:00+07:00`) -
-      new Date(`${a.date}T00:00:00+07:00`)
-  );
+  const filteredArticles = articles
+    .filter((article) => {
+      const articleDate = new Date(article.created_at);
+      const diffMs = now - articleDate;
+      const diffHours = diffMs / (1000 * 60 * 60);
+      const diffDays = Math.floor(diffHours / 24);
+
+      switch (activeCategory) {
+        case "24 Jam Terakhir":
+          return diffHours >= 0 && diffHours <= 24;
+        case "3 Hari Terakhir":
+          return diffDays >= 0 && diffDays <= 3;
+        case "7 Hari Terakhir":
+          return diffDays >= 0 && diffDays <= 7;
+        case "30 Hari Terakhir":
+          return diffDays >= 0 && diffDays <= 30;
+        default:
+          return true;
+      }
+    })
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
   const cardVariant = {
     hidden: { opacity: 0, y: 25 },
@@ -180,7 +164,13 @@ const ArtikelPage = () => {
             : "sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
         } gap-4 sm:gap-6`}
       >
-        {filteredArticles.length > 0 ? (
+        {loading ? (
+          <div className="col-span-full flex justify-center items-center py-16">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
+          </div>
+        ) : error ? (
+          <div className="col-span-full text-center text-orange py-10">{error}</div>
+        ) : filteredArticles.length > 0 ? (
           filteredArticles.map((article, i) => (
             <motion.div
               key={article.id}
@@ -190,17 +180,19 @@ const ArtikelPage = () => {
               viewport={{ once: true }}
               variants={cardVariant}
             >
-              <ArtikelCard
-                image={article.image}
-                category={article.category}
-                title={article.title}
-                author={article.author}
-                displayDate={
-                  activeCategory === "Semua Waktu"
-                    ? `${formatDate(article.date)}`
-                    : getTimeAgo(article.date)
-                }
-              />
+              <Link to={`/artikel/${article.id}/${slugify(article.title)}`}>
+                <ArtikelCard
+                  image={article.image}
+                  category={blogCategories[article.category_blog_id] || "Lainnya"}
+                  title={article.title}
+                  author={article.author}
+                  displayDate={
+                    activeCategory === "Semua Waktu"
+                      ? formatDate(article.created_at)
+                      : getTimeAgo(article.created_at)
+                  }
+                />
+              </Link>
             </motion.div>
           ))
         ) : (
@@ -210,7 +202,7 @@ const ArtikelPage = () => {
         )}
       </div>
 
-      {filteredArticles.length > 0 && (
+      {filteredArticles.length > 0 && !loading && (
         <div className="flex justify-center mt-6 sm:mt-10">
           <div className="flex items-center gap-2">
             <button className="p-2 rounded text-dark/50 hover:text-orange transition flex items-center justify-center">
@@ -245,6 +237,7 @@ const ArtikelPage = () => {
         </div>
 
         <div className="flex flex-col gap-6 sm:gap-8">
+          {/* Mobile Filter */}
           <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
             {kategoriList.map((item) => (
               <button
@@ -262,6 +255,8 @@ const ArtikelPage = () => {
               </button>
             ))}
           </div>
+
+          {/* Desktop Layout */}
           <div className="hidden md:flex flex-row gap-6 sm:gap-8">
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
@@ -287,22 +282,19 @@ const ArtikelPage = () => {
                       icon={item.icon}
                       width="20"
                       height="20"
-                      className={
-                        activeCategory === item.name
-                          ? "text-white"
-                          : "text-dark"
-                      }
+                      className={activeCategory === item.name ? "text-white" : "text-dark"}
                     />
                     {item.name}
                   </button>
                 ))}
               </div>
             </motion.aside>
+
             <div className="w-9/12">{renderArticleGrid(false)}</div>
           </div>
-          <div className="md:hidden">
-            {renderArticleGrid(true)}
-          </div>
+
+          {/* Mobile Grid */}
+          <div className="md:hidden">{renderArticleGrid(true)}</div>
         </div>
       </PageContainer>
       <Footer />

@@ -7,12 +7,10 @@ import UMKMCard from "../components/UMKMCard";
 import ReviewCard from "../components/ReviewCard";
 import { Link, useNavigate } from "react-router-dom";
 import ArtikelCard from "../components/ArtikelCard";
-import { dummyArticles, formatDate } from "./ArtikelPage";
 import AOS from "aos";
 import AnimatedIconBackground from "../components/AnimatedIconBackground";
 import { dataUMKM } from "../data/dataUMKM";
 import { dataKecamatan } from "../data/dataKecamatan";
-
 import { useRef, useState, useEffect } from "react";
 
 const UMKMScrollSection = () => {
@@ -23,9 +21,7 @@ const UMKMScrollSection = () => {
   useEffect(() => {
     const el = umkmScrollRef.current;
     if (!el) return;
-
     let frameId;
-
     const animateScroll = () => {
       if (!isPausedUMKM && el) {
         const half = el.scrollWidth / 2;
@@ -37,7 +33,6 @@ const UMKMScrollSection = () => {
       }
       frameId = requestAnimationFrame(animateScroll);
     };
-
     frameId = requestAnimationFrame(animateScroll);
     return () => cancelAnimationFrame(frameId);
   }, [isPausedUMKM]);
@@ -46,7 +41,6 @@ const UMKMScrollSection = () => {
     const el = e.currentTarget;
     if (isPausedUMKM) {
       const loop = el.scrollWidth / 2;
-
       if (el.scrollLeft >= loop - 1) {
         el.scrollLeft -= loop;
       } else if (el.scrollLeft <= 0) {
@@ -72,7 +66,6 @@ const UMKMScrollSection = () => {
           scrollbar-width: none;
         }
       `}</style>
-
       <div className="relative">
         <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
         <div
@@ -110,7 +103,124 @@ const UMKMScrollSection = () => {
 
 const HomePage = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [loadingArticles, setLoadingArticles] = useState(true);
+  const [errorArticles, setErrorArticles] = useState("");
+  const [reviewData, setReviewData] = useState([]);
+  const [loadingReviews, setLoadingReviews] = useState(true);
+  const [errorReviews, setErrorReviews] = useState("");
+  const [blogCategories, setBlogCategories] = useState({});
 
+  const navigate = useNavigate();
+
+  // Format tanggal
+  const formatDate = (dateString) => {
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    return new Date(dateString).toLocaleDateString("id-ID", options);
+  };
+
+  // === 1. Fetch Kategori Blog (FIX URL: tanpa trailing slash) ===
+  useEffect(() => {
+    const fetchBlogCategories = async () => {
+      try {
+        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/categories-blog");
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const result = await response.json();
+
+        if (result.status && Array.isArray(result.data)) {
+          const map = {};
+          result.data.forEach((cat) => {
+            map[cat.id] = cat.title;
+          });
+          setBlogCategories(map);
+        } else {
+          console.warn("Gagal memuat kategori, gunakan fallback");
+          setBlogCategories({ 1: "UMKM", 2: "Lainnya" });
+        }
+      } catch (err) {
+        console.error("Error fetching blog categories:", err);
+        setBlogCategories({ 1: "UMKM", 2: "Lainnya" });
+      }
+    };
+
+    fetchBlogCategories();
+  }, []);
+
+  // === 2. Fetch Artikel (tunggu kategori) ===
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setLoadingArticles(true);
+        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/articles");
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const result = await response.json();
+
+        if (result.status && Array.isArray(result.data)) {
+          const formatted = result.data.slice(0, 3).map((item) => ({
+            id: item.id,
+            title: item.title,
+            author: item.author,
+            image: item.image,
+            category: blogCategories[item.category_blog_id] || "Lainnya",
+            date: item.created_at,
+          }));
+          setArticles(formatted);
+        } else {
+          throw new Error(result.message || "Gagal memuat artikel");
+        }
+      } catch (err) {
+        console.error("Error fetching articles:", err);
+        setErrorArticles("Gagal memuat artikel. Silakan coba lagi nanti.");
+        setArticles([]);
+      } finally {
+        setLoadingArticles(false);
+      }
+    };
+
+    if (Object.keys(blogCategories).length > 0) {
+      fetchArticles();
+    }
+  }, [blogCategories]);
+
+  // === 3. Fetch Review ===
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        setLoadingReviews(true);
+        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/rating");
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const result = await response.json();
+        if (result.status && Array.isArray(result.data)) {
+          const formatted = result.data.map((item) => ({
+            name: `${item.name} ${item.name_last}`.trim(),
+            email: item.email,
+            text: item.comment,
+            rating: item.rating,
+            date: new Date(item.created_at).toLocaleDateString("id-ID", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }),
+            profileImage:
+              item.photo_profil ||
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=eee&color=666`,
+          }));
+          setReviewData(formatted);
+        } else {
+          throw new Error(result.message || "Gagal memuat ulasan");
+        }
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+        setErrorReviews("Gagal memuat ulasan. Silakan coba lagi nanti.");
+        setReviewData([]);
+      } finally {
+        setLoadingReviews(false);
+      }
+    };
+    fetchReviews();
+  }, []);
+
+  // AOS & Scroll
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -127,146 +237,72 @@ const HomePage = () => {
   ];
 
   const steps = [
-    {
-      num: "1",
-      title: "Telusuri Kategori UMKM",
-      desc: "Temukan berbagai usaha makanan, minuman, jasa, dan barang lokal.",
-    },
-    {
-      num: "2",
-      title: "Temukan Informasi Lengkap",
-      desc: "Lihat profil, foto, lokasi, dan kontak setiap pelaku UMKM.",
-    },
-    {
-      num: "3",
-      title: "Pelajari & Kenali UMKM",
-      desc: "Dapatkan wawasan tentang beragam usaha lokal di Kabupaten Kudus.",
-    },
+    { num: "1", title: "Telusuri Kategori UMKM", desc: "Temukan berbagai usaha makanan, minuman, jasa, dan barang lokal." },
+    { num: "2", title: "Temukan Informasi Lengkap", desc: "Lihat profil, foto, lokasi, dan kontak setiap pelaku UMKM." },
+    { num: "3", title: "Pelajari & Kenali UMKM", desc: "Dapatkan wawasan tentang beragam usaha lokal di Kabupaten Kudus." },
   ];
 
-  const [reviewData, setReviewData] = useState([]);
-  const [loadingReviews, setLoadingReviews] = useState(true);
-  const [errorReviews, setErrorReviews] = useState("");
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        setLoadingReviews(true);
-        const response = await fetch(
-          "https://api-umkmwongkudus.rplrus.com/api/rating"
-        );
-        const result = await response.json();
-
-        if (result.status && Array.isArray(result.data)) {
-          const formatted = result.data.map((item) => ({
-            name: `${item.name} ${item.name_last}`.trim(),
-            email: item.email,
-            text: item.comment,
-            rating: item.rating,
-            date: new Date(item.created_at).toLocaleDateString("id-ID", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            }),
-            profileImage:
-              item.photo_profil ||
-              `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                item.name
-              )}&background=eee&color=666`,
-          }));
-          setReviewData(formatted);
-        } else {
-          throw new Error(result.message || "Gagal memuat ulasan");
-        }
-      } catch (err) {
-        console.error("Error fetching reviews:", err);
-        setErrorReviews("Gagal memuat ulasan. Silakan coba lagi nanti.");
-        setReviewData([]);
-      } finally {
-        setLoadingReviews(false);
-      }
-    };
-
-    fetchReviews();
-  }, []);
-
+  // Scroll Kecamatan
   const kecamatanScrollRef = useRef(null);
-  const reviewScrollRef = useRef(null);
-
   const [canScrollLeftKecamatan, setCanScrollLeftKecamatan] = useState(false);
   const [canScrollRightKecamatan, setCanScrollRightKecamatan] = useState(true);
-  const [canScrollLeftReview, setCanScrollLeftReview] = useState(false);
-  const [canScrollRightReview, setCanScrollRightReview] = useState(true);
-
-  const navigate = useNavigate();
 
   const checkScrollKecamatan = () => {
     const el = kecamatanScrollRef.current;
     if (el) {
       setCanScrollLeftKecamatan(el.scrollLeft > 0);
-      setCanScrollRightKecamatan(
-        el.scrollLeft < el.scrollWidth - el.clientWidth - 1
-      );
+      setCanScrollRightKecamatan(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
     }
   };
 
   const scrollKecamatan = (direction) => {
     const el = kecamatanScrollRef.current;
     if (el) {
-      el.scrollBy({
-        left: direction === "left" ? -200 : 200,
-        behavior: "smooth",
-      });
+      el.scrollBy({ left: direction === "left" ? -200 : 200, behavior: "smooth" });
     }
   };
 
   useEffect(() => {
     const el = kecamatanScrollRef.current;
     if (!el) return;
-
     checkScrollKecamatan();
     const observer = new ResizeObserver(checkScrollKecamatan);
     observer.observe(el);
     window.addEventListener("resize", checkScrollKecamatan);
-
     return () => {
       observer.unobserve(el);
       window.removeEventListener("resize", checkScrollKecamatan);
     };
   }, []);
 
+  // Scroll Review (FIX TYPO: const, const → hapus)
+  const reviewScrollRef = useRef(null);
+  const [canScrollLeftReview, setCanScrollLeftReview] = useState(false);
+  const [canScrollRightReview, setCanScrollRightReview] = useState(true);
+
   const scrollReview = (direction) => {
     const el = reviewScrollRef.current;
     if (!el) return;
-
     const card = el.querySelector("div > div");
     const width = (card?.offsetWidth || 300) + 16;
-
-    el.scrollBy({
-      left: direction === "left" ? -width : width,
-      behavior: "smooth",
-    });
+    el.scrollBy({ left: direction === "left" ? -width : width, behavior: "smooth" });
   };
 
   const checkScrollReview = () => {
     const el = reviewScrollRef.current;
     if (el) {
       setCanScrollLeftReview(el.scrollLeft > 0);
-      setCanScrollRightReview(
-        el.scrollLeft < el.scrollWidth - el.clientWidth - 1
-      );
+      setCanScrollRightReview(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
     }
   };
 
   useEffect(() => {
     const el = reviewScrollRef.current;
     if (!el) return;
-
     checkScrollReview();
     const observer = new ResizeObserver(checkScrollReview);
     observer.observe(el);
     window.addEventListener("resize", checkScrollReview);
-
     return () => {
       observer.unobserve(el);
       window.removeEventListener("resize", checkScrollReview);
@@ -277,6 +313,7 @@ const HomePage = () => {
     <div className="bg-light min-h-screen">
       <Navbar />
 
+      {/* Hero Section */}
       <section className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <iframe
@@ -298,9 +335,7 @@ const HomePage = () => {
             title="Virtual Tour Kudus"
           ></iframe>
         </div>
-
         <div className="absolute inset-0 bg-dark/50"></div>
-
         <div className="relative z-10 container mx-auto px-4 py-24 sm:py-20 md:py-24 lg:py-32">
           <motion.div
             className="max-w-3xl text-start"
@@ -319,7 +354,6 @@ const HomePage = () => {
               pelaku UMKM asli Kudus.
             </p>
           </motion.div>
-
           <motion.div
             className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4"
             initial={{ opacity: 0, y: 30 }}
@@ -335,7 +369,6 @@ const HomePage = () => {
               <Icon icon="tabler:search" className="w-4 h-4 mr-2" /> Search
             </button>
           </motion.div>
-
           <motion.div
             className="mt-8 text-start"
             initial={{ opacity: 0, y: 20 }}
@@ -355,10 +388,7 @@ const HomePage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
                 >
-                  <Icon
-                    icon={cat.icon}
-                    className="w-5 h-5 sm:w-6 sm:h-6 mb-1"
-                  />
+                  <Icon icon={cat.icon} className="w-5 h-5 sm:w-6 sm:h-6 mb-1" />
                   <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-center line-clamp-1">
                     {cat.name}
                   </span>
@@ -369,6 +399,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Cara Menggunakan */}
       <section
         data-aos="fade-up"
         data-aos-delay="200"
@@ -411,6 +442,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Kecamatan */}
       <section
         data-aos="fade-up"
         data-aos-delay="100"
@@ -441,23 +473,12 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-
         <style jsx>{`
-          .no-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-          .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-          .snap-x {
-            scroll-snap-type: x mandatory;
-          }
-          .snap-start {
-            scroll-snap-align: start;
-          }
+          .no-scrollbar::-webkit-scrollbar { display: none; }
+          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+          .snap-x { scroll-snap-type: x mandatory; }
+          .snap-start { scroll-snap-align: start; }
         `}</style>
-
         <div className="relative">
           <div className="absolute top-0 left-0 w-4 sm:w-6 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
           <div
@@ -481,7 +502,6 @@ const HomePage = () => {
           </div>
           <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
-
         <button
           onClick={() => scrollKecamatan("left")}
           disabled={!canScrollLeftKecamatan}
@@ -498,6 +518,7 @@ const HomePage = () => {
         </button>
       </section>
 
+      {/* Potret UMKM */}
       <section
         data-aos="fade-up"
         className="px-4 md:px-8 lg:px-20 xl:px-50 mb-2 relative"
@@ -514,6 +535,7 @@ const HomePage = () => {
 
       <UMKMScrollSection />
 
+      {/* Review */}
       <section
         data-aos="fade-up"
         className="py-16 sm:py-20 mb-16 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-dark/5 relative"
@@ -545,7 +567,6 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-
         <div className="relative">
           {loadingReviews ? (
             <div className="flex justify-center items-center py-10">
@@ -576,7 +597,6 @@ const HomePage = () => {
             </motion.div>
           )}
         </div>
-
         <button
           onClick={() => scrollReview("left")}
           disabled={!canScrollLeftReview}
@@ -591,7 +611,6 @@ const HomePage = () => {
         >
           <Icon icon="tabler:chevron-right" className="w-5 h-5" />
         </button>
-
         <div className="flex justify-center sm:justify-end mt-4">
           <button
             onClick={() => navigate("/kontak#review")}
@@ -603,6 +622,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Artikel */}
       <section
         data-aos="fade-up"
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
@@ -628,17 +648,31 @@ const HomePage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {dummyArticles.slice(0, 3).map((art) => (
-            <div key={art.id} data-aos="fade-up" data-aos-delay="100">
-              <ArtikelCard
-                image={art.image}
-                category={art.category}
-                title={art.title}
-                displayDate={formatDate(art.date)}
-                author={art.author}
-              />
+          {loadingArticles ? (
+            <div className="col-span-full flex justify-center items-center py-10">
+              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-orange"></div>
             </div>
-          ))}
+          ) : errorArticles ? (
+            <div className="col-span-full text-center text-red-500 py-10">{errorArticles}</div>
+          ) : articles.length === 0 ? (
+            <div className="col-span-full text-center text-dark/60 py-10">Belum ada artikel.</div>
+          ) : (
+            articles.map((art, i) => (
+              <div
+                key={art.id}
+                data-aos="fade-up"
+                data-aos-delay={100 + i * 100}
+              >
+                <ArtikelCard
+                  image={art.image}
+                  category={art.category}
+                  title={art.title}
+                  displayDate={formatDate(art.date)}
+                  author={art.author}
+                />
+              </div>
+            ))
+          )}
         </div>
       </section>
 
