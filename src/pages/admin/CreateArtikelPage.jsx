@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Layout from "../../components/admin/layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaImage } from "react-icons/fa";
-import api from "../../API/Auth.js";
+import api from "../../API/auth.js";
 
 export default function CreateArtikelPage() {
   const [categories, setCategories] = useState([]);

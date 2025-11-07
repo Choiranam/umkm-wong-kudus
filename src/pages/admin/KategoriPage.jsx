@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/admin/layout/Layout";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
-import api from "../../API/Auth.js"; // Pastikan path benar
+import api from "../../API/auth.js"; // Pastikan path benar
 import AuthService from "../../API/authService.js"; // Jika perlu get token manual
 
 export default function KategoriPage() {

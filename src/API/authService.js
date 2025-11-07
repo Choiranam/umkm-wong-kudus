@@ -1,4 +1,4 @@
-import api, { setAuthToken, clearAuthToken } from "../API/Auth.js";
+import api, { setAuthToken, clearAuthToken } from "../API/auth";
 
 const AuthService = {
   login: async (email, password, remember = true) => {
