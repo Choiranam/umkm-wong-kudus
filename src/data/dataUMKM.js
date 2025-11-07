@@ -111,26 +111,28 @@ export const dataUMKM = [
   {
     id: 9,
     name: "Jasa Angkut & Pasir & Bata Merah Jumbo",
+    slug: "jasa-angkut-dan-pasir-bata-merah-jumbo",
     category: "Jasa",
     description:
       "Menyediakan layanan angkut material bangunan dan kebutuhan konstruksi.",
     location: "Dawe",
     kecamatanSlug: "dawe", // Ditambahkan
     openHour: "07:00-17:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Jasa+Angkut+Dawe",
-    link: "https://maps.app.goo.gl/cRj82EGc6TAkoriM9",
+    image: "/images/jasaangkut_hero.jpg",
+    link: "https://maps.app.goo.gl/yimn1Ms8XH6ekbYLA",
   },
   {
     id: 10,
     name: "Ayam Geprek Sa’i Dawe",
+    slug: "ayam-geprek-sai",
     category: "Makanan",
     description:
       "Ayam geprek dengan level pedas sesuai selera dan harga bersahabat.",
     location: "Dawe",
     kecamatanSlug: "dawe", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Ayam+Geprek+Sai",
-    link: "https://maps.app.goo.gl/PfPe7WbfSfYS3LkJ7",
+    image: "/images/ayamgepreksai_hero.jpg",
+    link: "https://maps.app.goo.gl/5G3DAEiX19ufwgaS6",
   },
 
   // GEBOG
@@ -163,36 +165,39 @@ export const dataUMKM = [
   {
     id: 13,
     name: "Sari Rasa Bakso Malvinas",
+    slug: "sari-rasa-bakso-malvinas",
     category: "Makanan",
     description: "Bakso urat dengan kuah kaldu gurih dan porsi mengenyangkan.",
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Bakso+Malvinas",
-    link: "https://maps.app.goo.gl/TXvZsQTRpQKZHKwq8",
+    image: "/images/baksomalvinas_hero.jpg",
+    link: "https://maps.app.goo.gl/ppj9kcANtYxC613S6",
   },
   {
     id: 14,
     name: "Warung Makan Mak Ru",
+    slug: "warung-makan-mak-ru",
     category: "Makanan",
     description: "Menu masakan rumahan lengkap dengan sambal khas Kudus.",
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "08:00-20:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Mak+Ru",
-    link: "https://maps.app.goo.gl/juay76Sbna2XWySPA",
+    image: "/images/warungmakanmakru_hero.jpg",
+    link: "https://maps.app.goo.gl/ShKhKN6G8jLoNxqb6",
   },
   {
     id: 15,
     name: "Kasehito Works",
+    slug: "kasehito-works",
     category: "Jasa",
     description:
       "Menyediakan jasa desain, sablon, dan percetakan lokal berkualitas.",
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "09:00-18:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Kasehito+Works",
-    link: "https://maps.app.goo.gl/LCfCY8JhJnu6xnMa7",
+    image: "/images/kasehitoworks_hero.jpeg",
+    link: "https://maps.app.goo.gl/Hnqm3izDEuR4iDTaA",
   },
 
   // JATI
@@ -220,12 +225,13 @@ export const dataUMKM = [
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "07:00-14:00",
     image:
-      "https://placehold.co/260x160/E2E8F0/334155?text=Nasi+Opor+Sunggingan",
-    link: "https://maps.app.goo.gl/CTwWoJNguH22eQwT9",
+      "/images/oporsungginan_hero.jpg",
+    link: "https://maps.app.goo.gl/ih4WzCWEq4Mw81nw7",
   },
   {
     id: 18,
     name: "Warung Enthog Pak Badi",
+    slug: "warung-enthog-pak-badi",
     category: "Makanan",
     description:
       "Spesialis olahan enthog dengan sambal korek pedas menggugah selera.",
@@ -233,12 +239,13 @@ export const dataUMKM = [
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "10:00-22:00",
     image:
-      "https://placehold.co/260x160/E2E8F0/334155?text=Warung+Enthog+Pak+Badi",
-    link: "https://maps.app.goo.gl/8f5GghbHSAEopjy69",
+      "/images/enthogpakbadi_hero.jpg",
+    link: "https://maps.app.goo.gl/usFhu6CUCSuysUG2A",
   },
   {
     id: 19,
     name: "Jasa Powder Coating & Platting Kudus",
+    slug: "jasa-powder-coating-dan-platting-kudus",
     category: "Jasa",
     description:
       "Melayani coating dan platting untuk berbagai kebutuhan industri dan otomotif.",
@@ -246,73 +253,79 @@ export const dataUMKM = [
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "08:00-17:00",
     image:
-      "https://placehold.co/260x160/E2E8F0/334155?text=Powder+Coating+Kudus",
-    link: "https://maps.app.goo.gl/mQzmND44WD8YSs4J9",
+      "/images/powdercoating_hero.jpg",
+    link: "https://maps.app.goo.gl/QeruafGAk4xGBpdFA",
   },
   {
     id: 20,
     name: "Kedai Es Bang Maman",
+    slug: "kedai-es-bang-maman",
     category: "Minuman",
     description:
       "Es segar berbagai rasa dengan topping buah dan jelly favorit anak muda.",
     location: "Jati",
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Es+Bang+Maman",
-    link: "https://maps.app.goo.gl/Vu7RMPYneemyVbAv8",
+    image: "/images/esbangmaman_hero.jpg",
+    link: "https://maps.app.goo.gl/Fi5eeThuzfuthEyz8",
   },
 
   // Jekulo
   {
     id: 21,
     name: "Jus Pojokan",
+    slug: "jus-pojokan",
     category: "Minuman",
     description:
       "Jus segar berbagai rasa yang cocok dinikmati saat siang hari.",
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Jus+Pojokan",
-    link: "https://maps.app.goo.gl/Zhkh25gYKHdmAoAg7",
+    image: "/images/juspojokan_hero.jpg",
+    link: "https://maps.app.goo.gl/qziXm98Q1MiogAcG7",
   },
   {
     id: 22,
     name: "Kedai Twins Seblak Bandung n Juice Jekulo",
+    slug: "kedai-twins-seblak-bandung-juice-jekulo",
     category: "Minuman",
     description:
       "Kedai seblak dan jus kekinian khas Bandung dengan cita rasa lokal.",
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Kedai+Twins",
-    link: "https://maps.app.goo.gl/K3dFrRZs7dZ6uojF9",
+    image: "/images/kedaytwins_hero.jpg",
+    link: "https://maps.app.goo.gl/7UPi7Rnx5UUV6hGXA",
   },
   {
     id: 23,
     name: "Lentog Tanjung Bang Saiful",
+    slug: "lentog-tanjung-bang-saiful",
     category: "Makanan",
     description: "Lentog khas Kudus dengan cita rasa gurih yang legendaris.",
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "06:00-14:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Lentog+Bang+Saiful",
-    link: "https://maps.app.goo.gl/CZdrZBNNK8U5Z7uw9",
+    image: "/images/lentogbangsyaiful_hero.jpg",
+    link: "https://maps.app.goo.gl/i3hFof87YiH1Jfcm7",
   },
   {
     id: 24,
     name: "Berkah Es Buah",
+    slug: "berkah-es-buah",
     category: "Minuman",
     description:
       "Es buah segar dengan campuran jelly dan susu, favorit semua kalangan.",
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Berkah+Es+Buah",
-    link: "https://maps.app.goo.gl/MuzML5nP25Hv2MpD8",
+    image: "/images/berkahesbuah_hero.jpg",
+    link: "https://maps.app.goo.gl/NP9wzm62FCP3voiz5",
   },
   {
     id: 25,
     name: "Warnet Jaya Sentosa",
+    slug: "warnet-jaya-sentosa",
     category: "Jasa",
     description:
       "Warnet dengan koneksi cepat dan nyaman untuk bermain maupun bekerja.",
@@ -320,81 +333,87 @@ export const dataUMKM = [
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "08:00-22:00",
     image:
-      "https://placehold.co/260x160/E2E8F0/334155?text=Warnet+Jaya+Sentosa",
-    link: "https://maps.app.goo.gl/UHzpMvoGS6CTRYiY6",
+      "/images/warnetjayasentosa_hero.jpeg",
+    link: "https://maps.app.goo.gl/PmLuRVBMbQZ9TM1P8",
   },
 
   // Kaliwungu
   {
     id: 26,
     name: "Jahe Rempah Leggit",
+    slug: "jahe-rempah-leggit",
     category: "Minuman",
     description: "Minuman jahe hangat dengan campuran rempah alami khas Kudus.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Jahe+Leggit",
-    link: "https://maps.app.goo.gl/VJYX3uXpSy5SogKL8",
+    image: "/images/jaherempahreggit_hero.jpg",
+    link: "https://maps.app.goo.gl/BkJaMkRkfC5fNqEg6",
   },
   {
     id: 27,
     name: "Warung Makan Bu Carik",
+    slug: "warung-makan-bu-carik",
     category: "Makanan",
     description:
       "Warung makan sederhana dengan menu rumahan yang lezat dan murah.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "07:00-20:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Bu+Carik",
-    link: "https://maps.app.goo.gl/CcQzT44jBLxcTz317",
+    image: "/images/warungmakanbucarik_hero.jpg",
+    link: "https://maps.app.goo.gl/gTMSEWRBQXFjzw2w7",
   },
   {
     id: 28,
     name: "Tehatea Indonesia",
+    slug: "tehatea-indonesia",
     category: "Minuman",
     description:
       "Gerai teh kekinian dengan berbagai varian rasa dan topping menarik.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Tehatea",
-    link: "https://maps.app.goo.gl/iDRzzu1SYC9EwriG8",
+    image: "/images/tehatea_hero.jpeg",
+    link: "https://maps.app.goo.gl/F8N4e7jorns2isec6",
   },
   {
     id: 29,
     name: "Warung Makan 2 Putra",
+    slug: "warung-makan-2-putra",
     category: "Makanan",
     description: "Tempat makan dengan menu ayam goreng dan sambal khas.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=2+Putra",
-    link: "https://maps.app.goo.gl/zjbtUzu1nr5dotyeA",
+    image: "/images/warungmakan2putra_hero.jpg",
+    link: "https://maps.app.goo.gl/38fiNxsfuYd8tWKe6",
   },
   {
     id: 30,
     name: "Jasa Angkut Barang",
+    slug: "jasa-angkut-barang",
     category: "Jasa",
     description:
       "Layanan angkut cepat dan aman untuk kebutuhan pindahan dan kiriman.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "24 Jam",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Jasa+Angkut",
-    link: "https://maps.app.goo.gl/qyHNi7Gf39h9Lq9g8",
+    image: "/images/jasaangkutbarang_hero.jpg",
+    link: "https://maps.app.goo.gl/y5THumCBYsXwknGv7",
   },
 
   // Kota Kudus
   {
     id: 31,
     name: "Susu Moeria",
+    slug: "susu-moeria",
     category: "Minuman",
     description: "Susu murni dengan berbagai varian rasa khas Kudus.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus", // Ditambahkan (menggunakan slug untuk nama 2 kata)
     openHour: "09:00-22:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Susu+Moeria",
-    link: "https://maps.app.goo.gl/Cfm2eHz19kBCU9Pz9",
+    image: "/images/susumoeria_hero.jpg",
+    link: "https://maps.app.goo.gl/ykPM75GR4zvotqGu7",
   },
   {
     id: 32,
@@ -412,14 +431,15 @@ export const dataUMKM = [
   {
     id: 33,
     name: "Es Gempol Pak Masykur",
+    slug: "es-gempol-pak-masykur",
     category: "Minuman",
     description:
       "Minuman tradisional Kudus dengan gempol segar dan santan manis.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus", // Ditambahkan
     openHour: "09:00-20:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Es+Gempol",
-    link: "https://maps.app.goo.gl/V6sZgXXHEN2feiq17",
+    image: "/images/gempol_hero.jpg",
+    link: "https://maps.app.goo.gl/FbW5YErAMVZPSgE17",
   },
   {
     id: 34,
@@ -452,115 +472,125 @@ export const dataUMKM = [
   {
     id: 36,
     name: "XGAM_Tech",
+    slug: "xgam-tech",
     category: "Jasa",
     description: "Layanan servis laptop, komputer, dan rakit PC profesional.",
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=XGAM_Tech",
-    link: "https://maps.app.goo.gl/9euCZPP28Ux55TVx9",
+    image: "/images/xgamtech_hero.jpg",
+    link: "https://maps.app.goo.gl/gWn3E69AAsSdHF5E8",
   },
   {
     id: 37,
     name: "Jasa Las dan Bubut Mulyo Rejo",
+    slug: "jasa-las-dan-bubut-mulyo-rejo",
     category: "Jasa",
     description:
       "Layanan las dan bubut untuk kebutuhan industri dan rumah tangga.",
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "08:00-17:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Mulyo+Rejo",
-    link: "https://maps.app.goo.gl/743qWsjwzsDYsPn16",
+    image: "/images/jasalas_hero.jpg",
+    link: "https://maps.app.goo.gl/AxEporVGMVhUg6Gx8",
   },
   {
     id: 38,
     name: "Putra Kalimosodo",
+    slug: "putra-kalimosodo",
     category: "Jasa",
     description: "Penyedia jasa transportasi dan material bangunan terpercaya.",
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "08:00-17:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Putra+Kalimosodo",
-    link: "https://maps.app.goo.gl/7H7z1BAqDx88Sfjp7",
+    image: "/images/kalimosodo_hero.jpg",
+    link: "https://maps.app.goo.gl/uH67vcG4Dvs7KoGk8",
   },
   {
     id: 39,
     name: "Ikan Bakar Nasuky Mubarok Jepang",
+    slug: "ikan-bakar-nasuky-mubarok-jepang",
     category: "Makanan",
     description: "Ikan bakar khas Kudus dengan sambal pedas menggoda.",
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Ikan+Bakar+Nasuky",
-    link: "https://maps.app.goo.gl/BNpXA6PkwAXc279z6",
+    image: "/images/ikanbakar_hero.jpg",
+    link: "https://maps.app.goo.gl/gmQKifDFtnkAR7v9A",
   },
   {
     id: 40,
     name: "RM Bu Sarah",
+    slug: "rm-bu-sarah",
     category: "Makanan",
     description: "Rumah makan keluarga dengan masakan tradisional Jawa.",
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=RM+Bu+Sarah",
-    link: "https://maps.app.goo.gl/kE4cSEL21bcZH7Xa6",
+    image: "/images/rmbusarah_hero.jpg",
+    link: "https://maps.app.goo.gl/7ECiqEckKkN3vUTp6",
   },
 
   // Undaan
   {
     id: 41,
     name: "Queen Seblak Prasmanan",
+    slug: "queen-seblak-prasmanan",
     category: "Makanan",
     description:
       "Seblak dengan berbagai topping dan level pedas yang bisa dipilih.",
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Seblak+Queen",
-    link: "https://maps.app.goo.gl/z287J9zCbZojfoMfA",
+    image: "/images/queenseblak_hero.jpg",
+    link: "https://maps.app.goo.gl/jBP4apLhmMCffGhX9",
   },
   {
     id: 42,
     name: "Ayam Geprek Mak Ginting",
+    slug: "ayam-geprek-mak-ginting",
     category: "Makanan",
     description: "Ayam geprek renyah dengan sambal pedas khas Kudus.",
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Mak+Ginting",
-    link: "https://maps.app.goo.gl/jGCtZ2MbyygA1iD68",
+    image: "/images/geprekmakginting_hero.jpg",
+    link: "https://maps.app.goo.gl/EoNQcjSTJTfPQRcQ7",
   },
   {
     id: 43,
     name: "Warung Sate & Gule Pak Sugiyo",
+    slug: "warung-sate-dan-gule-pak-sugiyo",
     category: "Makanan",
     description: "Sate kambing empuk dan gule gurih khas Kudus.",
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=Pak+Sugiyo",
-    link: "https://maps.app.goo.gl/wbTHjq9ZrMd1NCCC8",
+    image: "/images/warungsatedangule_hero.jpg",
+    link: "https://maps.app.goo.gl/1rY63jpYL1TG5zCi7",
   },
   {
     id: 44,
     name: "MJ Teknik",
+    slug: "mj-teknik",
     category: "Jasa",
     description: "Layanan instalasi listrik dan servis alat rumah tangga.",
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "08:00-17:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=MJ+Teknik",
-    link: "https://maps.app.goo.gl/MPsgnJEDyhLbUE4C6",
+    image: "/images/mjteknik_hero.jpg",
+    link: "https://maps.app.goo.gl/ybAKugTzb2kkbV1s7",
   },
   {
     id: 45,
     name: "Fotocopy & Jasa Travel",
+    slug: "fotocopy-dan-jasa-travel",
     category: "Jasa",
     description: "Layanan fotokopi cepat dan travel antar kota.",
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "07:00-21:00",
-    image: "https://placehold.co/260x160/E2E8F0/334155?text=FotoCopy+Travel",
-    link: "https://maps.app.goo.gl/1tu74aqqG5myETN17",
+    image: "/images/fotocopy_hero.jpeg",
+    link: "https://maps.app.goo.gl/bNhm4hXN8YRd7bvz9",
   },
 ];
