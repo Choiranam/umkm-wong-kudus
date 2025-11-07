@@ -15,7 +15,7 @@ export default function Layout({ children }) {
 
     // Kalau belum pilih tab, tampilkan children atau teks default
     return (
-      <div className="text-gray-400 text-center mt-20 text-sm">
+      <div className="text-gray-400 text-center text-sm">
         {children || "Pilih tab di atas untuk melihat konten"}
       </div>
     );

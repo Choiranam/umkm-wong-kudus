@@ -59,26 +59,40 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
     }
   }, [sidebarExpanded]);
 
+  // Auto-expand grup jika halaman aktif
+  useEffect(() => {
+    if (isActive(["/dashboard"])) setOpenDashboard(true);
+    if (isActive(["/KategoriUMKM", "/UMKM", "/galeri-umkm"])) setOpenUMKM(true);
+    if (isActive(["/kategori-admin", "/artikel-admin"])) setOpenArtikel(true);
+    if (isActive(["/staff_admin"])) setOpenRating(true);
+    if (isActive(["/manajemenobat"])) setOpenKontak(true);
+    if (isActive(["/settings", "/account", "/profile"]))
+      setOpenPengaturan(true);
+    if (isActive(["/register", "/forgot-password", "/registerexcel"]))
+      setOpenAutentikasi(true);
+  }, [pathname]);
+
   // Helper: toggle grup
   const toggle = (setter) => {
     setter((prev) => !prev);
     setSidebarExpanded(true);
   };
 
-  // Helper: cek path aktif
+  // Helper: cek path aktif (mendukung array)
   const isActive = (paths) => {
     if (Array.isArray(paths)) {
-      return paths.some((p) => pathname.includes(p));
+      return paths.some((p) => pathname === p || pathname.startsWith(p + "/"));
     }
-    return pathname.includes(paths);
+    return pathname === paths || pathname.startsWith(paths + "/");
   };
 
   return (
     <div className="min-w-fit">
       {/* Backdrop (mobile) */}
       <div
-        className={`fixed inset-0 bg-gray-900/30 z-40 lg:hidden transition-opacity duration-200 ${sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+        className={`fixed inset-0 bg-gray-900/30 z-40 lg:hidden transition-opacity duration-200 ${
+          sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
         aria-hidden="true"
       />
 
@@ -86,11 +100,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-[100dvh] overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-white p-4 transition-all duration-200 ease-in-out ${sidebarOpen ? "translate-x-0" : "-translate-x-64"
-          } ${variant === "v2"
+        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-[100dvh] overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-white p-4 transition-all duration-200 ease-in-out ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-64"
+        } ${
+          variant === "v2"
             ? "border-r border-gray-200"
             : "rounded-r-2xl shadow-xs"
-          }`}
+        }`}
       >
         {/* Header */}
         <div className="flex justify-between mb-10 pr-3 sm:px-2">
@@ -137,10 +153,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
               <li className="mb-2">
                 <a
                   href="#0"
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${pathname === "/" || pathname.includes("dashboard")
-                      ? "bg-orange-50"
-                      : ""
-                    }`}
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
+                    isActive(["/dashboard", "/"]) ? "bg-orange-50" : ""
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     toggle(setOpenDashboard);
@@ -148,10 +163,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 >
                   <div className="flex items-center">
                     <svg
-                      className={`shrink-0 fill-current ${pathname === "/" || pathname.includes("dashboard")
-                        ? "text-orange"
-                        : "text-gray-400 dark:text-gray-500"
-                        }`}
+                      className={`shrink-0 fill-current ${
+                        isActive(["/dashboard", "/"])
+                          ? "text-orange-500"
+                          : "text-gray-400"
+                      }`}
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
@@ -165,8 +181,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     </span>
                   </div>
                   <svg
-                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${openDashboard ? "rotate-180" : ""
-                      }`}
+                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${
+                      openDashboard ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 12 12"
                   >
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -180,9 +197,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/dashboard"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -197,8 +215,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
               <li className="mb-2">
                 <a
                   href="#0"
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${isActive(["KategoriUMKM", "UMKM"]) ? "bg-orange-50" : ""
-                    }`}
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
+                    isActive(["/KategoriUMKM", "/UMKM", "/galeri-umkm"])
+                      ? "bg-orange-50"
+                      : ""
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     toggle(setOpenUMKM);
@@ -206,10 +227,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 >
                   <div className="flex items-center">
                     <svg
-                      className={`w-4 h-4 shrink-0 fill-current ${isActive(["KategoriUMKM", "UMKM"])
+                      className={`w-4 h-4 shrink-0 fill-current ${
+                        isActive(["/KategoriUMKM", "/UMKM", "/galeri-umkm"])
                           ? "text-orange-500"
                           : "text-gray-400"
-                        }`}
+                      }`}
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 1a2 2 0 0 0-2 2v1H5a1 1 0 0 0 0 2h1v1a2 2 0 1 0 4 0V6h1a1 1 0 1 0 0-2h-1V3a2 2 0 0 0-2-2Zm0 2a1 1 0 0 1 1 1v1H7V4a1 1 0 0 1 1-1Z" />
@@ -220,8 +242,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     </span>
                   </div>
                   <svg
-                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${openUMKM ? "rotate-180" : ""
-                      }`}
+                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${
+                      openUMKM ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 12 12"
                   >
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -235,9 +258,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/KategoriUMKM"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -249,9 +273,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/UMKM"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -263,9 +288,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/galeri-umkm"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -280,8 +306,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
               <li className="mb-2">
                 <a
                   href="#0"
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${isActive(["kategori", "article"]) ? "bg-orange-50" : ""
-                    }`}
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
+                    isActive([
+                      "/kategori-admin",
+                      "/artikel-admin",
+                      "/artikel-admin/create",
+                    ])
+                      ? "bg-orange-50"
+                      : ""
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     toggle(setOpenArtikel);
@@ -289,10 +322,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 >
                   <div className="flex items-center">
                     <svg
-                      className={`w-4 h-4 shrink-0 fill-current ${isActive(["kategori", "article"])
+                      className={`w-4 h-4 shrink-0 fill-current ${
+                        isActive([
+                          "/kategori-admin",
+                          "/artikel-admin",
+                          "/artikel-admin/create",
+                        ])
                           ? "text-orange-500"
                           : "text-gray-400"
-                        }`}
+                      }`}
                       viewBox="0 0 16 16"
                     >
                       <path d="M2 2h12v12H2V2Zm10 2H4v8h8V4Z" />
@@ -303,8 +341,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     </span>
                   </div>
                   <svg
-                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${openArtikel ? "rotate-180" : ""
-                      }`}
+                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${
+                      openArtikel ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 12 12"
                   >
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -316,11 +355,12 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     <li className="mb-1">
                       <NavLink
                         end
-                        to="/kategori"
+                        to="/kategori-admin"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -330,11 +370,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     <li className="mb-1">
                       <NavLink
                         end
-                        to="/article"
+                        to="/artikel-admin"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive ||
+                            window.location.pathname === "/artikel-admin/create"
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -345,12 +387,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 </div>
               </li>
 
-              {/* Rating */}
+              {/* Management Rating */}
               <li className="mb-2">
                 <a
                   href="#0"
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${pathname.includes("staff_admin") ? "bg-orange-50" : ""
-                    }`}
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
+                    isActive(["/staff_admin"]) ? "bg-orange-50" : ""
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     toggle(setOpenRating);
@@ -358,10 +401,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 >
                   <div className="flex items-center">
                     <svg
-                      className={`w-4 h-4 shrink-0 fill-current ${pathname.includes("staff_admin")
+                      className={`w-4 h-4 shrink-0 fill-current ${
+                        isActive(["/staff_admin"])
                           ? "text-orange-500"
                           : "text-gray-400"
-                        }`}
+                      }`}
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 0l2.4 4.9 5.4.8-3.9 3.8.9 5.4L8 12.2l-4.8 2.5.9-5.4L.2 5.7l5.4-.8L8 0Z" />
@@ -371,8 +415,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     </span>
                   </div>
                   <svg
-                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${openRating ? "rotate-180" : ""
-                      }`}
+                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${
+                      openRating ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 12 12"
                   >
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -386,9 +431,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/staff_admin"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -403,8 +449,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
               <li className="mb-2">
                 <a
                   href="#0"
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${pathname.includes("manajemenobat") ? "bg-orange-50" : ""
-                    }`}
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
+                    isActive(["/manajemenobat"]) ? "bg-orange-50" : ""
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     toggle(setOpenKontak);
@@ -412,10 +459,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 >
                   <div className="flex items-center">
                     <svg
-                      className={`w-4 h-4 shrink-0 fill-current ${pathname.includes("manajemenobat")
+                      className={`w-4 h-4 shrink-0 fill-current ${
+                        isActive(["/manajemenobat"])
                           ? "text-orange-500"
                           : "text-gray-400"
-                        }`}
+                      }`}
                       viewBox="0 0 16 16"
                     >
                       <path d="M2 3h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm0 2v6h12V5H2Zm2 1h8v1H4V6Zm0 2h5v1H4V8Z" />
@@ -425,8 +473,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     </span>
                   </div>
                   <svg
-                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${openKontak ? "rotate-180" : ""
-                      }`}
+                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${
+                      openKontak ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 12 12"
                   >
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -440,9 +489,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/manajemenobat"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -457,10 +507,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
               <li className="mb-2">
                 <a
                   href="#0"
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${isActive(["settings", "account", "profile"])
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
+                    isActive(["/settings", "/account", "/profile"])
                       ? "bg-orange-50"
                       : ""
-                    }`}
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     toggle(setOpenPengaturan);
@@ -468,10 +519,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 >
                   <div className="flex items-center">
                     <svg
-                      className={`w-4 h-4 shrink-0 fill-current ${isActive(["settings", "account", "profile"])
+                      className={`w-4 h-4 shrink-0 fill-current ${
+                        isActive(["/settings", "/account", "/profile"])
                           ? "text-orange-500"
                           : "text-gray-400"
-                        }`}
+                      }`}
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 1a1.5 1.5 0 1 1 0 3A1.5 1.5 0 0 1 8 1Zm0 5a1.5 1.5 0 1 1 0 3A1.5 1.5 0 0 1 8 6Zm1.5 5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
@@ -482,8 +534,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     </span>
                   </div>
                   <svg
-                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${openPengaturan ? "rotate-180" : ""
-                      }`}
+                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${
+                      openPengaturan ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 12 12"
                   >
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -497,9 +550,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/settings"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -512,7 +566,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
             </ul>
           </div>
 
-          {/* === Autentikasi (dipindah ke bawah) === */}
+          {/* === Lainnya === */}
           <div className="mt-8">
             <h3 className="text-xs uppercase text-gray-400 font-semibold pl-3">
               <span
@@ -530,10 +584,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
               <li className="mb-2">
                 <a
                   href="#0"
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${isActive(["register", "forgot-password", "registerexcel"])
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
+                    isActive([
+                      "/register",
+                      "/forgot-password",
+                      "/registerexcel",
+                    ])
                       ? "bg-orange-50"
                       : ""
-                    }`}
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     toggle(setOpenAutentikasi);
@@ -541,10 +600,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 >
                   <div className="flex items-center">
                     <svg
-                      className={`w-4 h-4 shrink-0 fill-current ${isActive(["register", "forgot-password", "registerexcel"])
+                      className={`w-4 h-4 shrink-0 fill-current ${
+                        isActive([
+                          "/register",
+                          "/forgot-password",
+                          "/registerexcel",
+                        ])
                           ? "text-orange-500"
                           : "text-gray-400"
-                        }`}
+                      }`}
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 0a4 4 0 0 0-4 4v1H3a1 1 0 0 0 0 2h1v1a4 4 0 0 0 8 0V7h1a1 1 0 1 0 0-2h-1V4a4 4 0 0 0-4-4ZM6 4a2 2 0 1 1 4 0v1H6V4Z" />
@@ -555,8 +619,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     </span>
                   </div>
                   <svg
-                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${openAutentikasi ? "rotate-180" : ""
-                      }`}
+                    className={`w-3 h-3 shrink-0 ml-2 fill-current text-gray-400 ${
+                      openAutentikasi ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 12 12"
                   >
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -570,9 +635,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/register"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
@@ -584,9 +650,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         end
                         to="/registerexcel"
                         className={({ isActive }) =>
-                          `block text-sm transition truncate ${isActive
-                            ? "text-orange-500"
-                            : "text-gray-500/90 hover:text-orange-600"
+                          `block text-sm transition truncate ${
+                            isActive
+                              ? "text-orange-500"
+                              : "text-gray-500/90 hover:text-orange-600"
                           }`
                         }
                       >
