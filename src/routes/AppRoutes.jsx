@@ -21,6 +21,9 @@ import UMKMPage from "../pages/admin/UMKMPage.jsx";
 import KategoriAdminPage from "../pages/admin/KategoriPage.jsx";
 import ArtikelAdmin from "../pages/admin/ArtikelPage.jsx";
 import CreateArtikelPage from "../pages/admin/CreateArtikelPage.jsx";
+import InfoProfilePage from "../pages/admin/InfoProfilePage.jsx";
+import KontakAdminPage from "../pages/admin/KontakPage.jsx";
+import RatingAdminPage from "../pages/admin/RatingPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +44,10 @@ const router = createBrowserRouter([
       {path: "/dashboard",element: (<UserRoute><DashboardPage /></UserRoute>),},
       {path: "/kategori-admin",element: (<UserRoute><KategoriAdminPage /></UserRoute>),},
       {path: "/artikel-admin",element: (<UserRoute><ArtikelAdmin /></UserRoute>),},
+      {path: "/profile",element: (<UserRoute><InfoProfilePage /></UserRoute>),},
+      {path: "/ratingadmin",element: (<UserRoute><RatingAdminPage /></UserRoute>),},
       { path: "/artikel-admin/create", element: <CreateArtikelPage /> },
+      { path: "/kontakadmin", element: <KontakAdminPage /> },
       {path: "/UMKM",element: (<UserRoute><UMKMPage /></UserRoute>),},
       { path: "*", element: <NotFoundPage /> },
     ],

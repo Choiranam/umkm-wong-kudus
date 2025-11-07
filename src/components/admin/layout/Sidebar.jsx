@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import UKS2 from "/images/logo_navbar_footer.png";
+import api from "../../../API/auth"; // Pastikan path ini benar
 
 function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
   const location = useLocation();
   const { pathname } = location;
+  const navigate = useNavigate();
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
@@ -22,6 +24,32 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
   const [openKontak, setOpenKontak] = useState(false);
   const [openPengaturan, setOpenPengaturan] = useState(false);
   const [openAutentikasi, setOpenAutentikasi] = useState(false);
+
+  // === LOGOUT FUNCTION ===
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
+    try {
+      await api.post("/logout", {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    } catch (err) {
+      console.warn("Logout gagal di server, tetap lanjutkan logout lokal");
+    } finally {
+      // Bersihkan data login
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("role");
+      // Redirect ke halaman utama
+      navigate("/", { replace: true });
+    }
+  };
 
   // Tutup sidebar saat klik di luar (mobile)
   useEffect(() => {
@@ -64,12 +92,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
     if (isActive(["/dashboard"])) setOpenDashboard(true);
     if (isActive(["/KategoriUMKM", "/UMKM", "/galeri-umkm"])) setOpenUMKM(true);
     if (isActive(["/kategori-admin", "/artikel-admin"])) setOpenArtikel(true);
-    if (isActive(["/staff_admin"])) setOpenRating(true);
-    if (isActive(["/manajemenobat"])) setOpenKontak(true);
-    if (isActive(["/settings", "/account", "/profile"]))
-      setOpenPengaturan(true);
-    if (isActive(["/register", "/forgot-password", "/registerexcel"]))
-      setOpenAutentikasi(true);
+    if (isActive(["/ratingadmin"])) setOpenRating(true);
+    if (isActive(["/kontakadmin"])) setOpenKontak(true);
+    if (isActive(["/settings", "/account", "/profile"])) setOpenPengaturan(true);
+    if (isActive(["/register", "/forgot-password", "/registerexcel"])) setOpenAutentikasi(true);
   }, [pathname]);
 
   // Helper: toggle grup
@@ -78,7 +104,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
     setSidebarExpanded(true);
   };
 
-  // Helper: cek path aktif (mendukung array)
+  // Helper: cek path aktif
   const isActive = (paths) => {
     if (Array.isArray(paths)) {
       return paths.some((p) => pathname === p || pathname.startsWith(p + "/"));
@@ -374,7 +400,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         className={({ isActive }) =>
                           `block text-sm transition truncate ${
                             isActive ||
-                            window.location.pathname === "/artikel-admin/create"
+                            pathname === "/artikel-admin/create"
                               ? "text-orange-500"
                               : "text-gray-500/90 hover:text-orange-600"
                           }`
@@ -392,7 +418,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 <a
                   href="#0"
                   className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
-                    isActive(["/staff_admin"]) ? "bg-orange-50" : ""
+                    isActive(["/ratingadmin"]) ? "bg-orange-50" : ""
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -402,7 +428,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                   <div className="flex items-center">
                     <svg
                       className={`w-4 h-4 shrink-0 fill-current ${
-                        isActive(["/staff_admin"])
+                        isActive(["/ratingadmin"])
                           ? "text-orange-500"
                           : "text-gray-400"
                       }`}
@@ -429,7 +455,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     <li className="mb-1">
                       <NavLink
                         end
-                        to="/staff_admin"
+                        to="/ratingadmin"
                         className={({ isActive }) =>
                           `block text-sm transition truncate ${
                             isActive
@@ -450,7 +476,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 <a
                   href="#0"
                   className={`flex items-center justify-between px-3 py-2 rounded-lg transition ${
-                    isActive(["/manajemenobat"]) ? "bg-orange-50" : ""
+                    isActive(["/kontakadmin"]) ? "bg-orange-50" : ""
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -460,7 +486,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                   <div className="flex items-center">
                     <svg
                       className={`w-4 h-4 shrink-0 fill-current ${
-                        isActive(["/manajemenobat"])
+                        isActive(["/kontakadmin"])
                           ? "text-orange-500"
                           : "text-gray-400"
                       }`}
@@ -487,7 +513,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     <li className="mb-1">
                       <NavLink
                         end
-                        to="/manajemenobat"
+                        to="/kontakadmin"
                         className={({ isActive }) =>
                           `block text-sm transition truncate ${
                             isActive
@@ -548,7 +574,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                     <li className="mb-1">
                       <NavLink
                         end
-                        to="/settings"
+                        to="/profile"
                         className={({ isActive }) =>
                           `block text-sm transition truncate ${
                             isActive
@@ -615,7 +641,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                       <path d="M10 10a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
                     </svg>
                     <span className="ml-3 text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200 hover:text-orange-600">
-                      Settings
+                      Autentikasi
                     </span>
                   </div>
                   <svg
@@ -631,34 +657,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                 <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
                   <ul className={`pl-9 mt-1 ${!openAutentikasi && "hidden"}`}>
                     <li className="mb-1">
-                      <NavLink
-                        end
-                        to="/register"
-                        className={({ isActive }) =>
-                          `block text-sm transition truncate ${
-                            isActive
-                              ? "text-orange-500"
-                              : "text-gray-500/90 hover:text-orange-600"
-                          }`
-                        }
-                      >
-                        Settings
-                      </NavLink>
+                      {/* KOSONGIN AJA */}
                     </li>
                     <li className="mb-1">
-                      <NavLink
-                        end
-                        to="/registerexcel"
-                        className={({ isActive }) =>
-                          `block text-sm transition truncate ${
-                            isActive
-                              ? "text-orange-500"
-                              : "text-gray-500/90 hover:text-orange-600"
-                          }`
-                        }
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full text-left text-sm transition truncate text-gray-500/90 hover:text-red-600 font-medium"
                       >
                         Logout
-                      </NavLink>
+                      </button>
                     </li>
                   </ul>
                 </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Layout from "../../components/admin/layout/Layout";
 import { FaEye, FaEdit, FaTrash, FaFilter, FaImage } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../API/Auth.js";
+import api from "../../API/auth.js";
 
 export default function ArtikelPage() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
