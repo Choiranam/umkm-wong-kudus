@@ -100,7 +100,7 @@ const ArtikelPage = () => {
             .filter((item) => item.status === "active") // Pastikan hanya active
             .map((item) => ({
               id: item.id,
-              image: item.image || "/images/sampel_artikel.png",
+              image: item.image || "/images/sampel_artikel.webp",
               category_blog_id: item.category_blog_id,
               title: item.title,
               created_at: item.created_at, // Full datetime
@@ -224,7 +224,7 @@ const ArtikelPage = () => {
     <div className="bg-light min-h-screen w-full">
       <Navbar />
       <HeroContent
-        image="/images/hero_artikel.jpg"
+        image="/images/hero_artikel.webp"
         title="Temukan Cerita dan Inspirasi UMKM Kudus melalui Artikel"
         subtitle="Kumpulan kisah, wawasan, dan inovasi pelaku UMKM di Kudus untuk menginspirasi langkah Anda."
       />

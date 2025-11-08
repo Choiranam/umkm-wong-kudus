@@ -225,7 +225,7 @@ const KontakPage = () => {
     <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
       <HeroContent
-        image="/images/hero_content_kontak.png"
+        image="/images/hero_content_kontak.webp"
         title="Hubungi Kami untuk Info Lebih Lanjut"
         subtitle="Jangan ragu untuk menghubungi kami agar kami dapat membantu Anda dengan informasi yang Anda butuhkan."
       />
@@ -378,7 +378,7 @@ const KontakPage = () => {
           data-aos="fade-right"
         >
           <img
-            src="/images/kudus.jpg"
+            src="/images/kudus.webp"
             alt="Kudus"
             className="w-full h-full object-cover"
           />

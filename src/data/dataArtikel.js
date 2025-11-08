@@ -1,7 +1,7 @@
 const dataArtikel = [
   {
     id: 1,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Minuman",
     title: "Kudus Kenalkan Produk UMKM Unggulan ke Tingkat Nasional",
     date: "2025-08-17",
@@ -9,7 +9,7 @@ const dataArtikel = [
   },
   {
     id: 2,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Makanan",
     title: "Inovasi Kuliner Tradisional Kudus yang Diminati Generasi Muda",
     date: "2025-09-02",
@@ -17,7 +17,7 @@ const dataArtikel = [
   },
   {
     id: 3,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "UMKM",
     title: "Pelatihan Digital Marketing untuk Pelaku Usaha di Kudus",
     date: "2025-09-20",
@@ -25,7 +25,7 @@ const dataArtikel = [
   },
   {
     id: 4,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Event",
     title: "Festival Kuliner Kudus 2025 Sukses Tarik Ribuan Pengunjung",
     date: "2025-10-05",
@@ -33,7 +33,7 @@ const dataArtikel = [
   },
   {
     id: 5,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Inspirasi",
     title: "Cerita Sukses Pengusaha Muda Kudus Bangun Bisnis Kopi Lokal",
     date: "2025-10-25",
@@ -41,7 +41,7 @@ const dataArtikel = [
   },
   {
     id: 6,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Teknologi",
     title: "Digitalisasi Bantu UMKM Kudus Naik Kelas di Era Modern",
     date: "2025-10-28",
@@ -49,7 +49,7 @@ const dataArtikel = [
   },
   {
     id: 7,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Edukasi",
     title: "Pelajar Kudus Diajarkan Cara Mengembangkan Produk Lokal",
     date: "2025-09-15",
@@ -57,7 +57,7 @@ const dataArtikel = [
   },
   {
     id: 8,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Kreatif",
     title: "Desain Kemasan Unik Jadi Daya Tarik Produk UMKM Kudus",
     date: "2025-08-30",
@@ -65,7 +65,7 @@ const dataArtikel = [
   },
   {
     id: 9,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Bisnis",
     title: "Strategi Pemasaran Produk Lokal Kudus untuk Pasar Nasional",
     date: "2025-09-25",
@@ -73,7 +73,7 @@ const dataArtikel = [
   },
   {
     id: 10,
-    image: "/images/sampel_artikel.png",
+    image: "/images/sampel_artikel.webp",
     category: "Gaya Hidup",
     title: "Tren Konsumsi Sehat Dorong Popularitas Produk Herbal Kudus",
     date: "2025-10-10",

@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="flex flex-col items-start justify-center">
             <Link to="/">
               <img
-                src="/images/logo_navbar_footer.png"
+                src="/images/logo_navbar_footer.webp"
                 alt="Kudus UMKM"
                 className="w-44 md:w-48"
               />

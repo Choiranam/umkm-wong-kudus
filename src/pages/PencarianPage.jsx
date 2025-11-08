@@ -37,7 +37,7 @@ const PencarianPage = () => {
     <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
       <HeroContent
-        image="/images/pencarian_hero_content.png"
+        image="/images/pencarian_hero_content.webp"
         title="Temukan berbagai usaha lokal sesuai kata kunci pilihanmu."
         subtitle="Dukung pelaku UMKM lokal dan temukan produk, layanan, serta kuliner pilihan di Kudus."
       />

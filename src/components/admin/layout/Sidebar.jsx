@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import UKS2 from "/images/logo_navbar_footer.png";
+import UKS2 from "/images/logo_navbar_footer.webp";
 import api from "../../../API/auth"; // Pastikan path ini benar
 
 function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
