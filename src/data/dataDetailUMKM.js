@@ -1309,7 +1309,7 @@ export const dataDetailUMKM = [
       { day: "Minggu", hours: "09.00 - 17.00", isOpen: true },
     ],
   },
-  
+
   // JEKULO
   {
     id: 21,
@@ -1366,8 +1366,7 @@ export const dataDetailUMKM = [
     name: "Kedai Twins Seblak Bandung n Juice Jekulo",
     slug: "kedai-twins-seblak-bandung-juice-jekulo",
     heroImage: "/images/kedaytwins_hero.jpg",
-    heroTitle:
-      'Kedai Twins – Seblak Bandung & Jus Segar Favorit di Jekulo!"',
+    heroTitle: 'Kedai Twins – Seblak Bandung & Jus Segar Favorit di Jekulo!"',
     heroSubtitle:
       "Nikmati perpaduan pedas gurih khas Seblak Bandung dan kesegaran jus buah alami dalam satu tempat yang nyaman dan ramah di Jekulo, Kudus.",
     about:
@@ -1570,9 +1569,7 @@ export const dataDetailUMKM = [
         image: "/images/warnet_menu1.png",
       },
     ],
-    galleryImages: [
-      "/images/warnet_menu1.png",
-    ],
+    galleryImages: ["/images/warnet_menu1.png"],
     openingHours: [
       { day: "Senin", hours: "07.00 - 22.00", isOpen: true },
       { day: "Selasa", hours: "07.00 - 22.00", isOpen: true },
@@ -1584,7 +1581,7 @@ export const dataDetailUMKM = [
     ],
   },
   // KALIWUNGU
-   {
+  {
     id: 26,
     name: "Jahe Rempah Leggit",
     slug: "jahe-rempah-leggit",
@@ -1650,13 +1647,13 @@ export const dataDetailUMKM = [
       { day: "Minggu", hours: "Buka 24 Jam", isOpen: true },
     ],
   },
-   {
+  {
     id: 27,
     name: "Warung Makan Bu Carik",
     slug: "warung-makan-bu-carik",
     heroImage: "/images/warungmakanbucarik_hero.jpg",
     heroTitle:
-      'Warung Makan Bu Carik – Masakan Tradisional Khas Kudus yang Lezat',
+      "Warung Makan Bu Carik – Masakan Tradisional Khas Kudus yang Lezat",
     heroSubtitle:
       "Nikmati hidangan tradisional dengan cita rasa autentik, porsi melimpah, dan harga terjangkau. Cocok untuk sarapan, makan siang, atau makan malam.",
     about:
@@ -1723,11 +1720,11 @@ export const dataDetailUMKM = [
   },
   {
     id: 28,
-     name: "Tehatea Indonesia",
+    name: "Tehatea Indonesia",
     slug: "tehatea-indonesia",
     heroImage: "/images/tehatea_hero.jpeg",
     heroTitle:
-      'Tehatea Indonesia – Minuman Teh & Kreasi Minuman Segar Nusantara',
+      "Tehatea Indonesia – Minuman Teh & Kreasi Minuman Segar Nusantara",
     heroSubtitle:
       "Nikmati berbagai minuman teh hangat maupun dingin dengan rasa autentik, paduan rempah dan bahan alami. Cocok untuk dinikmati kapan saja sebagai teman santai atau melepas dahaga.",
     about:
@@ -1764,9 +1761,7 @@ export const dataDetailUMKM = [
         image: "/images/tehatea_menu2.png",
       },
     ],
-    galleryImages: [
-      "/images/tehatea_galerifoto1.png",
-    ],
+    galleryImages: ["/images/tehatea_galerifoto1.png"],
     openingHours: [
       { day: "Senin", hours: "10.00 - 20.00", isOpen: true },
       { day: "Selasa", hours: "10.00 - 20.00", isOpen: true },
@@ -1779,11 +1774,10 @@ export const dataDetailUMKM = [
   },
   {
     id: 29,
-     name: "Warung Makan 2 Putra",
+    name: "Warung Makan 2 Putra",
     slug: "warung-makan-2-putra",
     heroImage: "/images/warungmakan2putra_hero.jpg",
-    heroTitle:
-      'Warung Makan 2 Putra – Masakan Rumahan Khas Kudus yang Lezat',
+    heroTitle: "Warung Makan 2 Putra – Masakan Rumahan Khas Kudus yang Lezat",
     heroSubtitle:
       "Nikmati hidangan rumahan dengan cita rasa autentik, porsi melimpah, dan harga terjangkau. Cocok untuk sarapan, makan siang, atau makan malam.",
     about:
@@ -1852,11 +1846,11 @@ export const dataDetailUMKM = [
   },
   {
     id: 30,
-     name: "Jasa Angkut Barang",
+    name: "Jasa Angkut Barang",
     slug: "jasa-angkut-barang",
     heroImage: "/images/jasaangkutbarang_hero.jpg",
     heroTitle:
-      'Jasa Angkut Barang – Layanan Pengangkutan Cepat dan Aman di Kudus',
+      "Jasa Angkut Barang – Layanan Pengangkutan Cepat dan Aman di Kudus",
     heroSubtitle:
       "Melayani pengangkutan barang untuk kebutuhan rumah tangga, kantor, atau usaha dengan aman dan tepat waktu.",
     about:
@@ -1903,6 +1897,108 @@ export const dataDetailUMKM = [
     ],
   },
   // KOTA KUDUS
+  {
+    id: 31,
+    name: "Susu Moeria",
+    slug: "susu-moeria",
+    heroImage: "/images/susumoeria_hero.jpg",
+    heroTitle:
+      'Susu Moeria – Susu Segar Murni dengan Rasa Lezat dan Menyehatkan!"',
+    heroSubtitle:
+      "Nikmati kesegaran susu murni pilihan yang diolah higienis dan tersedia dalam berbagai varian rasa. Cocok untuk semua usia dan waktu.",
+    about:
+      "<strong>Susu Moeria</strong> merupakan produsen sekaligus penjual susu murni segar yang berlokasi di Kudus. Produk susu ini dibuat dari bahan alami tanpa pengawet, menjaga rasa dan kualitas terbaik. Tersedia dalam berbagai varian seperti original, cokelat, stroberi, dan vanila. Dengan cita rasa lembut dan kemasan praktis, Susu Moeria menjadi pilihan favorit bagi pencinta minuman sehat dan bergizi.",
+    rating: "4.4 / 5",
+    description:
+      "Susu Moeria menyajikan susu murni segar dengan rasa khas yang alami dan menyehatkan. Setiap botol diproses dengan standar kebersihan tinggi untuk menjaga kualitas gizi dan kesegarannya. Cocok diminum kapan saja untuk menambah energi dan menjaga kesehatan tubuh.",
+    location: {
+      address: "Jl. Pemuda No.64, Magersari, Panjunan, Kudus",
+      fullAddress:
+        "Jl. Pemuda No.64, Magersari, Panjunan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59312",
+      mapsUrl: "https://maps.app.goo.gl/seh4uPGo99XUB6mx7",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8095844,110.8442737&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "087825368484",
+      email: "-",
+      instagram: "susumoeriacafe",
+    },
+    menus: [
+      {
+        name: "Susu Coklat",
+        description:
+          "Susu segar dengan rasa coklat manis dan creamy, cocok diminum dingin maupun hangat.",
+        price: "Rp 9.000",
+        image: "/images/ramboo_menu1.jpg",
+      },
+      {
+        name: "Tteokbokki",
+        description:
+          "Camilan khas Korea berbahan kue beras kenyal dengan saus pedas manis yang menggugah selera.",
+        price: "Rp 37.000",
+        image: "/images/ramboo_menu2.jpg",
+      },
+      {
+        name: "Blackpepper Chicken",
+        description:
+          "Ayam lembut dengan saus lada hitam khas Moeria yang gurih pedas dan nikmat.",
+        price: "Rp 22.000",
+        image: "/images/ramboo_menu3.jpg",
+      },
+      {
+        name: "Tteokbokki Mozarella",
+        description:
+          "Tteokbokki pedas manis disajikan dengan lelehan keju mozarella lembut di atasnya.",
+        price: "Rp 31.000",
+        image: "/images/ramboo_menu4.jpg",
+      },
+      {
+        name: "Susu Strawberry",
+        description:
+          "Perpaduan susu segar dan sirup strawberry alami yang menyegarkan.",
+        price: "Rp 9.000",
+        image: "/images/ramboo_menu4.jpg",
+      },
+      {
+        name: "Budae Jigae",
+        description:
+          "Sup khas Korea berisi sosis, mie, dan tahu dalam kuah pedas gurih yang hangat.",
+        price: "Rp 72.000",
+        image: "/images/ramboo_menu4.jpg",
+      },
+      {
+        name: "Sundubu Jigae",
+        description:
+          "Sup tahu lembut ala Korea dengan kuah pedas gurih dan isian seafood atau daging pilihan.",
+        price: "Rp 48.000",
+        image: "/images/ramboo_menu4.jpg",
+      },
+      {
+        name: "Nasi Goreng Kimchi",
+        description:
+          "Nasi goreng dengan cita rasa khas kimchi Korea yang asam, pedas, dan menggugah selera.",
+        price: "Rp 48.000",
+        image: "/images/ramboo_menu4.jpg",
+      },
+    ],
+    galleryImages: [
+      "/images/moeria_galerifoto1.png",
+      "/images/moeria_galerifoto2.png",
+      "/images/moeria_galerifoto3.png",
+      "/images/moeria_galerifoto4.png",
+      "/images/moeria_galerifoto5.png",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "06.00 - 22.00", isOpen: true },
+      { day: "Selasa", hours: "06.00 - 22.00", isOpen: true },
+      { day: "Rabu", hours: "06.00 - 22.00", isOpen: true },
+      { day: "Kamis", hours: "06.00 - 22.00", isOpen: true },
+      { day: "Jumat", hours: "06.00 - 22.00", isOpen: true },
+      { day: "Sabtu", hours: "06.00 - 22.00", isOpen: true },
+      { day: "Minggu", hours: "06.00 - 22.00", isOpen: true },
+    ],
+  },
   {
     id: 32,
     name: "Ramboo Chicken",
@@ -1973,80 +2069,65 @@ export const dataDetailUMKM = [
     ],
   },
   {
-    id: 1,
-    name: "Soto Kudus Bu Jatmi",
-    slug: "soto-kudus-bu-jatmi",
-    heroImage: "/images/sotokudusbujatmi_hero.jpg",
-    heroTitle: 'Informasi Lengkap tentang UMKM "Soto Kudus Bu Jatmi"',
+    id: 33,
+    name: "Es Gempol Pak Masykur",
+    slug: "es-gempol-pak-masykur",
+    heroImage: "/images/gempol_hero.jpg",
+    heroTitle:
+      'Es Gempol Pak Masykur – Segarnya Minuman Tradisional Khas Kudus!"',
     heroSubtitle:
-      "Warung soto legendaris yang menjadi ikon kuliner khas Kudus, menyajikan cita rasa autentik dengan pilihan daging kerbau maupun ayam.",
-    description:
-      "Soto Kudus Bu Jatmi merupakan salah satu kuliner paling terkenal di Kudus yang telah melayani pelanggan selama bertahun-tahun. Dikenal dengan kuah bening gurih dan taburan bawang goreng melimpah, warung ini menjadi destinasi wajib bagi pecinta kuliner tradisional.",
+      "Rasakan kesegaran es gempol dengan santan gurih, gula merah manis, dan aroma pandan yang khas. Minuman tradisional yang menyegarkan di setiap tegukan.",
     about:
-      "<strong>Soto Kudus Bu Jatmi</strong> adalah warung makan yang telah lama dikenal masyarakat Kudus karena kelezatan soto khasnya. Menggunakan resep turun-temurun dengan bumbu rempah pilihan, Soto Kudus Bu Jatmi menawarkan dua varian utama yaitu soto daging kerbau dan soto ayam. Tempatnya sederhana namun selalu ramai pengunjung dari pagi hingga malam hari, baik warga lokal maupun wisatawan yang ingin mencicipi cita rasa asli Kudus.",
-    rating: "4.5 / 5",
+      "<strong>Es Gempol Pak Masykur</strong> merupakan salah satu minuman tradisional khas Kudus yang telah melegenda. Terbuat dari gempol (bola-bola tepung beras) lembut, disajikan dengan kuah santan gurih dan sirup gula merah alami yang harum pandan. Kesegarannya menjadikan Es Gempol Pak Masykur selalu diburu pelanggan, terutama di hari yang panas.",
+    rating: "4.7 / 5",
+    description:
+      "Es Gempol Pak Masykur menawarkan cita rasa klasik yang memadukan manisnya gula merah dan gurihnya santan. Cocok dinikmati kapan pun untuk melepas dahaga. Racikan tradisionalnya yang autentik menjadikan minuman ini tetap menjadi favorit lintas generasi di Kudus.",
     location: {
-      address: "Jl. Kyai H. Wahid Hasyim No.43, Kudus",
+      address: " Magersari, Panjunan, Kudus",
       fullAddress:
-        "Jl. Kyai H. Wahid Hasyim No.43, Magersari, Panjunan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59317",
-      mapsUrl: "https://maps.app.goo.gl/BDb4ivbpLwgvVNS18",
+        "5RQQ+G56, Jl. Kyai H. Wahid Hasyim, Magersari, Panjunan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59317",
+      mapsUrl: "https://maps.app.goo.gl/DDqdZESaGe87D5ev7",
       embedUrl:
-        "https://www.google.com/maps?q=-6.8111989,110.83808&hl=id&z=15&output=embed",
+        "https://www.google.com/maps?q=-6.8112212,110.8378874&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "-",
+      whatsapp: "085640087033",
       email: "-",
-      instagram: "sotokudusbujatmi",
+      instagram: "-",
     },
     menus: [
       {
-        name: "Soto Kerbau",
+        name: "Putu Mayang",
         description:
-          "Soto khas Kudus dengan daging kerbau empuk dan kuah bening gurih beraroma rempah.",
-        price: "Rp 15.000",
-        image: "/images/sotokudusbujatmi_menu1.jpg",
+          "Kue tradisional bertekstur kenyal dengan saus gula merah dan santan gurih, cocok dinikmati sebagai camilan manis yang menyegarkan.",
+        price: "Rp 8.000",
+        image: "/images/masykur_menu1.jpg",
       },
       {
-        name: "Soto Ayam",
+        name: "Nasi Kering",
         description:
-          "Soto ayam khas Kudus dengan suwiran ayam kampung dan taburan bawang goreng melimpah.",
-        price: "Rp 15.000",
-        image: "/images/sotokudusbujatmi_menu2.jpg",
-      },
-      {
-        name: "Perkedel Kentang",
-        description:
-          "Perkedel gurih renyah pelengkap soto yang dibuat dari kentang pilihan.",
-        price: "Rp 4.000",
-        image: "/images/sotokudusbujatmi_menu3.jpg",
-      },
-      {
-        name: "Es Kopyor",
-        description:
-          "Minuman segar dari kelapa kopyor asli yang cocok dinikmati setelah menyantap soto.",
-        price: "Rp 25.000",
-        image: "/images/sotokudusbujatmi_menu4.jpg",
+          "Nasi lengkap dengan lauk tradisional khas rumahan, praktis untuk sarapan atau makan siang cepat dengan rasa autentik.",
+        price: "Rp 12.000",
+        image: "/images/masykur_menu2.jpg",
       },
     ],
     galleryImages: [
-      "/images/sotokudusbujatmi_galerifoto1.jpg",
-      "/images/sotokudusbujatmi_galerifoto2.jpg",
-      "/images/sotokudusbujatmi_galerifoto3.jpg",
-      "/images/sotokudusbujatmi_galerifoto4.jpg",
-      "/images/sotokudusbujatmi_galerifoto5.jpg",
+      "/images/masyur_galerifoto1.jpg",
+      "/images/masyur_galerifoto2.jpg",
+      "/images/masyur_galerifoto3.jpg",
     ],
     openingHours: [
-      { day: "Senin", hours: "07.00 - 22.00", isOpen: true },
-      { day: "Selasa", hours: "07.00 - 22.00", isOpen: true },
-      { day: "Rabu", hours: "07.00 - 22.00", isOpen: true },
-      { day: "Kamis", hours: "07.00 - 22.00", isOpen: true },
-      { day: "Jumat", hours: "07.00 - 22.00", isOpen: true },
-      { day: "Sabtu", hours: "07.00 - 22.00", isOpen: true },
-      { day: "Minggu", hours: "07.00 - 22.00", isOpen: true },
+      { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 16.00", isOpen: true },
     ],
   },
   {
-    id: 35,
+    id: 34,
     name: "Sultan Barber Top",
     slug: "sultan-barber-top",
     heroImage: "/images/sultanbarbertop_hero.jpg",
@@ -2118,8 +2199,725 @@ export const dataDetailUMKM = [
       { day: "Minggu", hours: "10.00 - 22.00", isOpen: true },
     ],
   },
+  {
+    id: 35,
+    name: "Soto Kudus Bu Jatmi",
+    slug: "soto-kudus-bu-jatmi",
+    heroImage: "/images/sotokudusbujatmi_hero.jpg",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Soto Kudus Bu Jatmi"',
+    heroSubtitle:
+      "Warung soto legendaris yang menjadi ikon kuliner khas Kudus, menyajikan cita rasa autentik dengan pilihan daging kerbau maupun ayam.",
+    description:
+      "Soto Kudus Bu Jatmi merupakan salah satu kuliner paling terkenal di Kudus yang telah melayani pelanggan selama bertahun-tahun. Dikenal dengan kuah bening gurih dan taburan bawang goreng melimpah, warung ini menjadi destinasi wajib bagi pecinta kuliner tradisional.",
+    about:
+      "<strong>Soto Kudus Bu Jatmi</strong> adalah warung makan yang telah lama dikenal masyarakat Kudus karena kelezatan soto khasnya. Menggunakan resep turun-temurun dengan bumbu rempah pilihan, Soto Kudus Bu Jatmi menawarkan dua varian utama yaitu soto daging kerbau dan soto ayam. Tempatnya sederhana namun selalu ramai pengunjung dari pagi hingga malam hari, baik warga lokal maupun wisatawan yang ingin mencicipi cita rasa asli Kudus.",
+    rating: "4.5 / 5",
+    location: {
+      address: "Jl. Kyai H. Wahid Hasyim No.43, Kudus",
+      fullAddress:
+        "Jl. Kyai H. Wahid Hasyim No.43, Magersari, Panjunan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59317",
+      mapsUrl: "https://maps.app.goo.gl/BDb4ivbpLwgvVNS18",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8111989,110.83808&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "-",
+      email: "-",
+      instagram: "sotokudusbujatmi",
+    },
+    menus: [
+      {
+        name: "Soto Kerbau",
+        description:
+          "Soto khas Kudus dengan daging kerbau empuk dan kuah bening gurih beraroma rempah.",
+        price: "Rp 15.000",
+        image: "/images/sotokudusbujatmi_menu1.jpg",
+      },
+      {
+        name: "Soto Ayam",
+        description:
+          "Soto ayam khas Kudus dengan suwiran ayam kampung dan taburan bawang goreng melimpah.",
+        price: "Rp 15.000",
+        image: "/images/sotokudusbujatmi_menu2.jpg",
+      },
+      {
+        name: "Perkedel Kentang",
+        description:
+          "Perkedel gurih renyah pelengkap soto yang dibuat dari kentang pilihan.",
+        price: "Rp 4.000",
+        image: "/images/sotokudusbujatmi_menu3.jpg",
+      },
+      {
+        name: "Es Kopyor",
+        description:
+          "Minuman segar dari kelapa kopyor asli yang cocok dinikmati setelah menyantap soto.",
+        price: "Rp 25.000",
+        image: "/images/sotokudusbujatmi_menu4.jpg",
+      },
+    ],
+    galleryImages: [
+      "/images/sotokudusbujatmi_galerifoto1.jpg",
+      "/images/sotokudusbujatmi_galerifoto2.jpg",
+      "/images/sotokudusbujatmi_galerifoto3.jpg",
+      "/images/sotokudusbujatmi_galerifoto4.jpg",
+      "/images/sotokudusbujatmi_galerifoto5.jpg",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "07.00 - 22.00", isOpen: true },
+      { day: "Selasa", hours: "07.00 - 22.00", isOpen: true },
+      { day: "Rabu", hours: "07.00 - 22.00", isOpen: true },
+      { day: "Kamis", hours: "07.00 - 22.00", isOpen: true },
+      { day: "Jumat", hours: "07.00 - 22.00", isOpen: true },
+      { day: "Sabtu", hours: "07.00 - 22.00", isOpen: true },
+      { day: "Minggu", hours: "07.00 - 22.00", isOpen: true },
+    ],
+  },
   // MEJOBO
+  {
+    id: 36,
+    name: "XGAM_Tech",
+    slug: "xgam-tech",
+    heroImage: "/images/xgamtech_hero.jpg",
+    heroTitle:
+      "XGAM_Tech – Solusi Servis & Perawatan Komputer Terpercaya di Kudus!",
+    heroSubtitle:
+      "Layanan profesional untuk perbaikan, upgrade, dan perawatan komputer maupun laptop dengan harga bersahabat.",
+    description:
+      "XGAM_Tech melayani servis komputer dan laptop, instal ulang sistem, upgrade RAM atau SSD, pembersihan kipas, serta perbaikan software dan hardware. Mengutamakan kejujuran, ketelitian, dan kepuasan pelanggan, menjadikan XGAM_Tech sebagai mitra terpercaya untuk menjaga performa perangkat Anda tetap optimal.",
+    about:
+      "<strong>XGAM_Tech</strong> adalah penyedia jasa servis komputer dan laptop yang berlokasi di Kudus. Menawarkan layanan seperti instalasi sistem operasi, perbaikan hardware, pembersihan perangkat, hingga upgrade komponen. Dengan tenaga teknisi berpengalaman dan pelayanan cepat, XGAM_Tech menjadi pilihan tepat untuk kebutuhan perangkat kerja maupun gaming Anda.",
+    rating: "5 / 5",
+    location: {
+      address: " Pendem Kulon, Jepang, Kudus",
+      fullAddress:
+        "5V9C+QFC, Pendem Kulon, Jepang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah",
+      mapsUrl: "https://maps.app.goo.gl/47uCsbQB5qGVC1BJ6",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8305573,110.8711491&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "081229484129",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Servis Laptop Mati Total",
+        description:
+          "Perbaikan laptop yang tidak bisa menyala akibat kerusakan hardware, power supply, atau motherboard.",
+        price: "Mulai Rp 250.000",
+        image: "/images/xgam_menu1.png",
+      },
+      {
+        name: "Pembersihan & Ganti Pasta Thermal",
+        description:
+          "Membersihkan debu dan mengganti pasta thermal agar performa dan suhu laptop tetap optimal.",
+        price: "Rp 100.000",
+        image: "/images/xgam_menu2.png",
+      },
+      {
+        name: "Rakit PC Custom",
+        description:
+          "Layanan konsultasi dan perakitan PC sesuai kebutuhan Anda — untuk gaming, editing, atau kantor.",
+        price: "Mulai Rp 200.000",
+        image: "/images/xgam_menu3.png",
+      },
+    ],
+    galleryImages: [
+      "/images/xgam_galerifoto1.png",
+      "/images/xgam_galerifoto2.png",
+      "/images/xgam_galerifoto3.png",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "07.00 - 23.00", isOpen: true },
+      { day: "Selasa", hours: "07.00 - 23.00", isOpen: true },
+      { day: "Rabu", hours: "07.00 - 23.00", isOpen: true },
+      { day: "Kamis", hours: "07.00 - 23.00", isOpen: true },
+      { day: "Jumat", hours: "07.00 - 23.00", isOpen: true },
+      { day: "Sabtu", hours: "07.00 - 23.00", isOpen: true },
+      { day: "Minggu", hours: "07.00 - 23.00", isOpen: true },
+    ],
+  },
+  {
+    id: 37,
+    name: "Jasa Las dan Bubut Mulyo Rejo",
+    slug: "jasa-las-dan-bubut-mulyo-rejo",
+    heroImage: "/images/jasalas_hero.jpg",
+    heroTitle:
+      "Jasa Las & Bubut Mulyo Rejo – Solusi Tepat untuk Kebutuhan Logam dan Perbengkelan di Kudus!",
+    heroSubtitle:
+      "Melayani berbagai pekerjaan las, bubut, dan perakitan logam dengan hasil kuat, rapi, dan presisi.",
+    description:
+      "XGAM_Tech melayani servis komputer dan laptop, instal ulang sistem, upgrade RAM atau SSD, pembersihan kipas, serta perbaikan software dan hardware. Mengutamakan kejujuran, ketelitian, dan kepuasan pelanggan, menjadikan XGAM_Tech sebagai mitra terpercaya untuk menjaga performa perangkat Anda tetap optimal.",
+    about:
+      "<strong>Jasa Las dan Bubut Mulyo Rejo</strong> merupakan bengkel logam profesional di Kudus yang melayani berbagai kebutuhan pengerjaan logam, mulai dari las besi, stainless, hingga bubut komponen mesin. Dengan tenaga ahli berpengalaman dan peralatan lengkap, Mulyo Rejo siap memberikan hasil pengerjaan yang kuat, rapi, dan sesuai permintaan pelanggan.",
+    rating: "5 / 5",
+    location: {
+      address: " Jln.Raya 7km Rau, Kalangan, Tenggeles, Kudus",
+      fullAddress:
+        "Jln.Raya 7km Rau, Kalangan, Tenggeles, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/uju4fb2GhkvGQ3Wy8",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8063972,110.8913509&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "085740789456",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Jasa Las Besi & Konstruksi",
+    description:
+      "Melayani pembuatan dan perbaikan pagar, kanopi, tralis, serta rangka besi untuk berbagai kebutuhan industri maupun rumah tangga.",
+    price: "Mulai Rp 150.000",
+    image: "/images/mulyorejo_menu1.png",
+      },
+      {
+         name: "Pembuatan Mainan Anak dari Besi",
+    description:
+      "Menerima pesanan ayunan, jungkat-jungkit, dan perosotan dari bahan besi berkualitas — aman, kuat, dan berwarna menarik.",
+    price: "Mulai Rp 300.000",
+    image: "/images/mulyorejo_menu2.png",
+      },
+    ],
+    galleryImages: [
+      "/images/mulyorejo_galerifoto1.png",
+      "/images/mulyorejo_galerifoto2.png",
+      "/images/mulyorejo_galerifoto3.png",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Jumat", hours: "Tutup", isOpen: close },
+      { day: "Sabtu", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 16.00", isOpen: true },
+    ],
+  },
+   
+   {
+    id: 38,
+   name: "Putra Kalimosodo",
+    slug: "putra-kalimosodo",
+    heroImage: "/images/kalimosodo_hero.jpg",
+    heroTitle:
+      "Putra Kalimosodo – Supplier Material & Jasa Transportasi Terpercaya di Kudus!",
+    heroSubtitle:
+      "Menyediakan berbagai bahan bangunan serta layanan angkut material dengan armada lengkap dan tepat waktu.",
+    description:
+      "Putra Kalimosodo melayani penjualan berbagai jenis material seperti pasir, batu, semen, dan sirtu. Selain itu juga menyediakan jasa transportasi material ke berbagai wilayah Kudus dan sekitarnya dengan pelayanan cepat, aman, dan profesional.",
+    about:
+      "<<strong>Putra Kalimosodo</strong> merupakan penyedia material bangunan dan jasa transportasi yang berpengalaman di wilayah Kudus. Dengan armada kendaraan yang terawat dan tenaga kerja berpengalaman, kami berkomitmen memberikan layanan terbaik dalam pengiriman bahan bangunan, baik untuk proyek kecil maupun besar.",
+    rating: "5 / 5",
+    location: {
+      address: " Gg. Bhakti No.1, Gulang Kulon, Kudus",
+      fullAddress:
+        "Gg. Bhakti No.1, Gulang Kulon, Gulang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/o4u4BmfXfeTPDT5P6",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8405634,110.8598776&hl=id&z=17&output=embed",
+    },
+    contact: {
+      whatsapp: "085899447002",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+         name: "Pasokan Material Bangunan Dan Mengantarkan",
+      description:
+        "Menyediakan berbagai material seperti pasir, batu kali, semen, dan sirtu, lengkap dengan layanan angkut untuk kebutuhan proyek konstruksi.",
+      price: "Harga bervariasi sesuai jenis material dan jarak pengiriman",
+      image: "/images/kalimosodo_menu1.png",
+      },
+      {
+          name: "Jasa Transportasi",
+      description:
+        " Melayani jasa transportasi umum maupun travel antar kota dengan armada nyaman, bersih, dan pengemudi berpengalaman.",
+      price: "Mulai Rp 150.000 per trip",
+      image: "/images/kalimosodo_menu2.png",
+      },
+    ],
+    galleryImages: [
+      "/images/kalimosodo_galerifoto1.png",
+      "/images/kalimosodo_galerifoto2.png",
+      "/images/kalimosodo_galerifoto3.png",
+      "/images/kalimosodo_galerifoto4.png",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Jumat", hours: "Tutup", isOpen: close },
+      { day: "Sabtu", hours: "08.00 - 16.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 16.00", isOpen: true },
+    ],
+  },
+  {
+    id: 39,
+   name: "Ikan Bakar Nasuky Mubarok Jepang",
+    slug: "ikan-bakar-nasuky-mubarok-jepang",
+    heroImage: "/images/ikanbakar_hero.jpg",
+    heroTitle:
+      "Ikan Bakar Nasuky Mubarok Jepang – Sajian Ikan Bakar Segar Khas Kudus!",
+    heroSubtitle:
+      "Nikmati ikan bakar lezat dengan bumbu rempah khas dan suasana makan nyaman di daerah Jepang, Kudus.",
+    description:
+      "Ikan Bakar Nasuky Mubarok Jepang dikenal dengan sajian ikan bakar segar yang dimasak menggunakan bumbu rempah tradisional khas Nusantara. Selain ikan bakar, tersedia pula berbagai pilihan menu laut lainnya dengan cita rasa gurih dan pedas yang menggugah selera.",
+    about:
+      "<strong>Ikan Bakar Nasuky Mubarok Jepang</strong> adalah tempat makan populer di kawasan Jepang, Kudus, yang menyajikan ikan bakar segar dengan bumbu khas. Setiap hidangan disajikan dengan sambal dan lalapan segar, menjadikannya favorit bagi keluarga maupun rombongan yang ingin menikmati hidangan laut dengan cita rasa autentik.",
+    rating: "4.1 / 5",
+    location: {
+      address: " Jepang, Kudus",
+      fullAddress:
+        "5VGC+95R, Jepang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/9VqKA9v83eoFPnGF9",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8240079,110.8703812&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "081232281179",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+         name: "Ikan Gurame Bakar",
+      description:
+        "Gurame segar dibakar dengan bumbu kecap manis dan rempah pilihan, menghasilkan cita rasa gurih dan sedikit smokey khas Nusantara.",
+      price: "Rp 85.000",
+      image: "/images/nasuky_menu1.jpg",
+      },
+      {
+          name: "Gurame Goreng",
+      description:
+        " Ikan segar digoreng garing hingga keemasan, disajikan dengan sambal terasi pedas dan lalapan segar.",
+      price: "Rp 85.000",
+      image: "/images/nasuky_menu2.jpg",
+      },
+       {
+          name: "Ikan Bakar Ca Kangkung",
+      description:
+        " Perpaduan sempurna antara ikan bakar berbumbu khas dan tumis kangkung pedas gurih yang menggugah selera.",
+      price: "Rp 93.000",
+      image: "/images/nasuky_menu3.jpg",
+      },
+      {
+          name: "Nila Bakar Manis",
+      description:
+        " Ikan nila dibakar dengan olesan bumbu manis gurih khas Mubarok, cocok dinikmati bersama nasi hangat dan sambal bawang.",
+      price: "Rp 70.000",
+      image: "/images/nasuky_menu4.jpg",
+      },
+    ],
+    galleryImages: [
+      "/images/nasuky_galerifoto1.jpg",
+      "/images/nasuky_galerifoto2.jpg",
+      "/images/nasuky_galerifoto3.jpg",
+      "/images/nasuky_galerifoto4.jpg",
+      "/images/nasuky_galerifoto5.jpg",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "09.00 - 21.00", isOpen: true },
+    ],
+  },
+  {
+    id: 40,
+  name: "RM Bu Sarah",
+    slug: "rm-bu-sarah",
+    heroImage: "/images/rmbusarah_hero.jpg",
+    heroTitle:
+      "Rumah Makan Bu Sarah – Masakan Rumahan Lezat & Harga Bersahabat di Kudus!",
+    heroSubtitle:
+      "Nikmati berbagai hidangan rumahan khas Jawa dengan cita rasa autentik dan suasana nyaman seperti di rumah sendiri.",
+    description:
+      "Rumah Makan Bu Sarah dikenal sebagai tempat makan yang menyajikan aneka masakan rumahan khas Jawa dengan rasa lezat, porsi pas, dan harga terjangkau. Menu favorit seperti ayam goreng, sayur lodeh, tempe bacem, dan sambal terasi selalu menjadi pilihan pelanggan setia.",
+    about:
+      "<strong>Rumah Makan Bu Sarah</strong> merupakan salah satu rumah makan populer di Kudus yang menyajikan menu masakan rumahan khas Jawa. Dengan cita rasa yang otentik dan suasana santai, tempat ini menjadi pilihan tepat untuk makan siang bersama keluarga atau rekan kerja.",
+    rating: "4.3 / 5",
+    location: {
+      address: " Jl. Lingkar Timur, Jepang, Kudus",
+      fullAddress:
+        "5VGG+772, Jl. Lingkar Timur, Jepang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/ebhzkyxwckhUqQUm7",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8243528,110.8756417&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "089647857231",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+         name: "Kepala Manyung",
+      description:
+        "Menu andalan RM Bu Sarah yang terkenal dengan kepala manyung empuk dan kuah rica pedas gurih khas pesisir. Cocok untuk pecinta makanan berkuah rempah.",
+      price: "Rp 28.000",
+      image: "/images/sarah_menu1.jpg",
+      },
+      {
+          name: "Mendoan Cinta",
+      description:
+        " Tempe tipis dibalut tepung berbumbu lalu digoreng setengah matang, disajikan hangat dengan sambal kecap dan cabai rawit segar.",
+      price: "Rp 8.000",
+      image: "/images/sarah_menu2.jpg",
+      },
+       {
+          name: "Kakap Godog",
+      description:
+        " Ikan kakap segar dimasak dengan bumbu godog khas Jawa Tengah — gurih, sedikit pedas, dan beraroma rempah kuat.",
+      price: "Rp 25.000",
+      image: "/images/sarah_menu3.jpg",
+      },
+      {
+          name: "Pecel Lele",
+      description:
+        " Lele goreng garing disajikan bersama sambal tomat pedas dan lalapan segar. Menu sederhana yang selalu jadi favorit pengunjung.",
+      price: "Rp 20.000",
+      image: "/images/sarah_menu4.jpg",
+      },
+    ],
+    galleryImages: [
+      "/images/sarah_galerifoto1.jpg",
+      "/images/sarah_galerifoto2.jpg",
+      "/images/sarah_galerifoto3.jpg",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "06.00 - 19.30", isOpen: true },
+      { day: "Selasa", hours: "06.00 - 19.30", isOpen: true },
+      { day: "Rabu", hours: "06.00 - 19.30", isOpen: true },
+      { day: "Kamis", hours: "06.00 - 19.30", isOpen: true },
+      { day: "Jumat", hours: "06.00 - 19.30", isOpen: true },
+      { day: "Sabtu", hours: "06.00 - 19.30", isOpen: true },
+      { day: "Minggu", hours: "06.00 - 19.30", isOpen: true },
+    ],
+  },
   // UNDAAN
+  {
+    id: 41,
+  name: "Queen Seblak Prasmanan",
+    slug: "queen-seblak-prasmanan",
+    heroImage: "/images/queenseblak_hero.jpg",
+    heroTitle:
+      "Queen Seblak Prasmanan – Surga Pecinta Seblak dengan Banyak Pilihan Topping di Kudus!",
+    heroSubtitle:
+      "Rasakan sensasi seblak pedas gurih dengan berbagai pilihan topping yang bisa kamu ambil sesuka hati.",
+    description:
+      "Queen Seblak Prasmanan menawarkan konsep seblak prasmanan pertama di Kudus, di mana pelanggan bisa memilih sendiri bahan dan tingkat kepedasannya. Dengan kuah gurih pedas khas Bandung dan topping melimpah seperti bakso, sosis, ceker, siomay, hingga kerupuk, tempat ini jadi favorit anak muda dan pencinta pedas.",
+    about:
+      "<strong>Queen Seblak Prasmanan</strong> hadir untuk pecinta seblak dengan konsep unik dan modern. Setiap pengunjung bisa meracik seblak sesuai selera, mulai dari tingkat pedas, jenis kuah, hingga topping. Dengan suasana tempat yang santai dan harga bersahabat, Queen Seblak jadi pilihan tepat untuk nongkrong sambil menikmati seblak pedas nikmat.",
+    rating: "4.4 / 5",
+    location: {
+      address: " Kampek Lor, Kalirejo, Kudus",
+      fullAddress:
+        "3QCR+R9R, Kampek Lor, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/MLtSm3m9YzNcH6xdA",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.9278993,110.7909045&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "085278090870",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+     {
+    name: "Seblak Original",
+    description:
+      "Seblak khas Bandung dengan kuah pedas gurih, isi kerupuk, telur, dan bumbu kencur yang menggugah selera.",
+    price: "Rp 12.000",
+    image: "/images/queenseblak_menu1.jpg",
+  },
+  {
+    name: "Seblak Aci",
+    description:
+      "Perpaduan kenyalnya aci, kerupuk, dan topping sederhana dengan kuah pedas creamy yang bikin nagih.",
+    price: "Rp 15.000",
+    image: "/images/queenseblak_menu2.jpg",
+  },
+  {
+    name: "Seblak Bakso",
+    description:
+      "Kuah seblak pedas gurih dengan tambahan bakso sapi empuk dan topping khas Queen Seblak Prasmanan.",
+    price: "Rp 18.000",
+    image: "/images/queenseblak_menu3.jpg",
+  },
+  {
+    name: "Seblak Sayur",
+    description:
+      "Seblak sehat dengan isian sayur segar, telur, dan kerupuk dalam kuah pedas gurih yang hangat di perut.",
+    price: "Rp 16.000",
+    image: "/images/queenseblak_menu4.jpg",
+  },
+    ],
+    galleryImages: [
+      "/images/queenseblak_galerifoto1.jpg",
+      "/images/queenseblak_galerifoto2.jpg",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "09.00 - 21.00", isOpen: true },
+    ],
+  },
+  {
+    id: 42,
+  name: "Ayam Geprek Mak Ginting",
+    slug: "ayam-geprek-mak-ginting",
+    heroImage: "/images/geprekmakginting_hero.jpg",
+    heroTitle:
+      "Ayam Geprek Mak Ginting – Sensasi Pedas Gurih yang Bikin Ketagihan di Kudus!",
+    heroSubtitle:
+      "Ayam goreng renyah yang digeprek dengan sambal super pedas khas Mak Ginting. Cocok buat pecinta pedas sejati!",
+    description:
+      "Ayam Geprek Mak Ginting dikenal dengan sambalnya yang meledak di lidah tapi tetap nikmat. Dengan pilihan level pedas, lauk tambahan seperti tahu tempe, dan harga yang ramah di kantong, tempat ini jadi favorit anak muda Kudus untuk makan siang maupun malam.",
+    about:
+      "<strong>Ayam Geprek Mak Ginting</strong> menyajikan ayam goreng tepung yang digeprek bersama sambal ulek khas yang pedasnya bisa disesuaikan selera. Selain ayam, tersedia juga berbagai lauk pelengkap seperti tempe, tahu, dan terong goreng yang makin lezat jika disantap dengan nasi hangat.",
+    rating: "4.9 / 5",
+    location: {
+      address: " Gg. Manggis, Kampek Lor, Kalirejo, Kudus",
+      fullAddress:
+        "3QCR+H6H, Gg. Manggis, Kampek Lor, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/qFtBBS2GG2uW28Bt5",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.9285735,110.7906047&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "-",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+     {
+    name: "Ayam Geprek Pedas Manis",
+    description:
+      "Ayam goreng krispi disiram sambal pedas manis khas Mak Ginting, perpaduan rasa gurih, pedas, dan sedikit manis yang pas di lidah.",
+    price: "Rp 10.000",
+    image: "/images/makginting_menu1.jpg",
+  },
+  {
+    name: "Mie Geprek Komplit",
+    description:
+      "Mie gurih disajikan dengan ayam geprek, telur mata sapi, dan sambal pilihan — cocok untuk pecinta pedas dan porsi kenyang.",
+    price: "Rp 12.000",
+    image: "/images/makginting_menu2.jpg",
+  },
+  {
+    name: "Seblak Biasa",
+    description:
+      "Seblak khas Mak Ginting dengan kuah pedas gurih, isi kerupuk, telur, dan topping sederhana yang menggugah selera.",
+    price: "Rp 8.000",
+    image: "/images/makginting_menu3.jpg",
+  },
+  {
+    name: "Ayam Geprek",
+    description:
+      "Menu andalan Mak Ginting — ayam goreng tepung yang digeprek dengan sambal bawang pedas, disajikan bersama nasi hangat.",
+    price: "Rp 8.000",
+    image: "/images/makginting_menu4.jpg",
+  },
+    ],
+    galleryImages: [
+      "/images/makginting_galerifoto1.jpg",
+      "/images/makginting_galerifoto2.jpg",
+      "/images/makginting_galerifoto3.jpg",
+      "/images/makginting_galerifoto4.jpg",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "09.00 - 22.00", isOpen: true },
+      { day: "Selasa", hours: "09.00 - 22.00", isOpen: true },
+      { day: "Rabu", hours: "09.00 - 22.00", isOpen: true },
+      { day: "Kamis", hours: "09.00 - 22.00", isOpen: true },
+      { day: "Jumat", hours: "09.00 - 22.00", isOpen: true },
+      { day: "Sabtu", hours: "09.00 - 22.00", isOpen: true },
+      { day: "Minggu", hours: "09.00 - 22.00", isOpen: true },
+    ],
+  },
+   {
+    id: 43,
+   name: "Warung Sate & Gule Pak Sugiyo",
+    slug: "warung-sate-dan-gule-pak-sugiyo",
+    heroImage: "/images/warungsatedangule_hero.jpg",
+    heroTitle:
+      "Warung Sate & Gule Pak Sugiyo – Cita Rasa Khas Kambing yang Melegenda di Kudus!",
+    heroSubtitle:
+      "Nikmati sate kambing empuk dan gule gurih beraroma rempah yang selalu bikin pelanggan datang lagi.",
+    description:
+      "Warung Sate & Gule Pak Sugiyo sudah dikenal luas di Kudus sebagai tempat legendaris untuk menikmati sate kambing dan gule yang kaya rasa. Dagingnya empuk, bumbu kacangnya gurih manis, dan kuah gulenya kental beraroma rempah. Cocok untuk makan siang maupun malam bersama keluarga.",
+    about:
+      "<strong>Warung Sate & Gule Pak Sugiyo</strong> menyajikan hidangan khas Nusantara berbahan dasar kambing pilihan. Dengan resep turun-temurun dan cita rasa yang tetap autentik, setiap tusuk sate dan semangkuk gule memberikan pengalaman kuliner khas Kudus yang tak terlupakan.",
+    rating: "4.9 / 5",
+    location: {
+      address: " Jl. Babalan - Prawoto, Kampek Lor, Kudus",
+      fullAddress:
+        "3QCR+95C, Jl. Babalan - Prawoto, Kampek Lor, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/WkJAj3Ka8ZGoC7Wu5",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.9290637,110.790406&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "081215470578",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+     {
+    name: "Sate",
+    description:
+    "Sate kambing empuk dibakar dengan bumbu kecap manis, bawang, dan sedikit sambal, menghasilkan cita rasa gurih manis khas Kudus.",
+  price: "Rp 25.000",
+    image: "/images/sugiyo_menu1.jpg",
+  },
+  {
+    name: "Gule",
+     description:
+    "Gule kambing berkuah santan kental dengan rempah khas Jawa, disajikan hangat bersama nasi putih atau lontong.",
+  price: "Rp 20.000",
+    image: "/images/sugiyo_menu2.jpg",
+  },
+    ],
+    galleryImages: [
+      "/images/sugiyo_galerifoto1.jpg",
+      "/images/msugiyo_galerifoto2.jpg",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
+    ],
+  },
+   {
+    id: 44,
+   name: "MJ Teknik",
+    slug: "mj-teknik",
+    heroImage: "/images/mjteknik_hero.jpg",
+    heroTitle:
+      "MJ Teknik – Solusi Jasa Instalasi & Perbaikan Peralatan Rumah Tangga di Kudus!",
+    heroSubtitle:
+      "Melayani instalasi listrik, servis pompa air, dan perbaikan berbagai peralatan rumah tangga dengan tenaga ahli berpengalaman.",
+    description:
+      "MJ Teknik menyediakan layanan profesional untuk instalasi listrik, perbaikan pompa air, servis sible, serta perbaikan peralatan rumah tangga dan tukang. Dengan tenaga teknisi berpengalaman dan pelayanan cepat, MJ Teknik menjadi mitra andalan untuk kebutuhan servis harian Anda di Kudus.",
+    about:
+      "<strong>MJ Teknik</strong> melayani berbagai kebutuhan teknis rumah tangga, mulai dari instalasi listrik baru, perbaikan pompa air dan sible, hingga servis peralatan rumah dan alat tukang. Didukung oleh teknisi yang ahli dan berpengalaman, MJ Teknik selalu mengutamakan ketepatan, keamanan, dan kepuasan pelanggan.",
+    rating: "5 / 5",
+    location: {
+      address: " Kampek Lor, Kalirejo, Kudus",
+      fullAddress:
+        "3QFP+5R4, Kampek Lor, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/58ZPsi3C7xu8rRTv8",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.924919,110.7998945&hl=id&z=17&output=embed",
+    },
+    contact: {
+      whatsapp: "081215504068",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+     {
+    name: "Instalasi Listrik Rumah & Gedung",
+    description:
+      "Pemasangan instalasi listrik baru maupun perbaikan sistem kelistrikan lama, dilakukan oleh teknisi berpengalaman dengan standar keamanan tinggi.",
+    price: "Mulai Rp 250.000",
+    image: "/images/mjteknik_menu1.png",
+  },
+  {
+    name: "Servis Pompa Air & Sibel",
+    description:
+      "Menangani kerusakan pompa air, penggantian sparepart, hingga pembuatan sumur sibel dengan hasil kuat dan aliran air lancar.",
+    price: "Mulai Rp 300.000",
+    image: "/images/mjteknik_menu2.png",
+  },
+  {
+    name: "Perbaikan Peralatan Rumah Tangga",
+    description:
+      "Jasa servis kipas angin, blender, mesin cuci, dan peralatan rumah tangga lainnya dengan biaya terjangkau dan hasil memuaskan.",
+    price: "Mulai Rp 100.000",
+    image: "/images/mjteknik_menu3.png",
+  },
+    ],
+    galleryImages: [
+      "/images/mjteknik_galerifoto1.png",
+      "/images/mjteknik_galerifoto2.png",
+      "/images/mjteknik_galerifoto3.png",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "Tutup", isOpen: close },
+      { day: "Sabtu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
+    ],
+  },
+  {
+    id: 45,
+   name: "Fotocopy & Jasa Travel",
+    slug: "fotocopy-dan-jasa-travel",
+    heroImage: "/images/fotocopy_hero.jpeg",
+    heroTitle:
+      "Fotocopy & Jasa Travel – Layanan Cepat dan Praktis untuk Kebutuhan Dokumen & Perjalanan Anda!",
+    heroSubtitle:
+      "Melayani jasa fotokopi, print, scan, serta layanan travel antar kota dengan pelayanan ramah dan harga terjangkau.",
+    description:
+      "Fotocopy & Jasa Travel menyediakan berbagai layanan harian seperti fotokopi dokumen, cetak berwarna, penjilidan, hingga layanan travel cepat dan aman ke berbagai kota tujuan. Dengan peralatan modern dan layanan profesional, pelanggan dapat menikmati kemudahan dalam satu tempat.",
+    about:
+      "<strong>Fotocopy & Jasa Travel</strong> hadir untuk memenuhi kebutuhan masyarakat akan layanan percetakan dokumen dan transportasi. Menyediakan jasa fotokopi cepat, print warna, scan dokumen, hingga layanan travel dengan armada nyaman dan jadwal fleksibel. Tempat ini cocok bagi pelajar, pekerja, dan masyarakat umum yang butuh solusi praktis dan efisien setiap hari.",
+    rating: "5 / 5",
+    location: {
+      address: " Lambangan Rt.2 Rw.1 Gg 02, Lambangan, Kudus",
+      fullAddress:
+        "Lambangan Rt.2 Rw.1 Gg 02 undaan kudus, Lambangan, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/58ZPsi3C7xu8rRTv8",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.924919,110.7998945&hl=id&z=17&output=embed",
+    },
+    contact: {
+      whatsapp: "085866575305",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+     {
+    name: "Layanan Fotocopy & Travel",
+    description:
+      "Melayani fotokopi dokumen hitam putih maupun berwarna, print, scan, serta jasa travel antar kota dengan pelayanan cepat, ramah, dan harga terjangkau.",
+    price: "Mulai Rp 2.000 per lembar / Rp 150.000 per trip",
+    image: "/images/jasatravel_menu1.png",
+  },
+    ],
+    galleryImages: [
+      "/images/jasatravel_galerifoto1.png",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
+    ],
+  },
 ];
 
 export default dataDetailUMKM;
