@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
@@ -7,73 +7,16 @@ import PageContainer from "../components/PageContainer";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { dataDetailUMKM } from "../data/dataDetailUMKM";
+import UMKMCard from "../components/UMKMCard";
+import { dataUMKM } from "../data/dataUMKM";
 import NotFoundPage from "./NotFoundPage";
 
 const StickyInfo = ({ data, onClose, isMobile }) => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
   const { contact, location, rating, openingHours, name, description } = data;
 
-  const normalizeHours = (hours) => hours?.trim().replace(/[–—]/g, "-") || "";
-
-  const isOpenNow = (hoursStr) => {
-    const text = normalizeHours(hoursStr).toLowerCase();
-
-    if (text === "buka 24 jam") return true;
-    if (text === "tutup") return false;
-
-    const parts = text.split("-").map((s) => s.trim());
-    if (parts.length !== 2) return false;
-
-    const [openStr, closeStr] = parts;
-    const [openH, openM] = openStr.split(".").map(Number);
-    const [closeH, closeM] = closeStr.split(".").map(Number);
-
-    if (isNaN(openH) || isNaN(openM) || isNaN(closeH) || isNaN(closeM))
-      return false;
-
-    const now = new Date();
-    const today = now.getDate();
-
-    const openTime = new Date(now);
-    openTime.setHours(openH, openM, 0, 0);
-
-    const closeTime = new Date(now);
-    closeTime.setHours(closeH, closeM, 0, 0);
-
-    if (closeH < openH || (closeH === openH && closeM < openM)) {
-      closeTime.setDate(today + 1);
-    }
-
-    return now >= openTime && now <= closeTime;
-  };
-
-  const [, setTick] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setTick((t) => t + 1), 60000);
-    return () => clearInterval(id);
-  }, []);
-
-  const daysIndo = [
-    "Minggu",
-    "Senin",
-    "Selasa",
-    "Rabu",
-    "Kamis",
-    "Jumat",
-    "Sabtu",
-  ];
-  const todayName = daysIndo[new Date().getDay()];
-  const today = openingHours.find((d) => d.day === todayName) || {
-    isOpen: false,
-    hours: "Tutup",
-  };
-
-  const currentlyOpen = today.isOpen && isOpenNow(today.hours);
-  const displayText = currentlyOpen
-    ? normalizeHours(today.hours).toLowerCase() === "buka 24 jam"
-      ? "Buka 24 Jam"
-      : today.hours
-    : "Tutup";
+  const todayIndex = (new Date().getDay() + 6) % 7;
+  const today = openingHours[todayIndex];
 
   const contactItems = [
     {
@@ -137,17 +80,17 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
             <Icon
               icon="tabler:clock"
               className={`text-lg ${
-                currentlyOpen ? "text-green-600" : "text-red-500"
+                today.isOpen ? "text-green-600" : "text-red-500"
               }`}
             />
             <span
               className={`font-semibold ${
-                currentlyOpen ? "text-green-600" : "text-red-500"
+                today.isOpen ? "text-green-600" : "text-red-500"
               }`}
             >
-              {currentlyOpen ? "Buka" : "Tutup"}
+              {today.isOpen ? "Buka Sekarang" : "Tutup"}
             </span>
-            <span className="text-dark/50 text-sm">{displayText}</span>
+            <span className="text-dark/70 text-sm">{today.hours}</span>
           </div>
           <Icon
             icon="tabler:chevron-down"
@@ -156,7 +99,6 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
             }`}
           />
         </button>
-
         <AnimatePresence>
           {isHoursOpen && (
             <motion.div
@@ -167,21 +109,21 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
               className="overflow-hidden"
             >
               <ul className="text-sm text-dark/70 space-y-2.5 pt-2">
-                {openingHours.map((day) => {
-                  const isToday = day.day === todayName;
-
-                  return (
-                    <li
-                      key={day.day}
-                      className={`flex justify-between items-center ${
-                        isToday ? "font-bold text-dark" : "text-dark/70"
+                {openingHours.map((day) => (
+                  <li
+                    key={day.day}
+                    className="flex justify-between items-center"
+                  >
+                    <span>{day.day}</span>
+                    <span
+                      className={`font-medium ${
+                        day.isOpen ? "text-dark" : "text-red-500"
                       }`}
                     >
-                      <span>{day.day}</span>
-                      <span className="text-dark">{day.hours}</span>
-                    </li>
-                  );
-                })}
+                      {day.hours}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </motion.div>
           )}
@@ -223,11 +165,27 @@ const DetailUMKMPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showMobilePopup, setShowMobilePopup] = useState(false);
   const [umkmData, setUmkmData] = useState(null);
+  const [relatedUMKM, setRelatedUMKM] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const data = dataDetailUMKM.find((item) => item.slug === slug);
     setUmkmData(data || null);
-  }, [slug]);
+
+    const otherUMKM = dataUMKM.filter((item) => item.slug !== slug);
+    const shuffled = [...otherUMKM].sort(() => Math.random() - 0.5);
+    const count = isMobile ? 4 : 5;
+    setRelatedUMKM(shuffled.slice(0, count));
+  }, [slug, isMobile]);
 
   useEffect(() => {
     if (showMobilePopup || selectedImage) {
@@ -366,6 +324,23 @@ const DetailUMKMPage = () => {
             </div>
           </div>
         </div>
+
+        <section className="mt-12 md:mt-16">
+          <h2 className="text-3xl font-bold text-dark mb-6 text-center md:text-left">
+            UMKM <span className="font-normal text-dark">Lainnya</span>
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">
+            {relatedUMKM.map((item) => (
+              <Link
+                key={item.id}
+                to={`/detail-umkm/${item.slug}`}
+                className="block w-full"
+              >
+                <UMKMCard data={item} />
+              </Link>
+            ))}
+          </div>
+        </section>
       </PageContainer>
 
       <AnimatePresence>

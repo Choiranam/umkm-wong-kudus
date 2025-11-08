@@ -18,7 +18,12 @@ const KontakPage = () => {
   const [successHubungi, setSuccessHubungi] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const MAX_PESAN_LENGTH = 500;
+
   const handleChange = (label, value) => {
+    if (label === "Pesan" && value.length > MAX_PESAN_LENGTH) {
+      value = value.slice(0, MAX_PESAN_LENGTH);
+    }
     setFormData({ ...formData, [label]: value });
   };
 
@@ -51,7 +56,9 @@ const KontakPage = () => {
       );
       const result = await response.json();
       if (response.ok && result.status) {
-        setSuccessHubungi("Pesan berhasil dikirim! Kami akan segera menghubungi Anda.");
+        setSuccessHubungi(
+          "Pesan berhasil dikirim! Kami akan segera menghubungi Anda."
+        );
         setFormData({
           "Nama Depan": "",
           "Nama Belakang": "",
@@ -61,10 +68,14 @@ const KontakPage = () => {
         });
         setTimeout(() => setSuccessHubungi(""), 5000);
       } else {
-        setErrorHubungi(result.message || "Gagal mengirim pesan. Silakan coba lagi.");
+        setErrorHubungi(
+          result.message || "Gagal mengirim pesan. Silakan coba lagi."
+        );
       }
     } catch (err) {
-      setErrorHubungi("Terjadi kesalahan jaringan. Periksa koneksi internet Anda.");
+      setErrorHubungi(
+        "Terjadi kesalahan jaringan. Periksa koneksi internet Anda."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +94,12 @@ const KontakPage = () => {
   const [successReview, setSuccessReview] = useState("");
   const [isLoadingReview, setIsLoadingReview] = useState(false);
 
+  const MAX_KOMENTAR_LENGTH = 300;
+
   const handleReviewChange = (label, value) => {
+    if (label === "Pesan" && value.length > MAX_KOMENTAR_LENGTH) {
+      value = value.slice(0, MAX_KOMENTAR_LENGTH);
+    }
     setReviewData({ ...reviewData, [label]: value });
   };
 
@@ -104,7 +120,8 @@ const KontakPage = () => {
     }
   };
 
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const isValidEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -113,7 +130,9 @@ const KontakPage = () => {
     const email = reviewData.Email.trim();
     const comment = reviewData.Pesan.trim();
     if (!nameFirst || !nameLast || !email || !comment || rating === 0) {
-      setErrorReview("Semua kolom nama, email, rating, dan komentar wajib diisi.");
+      setErrorReview(
+        "Semua kolom nama, email, rating, dan komentar wajib diisi."
+      );
       setSuccessReview("");
       return;
     }
@@ -149,11 +168,18 @@ const KontakPage = () => {
       );
       const result = await response.json();
       if (response.ok && result.status) {
-        setSuccessReview("Penilaian berhasil dikirim! Terima kasih atas feedback Anda.");
+        setSuccessReview(
+          "Penilaian berhasil dikirim! Terima kasih atas feedback Anda."
+        );
         setRating(0);
         setSelectedFile(null);
         setProfilePic(null);
-        setReviewData({ "Nama Depan": "", "Nama Belakang": "", Email: "", Pesan: "" });
+        setReviewData({
+          "Nama Depan": "",
+          "Nama Belakang": "",
+          Email: "",
+          Pesan: "",
+        });
         const fileInput = document.querySelector('input[type="file"]');
         if (fileInput) fileInput.value = "";
         setTimeout(() => setSuccessReview(""), 5000);
@@ -162,11 +188,16 @@ const KontakPage = () => {
           const errorMsg = Object.values(result.errors).flat().join(", ");
           setErrorReview(`Validasi gagal: ${errorMsg}`);
         } else {
-          setErrorReview(result.message || `Gagal mengirim penilaian (Status: ${response.status}). Silakan coba lagi.`);
+          setErrorReview(
+            result.message ||
+              `Gagal mengirim penilaian (Status: ${response.status}). Silakan coba lagi.`
+          );
         }
       }
     } catch (err) {
-      setErrorReview("Terjadi kesalahan jaringan. Periksa koneksi internet Anda.");
+      setErrorReview(
+        "Terjadi kesalahan jaringan. Periksa koneksi internet Anda."
+      );
     } finally {
       setIsLoadingReview(false);
     }
@@ -180,7 +211,10 @@ const KontakPage = () => {
       if (reviewSection) {
         setTimeout(() => {
           const yOffset = -100;
-          const y = reviewSection.getBoundingClientRect().top + window.scrollY + yOffset;
+          const y =
+            reviewSection.getBoundingClientRect().top +
+            window.scrollY +
+            yOffset;
           window.scrollTo({ top: y, behavior: "smooth" });
         }, 300);
       }
@@ -205,7 +239,8 @@ const KontakPage = () => {
               Hubungi Kami
             </h2>
             <p className="text-dark/80 mb-8 text-base leading-relaxed">
-              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di Kudus.
+              Dukungan dan saran Anda sangat berarti bagi perkembangan UMKM di
+              Kudus.
             </p>
             <form onSubmit={handleSubmit} className="space-y-6">
               {Object.keys(formData).map((label, index) => (
@@ -224,7 +259,11 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${formData[label] ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                          ${
+                            formData[label]
+                              ? "-top-2 text-xs text-dark"
+                              : "top-2 text-sm text-dark/50"
+                          }
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
@@ -241,6 +280,7 @@ const KontakPage = () => {
                           e.target.style.height = "auto";
                           e.target.style.height = e.target.scrollHeight + "px";
                         }}
+                        maxLength={MAX_PESAN_LENGTH}
                         className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden resize-none"
                         placeholder=" "
                         disabled={isLoading}
@@ -248,11 +288,18 @@ const KontakPage = () => {
                       <label
                         htmlFor={label}
                         className={`absolute left-0 transition-all duration-200 ease-in-out
-                          ${formData[label] ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                          ${
+                            formData[label]
+                              ? "-top-2 text-xs text-dark"
+                              : "top-2 text-sm text-dark/50"
+                          }
                           peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                       >
                         {label} <span className="text-orange">*</span>
                       </label>
+                      <p className="text-sm text-dark/70 mt-1 text-right">
+                        {formData[label].length}/{MAX_PESAN_LENGTH}
+                      </p>
                     </>
                   )}
                 </div>
@@ -279,10 +326,22 @@ const KontakPage = () => {
             </form>
             <div className="flex justify-center space-x-4 mt-8 text-orange text-2xl">
               {[
-                { href: "mailto:mchoiranam@gmail.com", icon: "streamline-logos:email-logo-block" },
-                { href: "https://wa.me/6285601211156", icon: "fa6-brands:square-whatsapp" },
-                { href: "https://www.instagram.com/choiranamm/", icon: "fa7-brands:instagram-square" },
-                { href: "https://t.me/choiranamm", icon: "streamline-logos:telegram-logo-2-block" },
+                {
+                  href: "mailto:mchoiranam@gmail.com",
+                  icon: "streamline-logos:email-logo-block",
+                },
+                {
+                  href: "https://wa.me/6285601211156",
+                  icon: "fa6-brands:square-whatsapp",
+                },
+                {
+                  href: "https://www.instagram.com/choiranamm/",
+                  icon: "fa7-brands:instagram-square",
+                },
+                {
+                  href: "https://t.me/choiranamm",
+                  icon: "streamline-logos:telegram-logo-2-block",
+                },
               ].map((item, index) => (
                 <a
                   key={index}
@@ -298,7 +357,10 @@ const KontakPage = () => {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[5px] shadow-md h-[350px] md:h-[550px]" data-aos="fade-left">
+        <div
+          className="overflow-hidden rounded-[5px] shadow-md h-[350px] md:h-[550px]"
+          data-aos="fade-left"
+        >
           <iframe
             src="https://www.google.com/maps?q=-6.792803,110.836430&hl=id&z=15&output=embed"
             width="100%"
@@ -311,20 +373,34 @@ const KontakPage = () => {
           />
         </div>
 
-        <div className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[530px] hidden md:block" data-aos="fade-right">
-          <img src="/images/kudus.jpg" alt="Kudus" className="w-full h-full object-cover" />
+        <div
+          className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[530px] hidden md:block"
+          data-aos="fade-right"
+        >
+          <img
+            src="/images/kudus.jpg"
+            alt="Kudus"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         <div id="review" data-aos="fade-left">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">Beri Penilaian</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-dark">
+            Beri Penilaian
+          </h2>
           <p className="text-dark/80 mb-8 text-base leading-relaxed">
-            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi website ini.
+            Berikan bintang dan komentar tentang pengalamanmu saat menjelajahi
+            website ini.
           </p>
           <form onSubmit={handleReviewSubmit} className="space-y-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
                 {profilePic ? (
-                  <img src={profilePic} alt="Profil" className="w-full h-full object-cover" />
+                  <img
+                    src={profilePic}
+                    alt="Profil"
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
                   <div className="flex flex-col justify-center items-center h-full text-orange">
                     <Icon icon="mdi:camera-outline" className="text-3xl mb-1" />
@@ -345,7 +421,9 @@ const KontakPage = () => {
                       type="text"
                       id={`review-${label}`}
                       value={reviewData[label]}
-                      onChange={(e) => handleReviewChange(label, e.target.value)}
+                      onChange={(e) =>
+                        handleReviewChange(label, e.target.value)
+                      }
                       className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
                       placeholder=" "
                       disabled={isLoadingReview}
@@ -353,7 +431,11 @@ const KontakPage = () => {
                     <label
                       htmlFor={`review-${label}`}
                       className={`absolute left-0 transition-all duration-200 ease-in-out
-                        ${reviewData[label] ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                        ${
+                          reviewData[label]
+                            ? "-top-2 text-xs text-dark"
+                            : "top-2 text-sm text-dark/50"
+                        }
                         peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
                     >
                       {label} <span className="text-orange">*</span>
@@ -376,7 +458,11 @@ const KontakPage = () => {
               <label
                 htmlFor="review-email"
                 className={`absolute left-0 transition-all duration-200 ease-in-out
-                  ${reviewData.Email ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                  ${
+                    reviewData.Email
+                      ? "-top-2 text-xs text-dark"
+                      : "top-2 text-sm text-dark/50"
+                  }
                   peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Email <span className="text-orange">*</span>
@@ -398,7 +484,9 @@ const KontakPage = () => {
                   />
                 ))}
               </div>
-              {rating > 0 && <p className="text-xs text-dark/70 mt-1">Rating: {rating}/5</p>}
+              {rating > 0 && (
+                <p className="text-xs text-dark/70 mt-1">Rating: {rating}/5</p>
+              )}
             </div>
 
             <div className="relative">
@@ -411,6 +499,7 @@ const KontakPage = () => {
                   e.target.style.height = "auto";
                   e.target.style.height = `${e.target.scrollHeight}px`;
                 }}
+                maxLength={MAX_KOMENTAR_LENGTH}
                 className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden resize-none"
                 placeholder=" "
                 disabled={isLoadingReview}
@@ -418,11 +507,18 @@ const KontakPage = () => {
               <label
                 htmlFor="review-pesan"
                 className={`absolute left-0 transition-all duration-200 ease-in-out
-                  ${reviewData.Pesan ? "-top-2 text-xs text-dark" : "top-2 text-sm text-dark/50"}
+                  ${
+                    reviewData.Pesan
+                      ? "-top-2 text-xs text-dark"
+                      : "top-2 text-sm text-dark/50"
+                  }
                   peer-focus:-top-2 peer-focus:text-xs peer-focus:text-orange`}
               >
                 Komentar <span className="text-orange">*</span>
               </label>
+              <p className="text-sm text-dark/70 mt-1 text-right">
+                {reviewData.Pesan.length}/{MAX_KOMENTAR_LENGTH}
+              </p>
             </div>
 
             {errorReview && (

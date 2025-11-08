@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Icon } from "@iconify/react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import KecamatanCard from "../components/KecamatanCard";
 import UMKMCard from "../components/UMKMCard";
 import ReviewCard from "../components/ReviewCard";
@@ -21,7 +21,9 @@ const UMKMScrollSection = () => {
   useEffect(() => {
     const el = umkmScrollRef.current;
     if (!el) return;
+
     let frameId;
+
     const animateScroll = () => {
       if (!isPausedUMKM && el) {
         const half = el.scrollWidth / 2;
@@ -33,6 +35,7 @@ const UMKMScrollSection = () => {
       }
       frameId = requestAnimationFrame(animateScroll);
     };
+
     frameId = requestAnimationFrame(animateScroll);
     return () => cancelAnimationFrame(frameId);
   }, [isPausedUMKM]);
@@ -41,6 +44,7 @@ const UMKMScrollSection = () => {
     const el = e.currentTarget;
     if (isPausedUMKM) {
       const loop = el.scrollWidth / 2;
+
       if (el.scrollLeft >= loop - 1) {
         el.scrollLeft -= loop;
       } else if (el.scrollLeft <= 0) {
@@ -66,6 +70,7 @@ const UMKMScrollSection = () => {
           scrollbar-width: none;
         }
       `}</style>
+
       <div className="relative">
         <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
         <div
@@ -103,27 +108,77 @@ const UMKMScrollSection = () => {
 
 const HomePage = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
+  const placeholders = [
+    "Cari produk unggulan UMKM Kudus...",
+    "Temukan inspirasi dari pelaku usaha lokal...",
+    "Jelajahi potensi ekonomi kreatif daerah...",
+    "Dukung bisnis kecil di sekitarmu...",
+  ];
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  // State untuk Artikel (dari kode teman)
   const [articles, setArticles] = useState([]);
   const [loadingArticles, setLoadingArticles] = useState(true);
   const [errorArticles, setErrorArticles] = useState("");
+  const [blogCategories, setBlogCategories] = useState({});
+
+  // State untuk Review
   const [reviewData, setReviewData] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
   const [errorReviews, setErrorReviews] = useState("");
-  const [blogCategories, setBlogCategories] = useState({});
 
-  const navigate = useNavigate();
-
-  // Format tanggal
+  // Helper Format Tanggal (dari kode teman)
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     return new Date(dateString).toLocaleDateString("id-ID", options);
   };
 
-  // === 1. Fetch Kategori Blog (FIX URL: tanpa trailing slash) ===
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      AOS?.refresh();
+    }, 200);
+  }, []);
+
+  // Ganti placeholder tiap 3 detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Debounce search term
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedTerm(searchTerm);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  // Filter data UMKM untuk suggestion
+  useEffect(() => {
+    if (debouncedTerm.trim() === "") {
+      setSuggestions([]);
+      return;
+    }
+    const filtered = dataUMKM.filter((umkm) =>
+      umkm.name.toLowerCase().includes(debouncedTerm.toLowerCase())
+    );
+    setSuggestions(filtered);
+  }, [debouncedTerm]);
+
+  // === Fetch Kategori Blog (dari kode teman) ===
   useEffect(() => {
     const fetchBlogCategories = async () => {
       try {
-        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/categories-blog");
+        const response = await fetch(
+          "https://api-umkmwongkudus.rplrus.com/api/categories-blog"
+        );
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const result = await response.json();
 
@@ -146,12 +201,14 @@ const HomePage = () => {
     fetchBlogCategories();
   }, []);
 
-  // === 2. Fetch Artikel (tunggu kategori) ===
+  // === Fetch Artikel (dari kode teman) ===
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         setLoadingArticles(true);
-        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/articles");
+        const response = await fetch(
+          "https://api-umkmwongkudus.rplrus.com/api/articles"
+        );
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const result = await response.json();
 
@@ -182,14 +239,16 @@ const HomePage = () => {
     }
   }, [blogCategories]);
 
-  // === 3. Fetch Review ===
+  // === Fetch Reviews ===
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         setLoadingReviews(true);
-        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/rating");
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const response = await fetch(
+          "https://api-umkmwongkudus.rplrus.com/api/rating"
+        );
         const result = await response.json();
+
         if (result.status && Array.isArray(result.data)) {
           const formatted = result.data.map((item) => ({
             name: `${item.name} ${item.name_last}`.trim(),
@@ -203,7 +262,9 @@ const HomePage = () => {
             }),
             profileImage:
               item.photo_profil ||
-              `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=eee&color=666`,
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                item.name
+              )}&background=eee&color=666`,
           }));
           setReviewData(formatted);
         } else {
@@ -217,15 +278,8 @@ const HomePage = () => {
         setLoadingReviews(false);
       }
     };
-    fetchReviews();
-  }, []);
 
-  // AOS & Scroll
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-      AOS?.refresh();
-    }, 200);
+    fetchReviews();
   }, []);
 
   const categories = [
@@ -237,12 +291,23 @@ const HomePage = () => {
   ];
 
   const steps = [
-    { num: "1", title: "Telusuri Kategori UMKM", desc: "Temukan berbagai usaha makanan, minuman, jasa, dan barang lokal." },
-    { num: "2", title: "Temukan Informasi Lengkap", desc: "Lihat profil, foto, lokasi, dan kontak setiap pelaku UMKM." },
-    { num: "3", title: "Pelajari & Kenali UMKM", desc: "Dapatkan wawasan tentang beragam usaha lokal di Kabupaten Kudus." },
+    {
+      num: "1",
+      title: "Telusuri Kategori UMKM",
+      desc: "Temukan berbagai usaha makanan, minuman, jasa, dan barang lokal.",
+    },
+    {
+      num: "2",
+      title: "Temukan Informasi Lengkap",
+      desc: "Lihat profil, foto, lokasi, dan kontak setiap pelaku UMKM.",
+    },
+    {
+      num: "3",
+      title: "Pelajari & Kenali UMKM",
+      desc: "Dapatkan wawasan tentang beragam usaha lokal di Kabupaten Kudus.",
+    },
   ];
 
-  // Scroll Kecamatan
   const kecamatanScrollRef = useRef(null);
   const [canScrollLeftKecamatan, setCanScrollLeftKecamatan] = useState(false);
   const [canScrollRightKecamatan, setCanScrollRightKecamatan] = useState(true);
@@ -251,63 +316,54 @@ const HomePage = () => {
     const el = kecamatanScrollRef.current;
     if (el) {
       setCanScrollLeftKecamatan(el.scrollLeft > 0);
-      setCanScrollRightKecamatan(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+      setCanScrollRightKecamatan(
+        el.scrollLeft < el.scrollWidth - el.clientWidth - 1
+      );
     }
   };
 
   const scrollKecamatan = (direction) => {
     const el = kecamatanScrollRef.current;
     if (el) {
-      el.scrollBy({ left: direction === "left" ? -200 : 200, behavior: "smooth" });
+      el.scrollBy({
+        left: direction === "left" ? -200 : 200,
+        behavior: "smooth",
+      });
     }
   };
 
   useEffect(() => {
     const el = kecamatanScrollRef.current;
     if (!el) return;
+
     checkScrollKecamatan();
     const observer = new ResizeObserver(checkScrollKecamatan);
     observer.observe(el);
     window.addEventListener("resize", checkScrollKecamatan);
+
     return () => {
       observer.unobserve(el);
       window.removeEventListener("resize", checkScrollKecamatan);
     };
   }, []);
 
-  // Scroll Review (FIX TYPO: const, const → hapus)
-  const reviewScrollRef = useRef(null);
-  const [canScrollLeftReview, setCanScrollLeftReview] = useState(false);
-  const [canScrollRightReview, setCanScrollRightReview] = useState(true);
-
-  const scrollReview = (direction) => {
-    const el = reviewScrollRef.current;
-    if (!el) return;
-    const card = el.querySelector("div > div");
-    const width = (card?.offsetWidth || 300) + 16;
-    el.scrollBy({ left: direction === "left" ? -width : width, behavior: "smooth" });
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
-  const checkScrollReview = () => {
-    const el = reviewScrollRef.current;
-    if (el) {
-      setCanScrollLeftReview(el.scrollLeft > 0);
-      setCanScrollRightReview(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+  const handleSuggestionClick = (slug) => {
+    setSearchTerm("");
+    setSuggestions([]);
+    navigate(`/detail-umkm/${slug}`);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      setSuggestions([]);
+      navigate(`/pencarian?query=${encodeURIComponent(searchTerm)}`);
     }
   };
-
-  useEffect(() => {
-    const el = reviewScrollRef.current;
-    if (!el) return;
-    checkScrollReview();
-    const observer = new ResizeObserver(checkScrollReview);
-    observer.observe(el);
-    window.addEventListener("resize", checkScrollReview);
-    return () => {
-      observer.unobserve(el);
-      window.removeEventListener("resize", checkScrollReview);
-    };
-  }, [reviewData]);
 
   return (
     <div className="bg-light min-h-screen">
@@ -335,7 +391,9 @@ const HomePage = () => {
             title="Virtual Tour Kudus"
           ></iframe>
         </div>
+
         <div className="absolute inset-0 bg-dark/50"></div>
+
         <div className="relative z-10 container mx-auto px-4 py-24 sm:py-20 md:py-24 lg:py-32">
           <motion.div
             className="max-w-3xl text-start"
@@ -354,21 +412,69 @@ const HomePage = () => {
               pelaku UMKM asli Kudus.
             </p>
           </motion.div>
+
           <motion.div
-            className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4"
+            className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4 relative"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            <input
-              type="text"
-              placeholder="Cari nama tempat UMKM disini...."
-              className="grow py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
-            />
-            <button className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer">
+            <form
+              onSubmit={handleSearchSubmit}
+              className="grow relative"
+              id="searchForm"
+            >
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="w-full py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
+                  placeholder=""
+                />
+                {searchTerm === "" && (
+                  <div className="pointer-events-none absolute inset-0 flex items-center px-4">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={placeholderIndex}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className="text-dark/50 select-none"
+                      >
+                        {placeholders[placeholderIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </div>
+                )}
+              </div>
+
+              {suggestions.length > 0 && (
+                <div className="absolute z-20 w-full bg-light rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+                  {suggestions.map((sug, i) => (
+                    <div
+                      key={i}
+                      className="px-4 py-2 hover:bg-orange/10 cursor-pointer"
+                      onClick={() => handleSuggestionClick(sug.slug)}
+                    >
+                      {sug.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </form>
+
+            <button
+              type="submit"
+              className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer"
+              onClick={handleSearchSubmit}
+              form="searchForm"
+            >
               <Icon icon="tabler:search" className="w-4 h-4 mr-2" /> Search
             </button>
           </motion.div>
+
           <motion.div
             className="mt-8 text-start"
             initial={{ opacity: 0, y: 20 }}
@@ -388,7 +494,10 @@ const HomePage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
                 >
-                  <Icon icon={cat.icon} className="w-5 h-5 sm:w-6 sm:h-6 mb-1" />
+                  <Icon
+                    icon={cat.icon}
+                    className="w-5 h-5 sm:w-6 sm:h-6 mb-1"
+                  />
                   <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-center line-clamp-1">
                     {cat.name}
                   </span>
@@ -473,12 +582,23 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+
         <style jsx>{`
-          .no-scrollbar::-webkit-scrollbar { display: none; }
-          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          .snap-x { scroll-snap-type: x mandatory; }
-          .snap-start { scroll-snap-align: start; }
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          .snap-x {
+            scroll-snap-type: x mandatory;
+          }
+          .snap-start {
+            scroll-snap-align: start;
+          }
         `}</style>
+
         <div className="relative">
           <div className="absolute top-0 left-0 w-4 sm:w-6 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
           <div
@@ -486,33 +606,41 @@ const HomePage = () => {
             onScroll={checkScrollKecamatan}
             className="overflow-x-auto flex gap-4 py-3 no-scrollbar snap-x"
           >
-            {dataKecamatan.map((kec, i) => (
-              <div
-                key={kec.slug}
-                className="snap-start"
-                data-aos="zoom-in"
-                data-aos-delay={150 + i * 100}
-                data-aos-duration="800"
-                data-aos-easing="ease-in-out-sine"
-                data-aos-anchor-placement="bottom-bottom"
-              >
-                <KecamatanCard data={kec} />
-              </div>
-            ))}
+            {dataKecamatan.map((kec, i) => {
+              const placeCount = dataUMKM.filter(
+                (umkm) => umkm.kecamatanSlug === kec.slug
+              ).length;
+              const kecWithCount = { ...kec, placeCount };
+              return (
+                <div
+                  key={kec.slug}
+                  className="snap-start"
+                  data-aos="zoom-in"
+                  data-aos-delay={150 + i * 100}
+                  data-aos-duration="800"
+                  data-aos-easing="ease-in-out-sine"
+                  data-aos-anchor-placement="bottom-bottom"
+                >
+                  <KecamatanCard data={kecWithCount} />
+                </div>
+              );
+            })}
           </div>
           <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
+
         <button
           onClick={() => scrollKecamatan("left")}
           disabled={!canScrollLeftKecamatan}
-          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 left-0 xl:left-30 z-20 cursor-pointer"
+          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-[42%] -translate-y-1/2 left-0 xl:left-30 z-20 cursor-pointer"
         >
           <Icon icon="tabler:chevron-left" className="w-5 h-5" />
         </button>
+
         <button
           onClick={() => scrollKecamatan("right")}
           disabled={!canScrollRightKecamatan}
-          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 right-0 xl:right-30 z-20 cursor-pointer"
+          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-[42%] -translate-y-1/2 right-0 xl:right-30 z-20 cursor-pointer"
         >
           <Icon icon="tabler:chevron-right" className="w-5 h-5" />
         </button>
@@ -538,35 +666,22 @@ const HomePage = () => {
       {/* Review */}
       <section
         data-aos="fade-up"
-        className="py-16 sm:py-20 mb-16 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-dark/5 relative"
+        className="relative py-14 sm:py-20 mb-14 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-transparent overflow-hidden"
       >
-        <div className="mb-6 flex justify-between items-end">
+        <AnimatedIconBackground iconCount={15} color="text-orange" />
+
+        <div className="mb-2 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
           <div className="flex-1">
-            <h2 className="text-xl sm:text-2xl text-start text-dark">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-dark">
               <span className="font-bold">Apa Kata</span>{" "}
               <span className="font-normal">Mereka?</span>
             </h2>
-            <p className="text-dark font-medium text-base mt-2">
+            <p className="text-dark/80 font-medium text-sm sm:text-base mt-2 max-w-xl">
               Ulasan dan testimoni nyata dari para pengguna website kami.
             </p>
           </div>
-          <div className="flex md:hidden gap-2 ml-2">
-            <button
-              onClick={() => scrollReview("left")}
-              disabled={!canScrollLeftReview}
-              className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-            >
-              <Icon icon="tabler:chevron-left" className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => scrollReview("right")}
-              disabled={!canScrollRightReview}
-              className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-            >
-              <Icon icon="tabler:chevron-right" className="w-5 h-5" />
-            </button>
-          </div>
         </div>
+
         <div className="relative">
           {loadingReviews ? (
             <div className="flex justify-center items-center py-10">
@@ -577,19 +692,15 @@ const HomePage = () => {
           ) : reviewData.length === 0 ? (
             <p className="text-center text-dark/60 py-10">Belum ada ulasan.</p>
           ) : (
-            <motion.div
-              ref={reviewScrollRef}
-              onScroll={checkScrollReview}
-              className="overflow-x-auto flex gap-4 py-10 no-scrollbar snap-x snap-mandatory items-stretch"
-            >
-              {reviewData.map((rev, i) => (
+            <motion.div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 py-2 sm:py-4 justify-center items-stretch">
+              {reviewData.slice(0, 3).map((rev, i) => (
                 <div
                   key={i}
                   data-aos="fade-up"
                   data-aos-delay={i * 150}
                   data-aos-duration="600"
                   data-aos-easing="ease-out-cubic"
-                  className="snap-start shrink-0"
+                  className="shrink-0"
                 >
                   <ReviewCard review={rev} />
                 </div>
@@ -597,24 +708,11 @@ const HomePage = () => {
             </motion.div>
           )}
         </div>
-        <button
-          onClick={() => scrollReview("left")}
-          disabled={!canScrollLeftReview}
-          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 left-0 xl:left-30 z-20 cursor-pointer"
-        >
-          <Icon icon="tabler:chevron-left" className="w-5 h-5" />
-        </button>
-        <button
-          onClick={() => scrollReview("right")}
-          disabled={!canScrollRightReview}
-          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-1/2 -translate-y-1/2 right-0 xl:right-30 z-20 cursor-pointer"
-        >
-          <Icon icon="tabler:chevron-right" className="w-5 h-5" />
-        </button>
-        <div className="flex justify-center sm:justify-end mt-4">
+
+        <div className="flex justify-center sm:justify-end mt-8 sm:mt-10">
           <button
             onClick={() => navigate("/kontak#review")}
-            className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center w-full sm:w-auto font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer"
+            className="bg-orange text-light py-3 px-6 sm:px-8 rounded-lg flex items-center justify-center font-semibold hover:bg-orange-500 transition-colors shadow-md w-full sm:w-auto"
           >
             Beri Kami Ulasan{" "}
             <Icon icon="mdi:arrow-right" className="w-5 h-5 ml-2" />
@@ -653,9 +751,13 @@ const HomePage = () => {
               <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-orange"></div>
             </div>
           ) : errorArticles ? (
-            <div className="col-span-full text-center text-red-500 py-10">{errorArticles}</div>
+            <div className="col-span-full text-center text-red-500 py-10">
+              {errorArticles}
+            </div>
           ) : articles.length === 0 ? (
-            <div className="col-span-full text-center text-dark/60 py-10">Belum ada artikel.</div>
+            <div className="col-span-full text-center text-dark/60 py-10">
+              Belum ada artikel.
+            </div>
           ) : (
             articles.map((art, i) => (
               <div
