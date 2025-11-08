@@ -53,10 +53,10 @@ const Navbar = ({ forceDark = false }) => {
     : "hover:text-orange";
 
   const logoSrc = forceDark
-    ? "/images/logo_navbar_footer.png"
+    ? "/images/logo_navbar_footer.webp"
     : isAtTop && !isMobileMenuOpen
-    ? "/images/logo_kudus.png"
-    : "/images/logo_navbar_footer.png";
+    ? "/images/logo_kudus.webp"
+    : "/images/logo_navbar_footer.webp";
 
   const kategoriItems = [
     { icon: "fluent:food-16-regular", text: "Makanan", slug: "makanan" },

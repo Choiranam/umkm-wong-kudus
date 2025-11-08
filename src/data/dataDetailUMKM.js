@@ -6,7 +6,7 @@ export const dataDetailUMKM = [
     id: 1,
     name: "Warung Makan Om W",
     slug: "warung-makan-om-w",
-    heroImage: "/images/omw_hero.jpg",
+    heroImage: "/images/omw_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Warung Makan Om W"',
     heroSubtitle:
       "Warung sederhana khas Kudus dengan cita rasa rumahan yang lezat dan harga bersahabat.",
@@ -33,33 +33,33 @@ export const dataDetailUMKM = [
         name: "Rica Entok",
         description: "Rica entok dengan bumbu khas Kudus.",
         price: "Rp 22.000",
-        image: "/images/omw_menu1.jpg",
+        image: "/images/omw_menu1.webp",
       },
       {
         name: "Ayam Goreng",
         description: "Ayam goreng bumbu spesial dengan sambal terasi.",
         price: "Rp 22.000",
-        image: "/images/omw_menu2.jpg",
+        image: "/images/omw_menu2.webp",
       },
       {
         name: "Tongseng Entok",
         description: "Tongseng entok dengan bumbu khas Kudus.",
         price: "Rp 22.000",
-        image: "/images/omw_menu3.jpg",
+        image: "/images/omw_menu3.webp",
       },
       {
         name: "Tonbas Entog",
         description: "Tonbas entog dengan bumbu khas Kudus.",
         price: "Rp 22.000",
-        image: "/images/omw_menu4.jpg",
+        image: "/images/omw_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/omw_galerifoto1.jpg",
-      "/images/omw_galerifoto2.jpg",
-      "/images/omw_galerifoto3.jpg",
-      "/images/omw_galerifoto4.jpg",
-      "/images/omw_galerifoto5.jpg",
+      "/images/omw_galerifoto1.webp",
+      "/images/omw_galerifoto2.webp",
+      "/images/omw_galerifoto3.webp",
+      "/images/omw_galerifoto4.webp",
+      "/images/omw_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
@@ -75,7 +75,7 @@ export const dataDetailUMKM = [
     id: 2,
     name: "Ayam Geprek Jawi",
     slug: "ayam-geprek-jawi",
-    heroImage: "/images/geprekjawi_hero.jpg",
+    heroImage: "/images/geprekjawi_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Ayam Geprek Jawi"',
     heroSubtitle:
       "Menyajikan ayam geprek pedas dengan sambal khas yang menggugah selera.",
@@ -102,33 +102,33 @@ export const dataDetailUMKM = [
         name: "Ayam Geprek Original",
         description: "Ayam geprek dengan sambal pedas khas Jawi.",
         price: "Rp 10.000",
-        image: "/images/geprekjawi_menu1.jpg",
+        image: "/images/geprekjawi_menu1.webp",
       },
       {
         name: "Ayam Geprek Sambal Matah",
         description: "Ayam geprek dengan taburan keju leleh.",
         price: "Rp 13.000",
-        image: "/images/geprekjawi_menu2.jpg",
+        image: "/images/geprekjawi_menu2.webp",
       },
       {
         name: "Ayam Geprek Mozarella",
         description: "Ayam geprek dengan saus mozarella gurih.",
         price: "Rp 15.000",
-        image: "/images/geprekjawi_menu3.jpeg",
+        image: "/images/geprekjawi_menu3.webp",
       },
       {
         name: "Lele Geprek",
         description: "Lele geprek dengan sambal pedas khas Jawi.",
         price: "Rp 12.000",
-        image: "/images/geprekjawi_menu4.jpeg",
+        image: "/images/geprekjawi_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/geprekjawi_galerifoto1.jpg",
-      "/images/geprekjawi_galerifoto2.jpg",
-      "/images/geprekjawi_galerifoto3.jpg",
-      "/images/geprekjawi_galerifoto4.jpg",
-      "/images/geprekjawi_galerifoto5.jpg",
+      "/images/geprekjawi_galerifoto1.webp",
+      "/images/geprekjawi_galerifoto2.webp",
+      "/images/geprekjawi_galerifoto3.webp",
+      "/images/geprekjawi_galerifoto4.webp",
+      "/images/geprekjawi_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
@@ -144,7 +144,7 @@ export const dataDetailUMKM = [
     id: 3,
     name: "Soto Lamongan Mbak Yuli",
     slug: "soto-lamongan-mbak-yuli",
-    heroImage: "/images/lamonganyuli_hero.jpg",
+    heroImage: "/images/lamonganyuli_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Soto Lamongan Mbak Yuli"',
     heroSubtitle:
       "Soto Lamongan gurih dengan koya melimpah dan potongan ayam kampung.",
@@ -171,15 +171,15 @@ export const dataDetailUMKM = [
         name: "Soto Lamongan",
         description: "Soto ayam kuah bening dengan koya khas Lamongan.",
         price: "Rp 10.000",
-        image: "/images/lamonganyuli_menu1.jpg",
+        image: "/images/lamonganyuli_menu1.webp",
       },
     ],
     galleryImages: [
-      "/images/lamonganyuli_galerifoto1.jpg",
-      "/images/lamonganyuli_galerifoto2.jpg",
-      "/images/lamonganyuli_galerifoto3.jpg",
-      "/images/lamonganyuli_galerifoto4.jpg",
-      "/images/lamonganyuli_galerifoto5.jpg",
+      "/images/lamonganyuli_galerifoto1.webp",
+      "/images/lamonganyuli_galerifoto2.webp",
+      "/images/lamonganyuli_galerifoto3.webp",
+      "/images/lamonganyuli_galerifoto4.webp",
+      "/images/lamonganyuli_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "06.30 - 10.00", isOpen: true },
@@ -195,7 +195,7 @@ export const dataDetailUMKM = [
     id: 4,
     name: "Es Cincau Pasundan",
     slug: "es-cincau-pasundan",
-    heroImage: "/images/cincaupasundan_hero.png",
+    heroImage: "/images/cincaupasundan_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Es Cincau Pasundan"',
     heroSubtitle:
       "Minuman segar dengan cincau hitam khas Pasundan dan gula merah cair.",
@@ -222,12 +222,12 @@ export const dataDetailUMKM = [
         name: "Es Cincau Pasundan",
         description: "Minuman cincau hitam dengan gula merah cair.",
         price: "Rp 5.000",
-        image: "/images/cincaupasundan_menu1.jpg",
+        image: "/images/cincaupasundan_menu1.webp",
       },
     ],
     galleryImages: [
-      "/images/cincaupasundan_galerifoto1.jpeg",
-      "/images/cincaupasundan_galerifoto2.png",
+      "/images/cincaupasundan_galerifoto1.webp",
+      "/images/cincaupasundan_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
@@ -243,7 +243,7 @@ export const dataDetailUMKM = [
     id: 5,
     name: "Jasa Tulis Kudus",
     slug: "jasa-tulis-kudus",
-    heroImage: "/images/jasatulis_hero.jpg",
+    heroImage: "/images/jasatulis_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Jasa Tulis Kudus"',
     heroSubtitle:
       "Melayani jasa pengetikan, cetak dokumen, dan administrasi harian.",
@@ -270,33 +270,33 @@ export const dataDetailUMKM = [
         name: "Jasa Tugas",
         description: "Melayani pengetikan tugas sekolah dan kuliah.",
         price: "Mulai Rp 5.000",
-        image: "/images/jasatulis_menu1.jpeg",
+        image: "/images/jasatulis_menu1.webp",
       },
       {
         name: "Jasa Tulis Tangan",
         description: "Melayani penulisan dokumen secara manual.",
         price: "Mulai Rp 3.000",
-        image: "/images/jasatulis_menu2.jpeg",
+        image: "/images/jasatulis_menu2.webp",
       },
       {
         name: "Jasa Edit",
         description: "Melayani editing dokumen dan tata bahasa.",
         price: "Mulai Rp 20.000",
-        image: "/images/jasatulis_menu3.png",
+        image: "/images/jasatulis_menu3.webp",
       },
       {
         name: "Jasa Ketik",
         description: "Melayani pengetikan dokumen cepat dan rapi.",
         price: "Mulai Rp 4.000",
-        image: "/images/jasatulis_menu4.jpeg",
+        image: "/images/jasatulis_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/jasatulis_galerifoto1.png",
-      "/images/jasatulis_galerifoto2.png",
-      "/images/jasatulis_galerifoto3.png",
-      "/images/jasatulis_galerifoto4.png",
-      "/images/jasatulis_galerifoto5.png",
+      "/images/jasatulis_galerifoto1.webp",
+      "/images/jasatulis_galerifoto2.webp",
+      "/images/jasatulis_galerifoto3.webp",
+      "/images/jasatulis_galerifoto4.webp",
+      "/images/jasatulis_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Buka 24 Jam", isOpen: true },
@@ -313,7 +313,7 @@ export const dataDetailUMKM = [
     id: 6,
     name: "Swike Dawe Restaurant",
     slug: "swike-dawe-restaurant",
-    heroImage: "/images/swikedawe_hero.jpg",
+    heroImage: "/images/swikedawe_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Swike Dawe Restaurant"',
     heroSubtitle:
       "Restoran legendaris menawarkan swike (kodok kuah tauco) khas Kudus.",
@@ -340,21 +340,21 @@ export const dataDetailUMKM = [
         name: "Sop Daging",
         description: "Sop daging sapi dengan kuah bening segar.",
         price: "Rp 30.000",
-        image: "/images/swikedawe_menu1.jpg",
+        image: "/images/swikedawe_menu1.webp",
       },
       {
         name: "Swike Kuah dan Pepes Telur Kodok",
         description: "Swike kodok kuah tauco dan pepes telur kodok.",
         price: "Rp 50.000",
-        image: "/images/swikedawe_menu2.jpg",
+        image: "/images/swikedawe_menu2.webp",
       },
     ],
     galleryImages: [
-      "/images/swikedawe_galerifoto1.jpg",
-      "/images/swikedawe_galerifoto2.jpg",
-      "/images/swikedawe_galerifoto3.jpg",
-      "/images/swikedawe_galerifoto4.jpg",
-      "/images/swikedawe_galerifoto5.jpg",
+      "/images/swikedawe_galerifoto1.webp",
+      "/images/swikedawe_galerifoto2.webp",
+      "/images/swikedawe_galerifoto3.webp",
+      "/images/swikedawe_galerifoto4.webp",
+      "/images/swikedawe_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "07.00 - 15.00", isOpen: true },
@@ -370,7 +370,7 @@ export const dataDetailUMKM = [
     id: 7,
     name: "WEKATE GANK",
     slug: "wekate-gank",
-    heroImage: "/images/wekategank_hero.jpg",
+    heroImage: "/images/wekategank_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "WEKATE GANK"',
     heroSubtitle:
       "Kafe & lounge nongkrong malam dengan suasana kekinian di Kudus.",
@@ -397,13 +397,13 @@ export const dataDetailUMKM = [
         name: "Berbagai Aneka Minuman",
         description: "Aneka minuman segar dan kopi kekinian.",
         price: "Mulai Rp 5.000",
-        image: "/images/wekategank_menu1.jpeg",
+        image: "/images/wekategank_menu1.webp",
       },
     ],
     galleryImages: [
-      "/images/wekategank_galerifoto1.jpeg",
-      "/images/wekategank_galerifoto2.png",
-      "/images/wekategank_galerifoto3.jpeg",
+      "/images/wekategank_galerifoto1.webp",
+      "/images/wekategank_galerifoto2.webp",
+      "/images/wekategank_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Buka 24 Jam", isOpen: true },
@@ -419,7 +419,7 @@ export const dataDetailUMKM = [
     id: 8,
     name: "Rumah Makan Mak Kiyem",
     slug: "rumah-makan-mak-kiyem",
-    heroImage: "/images/makkiyem_hero.jpg",
+    heroImage: "/images/makkiyem_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Rumah Makan Mak Kiyem"',
     heroSubtitle:
       "Warung makan malam hingga siang dengan aneka menu rumahan dan lodeh khas Kudus.",
@@ -446,21 +446,21 @@ export const dataDetailUMKM = [
         name: "Pecel",
         description: "Nasi dengan sayur pecel dan lauk pilihan.",
         price: "Rp 7.000",
-        image: "/images/makkiyem_menu1.jpg",
+        image: "/images/makkiyem_menu1.webp",
       },
       {
         name: "Rames Lodeh Bu Kiyem",
         description: "Rames khas Kudus dengan lauk lodeh.",
         price: "Rp 8.000",
-        image: "/images/makkiyem_menu2.jpg",
+        image: "/images/makkiyem_menu2.webp",
       },
     ],
     galleryImages: [
-      "/images/makkiyem_galerifoto1.jpg",
-      "/images/makkiyem_galerifoto2.jpg",
-      "/images/makkiyem_galerifoto3.jpg",
-      "/images/makkiyem_galerifoto4.jpg",
-      "/images/makkiyem_galerifoto5.jpg",
+      "/images/makkiyem_galerifoto1.webp",
+      "/images/makkiyem_galerifoto2.webp",
+      "/images/makkiyem_galerifoto3.webp",
+      "/images/makkiyem_galerifoto4.webp",
+      "/images/makkiyem_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "03.00 - 01.00", isOpen: true },
@@ -476,7 +476,7 @@ export const dataDetailUMKM = [
     id: 9,
     name: "Jasa Angkut & Pasir & Bata Merah Jumbo",
     slug: "jasa-angkut-dan-pasir-bata-merah-jumbo",
-    heroImage: "/images/jasaangkut_hero.jpg",
+    heroImage: "/images/jasaangkut_hero.webp",
     heroTitle:
       "Layanan Lengkap Jasa Angkut, Pasir, & Bata Merah Jumbo di Kudus",
     heroSubtitle:
@@ -505,29 +505,29 @@ export const dataDetailUMKM = [
         description:
           "Layanan pengiriman dan pengangkutan pasir bangunan ke lokasi proyek dengan cepat dan tepat waktu.",
         price: "Rp 150.000",
-        image: "/images/jasaangkutdll_menu1.png",
+        image: "/images/jasaangkutdll_menu1.webp",
       },
       {
         name: "Jasa Angkut Bata Merah Jumbo",
         description:
           "Pengiriman bata merah jumbo dalam jumlah besar dengan tenaga profesional dan kendaraan angkut khusus.",
         price: "Rp 120.000",
-        image: "/images/jasaangkutdll_menu2.png",
+        image: "/images/jasaangkutdll_menu2.webp",
       },
       {
         name: "Jasa Angkut Pindahan",
         description:
           "Melayani jasa pindahan rumah, kos, maupun kantor dengan kendaraan bak dan tenaga angkut berpengalaman.",
         price: "Rp 250.000",
-        image: "/images/jasaangkutdll_menu3.png",
+        image: "/images/jasaangkutdll_menu3.webp",
       },
     ],
     galleryImages: [
-      "/images/jasaangkutdll_galerifoto1.png",
-      "/images/jasaangkutdll_galerifoto2.png",
-      "/images/jasaangkutdll_galerifoto3.png",
-      "/images/jasaangkutdll_galerifoto4.png",
-      "/images/jasaangkutdll_galerifoto5.png",
+      "/images/jasaangkutdll_galerifoto1.webp",
+      "/images/jasaangkutdll_galerifoto2.webp",
+      "/images/jasaangkutdll_galerifoto3.webp",
+      "/images/jasaangkutdll_galerifoto4.webp",
+      "/images/jasaangkutdll_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Buka 24 Jam", isOpen: true },
@@ -543,7 +543,7 @@ export const dataDetailUMKM = [
     id: 10,
     name: "Ayam Geprek Sai",
     slug: "ayam-geprek-sai",
-    heroImage: "/images/ayamgepreksai_hero.jpg",
+    heroImage: "/images/ayamgepreksai_hero.webp",
     heroTitle: "Ayam Geprek Sai – Gurih, Pedas, dan Selalu Bikin Nagih!",
     heroSubtitle:
       "Rasakan sensasi ayam geprek dengan sambal pilihan dan cita rasa khas yang disukai semua kalangan. Cocok untuk makan siang, malam, atau pesanan bersama teman dan keluarga.",
@@ -571,35 +571,35 @@ export const dataDetailUMKM = [
         description:
           "Ayam bagian paha yang digoreng renyah lalu digeprek dengan sambal pedas khas Sai Dawe. Cocok untuk kamu yang suka sensasi gurih dan lembutnya daging ayam.",
         price: "Rp 13.500",
-        image: "/images/sai_menu1.jpg",
+        image: "/images/sai_menu1.webp",
       },
       {
         name: "Paket Geprek 3",
         description:
           "Paket hemat berisi ayam geprek, nasi hangat, sambal pedas, dan lalapan segar. Pilihan pas untuk makan siang atau malam bersama teman dan keluarga.",
         price: "Rp 17.000",
-        image: "/images/sai_menu2.jpg",
+        image: "/images/sai_menu2.webp",
       },
       {
         name: "Nasi Goreng",
         description:
           "Nasi goreng khas Sai Dawe dengan bumbu rumahan gurih, potongan ayam, dan telur. Disajikan hangat dan siap menggugah selera.",
         price: "Rp 14.000",
-        image: "/images/sai_menu3.jpg",
+        image: "/images/sai_menu3.webp",
       },
       {
         name: "Burger",
         description:
           "Roti lembut dengan isian ayam crispy, sayuran segar, dan saus spesial Sai Dawe. Nikmat untuk camilan sore atau makan cepat.",
         price: "Rp 12.000",
-        image: "/images/sai_menu4.jpg",
+        image: "/images/sai_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/sai_galerifoto1.jpg",
-      "/images/sai_galerifoto2.jpg",
-      "/images/sai_galerifoto3.jpg",
-      "/images/sai_galerifoto4.jpg",
+      "/images/sai_galerifoto1.webp",
+      "/images/sai_galerifoto2.webp",
+      "/images/sai_galerifoto3.webp",
+      "/images/sai_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "9:30-21:00", isOpen: true },
@@ -616,7 +616,7 @@ export const dataDetailUMKM = [
     id: 11,
     name: "Warung Makan Mbah Sapar",
     slug: "warung-makan-mbah-sapar",
-    heroImage: "/images/mbahsapar_hero.jpg",
+    heroImage: "/images/mbahsapar_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Warung Makan Mbah Sapar"',
     heroSubtitle:
       "Warung makan rumahan populer untuk sarapan dengan menu khas lokal di Kudus.",
@@ -642,27 +642,27 @@ export const dataDetailUMKM = [
         name: "Sop",
         description: "Sop daging kerbau dengan kuah bening segar.",
         price: "Rp 5.000",
-        image: "/images/mbahsapar_menu1.jpg",
+        image: "/images/mbahsapar_menu1.webp",
       },
       {
         name: "Nasi Pecel",
         description: "Nasi dengan sayur pecel dan lauk pilihan.",
         price: "Rp 7.000",
-        image: "/images/mbahsapar_menu2.jpg",
+        image: "/images/mbahsapar_menu2.webp",
       },
       {
         name: "Aneka Jamu",
         description: "Berbagai minuman jamu tradisional segar.",
         price: "Mulai Rp 5.000",
-        image: "/images/mbahsapar_menu3.jpg",
+        image: "/images/mbahsapar_menu3.webp",
       },
     ],
     galleryImages: [
-      "/images/mbahsapar_galerifoto1.jpg",
-      "/images/mbahsapar_galerifoto2.jpg",
-      "/images/mbahsapar_galerifoto3.jpg",
-      "/images/mbahsapar_galerifoto4.jpg",
-      "/images/mbahsapar_galerifoto5.jpg",
+      "/images/mbahsapar_galerifoto1.webp",
+      "/images/mbahsapar_galerifoto2.webp",
+      "/images/mbahsapar_galerifoto3.webp",
+      "/images/mbahsapar_galerifoto4.webp",
+      "/images/mbahsapar_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "06.00 – 13.30", isOpen: true },
@@ -678,7 +678,7 @@ export const dataDetailUMKM = [
     id: 12,
     name: "Nasi Uduk dan Nasi Kuning Gang Satu",
     slug: "nasi-uduk-dan-nasi-kuning-gang-satu",
-    heroImage: "/images/nasiuduk_hero.jpg",
+    heroImage: "/images/nasiuduk_hero.webp",
     heroTitle:
       'Informasi Lengkap tentang UMKM "Nasi Uduk dan Nasi Kuning Gang Satu"',
     heroSubtitle:
@@ -706,21 +706,21 @@ export const dataDetailUMKM = [
         name: "Nasi Uduk",
         description: "Nasi uduk dengan lauk pilihan dan sambal khas.",
         price: "Rp 8.000",
-        image: "/images/nasiuduk_menu1.jpg",
+        image: "/images/nasiuduk_menu1.webp",
       },
       {
         name: "Nasi Kuning",
         description: "Nasi kuning dengan lauk lengkap dan sambal terasi.",
         price: "Rp 10.000",
-        image: "/images/nasiuduk_menu2.jpg",
+        image: "/images/nasiuduk_menu2.webp",
       },
     ],
     galleryImages: [
-      "/images/nasiuduk_galerifoto1.jpg",
-      "/images/nasiuduk_galerifoto2.jpg",
-      "/images/nasiuduk_galerifoto3.jpg",
-      "/images/nasiuduk_galerifoto4.jpg",
-      "/images/nasiuduk_galerifoto5.jpg",
+      "/images/nasiuduk_galerifoto1.webp",
+      "/images/nasiuduk_galerifoto2.webp",
+      "/images/nasiuduk_galerifoto3.webp",
+      "/images/nasiuduk_galerifoto4.webp",
+      "/images/nasiuduk_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Tutup", isOpen: close },
@@ -736,7 +736,7 @@ export const dataDetailUMKM = [
     id: 13,
     name: "Sari Rasa Bakso Malvinas",
     slug: "sari-rasa-bakso-malvinas",
-    heroImage: "/images/baksomalvinas_hero.jpg",
+    heroImage: "/images/baksomalvinas_hero.webp",
     heroTitle:
       "Sari Rasa Bakso Malvinas – Bakso Gurih, Kenyal, dan Nikmat di Setiap Suapan!",
     heroSubtitle:
@@ -765,28 +765,28 @@ export const dataDetailUMKM = [
         description:
           "Bakso sapi dengan urat kenyal, kuah gurih, dan taburan bawang goreng yang menggugah selera.",
         price: "Rp 16.000",
-        image: "/images/malvinas_menu1.jpg",
+        image: "/images/malvinas_menu1.webp",
       },
       {
         name: "Mie Bakso",
         description:
           "Perpaduan mie kenyal dengan bakso sapi dan kuah kaldu hangat yang lezat.",
         price: "Rp 15.000",
-        image: "/images/malvinas_menu2.jpg",
+        image: "/images/malvinas_menu2.webp",
       },
       {
         name: "Es Jeruk",
         description:
           "Minuman segar dari perasan jeruk asli, cocok untuk menemani hidangan panasmu.",
         price: "Rp 5.000",
-        image: "/images/malvinas_menu3.jpg",
+        image: "/images/malvinas_menu3.webp",
       },
     ],
     galleryImages: [
-      "/images/malvinas_galerifoto1.jpg",
-      "/images/malvinas_galerifoto2.jpg",
-      "/images/malvinas_galerifoto3.jpg",
-      "/images/malvinas_galerifoto4.jpg",
+      "/images/malvinas_galerifoto1.webp",
+      "/images/malvinas_galerifoto2.webp",
+      "/images/malvinas_galerifoto3.webp",
+      "/images/malvinas_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Tutup", isOpen: close },
@@ -802,7 +802,7 @@ export const dataDetailUMKM = [
     id: 14,
     name: "Warung Makan Mak Ru",
     slug: "warung-makan-mak-ru",
-    heroImage: "/images/warungmakanmakru_hero.jpg",
+    heroImage: "/images/warungmakanmakru_hero.webp",
     heroTitle:
       "Warung Makan Mak Ru – Masakan Rumahan yang Nikmat & Bikin Kangen!",
     heroSubtitle:
@@ -831,50 +831,50 @@ export const dataDetailUMKM = [
         description:
           "Hidangan khas Kudus dengan kuah rempah pekat dan irisan daging kerbau empuk, disajikan bersama nasi hangat dan bawang goreng.",
         price: "Rp 18.000",
-        image: "/images/makru_menu1.jpg",
+        image: "/images/makru_menu1.webp",
       },
       {
         name: "Nasi Rames Telur",
         description:
           "Nasi dengan lauk telur, sayur lodeh, sambal pedas, dan tambahan tempe goreng khas rumahan.",
         price: "Rp 15.000",
-        image: "/images/makru_menu2.jpg",
+        image: "/images/makru_menu2.webp",
       },
       {
         name: "Nasi Sop",
         description:
           "Nasi putih hangat disajikan dengan sop ayam berkuah bening gurih berisi wortel, kentang, dan daun seledri segar.",
         price: "Rp 14.000",
-        image: "/images/makru_menu3.jpg",
+        image: "/images/makru_menu3.webp",
       },
       {
         name: "Gorengan",
         description:
           "Aneka gorengan renyah seperti tempe, tahu isi, bakwan, dan mendoan yang digoreng hangat setiap hari.",
         price: "Rp 2.000/pcs",
-        image: "/images/makru_menu4.jpg",
+        image: "/images/makru_menu4.webp",
       },
       {
         name: "Lalapan",
         description:
           "Lalapan segar berisi timun, kol, kemangi, dan sambal terasi pedas yang menambah selera makan.",
         price: "Rp 5.000",
-        image: "/images/makru_menu5.jpg",
+        image: "/images/makru_menu5.webp",
       },
       {
         name: "Tempe Ayam Lele Jeroan",
         description:
           "Pilihan lauk lengkap — mulai dari ayam goreng, lele, tempe, hingga jeroan yang dibumbui dengan cita rasa khas rumahan.",
         price: "Rp 10.000 - Rp 18.000",
-        image: "/images/makru_menu6.jpg",
+        image: "/images/makru_menu6.webp",
       },
     ],
     galleryImages: [
-      "/images/makru_galerifoto1.jpg",
-      "/images/makru_galerifoto2.jpg",
-      "/images/makru_galerifoto3.jpg",
-      "/images/makru_galerifoto4.jpg",
-      "/images/makru_galerifoto5.jpg",
+      "/images/makru_galerifoto1.webp",
+      "/images/makru_galerifoto2.webp",
+      "/images/makru_galerifoto3.webp",
+      "/images/makru_galerifoto4.webp",
+      "/images/makru_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Tutup", isOpen: close },
@@ -890,7 +890,7 @@ export const dataDetailUMKM = [
     id: 15,
     name: "Kasehito Works",
     slug: "kasehito-works",
-    heroImage: "/images/kasehitoworks_hero.jpeg",
+    heroImage: "/images/kasehitoworks_hero.webp",
     heroTitle:
       "Kasehito Works – Jasa Editing Video Profesional & Kreatif di Kudus!",
     heroSubtitle:
@@ -919,10 +919,10 @@ export const dataDetailUMKM = [
         description:
           "Layanan profesional untuk mengedit video promosi, konten media sosial, vlog, atau proyek kreatif dengan hasil rapi dan menarik. Menyediakan efek, transisi, color grading, serta penyesuaian musik sesuai kebutuhan klien.",
         price: "Rp 100.000",
-        image: "/images/kasehito_menu1.png",
+        image: "/images/kasehito_menu1.webp",
       },
     ],
-    galleryImages: ["/images/kasehito_menu1.png"],
+    galleryImages: ["/images/kasehito_menu1.webp"],
     openingHours: [
       { day: "Senin", hours: "09.00 - 18.00", isOpen: true },
       { day: "Selasa", hours: "09.00 - 18.00", isOpen: true },
@@ -938,7 +938,7 @@ export const dataDetailUMKM = [
     id: 16,
     name: "Cakrawala Sego Sambel",
     slug: "cakrawala-sego-sambel",
-    heroImage: "/images/cakrawala_hero.jpg",
+    heroImage: "/images/cakrawala_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Cakrawala Sego Sambel"',
     heroSubtitle:
       "Warung makan malam hingga larut yang populer dengan sego sambel dan lauk goreng-gorengan di Kudus.",
@@ -965,33 +965,33 @@ export const dataDetailUMKM = [
         name: "Ayam Goreng",
         description: "Ayam kampung goreng dengan sambal khas Kudus.",
         price: "Rp 23.000",
-        image: "/images/cakrawala_menu1.jpg",
+        image: "/images/cakrawala_menu1.webp",
       },
       {
         name: "Lele Bakar",
         description: "Lele bakar dengan sambal khas Kudus.",
         price: "Rp 10.000",
-        image: "/images/cakrawala_menu2.jpg",
+        image: "/images/cakrawala_menu2.webp",
       },
       {
         name: "Bebek Goreng",
         description: "Bebek goreng dengan sambal khas Kudus.",
         price: "Rp 25.000",
-        image: "/images/cakrawala_menu3.jpg",
+        image: "/images/cakrawala_menu3.webp",
       },
       {
         name: "Ayam Bakar",
         description: "Ayam bakar dengan sambal khas Kudus.",
         price: "Rp 23.000",
-        image: "/images/cakrawala_menu4.jpg",
+        image: "/images/cakrawala_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/cakrawala_galerifoto1.jpg",
-      "/images/cakrawala_galerifoto2.jpg",
-      "/images/cakrawala_galerifoto3.jpg",
-      "/images/cakrawala_galerifoto4.jpg",
-      "/images/cakrawala_galerifoto5.jpg",
+      "/images/cakrawala_galerifoto1.webp",
+      "/images/cakrawala_galerifoto2.webp",
+      "/images/cakrawala_galerifoto3.webp",
+      "/images/cakrawala_galerifoto4.webp",
+      "/images/cakrawala_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.30 - 00.30", isOpen: true },
@@ -1007,7 +1007,7 @@ export const dataDetailUMKM = [
     id: 17,
     name: "Nasi Opor Sunggingan",
     slug: "nasi-opor-sunggingan",
-    heroImage: "/images/oporsungginan_hero.jpg",
+    heroImage: "/images/oporsungginan_hero.webp",
     heroTitle:
       'Nasi Opor Sunggingan – Kelezatan Opor Ayam Khas Kudus yang Melegenda!"',
     heroSubtitle:
@@ -1035,51 +1035,51 @@ export const dataDetailUMKM = [
         name: "Nasi Opor Bakar",
         description: "Ayam kampung goreng dengan sambal khas Kudus.",
         price: "Rp 19.000",
-        image: "/images/opor_menu1.jpg",
+        image: "/images/opor_menu1.webp",
       },
       {
         name: "Ceker",
         description: "Lele bakar dengan sambal khas Kudus.",
         price: "Rp 12.000",
-        image: "/images/opor_menu2.jpg",
+        image: "/images/opor_menu2.webp",
       },
       {
         name: "Garang Asem",
         description: "Bebek goreng dengan sambal khas Kudus.",
         price: "Rp 35.000",
-        image: "/images/opor_menu3.jpg",
+        image: "/images/opor_menu3.webp",
       },
       {
         name: "Nasi Opor Sunggingan",
         description: "Ayam bakar dengan sambal khas Kudus.",
         price: "Rp 23.000",
-        image: "/images/opor_menu4.jpg",
+        image: "/images/opor_menu4.webp",
       },
       {
         name: "Nasi Opor Ayam Panggang",
         description: "Ayam bakar dengan sambal khas Kudus.",
         price: "Rp 29.000",
-        image: "/images/opor_menu5.jpg",
+        image: "/images/opor_menu5.webp",
       },
       {
         name: "Opor Ayam Sunggingan",
         description: "Ayam bakar dengan sambal khas Kudus.",
         price: "Rp 25.000",
-        image: "/images/opor_menu6.jpg",
+        image: "/images/opor_menu6.webp",
       },
       {
         name: "Kerupuk Udang",
         description: "Ayam bakar dengan sambal khas Kudus.",
         price: "Rp 7.000",
-        image: "/images/opor_menu7.jpg",
+        image: "/images/opor_menu7.webp",
       },
     ],
     galleryImages: [
-      "/images/opor_galerifoto1.jpg",
-      "/images/opor_galerifoto2.jpg",
-      "/images/opor_galerifoto3.jpg",
-      "/images/opor_galerifoto4.jpg",
-      "/images/opor_galerifoto5.jpg",
+      "/images/opor_galerifoto1.webp",
+      "/images/opor_galerifoto2.webp",
+      "/images/opor_galerifoto3.webp",
+      "/images/opor_galerifoto4.webp",
+      "/images/opor_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "06.00 - 14.00", isOpen: true },
@@ -1095,7 +1095,7 @@ export const dataDetailUMKM = [
     id: 18,
     name: "Warung Enthog Pak Badi",
     slug: "warung-enthog-pak-badi",
-    heroImage: "/images/enthogpakbadi_hero.jpg",
+    heroImage: "/images/enthogpakbadi_hero.webp",
     heroTitle:
       'Warung Enthog Pak Badi – Gurihnya Olahan Enthog Khas Kudus yang Legendaris!"',
     heroSubtitle:
@@ -1124,42 +1124,42 @@ export const dataDetailUMKM = [
         description:
           "Potongan daging entog empuk dimasak dengan bumbu rempah khas Jawa dan kuah tongseng gurih pedas yang menggugah selera.",
         price: "Rp 25.000",
-        image: "/images/pakbadi_menu1.jpg",
+        image: "/images/pakbadi_menu1.webp",
       },
       {
         name: "Entog Goreng",
         description:
           "Daging entog digoreng hingga renyah di luar namun tetap lembut di dalam, disajikan dengan sambal terasi dan nasi hangat.",
         price: "Rp 23.000",
-        image: "/images/pakbadi_menu2.jpg",
+        image: "/images/pakbadi_menu2.webp",
       },
       {
         name: "Entog Bumbu Sate",
         description:
           "Olahan entog dengan bumbu sate manis gurih, dibakar perlahan hingga meresap sempurna dan beraroma sedap.",
         price: "Rp 30.000",
-        image: "/images/pakbadi_menu3.jpg",
+        image: "/images/pakbadi_menu3.webp",
       },
       {
         name: "Tongseng Enthok Pak Badi",
         description:
           "Menu andalan Pak Badi! Daging entog dimasak dengan kuah tongseng kental penuh rempah dan sedikit pedas, bikin nagih di setiap suapan.",
         price: "Rp 27.000",
-        image: "/images/pakbadi_menu4.jpg",
+        image: "/images/pakbadi_menu4.webp",
       },
       {
         name: "Tong Seng Kepala Entok",
         description:
           "Kepala entog dimasak dengan kuah tongseng berbumbu pekat, cocok untuk pecinta rasa gurih dan kuat khas masakan tradisional Kudus.",
         price: "Rp 28.000",
-        image: "/images/pakbadi_menu5.jpg",
+        image: "/images/pakbadi_menu5.webp",
       },
     ],
     galleryImages: [
-      "/images/pakbadi_galerifoto1.jpg",
-      "/images/pakbadi_galerifoto2.jpg",
-      "/images/pakbadi_galerifoto3.jpg",
-      "/images/pakbadi_galerifoto4.jpg",
+      "/images/pakbadi_galerifoto1.webp",
+      "/images/pakbadi_galerifoto2.webp",
+      "/images/pakbadi_galerifoto3.webp",
+      "/images/pakbadi_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 14.00", isOpen: true },
@@ -1175,7 +1175,7 @@ export const dataDetailUMKM = [
     id: 19,
     name: "Jasa Powder Coating & Platting Kudus",
     slug: "jasa-powder-coating-dan-platting-kudus",
-    heroImage: "/images/powdercoating_hero.jpg",
+    heroImage: "/images/powdercoating_hero.webp",
     heroTitle:
       'Jasa Powder Coating & Platting Kudus – Finishing Tahan Lama dan Profesional!"',
     heroSubtitle:
@@ -1204,26 +1204,26 @@ export const dataDetailUMKM = [
         description:
           "Layanan pengecatan logam dengan teknologi powder coating berkualitas tinggi yang tahan lama, halus, dan anti karat. Cocok untuk velg, rangka motor, pagar, dan komponen industri.",
         price: "Rp 100.000",
-        image: "/images/coating_menu1.png",
+        image: "/images/coating_menu1.webp",
       },
       {
         name: "Jasa Chrome Platting",
         description:
           "Proses pelapisan logam dengan efek chrome mengkilap yang elegan. Ideal untuk aksesoris motor, mobil, dan peralatan logam agar tampak baru dan mewah.",
         price: "Rp 150.000",
-        image: "/images/coating_menu2.png",
+        image: "/images/coating_menu2.webp",
       },
       {
         name: "Repaint & Refinishing",
         description:
           "Perbaikan warna dan finishing ulang pada permukaan logam yang kusam atau terkelupas agar kembali mulus dan tampak seperti baru.",
         price: "Rp 80.000",
-        image: "/images/coating_menu3.png",
+        image: "/images/coating_menu3.webp",
       },
     ],
     galleryImages: [
-      "/images/coating_galerifoto1.png",
-      "/images/coating_galerifoto2.png",
+      "/images/coating_galerifoto1.webp",
+      "/images/coating_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
@@ -1239,7 +1239,7 @@ export const dataDetailUMKM = [
     id: 20,
     name: "Kedai Es Bang Maman",
     slug: "kedai-es-bang-maman",
-    heroImage: "/images/esbangmaman_hero.jpg",
+    heroImage: "/images/esbangmaman_hero.webp",
     heroTitle:
       'Kedai Es Bang Maman – Segarnya Minuman Es dengan Rasa Otentik Khas Kudus!"',
     heroSubtitle:
@@ -1268,36 +1268,36 @@ export const dataDetailUMKM = [
         description:
           "Perpaduan segar buah naga merah dengan susu kental manis dan es serut, menghasilkan rasa manis alami yang menyegarkan di setiap tegukan.",
         price: "Rp 10.000",
-        image: "/images/maman_menu1.jpg",
+        image: "/images/maman_menu1.webp",
       },
       {
         name: "Jus Jambu Merah",
         description:
           "Minuman jambu merah yang diblender halus dengan sedikit gula dan es batu, cocok dinikmati siang hari untuk menghilangkan dahaga.",
         price: "Rp 9.000",
-        image: "/images/maman_menu2.jpg",
+        image: "/images/maman_menu2.webp",
       },
       {
         name: "Jus Alpukat",
         description:
           "Alpukat segar dikocok dengan susu dan cokelat kental, menghadirkan sensasi lembut, manis, dan nikmat khas Kedai Es Bang Maman.",
         price: "Rp 12.000",
-        image: "/images/maman_menu3.jpg",
+        image: "/images/maman_menu3.webp",
       },
       {
         name: "Ocean Blue",
         description:
           "Minuman dingin berwarna biru laut dengan rasa soda manis dan jeruk nipis yang segar — pilihan pas untuk penyegar suasana.",
         price: "Rp 11.000",
-        image: "/images/maman_menu4.jpg",
+        image: "/images/maman_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/maman_galerifoto1.jpg",
-      "/images/maman_galerifoto2.png",
-      "/images/maman_galerifoto3.png",
-      "/images/maman_galerifoto4.png",
-      "/images/maman_galerifoto5.png",
+      "/images/maman_galerifoto1.webp",
+      "/images/maman_galerifoto2.webp",
+      "/images/maman_galerifoto3.webp",
+      "/images/maman_galerifoto4.webp",
+      "/images/maman_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 17.00", isOpen: true },
@@ -1315,7 +1315,7 @@ export const dataDetailUMKM = [
     id: 21,
     name: "Jus Pojokan",
     slug: "jus-pojokan",
-    heroImage: "/images/juspojokan_hero.jpg",
+    heroImage: "/images/juspojokan_hero.webp",
     heroTitle:
       'Jus Pojokan – Tempat Nongkrong Santai dengan Jus Segar & Minuman Kekinian di Kudus!"',
     heroSubtitle:
@@ -1344,12 +1344,12 @@ export const dataDetailUMKM = [
         description:
           "Tersedia berbagai pilihan jus buah segar seperti jeruk, alpukat, mangga, jambu, dan semangka. Dibuat dari buah pilihan dengan rasa manis alami dan kesegaran maksimal.",
         price: "Rp 5.000 - Rp 25.000",
-        image: "/images/pojokan_menu1.png",
+        image: "/images/pojokan_menu1.webp",
       },
     ],
     galleryImages: [
-      "/images/pojokan_galerifoto1.png",
-      "/images/pojokan_galerifoto2.png",
+      "/images/pojokan_galerifoto1.webp",
+      "/images/pojokan_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 17.00", isOpen: true },
@@ -1365,7 +1365,7 @@ export const dataDetailUMKM = [
     id: 22,
     name: "Kedai Twins Seblak Bandung n Juice Jekulo",
     slug: "kedai-twins-seblak-bandung-juice-jekulo",
-    heroImage: "/images/kedaytwins_hero.jpg",
+    heroImage: "/images/kedaytwins_hero.webp",
     heroTitle: 'Kedai Twins – Seblak Bandung & Jus Segar Favorit di Jekulo!"',
     heroSubtitle:
       "Nikmati perpaduan pedas gurih khas Seblak Bandung dan kesegaran jus buah alami dalam satu tempat yang nyaman dan ramah di Jekulo, Kudus.",
@@ -1393,28 +1393,28 @@ export const dataDetailUMKM = [
         description:
           "Seblak khas Bandung dengan topping lengkap seperti ceker, sosis, kerupuk, dan bakso. Disajikan dengan kuah pedas gurih yang bisa disesuaikan tingkat kepedasannya.",
         price: "Rp 12.000",
-        image: "/images/twins_menu1.jpg",
+        image: "/images/twins_menu1.webp",
       },
       {
         name: "Jus Alpukat",
         description:
           "Jus alpukat segar dengan campuran susu kental manis dan cokelat, cocok diminum saat santai. Teksturnya lembut dan rasanya manis pas di lidah.",
         price: "Rp 5.000",
-        image: "/images/twins_menu2.jpg",
+        image: "/images/twins_menu2.webp",
       },
       {
         name: "Mie Ayam Goreng",
         description:
           "Mie ayam dengan bumbu khas yang digoreng kering, disajikan bersama potongan ayam gurih dan sayuran segar. Cita rasa unik yang bikin nagih.",
         price: "Rp 10.000",
-        image: "/images/twins_menu3.jpg",
+        image: "/images/twins_menu3.webp",
       },
     ],
     galleryImages: [
-      "/images/twins_galerifoto1.jpg",
-      "/images/twins_galerifoto2.jpg",
-      "/images/twins_galerifoto3.jpg",
-      "/images/twins_galerifoto4.jpg",
+      "/images/twins_galerifoto1.webp",
+      "/images/twins_galerifoto2.webp",
+      "/images/twins_galerifoto3.webp",
+      "/images/twins_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.15 - 20.00", isOpen: true },
@@ -1430,7 +1430,7 @@ export const dataDetailUMKM = [
     id: 23,
     name: "Lentog Tanjung Bang Saiful",
     slug: "lentog-tanjung-bang-saiful",
-    heroImage: "/images/lentogbangsyaiful_hero.jpg",
+    heroImage: "/images/lentogbangsyaiful_hero.webp",
     heroTitle:
       'Lentog Tanjung Bang Saiful – Cita Rasa Legendaris Kudus yang Selalu Dirindukan!"',
     heroSubtitle:
@@ -1459,12 +1459,12 @@ export const dataDetailUMKM = [
         description:
           "Hidangan tradisional khas Kudus berisi lontong lembut, sayur lodeh nangka, dan tahu tempe bacem yang disiram kuah gurih santan. Cocok untuk sarapan dengan cita rasa sederhana namun nikmat.",
         price: "Rp 8.000",
-        image: "/images/saiful_menu1.png",
+        image: "/images/saiful_menu1.webp",
       },
     ],
     galleryImages: [
-      "/images/saiful_galerifoto1.png",
-      "/images/saiful_galerifoto2.png",
+      "/images/saiful_galerifoto1.webp",
+      "/images/saiful_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "05.00 - 22.00", isOpen: true },
@@ -1480,7 +1480,7 @@ export const dataDetailUMKM = [
     id: 24,
     name: "Berkah Es Buah",
     slug: "berkah-es-buah",
-    heroImage: "/images/berkahesbuah_hero.jpg",
+    heroImage: "/images/berkahesbuah_hero.webp",
     heroTitle:
       'Berkah Es Buah – Segarnya Perpaduan Buah Pilihan untuk Pelepas Dahaga!"',
     heroSubtitle:
@@ -1509,19 +1509,19 @@ export const dataDetailUMKM = [
         description:
           "Segarnya campuran buah pilihan dengan sirup manis dan sedikit es serut, cocok untuk menyegarkan hari Anda.",
         price: "Rp 15.000",
-        image: "/images/berkah_menu1.png",
+        image: "/images/berkah_menu1.webp",
       },
       {
         name: "Minuman Buah",
         description:
           "Minuman buah segar yang menyehatkan, dipadukan dengan topping jelly dan sirup favorit. Nikmat diminum kapan saja.",
         price: "Rp 12.000",
-        image: "/images/berkah_menu2.png",
+        image: "/images/berkah_menu2.webp",
       },
     ],
     galleryImages: [
-      "/images/berkah_galerifoto1.png",
-      "/images/berkah_galerifoto2.png",
+      "/images/berkah_galerifoto1.webp",
+      "/images/berkah_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "07.00 - 15.00", isOpen: true },
@@ -1537,7 +1537,7 @@ export const dataDetailUMKM = [
     id: 25,
     name: "Warnet Jaya Sentosa",
     slug: "warnet-jaya-sentosa",
-    heroImage: "/images/warnetjayasentosa_hero.jpeg",
+    heroImage: "/images/warnetjayasentosa_hero.webp",
     heroTitle:
       'Warnet Jaya Sentosa – Tempat Nongkrong & Main Game Paling Asik di Kudus"',
     heroSubtitle:
@@ -1566,10 +1566,10 @@ export const dataDetailUMKM = [
         description:
           "Sewa PC gaming atau workstation lengkap dengan koneksi internet cepat. Cocok untuk main game, belajar, atau browsing nyaman sepanjang hari.",
         price: "Rp 3.000 - Rp 20.000",
-        image: "/images/warnet_menu1.png",
+        image: "/images/warnet_menu1.webp",
       },
     ],
-    galleryImages: ["/images/warnet_menu1.png"],
+    galleryImages: ["/images/warnet_menu1.webp"],
     openingHours: [
       { day: "Senin", hours: "07.00 - 22.00", isOpen: true },
       { day: "Selasa", hours: "07.00 - 22.00", isOpen: true },
@@ -1585,7 +1585,7 @@ export const dataDetailUMKM = [
     id: 26,
     name: "Jahe Rempah Leggit",
     slug: "jahe-rempah-leggit",
-    heroImage: "/images/jaherempahreggit_hero.jpg",
+    heroImage: "/images/jaherempahreggit_hero.webp",
     heroTitle:
       'Jahe Rempah Leggit – Minuman Jahe & Rempah Hangat yang Menyegarkan"',
     heroSubtitle:
@@ -1614,28 +1614,28 @@ export const dataDetailUMKM = [
         description:
           "Minuman jahe hangat dengan rempah pilihan yang menenangkan tenggorokan dan membantu meredakan batuk ringan.",
         price: "Rp 10.000",
-        image: "/images/leggit_menu1.jpg",
+        image: "/images/leggit_menu1.webp",
       },
       {
         name: "Wedank Paseja",
         description:
           "Perpaduan jahe dan rempah tradisional yang hangat, cocok untuk menjaga stamina dan meningkatkan daya tahan tubuh.",
         price: "Rp 10.000",
-        image: "/images/leggit_menu2.jpg",
+        image: "/images/leggit_menu2.webp",
       },
       {
         name: "Wedank Jaselang",
         description:
           "Jahe rempah hangat dicampur madu dan gula merah, memberikan rasa manis alami dan sensasi hangat yang menenangkan.",
         price: "Rp 10.000",
-        image: "/images/leggit_menu3.jpg",
+        image: "/images/leggit_menu3.webp",
       },
     ],
     galleryImages: [
-      "/images/leggit_galerifoto1.jpg",
-      "/images/leggit_galerifoto2.jpg",
-      "/images/leggit_galerifoto3.jpg",
-      "/images/leggit_galerifoto4.jpg",
+      "/images/leggit_galerifoto1.webp",
+      "/images/leggit_galerifoto2.webp",
+      "/images/leggit_galerifoto3.webp",
+      "/images/leggit_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Buka 24 Jam", isOpen: true },
@@ -1651,7 +1651,7 @@ export const dataDetailUMKM = [
     id: 27,
     name: "Warung Makan Bu Carik",
     slug: "warung-makan-bu-carik",
-    heroImage: "/images/warungmakanbucarik_hero.jpg",
+    heroImage: "/images/warungmakanbucarik_hero.webp",
     heroTitle:
       "Warung Makan Bu Carik – Masakan Tradisional Khas Kudus yang Lezat",
     heroSubtitle:
@@ -1680,33 +1680,33 @@ export const dataDetailUMKM = [
         description:
           "Ikan segar dipanggang dengan bumbu khas Bu Carik, gurih dan lezat, cocok dinikmati dengan nasi hangat.",
         price: "Rp 18.000",
-        image: "/images/bucarik_menu1.jpg",
+        image: "/images/bucarik_menu1.webp",
       },
       {
         name: "Ayam",
         description:
           "Ayam goreng renyah dengan bumbu tradisional, disajikan hangat untuk menemani makan siang atau malam.",
         price: "Rp 15.000",
-        image: "/images/bucarik_menu2.jpg",
+        image: "/images/bucarik_menu2.webp",
       },
       {
         name: "IkanLalapan",
         description:
           "Ikan segar disajikan dengan lalapan dan sambal pedas khas Bu Carik, cocok untuk pecinta rasa segar dan pedas.",
         price: "Rp 17.000",
-        image: "/images/bucarik_menu3.jpg",
+        image: "/images/bucarik_menu3.webp",
       },
       {
         name: "Sayur Labu",
         description:
           "Sayur labu segar dimasak dengan bumbu rumahan, lembut dan gurih, pas sebagai lauk pendamping nasi.",
         price: "Rp 8.000",
-        image: "/images/bucarik_menu4.jpg",
+        image: "/images/bucarik_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/bucarik_galerifoto1.jpg",
-      "/images/bucarik_galerifoto2.jpg",
+      "/images/bucarik_galerifoto1.webp",
+      "/images/bucarik_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "07.00 - 17.00", isOpen: true },
@@ -1722,7 +1722,7 @@ export const dataDetailUMKM = [
     id: 28,
     name: "Tehatea Indonesia",
     slug: "tehatea-indonesia",
-    heroImage: "/images/tehatea_hero.jpeg",
+    heroImage: "/images/tehatea_hero.webp",
     heroTitle:
       "Tehatea Indonesia – Minuman Teh & Kreasi Minuman Segar Nusantara",
     heroSubtitle:
@@ -1751,17 +1751,17 @@ export const dataDetailUMKM = [
         description:
           "Teh klasik yang segar, nikmat diminum kapan saja untuk melepas dahaga dan menyegarkan pikiran.",
         price: "Rp 10.000",
-        image: "/images/tehatea_menu1.png",
+        image: "/images/tehatea_menu1.webp",
       },
       {
         name: "TehSusu",
         description:
           "Teh dicampur susu segar, creamy dan manis pas, cocok untuk menemani santai atau bekerja.",
         price: "Rp 12.000",
-        image: "/images/tehatea_menu2.png",
+        image: "/images/tehatea_menu2.webp",
       },
     ],
-    galleryImages: ["/images/tehatea_galerifoto1.png"],
+    galleryImages: ["/images/tehatea_galerifoto1.webp"],
     openingHours: [
       { day: "Senin", hours: "10.00 - 20.00", isOpen: true },
       { day: "Selasa", hours: "10.00 - 20.00", isOpen: true },
@@ -1776,7 +1776,7 @@ export const dataDetailUMKM = [
     id: 29,
     name: "Warung Makan 2 Putra",
     slug: "warung-makan-2-putra",
-    heroImage: "/images/warungmakan2putra_hero.jpg",
+    heroImage: "/images/warungmakan2putra_hero.webp",
     heroTitle: "Warung Makan 2 Putra – Masakan Rumahan Khas Kudus yang Lezat",
     heroSubtitle:
       "Nikmati hidangan rumahan dengan cita rasa autentik, porsi melimpah, dan harga terjangkau. Cocok untuk sarapan, makan siang, atau makan malam.",
@@ -1804,35 +1804,35 @@ export const dataDetailUMKM = [
         description:
           "Sup hangat dengan potongan ayam dan sayuran segar, cocok dinikmati bersama nasi hangat.",
         price: "Rp 18.000",
-        image: "/images/putra_menu1.jpg",
+        image: "/images/putra_menu1.webp",
       },
       {
         name: "Tempe Sambal Goreng",
         description:
           "Tempe goreng renyah disiram sambal khas Bu 2 Putra, gurih dan pedas pas untuk lauk harian.",
         price: "Rp 10.000",
-        image: "/images/putra_menu2.jpg",
+        image: "/images/putra_menu2.webp",
       },
       {
         name: "Pecel Teh Hangat",
         description:
           "Sayuran segar dengan bumbu kacang tradisional, pas sebagai pendamping nasi atau lauk lainnya.",
         price: "Rp 12.000",
-        image: "/images/putra_menu3.jpg",
+        image: "/images/putra_menu3.webp",
       },
       {
         name: "Lele Bumbu Kecap Spesial",
         description:
           "Lele goreng renyah disajikan dengan bumbu kecap manis pedas, nikmat dinikmati bersama nasi hangat.",
         price: "Rp 20.000",
-        image: "/images/putra_menu4.jpg",
+        image: "/images/putra_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/putra_galerifoto1.jpg",
-      "/images/putra_galerifoto2.jpg",
-      "/images/putra_galerifoto3.jpg",
-      "/images/putra_galerifoto4.jpg",
+      "/images/putra_galerifoto1.webp",
+      "/images/putra_galerifoto2.webp",
+      "/images/putra_galerifoto3.webp",
+      "/images/putra_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "10.00 - 20.00", isOpen: true },
@@ -1848,7 +1848,7 @@ export const dataDetailUMKM = [
     id: 30,
     name: "Jasa Angkut Barang",
     slug: "jasa-angkut-barang",
-    heroImage: "/images/jasaangkutbarang_hero.jpg",
+    heroImage: "/images/jasaangkutbarang_hero.webp",
     heroTitle:
       "Jasa Angkut Barang – Layanan Pengangkutan Cepat dan Aman di Kudus",
     heroSubtitle:
@@ -1877,14 +1877,14 @@ export const dataDetailUMKM = [
         description:
           "Sup hangat dengan potongan ayam dan sayuran segar, cocok dinikmati bersama nasi hangat.",
         price: "Rp 100.000 - Rp 300.000",
-        image: "/images/angkut_menu1.png",
+        image: "/images/angkut_menu1.webp",
       },
     ],
     galleryImages: [
-      "/images/angkut_galerifoto1.png",
-      "/images/angkut_galerifoto2.png",
-      "/images/angkut_galerifoto3.png",
-      "/images/angkut_galerifoto4.png",
+      "/images/angkut_galerifoto1.webp",
+      "/images/angkut_galerifoto2.webp",
+      "/images/angkut_galerifoto3.webp",
+      "/images/angkut_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "Buka 24 Jam", isOpen: true },
@@ -1901,7 +1901,7 @@ export const dataDetailUMKM = [
     id: 31,
     name: "Susu Moeria",
     slug: "susu-moeria",
-    heroImage: "/images/susumoeria_hero.jpg",
+    heroImage: "/images/susumoeria_hero.webp",
     heroTitle:
       'Susu Moeria – Susu Segar Murni dengan Rasa Lezat dan Menyehatkan!"',
     heroSubtitle:
@@ -1930,64 +1930,64 @@ export const dataDetailUMKM = [
         description:
           "Susu segar dengan rasa coklat manis dan creamy, cocok diminum dingin maupun hangat.",
         price: "Rp 9.000",
-        image: "/images/ramboo_menu1.jpg",
+        image: "/images/ramboo_menu1.webp",
       },
       {
         name: "Tteokbokki",
         description:
           "Camilan khas Korea berbahan kue beras kenyal dengan saus pedas manis yang menggugah selera.",
         price: "Rp 37.000",
-        image: "/images/ramboo_menu2.jpg",
+        image: "/images/ramboo_menu2.webp",
       },
       {
         name: "Blackpepper Chicken",
         description:
           "Ayam lembut dengan saus lada hitam khas Moeria yang gurih pedas dan nikmat.",
         price: "Rp 22.000",
-        image: "/images/ramboo_menu3.jpg",
+        image: "/images/ramboo_menu3.webp",
       },
       {
         name: "Tteokbokki Mozarella",
         description:
           "Tteokbokki pedas manis disajikan dengan lelehan keju mozarella lembut di atasnya.",
         price: "Rp 31.000",
-        image: "/images/ramboo_menu4.jpg",
+        image: "/images/ramboo_menu4.webp",
       },
       {
         name: "Susu Strawberry",
         description:
           "Perpaduan susu segar dan sirup strawberry alami yang menyegarkan.",
         price: "Rp 9.000",
-        image: "/images/ramboo_menu4.jpg",
+        image: "/images/ramboo_menu4.webp",
       },
       {
         name: "Budae Jigae",
         description:
           "Sup khas Korea berisi sosis, mie, dan tahu dalam kuah pedas gurih yang hangat.",
         price: "Rp 72.000",
-        image: "/images/ramboo_menu4.jpg",
+        image: "/images/ramboo_menu4.webp",
       },
       {
         name: "Sundubu Jigae",
         description:
           "Sup tahu lembut ala Korea dengan kuah pedas gurih dan isian seafood atau daging pilihan.",
         price: "Rp 48.000",
-        image: "/images/ramboo_menu4.jpg",
+        image: "/images/ramboo_menu4.webp",
       },
       {
         name: "Nasi Goreng Kimchi",
         description:
           "Nasi goreng dengan cita rasa khas kimchi Korea yang asam, pedas, dan menggugah selera.",
         price: "Rp 48.000",
-        image: "/images/ramboo_menu4.jpg",
+        image: "/images/ramboo_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/moeria_galerifoto1.png",
-      "/images/moeria_galerifoto2.png",
-      "/images/moeria_galerifoto3.png",
-      "/images/moeria_galerifoto4.png",
-      "/images/moeria_galerifoto5.png",
+      "/images/moeria_galerifoto1.webp",
+      "/images/moeria_galerifoto2.webp",
+      "/images/moeria_galerifoto3.webp",
+      "/images/moeria_galerifoto4.webp",
+      "/images/moeria_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "06.00 - 22.00", isOpen: true },
@@ -2003,7 +2003,7 @@ export const dataDetailUMKM = [
     id: 32,
     name: "Ramboo Chicken",
     slug: "ramboo-chicken",
-    heroImage: "/images/ramboo_hero.jpg",
+    heroImage: "/images/ramboo_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Ramboo Chicken"',
     heroSubtitle:
       "Nikmati cita rasa ayam geprek khas Kudus dengan berbagai pilihan menu lezat dan harga terjangkau.",
@@ -2030,33 +2030,33 @@ export const dataDetailUMKM = [
         name: "Dada Ramboo Fighter",
         description: "Ayam goreng tepung dengan sambal pedas khas Kudus.",
         price: "Rp 23.000",
-        image: "/images/ramboo_menu1.jpg",
+        image: "/images/ramboo_menu1.webp",
       },
       {
         name: "Basic Breash",
         description: "Ayam bakar dengan olesan madu manis gurih.",
         price: "Rp 20.000",
-        image: "/images/ramboo_menu2.jpg",
+        image: "/images/ramboo_menu2.webp",
       },
       {
         name: "Double Chicken",
         description: "Pedasnya nampol dengan sambal korek khas Ramboo Chicken.",
         price: "Rp 25.000",
-        image: "/images/ramboo_menu3.jpg",
+        image: "/images/ramboo_menu3.webp",
       },
       {
         name: "Kentang Goreng",
         description: "Ayam renyah gurih cocok untuk semua kalangan.",
         price: "Rp 11.000",
-        image: "/images/ramboo_menu4.jpg",
+        image: "/images/ramboo_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/ramboo_galerifoto1.jpg",
-      "/images/ramboo_galerifoto2.jpg",
-      "/images/ramboo_galerifoto3.jpg",
-      "/images/ramboo_galerifoto4.jpg",
-      "/images/ramboo_galerifoto5.jpg",
+      "/images/ramboo_galerifoto1.webp",
+      "/images/ramboo_galerifoto2.webp",
+      "/images/ramboo_galerifoto3.webp",
+      "/images/ramboo_galerifoto4.webp",
+      "/images/ramboo_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
@@ -2072,7 +2072,7 @@ export const dataDetailUMKM = [
     id: 33,
     name: "Es Gempol Pak Masykur",
     slug: "es-gempol-pak-masykur",
-    heroImage: "/images/gempol_hero.jpg",
+    heroImage: "/images/gempol_hero.webp",
     heroTitle:
       'Es Gempol Pak Masykur – Segarnya Minuman Tradisional Khas Kudus!"',
     heroSubtitle:
@@ -2101,20 +2101,20 @@ export const dataDetailUMKM = [
         description:
           "Kue tradisional bertekstur kenyal dengan saus gula merah dan santan gurih, cocok dinikmati sebagai camilan manis yang menyegarkan.",
         price: "Rp 8.000",
-        image: "/images/masykur_menu1.jpg",
+        image: "/images/masykur_menu1.webp",
       },
       {
         name: "Nasi Kering",
         description:
           "Nasi lengkap dengan lauk tradisional khas rumahan, praktis untuk sarapan atau makan siang cepat dengan rasa autentik.",
         price: "Rp 12.000",
-        image: "/images/masykur_menu2.jpg",
+        image: "/images/masykur_menu2.webp",
       },
     ],
     galleryImages: [
-      "/images/masyur_galerifoto1.jpg",
-      "/images/masyur_galerifoto2.jpg",
-      "/images/masyur_galerifoto3.jpg",
+      "/images/masyur_galerifoto1.webp",
+      "/images/masyur_galerifoto2.webp",
+      "/images/masyur_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
@@ -2130,7 +2130,7 @@ export const dataDetailUMKM = [
     id: 34,
     name: "Sultan Barber Top",
     slug: "sultan-barber-top",
-    heroImage: "/images/sultanbarbertop_hero.jpg",
+    heroImage: "/images/sultanbarbertop_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Sultan Barber Top"',
     heroSubtitle:
       "Barbershop modern di Kudus yang menawarkan potongan rambut bergaya, layanan premium, dan suasana nyaman untuk semua kalangan.",
@@ -2158,36 +2158,36 @@ export const dataDetailUMKM = [
         description:
           "Layanan potong rambut profesional dengan gaya sesuai tren terbaru dan bentuk wajah pelanggan.",
         price: "Rp 25.000",
-        image: "/images/sultanbarbertop_menu1.jpg",
+        image: "/images/sultanbarbertop_menu1.webp",
       },
       {
         name: "Haircut + Wash",
         description:
           "Potong rambut dilengkapi dengan cuci rambut agar hasil lebih maksimal dan segar.",
         price: "Rp 35.000",
-        image: "/images/sultanbarbertop_menu1.jpg",
+        image: "/images/sultanbarbertop_menu1.webp",
       },
       {
         name: "Shaving / Beard Trim",
         description:
           "Cukur kumis atau janggut dengan hasil rapi dan aman menggunakan alat steril.",
         price: "Rp 20.000",
-        image: "/images/sultanbarbertop_menu1.jpg",
+        image: "/images/sultanbarbertop_menu1.webp",
       },
       {
         name: "Hair Styling",
         description:
           "Penataan rambut menggunakan pomade atau wax premium agar tampil stylish setiap saat.",
         price: "Rp 15.000",
-        image: "/images/sultanbarbertop_menu1.jpg",
+        image: "/images/sultanbarbertop_menu1.webp",
       },
     ],
     galleryImages: [
-      "/images/sultanbarbertop_galerifoto1.jpg",
-      "/images/sultanbarbertop_galerifoto2.jpg",
-      "/images/sultanbarbertop_galerifoto3.jpg",
-      "/images/sultanbarbertop_galerifoto4.jpg",
-      "/images/sultanbarbertop_galerifoto5.jpg",
+      "/images/sultanbarbertop_galerifoto1.webp",
+      "/images/sultanbarbertop_galerifoto2.webp",
+      "/images/sultanbarbertop_galerifoto3.webp",
+      "/images/sultanbarbertop_galerifoto4.webp",
+      "/images/sultanbarbertop_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "10.00 - 22.00", isOpen: true },
@@ -2203,7 +2203,7 @@ export const dataDetailUMKM = [
     id: 35,
     name: "Soto Kudus Bu Jatmi",
     slug: "soto-kudus-bu-jatmi",
-    heroImage: "/images/sotokudusbujatmi_hero.jpg",
+    heroImage: "/images/sotokudusbujatmi_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Soto Kudus Bu Jatmi"',
     heroSubtitle:
       "Warung soto legendaris yang menjadi ikon kuliner khas Kudus, menyajikan cita rasa autentik dengan pilihan daging kerbau maupun ayam.",
@@ -2231,36 +2231,36 @@ export const dataDetailUMKM = [
         description:
           "Soto khas Kudus dengan daging kerbau empuk dan kuah bening gurih beraroma rempah.",
         price: "Rp 15.000",
-        image: "/images/sotokudusbujatmi_menu1.jpg",
+        image: "/images/sotokudusbujatmi_menu1.webp",
       },
       {
         name: "Soto Ayam",
         description:
           "Soto ayam khas Kudus dengan suwiran ayam kampung dan taburan bawang goreng melimpah.",
         price: "Rp 15.000",
-        image: "/images/sotokudusbujatmi_menu2.jpg",
+        image: "/images/sotokudusbujatmi_menu2.webp",
       },
       {
         name: "Perkedel Kentang",
         description:
           "Perkedel gurih renyah pelengkap soto yang dibuat dari kentang pilihan.",
         price: "Rp 4.000",
-        image: "/images/sotokudusbujatmi_menu3.jpg",
+        image: "/images/sotokudusbujatmi_menu3.webp",
       },
       {
         name: "Es Kopyor",
         description:
           "Minuman segar dari kelapa kopyor asli yang cocok dinikmati setelah menyantap soto.",
         price: "Rp 25.000",
-        image: "/images/sotokudusbujatmi_menu4.jpg",
+        image: "/images/sotokudusbujatmi_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/sotokudusbujatmi_galerifoto1.jpg",
-      "/images/sotokudusbujatmi_galerifoto2.jpg",
-      "/images/sotokudusbujatmi_galerifoto3.jpg",
-      "/images/sotokudusbujatmi_galerifoto4.jpg",
-      "/images/sotokudusbujatmi_galerifoto5.jpg",
+      "/images/sotokudusbujatmi_galerifoto1.webp",
+      "/images/sotokudusbujatmi_galerifoto2.webp",
+      "/images/sotokudusbujatmi_galerifoto3.webp",
+      "/images/sotokudusbujatmi_galerifoto4.webp",
+      "/images/sotokudusbujatmi_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "07.00 - 22.00", isOpen: true },
@@ -2277,7 +2277,7 @@ export const dataDetailUMKM = [
     id: 36,
     name: "XGAM_Tech",
     slug: "xgam-tech",
-    heroImage: "/images/xgamtech_hero.jpg",
+    heroImage: "/images/xgamtech_hero.webp",
     heroTitle:
       "XGAM_Tech – Solusi Servis & Perawatan Komputer Terpercaya di Kudus!",
     heroSubtitle:
@@ -2306,27 +2306,27 @@ export const dataDetailUMKM = [
         description:
           "Perbaikan laptop yang tidak bisa menyala akibat kerusakan hardware, power supply, atau motherboard.",
         price: "Mulai Rp 250.000",
-        image: "/images/xgam_menu1.png",
+        image: "/images/xgam_menu1.webp",
       },
       {
         name: "Pembersihan & Ganti Pasta Thermal",
         description:
           "Membersihkan debu dan mengganti pasta thermal agar performa dan suhu laptop tetap optimal.",
         price: "Rp 100.000",
-        image: "/images/xgam_menu2.png",
+        image: "/images/xgam_menu2.webp",
       },
       {
         name: "Rakit PC Custom",
         description:
           "Layanan konsultasi dan perakitan PC sesuai kebutuhan Anda — untuk gaming, editing, atau kantor.",
         price: "Mulai Rp 200.000",
-        image: "/images/xgam_menu3.png",
+        image: "/images/xgam_menu3.webp",
       },
     ],
     galleryImages: [
-      "/images/xgam_galerifoto1.png",
-      "/images/xgam_galerifoto2.png",
-      "/images/xgam_galerifoto3.png",
+      "/images/xgam_galerifoto1.webp",
+      "/images/xgam_galerifoto2.webp",
+      "/images/xgam_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "07.00 - 23.00", isOpen: true },
@@ -2342,7 +2342,7 @@ export const dataDetailUMKM = [
     id: 37,
     name: "Jasa Las dan Bubut Mulyo Rejo",
     slug: "jasa-las-dan-bubut-mulyo-rejo",
-    heroImage: "/images/jasalas_hero.jpg",
+    heroImage: "/images/jasalas_hero.webp",
     heroTitle:
       "Jasa Las & Bubut Mulyo Rejo – Solusi Tepat untuk Kebutuhan Logam dan Perbengkelan di Kudus!",
     heroSubtitle:
@@ -2371,20 +2371,20 @@ export const dataDetailUMKM = [
     description:
       "Melayani pembuatan dan perbaikan pagar, kanopi, tralis, serta rangka besi untuk berbagai kebutuhan industri maupun rumah tangga.",
     price: "Mulai Rp 150.000",
-    image: "/images/mulyorejo_menu1.png",
+    image: "/images/mulyorejo_menu1.webp",
       },
       {
          name: "Pembuatan Mainan Anak dari Besi",
     description:
       "Menerima pesanan ayunan, jungkat-jungkit, dan perosotan dari bahan besi berkualitas — aman, kuat, dan berwarna menarik.",
     price: "Mulai Rp 300.000",
-    image: "/images/mulyorejo_menu2.png",
+    image: "/images/mulyorejo_menu2.webp",
       },
     ],
     galleryImages: [
-      "/images/mulyorejo_galerifoto1.png",
-      "/images/mulyorejo_galerifoto2.png",
-      "/images/mulyorejo_galerifoto3.png",
+      "/images/mulyorejo_galerifoto1.webp",
+      "/images/mulyorejo_galerifoto2.webp",
+      "/images/mulyorejo_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
@@ -2401,7 +2401,7 @@ export const dataDetailUMKM = [
     id: 38,
    name: "Putra Kalimosodo",
     slug: "putra-kalimosodo",
-    heroImage: "/images/kalimosodo_hero.jpg",
+    heroImage: "/images/kalimosodo_hero.webp",
     heroTitle:
       "Putra Kalimosodo – Supplier Material & Jasa Transportasi Terpercaya di Kudus!",
     heroSubtitle:
@@ -2430,21 +2430,21 @@ export const dataDetailUMKM = [
       description:
         "Menyediakan berbagai material seperti pasir, batu kali, semen, dan sirtu, lengkap dengan layanan angkut untuk kebutuhan proyek konstruksi.",
       price: "Harga bervariasi sesuai jenis material dan jarak pengiriman",
-      image: "/images/kalimosodo_menu1.png",
+      image: "/images/kalimosodo_menu1.webp",
       },
       {
           name: "Jasa Transportasi",
       description:
         " Melayani jasa transportasi umum maupun travel antar kota dengan armada nyaman, bersih, dan pengemudi berpengalaman.",
       price: "Mulai Rp 150.000 per trip",
-      image: "/images/kalimosodo_menu2.png",
+      image: "/images/kalimosodo_menu2.webp",
       },
     ],
     galleryImages: [
-      "/images/kalimosodo_galerifoto1.png",
-      "/images/kalimosodo_galerifoto2.png",
-      "/images/kalimosodo_galerifoto3.png",
-      "/images/kalimosodo_galerifoto4.png",
+      "/images/kalimosodo_galerifoto1.webp",
+      "/images/kalimosodo_galerifoto2.webp",
+      "/images/kalimosodo_galerifoto3.webp",
+      "/images/kalimosodo_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 16.00", isOpen: true },
@@ -2460,7 +2460,7 @@ export const dataDetailUMKM = [
     id: 39,
    name: "Ikan Bakar Nasuky Mubarok Jepang",
     slug: "ikan-bakar-nasuky-mubarok-jepang",
-    heroImage: "/images/ikanbakar_hero.jpg",
+    heroImage: "/images/ikanbakar_hero.webp",
     heroTitle:
       "Ikan Bakar Nasuky Mubarok Jepang – Sajian Ikan Bakar Segar Khas Kudus!",
     heroSubtitle:
@@ -2489,36 +2489,36 @@ export const dataDetailUMKM = [
       description:
         "Gurame segar dibakar dengan bumbu kecap manis dan rempah pilihan, menghasilkan cita rasa gurih dan sedikit smokey khas Nusantara.",
       price: "Rp 85.000",
-      image: "/images/nasuky_menu1.jpg",
+      image: "/images/nasuky_menu1.webp",
       },
       {
           name: "Gurame Goreng",
       description:
         " Ikan segar digoreng garing hingga keemasan, disajikan dengan sambal terasi pedas dan lalapan segar.",
       price: "Rp 85.000",
-      image: "/images/nasuky_menu2.jpg",
+      image: "/images/nasuky_menu2.webp",
       },
        {
           name: "Ikan Bakar Ca Kangkung",
       description:
         " Perpaduan sempurna antara ikan bakar berbumbu khas dan tumis kangkung pedas gurih yang menggugah selera.",
       price: "Rp 93.000",
-      image: "/images/nasuky_menu3.jpg",
+      image: "/images/nasuky_menu3.webp",
       },
       {
           name: "Nila Bakar Manis",
       description:
         " Ikan nila dibakar dengan olesan bumbu manis gurih khas Mubarok, cocok dinikmati bersama nasi hangat dan sambal bawang.",
       price: "Rp 70.000",
-      image: "/images/nasuky_menu4.jpg",
+      image: "/images/nasuky_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/nasuky_galerifoto1.jpg",
-      "/images/nasuky_galerifoto2.jpg",
-      "/images/nasuky_galerifoto3.jpg",
-      "/images/nasuky_galerifoto4.jpg",
-      "/images/nasuky_galerifoto5.jpg",
+      "/images/nasuky_galerifoto1.webp",
+      "/images/nasuky_galerifoto2.webp",
+      "/images/nasuky_galerifoto3.webp",
+      "/images/nasuky_galerifoto4.webp",
+      "/images/nasuky_galerifoto5.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
@@ -2534,7 +2534,7 @@ export const dataDetailUMKM = [
     id: 40,
   name: "RM Bu Sarah",
     slug: "rm-bu-sarah",
-    heroImage: "/images/rmbusarah_hero.jpg",
+    heroImage: "/images/rmbusarah_hero.webp",
     heroTitle:
       "Rumah Makan Bu Sarah – Masakan Rumahan Lezat & Harga Bersahabat di Kudus!",
     heroSubtitle:
@@ -2563,34 +2563,34 @@ export const dataDetailUMKM = [
       description:
         "Menu andalan RM Bu Sarah yang terkenal dengan kepala manyung empuk dan kuah rica pedas gurih khas pesisir. Cocok untuk pecinta makanan berkuah rempah.",
       price: "Rp 28.000",
-      image: "/images/sarah_menu1.jpg",
+      image: "/images/sarah_menu1.webp",
       },
       {
           name: "Mendoan Cinta",
       description:
         " Tempe tipis dibalut tepung berbumbu lalu digoreng setengah matang, disajikan hangat dengan sambal kecap dan cabai rawit segar.",
       price: "Rp 8.000",
-      image: "/images/sarah_menu2.jpg",
+      image: "/images/sarah_menu2.webp",
       },
        {
           name: "Kakap Godog",
       description:
         " Ikan kakap segar dimasak dengan bumbu godog khas Jawa Tengah — gurih, sedikit pedas, dan beraroma rempah kuat.",
       price: "Rp 25.000",
-      image: "/images/sarah_menu3.jpg",
+      image: "/images/sarah_menu3.webp",
       },
       {
           name: "Pecel Lele",
       description:
         " Lele goreng garing disajikan bersama sambal tomat pedas dan lalapan segar. Menu sederhana yang selalu jadi favorit pengunjung.",
       price: "Rp 20.000",
-      image: "/images/sarah_menu4.jpg",
+      image: "/images/sarah_menu4.webp",
       },
     ],
     galleryImages: [
-      "/images/sarah_galerifoto1.jpg",
-      "/images/sarah_galerifoto2.jpg",
-      "/images/sarah_galerifoto3.jpg",
+      "/images/sarah_galerifoto1.webp",
+      "/images/sarah_galerifoto2.webp",
+      "/images/sarah_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "06.00 - 19.30", isOpen: true },
@@ -2607,7 +2607,7 @@ export const dataDetailUMKM = [
     id: 41,
   name: "Queen Seblak Prasmanan",
     slug: "queen-seblak-prasmanan",
-    heroImage: "/images/queenseblak_hero.jpg",
+    heroImage: "/images/queenseblak_hero.webp",
     heroTitle:
       "Queen Seblak Prasmanan – Surga Pecinta Seblak dengan Banyak Pilihan Topping di Kudus!",
     heroSubtitle:
@@ -2636,33 +2636,33 @@ export const dataDetailUMKM = [
     description:
       "Seblak khas Bandung dengan kuah pedas gurih, isi kerupuk, telur, dan bumbu kencur yang menggugah selera.",
     price: "Rp 12.000",
-    image: "/images/queenseblak_menu1.jpg",
+    image: "/images/queenseblak_menu1.webp",
   },
   {
     name: "Seblak Aci",
     description:
       "Perpaduan kenyalnya aci, kerupuk, dan topping sederhana dengan kuah pedas creamy yang bikin nagih.",
     price: "Rp 15.000",
-    image: "/images/queenseblak_menu2.jpg",
+    image: "/images/queenseblak_menu2.webp",
   },
   {
     name: "Seblak Bakso",
     description:
       "Kuah seblak pedas gurih dengan tambahan bakso sapi empuk dan topping khas Queen Seblak Prasmanan.",
     price: "Rp 18.000",
-    image: "/images/queenseblak_menu3.jpg",
+    image: "/images/queenseblak_menu3.webp",
   },
   {
     name: "Seblak Sayur",
     description:
       "Seblak sehat dengan isian sayur segar, telur, dan kerupuk dalam kuah pedas gurih yang hangat di perut.",
     price: "Rp 16.000",
-    image: "/images/queenseblak_menu4.jpg",
+    image: "/images/queenseblak_menu4.webp",
   },
     ],
     galleryImages: [
-      "/images/queenseblak_galerifoto1.jpg",
-      "/images/queenseblak_galerifoto2.jpg",
+      "/images/queenseblak_galerifoto1.webp",
+      "/images/queenseblak_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
@@ -2678,7 +2678,7 @@ export const dataDetailUMKM = [
     id: 42,
   name: "Ayam Geprek Mak Ginting",
     slug: "ayam-geprek-mak-ginting",
-    heroImage: "/images/geprekmakginting_hero.jpg",
+    heroImage: "/images/geprekmakginting_hero.webp",
     heroTitle:
       "Ayam Geprek Mak Ginting – Sensasi Pedas Gurih yang Bikin Ketagihan di Kudus!",
     heroSubtitle:
@@ -2707,35 +2707,35 @@ export const dataDetailUMKM = [
     description:
       "Ayam goreng krispi disiram sambal pedas manis khas Mak Ginting, perpaduan rasa gurih, pedas, dan sedikit manis yang pas di lidah.",
     price: "Rp 10.000",
-    image: "/images/makginting_menu1.jpg",
+    image: "/images/makginting_menu1.webp",
   },
   {
     name: "Mie Geprek Komplit",
     description:
       "Mie gurih disajikan dengan ayam geprek, telur mata sapi, dan sambal pilihan — cocok untuk pecinta pedas dan porsi kenyang.",
     price: "Rp 12.000",
-    image: "/images/makginting_menu2.jpg",
+    image: "/images/makginting_menu2.webp",
   },
   {
     name: "Seblak Biasa",
     description:
       "Seblak khas Mak Ginting dengan kuah pedas gurih, isi kerupuk, telur, dan topping sederhana yang menggugah selera.",
     price: "Rp 8.000",
-    image: "/images/makginting_menu3.jpg",
+    image: "/images/makginting_menu3.webp",
   },
   {
     name: "Ayam Geprek",
     description:
       "Menu andalan Mak Ginting — ayam goreng tepung yang digeprek dengan sambal bawang pedas, disajikan bersama nasi hangat.",
     price: "Rp 8.000",
-    image: "/images/makginting_menu4.jpg",
+    image: "/images/makginting_menu4.webp",
   },
     ],
     galleryImages: [
-      "/images/makginting_galerifoto1.jpg",
-      "/images/makginting_galerifoto2.jpg",
-      "/images/makginting_galerifoto3.jpg",
-      "/images/makginting_galerifoto4.jpg",
+      "/images/makginting_galerifoto1.webp",
+      "/images/makginting_galerifoto2.webp",
+      "/images/makginting_galerifoto3.webp",
+      "/images/makginting_galerifoto4.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 22.00", isOpen: true },
@@ -2751,7 +2751,7 @@ export const dataDetailUMKM = [
     id: 43,
    name: "Warung Sate & Gule Pak Sugiyo",
     slug: "warung-sate-dan-gule-pak-sugiyo",
-    heroImage: "/images/warungsatedangule_hero.jpg",
+    heroImage: "/images/warungsatedangule_hero.webp",
     heroTitle:
       "Warung Sate & Gule Pak Sugiyo – Cita Rasa Khas Kambing yang Melegenda di Kudus!",
     heroSubtitle:
@@ -2780,19 +2780,19 @@ export const dataDetailUMKM = [
     description:
     "Sate kambing empuk dibakar dengan bumbu kecap manis, bawang, dan sedikit sambal, menghasilkan cita rasa gurih manis khas Kudus.",
   price: "Rp 25.000",
-    image: "/images/sugiyo_menu1.jpg",
+    image: "/images/sugiyo_menu1.webp",
   },
   {
     name: "Gule",
      description:
     "Gule kambing berkuah santan kental dengan rempah khas Jawa, disajikan hangat bersama nasi putih atau lontong.",
   price: "Rp 20.000",
-    image: "/images/sugiyo_menu2.jpg",
+    image: "/images/sugiyo_menu2.webp",
   },
     ],
     galleryImages: [
-      "/images/sugiyo_galerifoto1.jpg",
-      "/images/msugiyo_galerifoto2.jpg",
+      "/images/sugiyo_galerifoto1.webp",
+      "/images/msugiyo_galerifoto2.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
@@ -2808,7 +2808,7 @@ export const dataDetailUMKM = [
     id: 44,
    name: "MJ Teknik",
     slug: "mj-teknik",
-    heroImage: "/images/mjteknik_hero.jpg",
+    heroImage: "/images/mjteknik_hero.webp",
     heroTitle:
       "MJ Teknik – Solusi Jasa Instalasi & Perbaikan Peralatan Rumah Tangga di Kudus!",
     heroSubtitle:
@@ -2837,27 +2837,27 @@ export const dataDetailUMKM = [
     description:
       "Pemasangan instalasi listrik baru maupun perbaikan sistem kelistrikan lama, dilakukan oleh teknisi berpengalaman dengan standar keamanan tinggi.",
     price: "Mulai Rp 250.000",
-    image: "/images/mjteknik_menu1.png",
+    image: "/images/mjteknik_menu1.webp",
   },
   {
     name: "Servis Pompa Air & Sibel",
     description:
       "Menangani kerusakan pompa air, penggantian sparepart, hingga pembuatan sumur sibel dengan hasil kuat dan aliran air lancar.",
     price: "Mulai Rp 300.000",
-    image: "/images/mjteknik_menu2.png",
+    image: "/images/mjteknik_menu2.webp",
   },
   {
     name: "Perbaikan Peralatan Rumah Tangga",
     description:
       "Jasa servis kipas angin, blender, mesin cuci, dan peralatan rumah tangga lainnya dengan biaya terjangkau dan hasil memuaskan.",
     price: "Mulai Rp 100.000",
-    image: "/images/mjteknik_menu3.png",
+    image: "/images/mjteknik_menu3.webp",
   },
     ],
     galleryImages: [
-      "/images/mjteknik_galerifoto1.png",
-      "/images/mjteknik_galerifoto2.png",
-      "/images/mjteknik_galerifoto3.png",
+      "/images/mjteknik_galerifoto1.webp",
+      "/images/mjteknik_galerifoto2.webp",
+      "/images/mjteknik_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
@@ -2873,7 +2873,7 @@ export const dataDetailUMKM = [
     id: 45,
    name: "Fotocopy & Jasa Travel",
     slug: "fotocopy-dan-jasa-travel",
-    heroImage: "/images/fotocopy_hero.jpeg",
+    heroImage: "/images/fotocopy_hero.webp",
     heroTitle:
       "Fotocopy & Jasa Travel – Layanan Cepat dan Praktis untuk Kebutuhan Dokumen & Perjalanan Anda!",
     heroSubtitle:
@@ -2902,11 +2902,11 @@ export const dataDetailUMKM = [
     description:
       "Melayani fotokopi dokumen hitam putih maupun berwarna, print, scan, serta jasa travel antar kota dengan pelayanan cepat, ramah, dan harga terjangkau.",
     price: "Mulai Rp 2.000 per lembar / Rp 150.000 per trip",
-    image: "/images/jasatravel_menu1.png",
+    image: "/images/jasatravel_menu1.webp",
   },
     ],
     galleryImages: [
-      "/images/jasatravel_galerifoto1.png",
+      "/images/jasatravel_galerifoto1.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "08.00 - 21.00", isOpen: true },

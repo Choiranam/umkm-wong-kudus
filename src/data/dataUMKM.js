@@ -12,7 +12,7 @@ export const dataUMKM = [
     location: "Bae",
     kecamatanSlug: "bae",
     openHour: "09:00-21:00",
-    image: "/images/omw_hero.jpg",
+    image: "/images/omw_hero.webp",
     link: "https://maps.app.goo.gl/p2y9yqgkziBTC84BA",
   },
   {
@@ -25,7 +25,7 @@ export const dataUMKM = [
     location: "Bae",
     kecamatanSlug: "bae", // Ditambahkan
     openHour: "09:00-22:00",
-    image: "/images/geprekjawi_hero.jpg",
+    image: "/images/geprekjawi_hero.webp",
     link: "https://maps.app.goo.gl/34kSNYhPqqgnU87T8",
   },
   {
@@ -38,7 +38,7 @@ export const dataUMKM = [
     location: "Bae",
     kecamatanSlug: "bae", // Ditambahkan
     openHour: "07:00-20:00",
-    image: "/images/lamonganyuli_hero.jpg",
+    image: "/images/lamonganyuli_hero.webp",
     link: "https://maps.app.goo.gl/JdsXJfJK2SiJLZPA7",
   },
   {
@@ -51,7 +51,7 @@ export const dataUMKM = [
     location: "Bae",
     kecamatanSlug: "bae", // Ditambahkan
     openHour: "10:00-21:00",
-    image: "/images/cincaupasundan_hero.png",
+    image: "/images/cincaupasundan_hero.webp",
     link: "https://maps.app.goo.gl/gVm4V6t2bqPczEJZ9",
   },
   {
@@ -64,7 +64,7 @@ export const dataUMKM = [
     location: "Bae",
     kecamatanSlug: "bae", // Ditambahkan
     openHour: "08:00-17:00",
-    image: "/images/jasatulis_hero.jpg",
+    image: "/images/jasatulis_hero.webp",
     link: "https://maps.app.goo.gl/4sNnVAGGSV7RziFPA",
   },
 
@@ -79,7 +79,7 @@ export const dataUMKM = [
     location: "Dawe",
     kecamatanSlug: "dawe", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "/images/swikedawe_hero.jpg",
+    image: "/images/swikedawe_hero.webp",
     link: "https://maps.app.goo.gl/USGE5s2iZ31mx3et8",
   },
   {
@@ -92,7 +92,7 @@ export const dataUMKM = [
     location: "Dawe",
     kecamatanSlug: "dawe", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/wekategank_hero.jpg",
+    image: "/images/wekategank_hero.webp",
     link: "https://maps.app.goo.gl/hdpT54AXQ2vHhwEc7",
   },
   {
@@ -105,7 +105,7 @@ export const dataUMKM = [
     location: "Dawe",
     kecamatanSlug: "dawe", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "/images/makkiyem_hero.jpg",
+    image: "/images/makkiyem_hero.webp",
     link: "https://maps.app.goo.gl/D7Su82QRZCHX7t698",
   },
   {
@@ -118,7 +118,7 @@ export const dataUMKM = [
     location: "Dawe",
     kecamatanSlug: "dawe", // Ditambahkan
     openHour: "07:00-17:00",
-    image: "/images/jasaangkut_hero.jpg",
+    image: "/images/jasaangkut_hero.webp",
     link: "https://maps.app.goo.gl/yimn1Ms8XH6ekbYLA",
   },
   {
@@ -131,7 +131,7 @@ export const dataUMKM = [
     location: "Dawe",
     kecamatanSlug: "dawe", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "/images/ayamgepreksai_hero.jpg",
+    image: "/images/ayamgepreksai_hero.webp",
     link: "https://maps.app.goo.gl/5G3DAEiX19ufwgaS6",
   },
 
@@ -146,7 +146,7 @@ export const dataUMKM = [
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "07:00-20:00",
-    image: "/images/mbahsapar_hero.jpg",
+    image: "/images/mbahsapar_hero.webp",
     link: "https://maps.app.goo.gl/gYeV2iWeC7LmAuHT7",
   },
   {
@@ -159,7 +159,7 @@ export const dataUMKM = [
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "06:00-11:00",
-    image: "/images/nasiuduk_hero.jpg",
+    image: "/images/nasiuduk_hero.webp",
     link: "https://maps.app.goo.gl/kwHfceBeg9Je1TSX9",
   },
   {
@@ -171,7 +171,7 @@ export const dataUMKM = [
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/baksomalvinas_hero.jpg",
+    image: "/images/baksomalvinas_hero.webp",
     link: "https://maps.app.goo.gl/ppj9kcANtYxC613S6",
   },
   {
@@ -183,7 +183,7 @@ export const dataUMKM = [
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "08:00-20:00",
-    image: "/images/warungmakanmakru_hero.jpg",
+    image: "/images/warungmakanmakru_hero.webp",
     link: "https://maps.app.goo.gl/ShKhKN6G8jLoNxqb6",
   },
   {
@@ -196,7 +196,7 @@ export const dataUMKM = [
     location: "Gebog",
     kecamatanSlug: "gebog", // Ditambahkan
     openHour: "09:00-18:00",
-    image: "/images/kasehitoworks_hero.jpeg",
+    image: "/images/kasehitoworks_hero.webp",
     link: "https://maps.app.goo.gl/Hnqm3izDEuR4iDTaA",
   },
 
@@ -211,7 +211,7 @@ export const dataUMKM = [
     location: "Jati",
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/cakrawala_hero.jpg",
+    image: "/images/cakrawala_hero.webp",
     link: "https://maps.app.goo.gl/wj7ySDm62qgiSFq89",
   },
   {
@@ -225,7 +225,7 @@ export const dataUMKM = [
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "07:00-14:00",
     image:
-      "/images/oporsungginan_hero.jpg",
+      "/images/oporsungginan_hero.webp",
     link: "https://maps.app.goo.gl/ih4WzCWEq4Mw81nw7",
   },
   {
@@ -239,7 +239,7 @@ export const dataUMKM = [
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "10:00-22:00",
     image:
-      "/images/enthogpakbadi_hero.jpg",
+      "/images/enthogpakbadi_hero.webp",
     link: "https://maps.app.goo.gl/usFhu6CUCSuysUG2A",
   },
   {
@@ -253,7 +253,7 @@ export const dataUMKM = [
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "08:00-17:00",
     image:
-      "/images/powdercoating_hero.jpg",
+      "/images/powdercoating_hero.webp",
     link: "https://maps.app.goo.gl/QeruafGAk4xGBpdFA",
   },
   {
@@ -266,7 +266,7 @@ export const dataUMKM = [
     location: "Jati",
     kecamatanSlug: "jati", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "/images/esbangmaman_hero.jpg",
+    image: "/images/esbangmaman_hero.webp",
     link: "https://maps.app.goo.gl/Fi5eeThuzfuthEyz8",
   },
 
@@ -281,7 +281,7 @@ export const dataUMKM = [
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/juspojokan_hero.jpg",
+    image: "/images/juspojokan_hero.webp",
     link: "https://maps.app.goo.gl/qziXm98Q1MiogAcG7",
   },
   {
@@ -294,7 +294,7 @@ export const dataUMKM = [
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "/images/kedaytwins_hero.jpg",
+    image: "/images/kedaytwins_hero.webp",
     link: "https://maps.app.goo.gl/7UPi7Rnx5UUV6hGXA",
   },
   {
@@ -306,7 +306,7 @@ export const dataUMKM = [
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "06:00-14:00",
-    image: "/images/lentogbangsyaiful_hero.jpg",
+    image: "/images/lentogbangsyaiful_hero.webp",
     link: "https://maps.app.goo.gl/i3hFof87YiH1Jfcm7",
   },
   {
@@ -319,7 +319,7 @@ export const dataUMKM = [
     location: "Jekulo",
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/berkahesbuah_hero.jpg",
+    image: "/images/berkahesbuah_hero.webp",
     link: "https://maps.app.goo.gl/NP9wzm62FCP3voiz5",
   },
   {
@@ -333,7 +333,7 @@ export const dataUMKM = [
     kecamatanSlug: "jekulo", // Ditambahkan
     openHour: "08:00-22:00",
     image:
-      "/images/warnetjayasentosa_hero.jpeg",
+      "/images/warnetjayasentosa_hero.webp",
     link: "https://maps.app.goo.gl/PmLuRVBMbQZ9TM1P8",
   },
 
@@ -347,7 +347,7 @@ export const dataUMKM = [
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "/images/jaherempahreggit_hero.jpg",
+    image: "/images/jaherempahreggit_hero.webp",
     link: "https://maps.app.goo.gl/BkJaMkRkfC5fNqEg6",
   },
   {
@@ -360,7 +360,7 @@ export const dataUMKM = [
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "07:00-20:00",
-    image: "/images/warungmakanbucarik_hero.jpg",
+    image: "/images/warungmakanbucarik_hero.webp",
     link: "https://maps.app.goo.gl/gTMSEWRBQXFjzw2w7",
   },
   {
@@ -373,7 +373,7 @@ export const dataUMKM = [
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "/images/tehatea_hero.jpeg",
+    image: "/images/tehatea_hero.webp",
     link: "https://maps.app.goo.gl/F8N4e7jorns2isec6",
   },
   {
@@ -385,7 +385,7 @@ export const dataUMKM = [
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "/images/warungmakan2putra_hero.jpg",
+    image: "/images/warungmakan2putra_hero.webp",
     link: "https://maps.app.goo.gl/38fiNxsfuYd8tWKe6",
   },
   {
@@ -398,7 +398,7 @@ export const dataUMKM = [
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu", // Ditambahkan
     openHour: "24 Jam",
-    image: "/images/jasaangkutbarang_hero.jpg",
+    image: "/images/jasaangkutbarang_hero.webp",
     link: "https://maps.app.goo.gl/y5THumCBYsXwknGv7",
   },
 
@@ -412,7 +412,7 @@ export const dataUMKM = [
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus", // Ditambahkan (menggunakan slug untuk nama 2 kata)
     openHour: "09:00-22:00",
-    image: "/images/susumoeria_hero.jpg",
+    image: "/images/susumoeria_hero.webp",
     link: "https://maps.app.goo.gl/ykPM75GR4zvotqGu7",
   },
   {
@@ -425,7 +425,7 @@ export const dataUMKM = [
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "/images/ramboo_hero.jpg",
+    image: "/images/ramboo_hero.webp",
     link: "https://maps.app.goo.gl/LYVqkhzbW1onRtQv6",
   },
   {
@@ -438,7 +438,7 @@ export const dataUMKM = [
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus", // Ditambahkan
     openHour: "09:00-20:00",
-    image: "/images/gempol_hero.jpg",
+    image: "/images/gempol_hero.webp",
     link: "https://maps.app.goo.gl/FbW5YErAMVZPSgE17",
   },
   {
@@ -451,7 +451,7 @@ export const dataUMKM = [
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus", // Ditambahkan
     openHour: "10.00 - 22.00",
-    image: "/images/sultanbarbertop_hero.jpg",
+    image: "/images/sultanbarbertop_hero.webp",
     link: "https://maps.app.goo.gl/tisWKdCUm5aWueGB9",
   },
   {
@@ -464,7 +464,7 @@ export const dataUMKM = [
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus", // Ditambahkan
     openHour: "07.00 - 22.00",
-    image: "/images/sotokudusbujatmi_hero.jpg",
+    image: "/images/sotokudusbujatmi_hero.webp",
     link: "https://maps.app.goo.gl/BDb4ivbpLwgvVNS18",
   },
 
@@ -478,7 +478,7 @@ export const dataUMKM = [
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/xgamtech_hero.jpg",
+    image: "/images/xgamtech_hero.webp",
     link: "https://maps.app.goo.gl/gWn3E69AAsSdHF5E8",
   },
   {
@@ -491,7 +491,7 @@ export const dataUMKM = [
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "08:00-17:00",
-    image: "/images/jasalas_hero.jpg",
+    image: "/images/jasalas_hero.webp",
     link: "https://maps.app.goo.gl/AxEporVGMVhUg6Gx8",
   },
   {
@@ -503,7 +503,7 @@ export const dataUMKM = [
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "08:00-17:00",
-    image: "/images/kalimosodo_hero.jpg",
+    image: "/images/kalimosodo_hero.webp",
     link: "https://maps.app.goo.gl/uH67vcG4Dvs7KoGk8",
   },
   {
@@ -515,7 +515,7 @@ export const dataUMKM = [
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "/images/ikanbakar_hero.jpg",
+    image: "/images/ikanbakar_hero.webp",
     link: "https://maps.app.goo.gl/gmQKifDFtnkAR7v9A",
   },
   {
@@ -527,7 +527,7 @@ export const dataUMKM = [
     location: "Mejobo",
     kecamatanSlug: "mejobo", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/rmbusarah_hero.jpg",
+    image: "/images/rmbusarah_hero.webp",
     link: "https://maps.app.goo.gl/7ECiqEckKkN3vUTp6",
   },
 
@@ -542,7 +542,7 @@ export const dataUMKM = [
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "10:00-22:00",
-    image: "/images/queenseblak_hero.jpg",
+    image: "/images/queenseblak_hero.webp",
     link: "https://maps.app.goo.gl/jBP4apLhmMCffGhX9",
   },
   {
@@ -554,7 +554,7 @@ export const dataUMKM = [
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "09:00-21:00",
-    image: "/images/geprekmakginting_hero.jpg",
+    image: "/images/geprekmakginting_hero.webp",
     link: "https://maps.app.goo.gl/EoNQcjSTJTfPQRcQ7",
   },
   {
@@ -566,7 +566,7 @@ export const dataUMKM = [
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "08:00-21:00",
-    image: "/images/warungsatedangule_hero.jpg",
+    image: "/images/warungsatedangule_hero.webp",
     link: "https://maps.app.goo.gl/1rY63jpYL1TG5zCi7",
   },
   {
@@ -578,7 +578,7 @@ export const dataUMKM = [
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "08:00-17:00",
-    image: "/images/mjteknik_hero.jpg",
+    image: "/images/mjteknik_hero.webp",
     link: "https://maps.app.goo.gl/ybAKugTzb2kkbV1s7",
   },
   {
@@ -590,7 +590,7 @@ export const dataUMKM = [
     location: "Undaan",
     kecamatanSlug: "undaan", // Ditambahkan
     openHour: "07:00-21:00",
-    image: "/images/fotocopy_hero.jpeg",
+    image: "/images/fotocopy_hero.webp",
     link: "https://maps.app.goo.gl/bNhm4hXN8YRd7bvz9",
   },
 ];

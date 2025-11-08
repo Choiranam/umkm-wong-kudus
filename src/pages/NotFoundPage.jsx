@@ -13,7 +13,7 @@ const NotFoundPage = () => {
         <div className="flex flex-col justify-center items-center text-center space-y-8 max-w-2xl mx-auto px-4">
           {/* Ilustrasi 404 */}
           <img
-            src="/images/404notfound.png"
+            src="/images/404notfound.webp"
             alt="Halaman tidak ditemukan"
             className="w-[280px] md:w-[380px] lg:w-[420px] mx-auto drop-shadow-xl"
           />

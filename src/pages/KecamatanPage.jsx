@@ -17,63 +17,63 @@ const allKecamatanInfo = {
     title: "Daftar UMKM di Kecamatan Bae, Kudus",
     subtitle:
       "Temukan beragam produk lokal, kuliner khas, dan layanan unggulan dari pelaku UMKM asli Bae, Kudus.",
-    image: "/images/hero/hero_bae.jpg",
+    image: "/images/hero/hero_bae.webp",
   },
   kaliwungu: {
     name: "Kaliwungu",
     title: "Daftar UMKM di Kecamatan Kaliwungu, Kudus",
     subtitle:
       "Jelajahi makanan, minuman, dan jasa terbaik dari UMKM lokal di Kecamatan Kaliwungu, Kudus.",
-    image: "/images/hero/hero_kaliwungu.jpg",
+    image: "/images/hero/hero_kaliwungu.webp",
   },
   "kota-kudus": {
     name: "Kota Kudus",
     title: "Daftar UMKM di Kecamatan Kota Kudus",
     subtitle:
       "Pusat kuliner, kerajinan, dan jasa premium dari UMKM di jantung Kota Kudus.",
-    image: "/images/hero/hero_kota_kudus.jpg",
+    image: "/images/hero/hero_kota_kudus.webp",
   },
   gebog: {
     name: "Gebog",
     title: "Daftar UMKM di Kecamatan Gebog, Kudus",
     subtitle:
       "Produk unggulan dan kuliner otentik dari para pelaku UMKM di Kecamatan Gebog.",
-    image: "/images/hero/hero_gebog.jpg",
+    image: "/images/hero/hero_gebog.webp",
   },
   dawe: {
     name: "Dawe",
     title: "Daftar UMKM di Kecamatan Dawe, Kudus",
     subtitle:
       "Temukan makanan tradisional dan jasa berkualitas dari UMKM Dawe, Kudus.",
-    image: "/images/hero/hero_dawe.jpg",
+    image: "/images/hero/hero_dawe.webp",
   },
   jati: {
     name: "Jati",
     title: "Daftar UMKM di Kecamatan Jati, Kudus",
     subtitle:
       "Kuliner khas, kerajinan tangan, dan layanan terbaik dari UMKM Jati, Kudus.",
-    image: "/images/hero/hero_jati.jpg",
+    image: "/images/hero/hero_jati.webp",
   },
   jekulo: {
     name: "Jekulo",
     title: "Daftar UMKM di Kecamatan Jekulo, Kudus",
     subtitle:
       "Beragam produk lokal dan jasa andalan dari pelaku UMKM di Kecamatan Jekulo.",
-    image: "/images/hero/hero_jekulo.jpg",
+    image: "/images/hero/hero_jekulo.webp",
   },
   mejobo: {
     name: "Mejobo",
     title: "Daftar UMKM di Kecamatan Mejobo, Kudus",
     subtitle:
       "Makanan, minuman, dan barang kebutuhan dari UMKM asli Mejobo, Kudus.",
-    image: "/images/hero/hero_mejobo.jpg",
+    image: "/images/hero/hero_mejobo.webp",
   },
   undaan: {
     name: "Undaan",
     title: "Daftar UMKM di Kecamatan Undaan, Kudus",
     subtitle:
       "Jelajahi produk unggulan dan kuliner otentik dari UMKM di Kecamatan Undaan.",
-    image: "/images/hero/hero_undaan.jpg",
+    image: "/images/hero/hero_undaan.webp",
   },
 };
 
@@ -125,7 +125,7 @@ const KecamatanPage = () => {
     <div className="bg-light min-h-screen w-full relative">
       <Navbar />
       <HeroContent
-        image={kecamatanInfo?.image || "/images/sampel_hero_content.jpeg"}
+        image={kecamatanInfo?.image || "/images/sampel_hero_content.webp"}
         title={kecamatanInfo?.title || "Memuat Data Kecamatan..."}
         subtitle={kecamatanInfo?.subtitle || "Silakan tunggu..."}
       />

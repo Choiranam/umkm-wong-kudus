@@ -11,7 +11,7 @@ const TentangUMKMPage = () => {
       <Navbar />
 
       <HeroContent
-        image="/images/tentang_umkm_hero_content.png"
+        image="/images/tentang_umkm_hero_content.webp"
         title="Mengenal Lebih Dekat UMKM di Kudus"
         subtitle="Pelajari pengertian, peran, dan potensi UMKM yang menjadi tulang punggung ekonomi daerah."
       />
@@ -51,7 +51,7 @@ const TentangUMKMPage = () => {
 
             <div className="md:w-1/2 flex justify-end">
               <img
-                src="/images/apa_itu_umkm_1.png"
+                src="/images/apa_itu_umkm_1.webp"
                 alt="Pelaku UMKM Kudus"
                 className="rounded-md shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-cover"
               />
@@ -80,7 +80,7 @@ const TentangUMKMPage = () => {
 
             <div className="md:w-1/2 flex justify-start">
               <img
-                src="/images/apa_itu_umkm_2.png"
+                src="/images/apa_itu_umkm_2.webp"
                 alt="UMKM Produk Lokal Kudus"
                 className="rounded-md shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-cover"
               />

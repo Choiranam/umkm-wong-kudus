@@ -15,31 +15,31 @@ const KATEGORI_CONFIG = {
     title: "Jelajahi Rasa Lokal dari UMKM Kudus",
     subtitle:
       "Nikmati aneka kuliner khas buatan warga Kudus yang penuh cita rasa dan keunikan lokal.",
-    image: "/images/sampel_hero_kategori.jpg",
+    image: "/images/sampel_hero_kategori.webp",
   },
   minuman: {
     title: "Segarnya Kreasi Minuman dari UMKM Kudus",
     subtitle:
       "Temukan berbagai minuman segar hasil racikan pelaku UMKM dengan inovasi dan cita rasa khas daerah.",
-    image: "/images/sampel_hero_minuman.jpg",
+    image: "/images/sampel_hero_minuman.webp",
   },
   jasa: {
     title: "Layanan Terbaik dari Pelaku UMKM Kudus",
     subtitle:
       "Dari laundry hingga barbershop, kami hadirkan berbagai jasa berkualitas hasil karya masyarakat lokal.",
-    image: "/images/sampel_hero_jasa.jpg",
+    image: "/images/sampel_hero_jasa.webp",
   },
   barang: {
     title: "Produk Unggulan Karya UMKM Kudus",
     subtitle:
       "Lihat hasil kreativitas warga Kudus melalui berbagai produk menarik dan bermanfaat bagi kebutuhan Anda.",
-    image: "/images/sampel_hero_barang.jpg",
+    image: "/images/sampel_hero_barang.webp",
   },
   lainnya: {
     title: "Beragam Inovasi dari UMKM Kudus",
     subtitle:
       "Temukan usaha-usaha unik lainnya yang menunjukkan semangat dan kreativitas pelaku UMKM di Kudus.",
-    image: "/images/sampel_hero_lainnya.jpg",
+    image: "/images/sampel_hero_lainnya.webp",
   },
 };
 

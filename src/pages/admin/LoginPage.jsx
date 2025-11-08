@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
-import logo from "/images/logo_navbar_footer.png";
+import logo from "/images/logo_navbar_footer.webp";
 import useLogin from "../../API/useLogin";
 import AuthService from "../../API/authService";
 
@@ -112,7 +112,7 @@ const LoginPage = () => {
 
         <div className="hidden md:flex items-center justify-center">
           <img
-            src="https://www.daaruttauhiid.org/wp-content/uploads/2020/05/Melancong-Asik-ke-Masjid-Menara-Kudus_Daarut-Tauhiid.jpg"
+            src="https://www.daaruttauhiid.org/wp-content/uploads/2020/05/Melancong-Asik-ke-Masjid-Menara-Kudus_Daarut-Tauhiid.webp"
             className="w-full h-full object-cover"
             alt="Masjid Menara Kudus"
           />

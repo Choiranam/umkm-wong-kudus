@@ -24,7 +24,7 @@ const TentangKamiPage = () => {
     <div className="bg-light min-h-screen font-poppins overflow-x-hidden w-full">
       <Navbar />
       <HeroContent
-        image="/images/tentang_kami_hero_content.png"
+        image="/images/tentang_kami_hero_content.webp"
         title={
           <>
             Dari Kudus untuk Kudus
@@ -140,7 +140,7 @@ const TentangKamiPage = () => {
 
               <div className="block md:hidden mb-6" data-aos="fade-up">
                 <img
-                  src="/images/team.png"
+                  src="/images/team.webp"
                   alt="Foto Tim"
                   className="w-full h-auto max-h-[350px] rounded-lg shadow-md object-cover"
                 />
@@ -175,7 +175,7 @@ const TentangKamiPage = () => {
             data-aos-delay="250"
           >
             <img
-              src="/images/team.png"
+              src="/images/team.webp"
               alt="Foto Tim"
               className="w-full md:w-[85%] h-auto max-h-[350px] rounded-lg shadow-md object-cover"
             />
@@ -192,19 +192,19 @@ const TentangKamiPage = () => {
               name: "Azzan Isham Alawiy",
               role: "Frontend Developer",
               desc: "Sebagai Frontend Developer, aku fokus sama desain dan interaksi biar tiap halaman webnya keren dan enak dipake. Pengen bikin user betah dan enjoy tiap kali buka websitenya.",
-              image: "/images/isham.jpg",
+              image: "/images/isham.webp",
             },
             {
               name: "Muhammad Choirul'anam",
               role: "Frontend Developer",
               desc: "Sebagai Frontend Developer, saya fokus mengembangkan struktur dan fungsionalitas tampilan agar website terlihat rapi, responsif, serta mudah digunakan di berbagai perangkat.",
-              image: "/images/anam.jpg",
+              image: "/images/anam.webp",
             },
             {
               name: "Yusuf Rizqy Mubarok",
               role: "Backend Developer",
               desc: "Sebagai Backend Developer, saya mengelola logika server dan basis data untuk memastikan website berjalan dengan lancar, aman, efisien, serta mudah dikembangkan.",
-              image: "/images/yusuf.jpg",
+              image: "/images/yusuf.webp",
             },
           ].map((data, index) => (
             <motion.div
