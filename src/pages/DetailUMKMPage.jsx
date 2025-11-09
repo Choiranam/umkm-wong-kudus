@@ -15,8 +15,70 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
   const { contact, location, rating, openingHours, name, description } = data;
 
-  const todayIndex = (new Date().getDay() + 6) % 7;
-  const today = openingHours[todayIndex];
+  // Helper: Normalisasi dash
+  const normalizeHours = (hours) => hours?.trim().replace(/[–—]/g, "-") || "";
+
+  const isOpenNow = (hoursStr) => {
+    const text = normalizeHours(hoursStr).toLowerCase();
+    if (text === "buka 24 jam") return true;
+    if (text === "tutup") return false;
+
+    const parts = text.split("-").map((s) => s.trim());
+    if (parts.length !== 2) return false;
+
+    const [openStr, closeStr] = parts;
+    const [openH, openM] = openStr.split(".").map(Number);
+    const [closeH, closeM] = closeStr.split(".").map(Number);
+
+    if (isNaN(openH) || isNaN(openM) || isNaN(closeH) || isNaN(closeM))
+      return false;
+
+    const now = new Date();
+    const today = now.getDate();
+
+    const openTime = new Date(now);
+    openTime.setHours(openH, openM, 0, 0);
+
+    const closeTime = new Date(now);
+    closeTime.setHours(closeH, closeM, 0, 0);
+
+    if (closeH < openH || (closeH === openH && closeM < openM)) {
+      closeTime.setDate(today + 1);
+    }
+
+    return now >= openTime && now <= closeTime;
+  };
+
+  // Auto-refresh tiap menit
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 60000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Hari ini (Indonesia)
+  const daysIndo = [
+    "Minggu",
+    "Senin",
+    "Selasa",
+    "Rabu",
+    "Kamis",
+    "Jumat",
+    "Sabtu",
+  ];
+  const todayName = daysIndo[new Date().getDay()];
+  const today = openingHours.find((d) => d.day === todayName) || {
+    isOpen: false,
+    hours: "Tutup",
+  };
+
+  // Status real-time
+  const currentlyOpen = today.isOpen && isOpenNow(today.hours);
+  const displayText = currentlyOpen
+    ? normalizeHours(today.hours).toLowerCase() === "buka 24 jam"
+      ? "Buka 24 Jam"
+      : today.hours
+    : "Tutup";
 
   const contactItems = [
     {
@@ -80,17 +142,23 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
             <Icon
               icon="tabler:clock"
               className={`text-lg ${
-                today.isOpen ? "text-green-600" : "text-red-500"
+                currentlyOpen ? "text-green-600" : "text-red-500"
               }`}
             />
             <span
               className={`font-semibold ${
-                today.isOpen ? "text-green-600" : "text-red-500"
+                currentlyOpen ? "text-green-600" : "text-red-500"
               }`}
             >
-              {today.isOpen ? "Buka Sekarang" : "Tutup"}
+              {currentlyOpen ? "Buka" : "Tutup"}
             </span>
-            <span className="text-dark/70 text-sm">{today.hours}</span>
+            <span
+              className={`text-sm ${
+                currentlyOpen ? "font-semibold text-dark" : "text-dark/50"
+              }`}
+            >
+              {displayText}
+            </span>
           </div>
           <Icon
             icon="tabler:chevron-down"
@@ -99,6 +167,7 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
             }`}
           />
         </button>
+
         <AnimatePresence>
           {isHoursOpen && (
             <motion.div
@@ -109,21 +178,22 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
               className="overflow-hidden"
             >
               <ul className="text-sm text-dark/70 space-y-2.5 pt-2">
-                {openingHours.map((day) => (
-                  <li
-                    key={day.day}
-                    className="flex justify-between items-center"
-                  >
-                    <span>{day.day}</span>
-                    <span
-                      className={`font-medium ${
-                        day.isOpen ? "text-dark" : "text-red-500"
+                {openingHours.map((day) => {
+                  const isToday = day.day === todayName;
+                  const openNow = day.isOpen && isOpenNow(day.hours);
+
+                  return (
+                    <li
+                      key={day.day}
+                      className={`flex justify-between items-center ${
+                        isToday ? "font-bold text-dark" : "text-dark/70"
                       }`}
                     >
-                      {day.hours}
-                    </span>
-                  </li>
-                ))}
+                      <span>{day.day}</span>
+                      <span className="text-dark/50">{day.hours}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </motion.div>
           )}
@@ -217,7 +287,7 @@ const DetailUMKMPage = () => {
   } = umkmData;
 
   return (
-    <div className="w-full min-h-screen bg-light">
+    <div className="w-screen min-h-screen bg-light overflow-x-hidden">
       <Navbar />
       <HeroContent
         image={heroImage}
@@ -377,7 +447,7 @@ const DetailUMKMPage = () => {
         )}
       </AnimatePresence>
 
-      <div className="fixed bottom-6 right-6 z-40 md:hidden">
+      <div className="fixed bottom-8 right-8 z-40 md:hidden">
         <button
           onClick={() => setShowMobilePopup(true)}
           className="bg-orange text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110"

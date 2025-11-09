@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Icon } from "@iconify/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import KecamatanCard from "../components/KecamatanCard";
 import UMKMCard from "../components/UMKMCard";
 import ReviewCard from "../components/ReviewCard";
@@ -9,9 +9,10 @@ import { Link, useNavigate } from "react-router-dom";
 import ArtikelCard from "../components/ArtikelCard";
 import AOS from "aos";
 import AnimatedIconBackground from "../components/AnimatedIconBackground";
-import { dataUMKM } from "../data/dataUMKM";
 import { dataKecamatan } from "../data/dataKecamatan";
+import SearchBar from "../components/SearchBar";
 import { useRef, useState, useEffect } from "react";
+import { dataUMKM } from "../data/dataUMKM";
 
 const UMKMScrollSection = () => {
   const umkmScrollRef = useRef(null);
@@ -108,19 +109,9 @@ const UMKMScrollSection = () => {
 
 const HomePage = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedTerm, setDebouncedTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
-  const placeholders = [
-    "Cari produk unggulan UMKM Kudus...",
-    "Temukan inspirasi dari pelaku usaha lokal...",
-    "Jelajahi potensi ekonomi kreatif daerah...",
-    "Dukung bisnis kecil di sekitarmu...",
-  ];
-  const [placeholderIndex, setPlaceholderIndex] = useState(0);
 
-  // State untuk Artikel (dari kode teman)
+  // State untuk Artikel
   const [articles, setArticles] = useState([]);
   const [loadingArticles, setLoadingArticles] = useState(true);
   const [errorArticles, setErrorArticles] = useState("");
@@ -131,7 +122,7 @@ const HomePage = () => {
   const [loadingReviews, setLoadingReviews] = useState(true);
   const [errorReviews, setErrorReviews] = useState("");
 
-  // Helper Format Tanggal (dari kode teman)
+  // Helper Format Tanggal
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     return new Date(dateString).toLocaleDateString("id-ID", options);
@@ -144,35 +135,7 @@ const HomePage = () => {
     }, 200);
   }, []);
 
-  // Ganti placeholder tiap 3 detik
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Debounce search term
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedTerm(searchTerm);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
-
-  // Filter data UMKM untuk suggestion
-  useEffect(() => {
-    if (debouncedTerm.trim() === "") {
-      setSuggestions([]);
-      return;
-    }
-    const filtered = dataUMKM.filter((umkm) =>
-      umkm.name.toLowerCase().includes(debouncedTerm.toLowerCase())
-    );
-    setSuggestions(filtered);
-  }, [debouncedTerm]);
-
-  // === Fetch Kategori Blog (dari kode teman) ===
+  // === Fetch Kategori Blog ===
   useEffect(() => {
     const fetchBlogCategories = async () => {
       try {
@@ -189,7 +152,6 @@ const HomePage = () => {
           });
           setBlogCategories(map);
         } else {
-          console.warn("Gagal memuat kategori, gunakan fallback");
           setBlogCategories({ 1: "UMKM", 2: "Lainnya" });
         }
       } catch (err) {
@@ -201,7 +163,7 @@ const HomePage = () => {
     fetchBlogCategories();
   }, []);
 
-  // === Fetch Artikel (dari kode teman) ===
+  // === Fetch Artikel ===
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -347,24 +309,6 @@ const HomePage = () => {
     };
   }, []);
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSuggestionClick = (slug) => {
-    setSearchTerm("");
-    setSuggestions([]);
-    navigate(`/detail-umkm/${slug}`);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      setSuggestions([]);
-      navigate(`/pencarian?query=${encodeURIComponent(searchTerm)}`);
-    }
-  };
-
   return (
     <div className="bg-light min-h-screen">
       <Navbar />
@@ -414,62 +358,16 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4 relative"
+            className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            <form
-              onSubmit={handleSearchSubmit}
-              className="grow relative"
-              id="searchForm"
-            >
-              <div className="relative">
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  className="w-full py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
-                  placeholder=""
-                />
-                {searchTerm === "" && (
-                  <div className="pointer-events-none absolute inset-0 flex items-center px-4">
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={placeholderIndex}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="text-dark/50 select-none"
-                      >
-                        {placeholders[placeholderIndex]}
-                      </motion.span>
-                    </AnimatePresence>
-                  </div>
-                )}
-              </div>
-
-              {suggestions.length > 0 && (
-                <div className="absolute z-20 w-full bg-light rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
-                  {suggestions.map((sug, i) => (
-                    <div
-                      key={i}
-                      className="px-4 py-2 hover:bg-orange/10 cursor-pointer"
-                      onClick={() => handleSuggestionClick(sug.slug)}
-                    >
-                      {sug.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </form>
-
+            <SearchBar />
             <button
               type="submit"
-              className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer"
-              onClick={handleSearchSubmit}
               form="searchForm"
+              className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer"
             >
               <Icon icon="tabler:search" className="w-4 h-4 mr-2" /> Search
             </button>
