@@ -141,7 +141,7 @@ export default function UMKMCard({ data }) {
         </p>
 
         <p className="text-dark/60 text-xs mt-1 line-clamp-2 mb-3">
-          {data?.description}
+          {data?.subtitle}
         </p>
 
         <div className="border-t border-gray-200 my-3" />

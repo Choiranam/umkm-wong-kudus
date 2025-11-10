@@ -7,7 +7,7 @@ export const dataUMKM = [
     name: "Warung Makan Om W",
     slug: "warung-makan-om-w",
     category: "Makanan",
-    description:
+    subtitle:
       "Warung sederhana dengan menu rumahan khas Kudus yang lezat dan terjangkau.",
     location: "Bae",
     kecamatanSlug: "bae",
@@ -20,10 +20,10 @@ export const dataUMKM = [
     name: "Ayam Geprek Jawi",
     slug: "ayam-geprek-jawi",
     category: "Makanan",
-    description:
+    subtitle:
       "Menyajikan ayam geprek pedas dengan sambal khas yang menggugah selera.",
     location: "Bae",
-    kecamatanSlug: "bae", // Ditambahkan
+    kecamatanSlug: "bae",
     openHour: "09:00-22:00",
     image: "/images/geprekjawi_hero.webp",
     link: "https://maps.app.goo.gl/34kSNYhPqqgnU87T8",
@@ -33,10 +33,10 @@ export const dataUMKM = [
     name: "Soto Lamongan Mbak Yuli",
     slug: "soto-lamongan-mbak-yuli",
     category: "Makanan",
-    description:
+    subtitle:
       "Soto Lamongan gurih dengan koya melimpah dan potongan ayam kampung.",
     location: "Bae",
-    kecamatanSlug: "bae", // Ditambahkan
+    kecamatanSlug: "bae",
     openHour: "07:00-20:00",
     image: "/images/lamonganyuli_hero.webp",
     link: "https://maps.app.goo.gl/JdsXJfJK2SiJLZPA7",
@@ -46,10 +46,10 @@ export const dataUMKM = [
     name: "Es Cincau Pasundan",
     slug: "es-cincau-pasundan",
     category: "Minuman",
-    description:
+    subtitle:
       "Minuman segar dengan cincau hitam khas Pasundan dan gula merah cair.",
     location: "Bae",
-    kecamatanSlug: "bae", // Ditambahkan
+    kecamatanSlug: "bae",
     openHour: "10:00-21:00",
     image: "/images/cincaupasundan_hero.webp",
     link: "https://maps.app.goo.gl/gVm4V6t2bqPczEJZ9",
@@ -59,10 +59,10 @@ export const dataUMKM = [
     name: "Jasa Tulis Kudus",
     slug: "jasa-tulis-kudus",
     category: "Jasa",
-    description:
+    subtitle:
       "Melayani jasa pengetikan, cetak dokumen, dan administrasi harian.",
     location: "Bae",
-    kecamatanSlug: "bae", // Ditambahkan
+    kecamatanSlug: "bae",
     openHour: "08:00-17:00",
     image: "/images/jasatulis_hero.webp",
     link: "https://maps.app.goo.gl/4sNnVAGGSV7RziFPA",
@@ -74,10 +74,10 @@ export const dataUMKM = [
     name: "Swike Dawe Restaurant",
     slug: "swike-dawe-restaurant",
     category: "Makanan",
-    description:
+    subtitle:
       "Restoran khas Kudus yang menyajikan swike lezat dengan resep tradisional.",
     location: "Dawe",
-    kecamatanSlug: "dawe", // Ditambahkan
+    kecamatanSlug: "dawe",
     openHour: "10:00-22:00",
     image: "/images/swikedawe_hero.webp",
     link: "https://maps.app.goo.gl/USGE5s2iZ31mx3et8",
@@ -87,10 +87,10 @@ export const dataUMKM = [
     name: "WEKATE GANK",
     slug: "wekate-gank",
     category: "Minuman",
-    description:
+    subtitle:
       "Kedai minuman kekinian dengan berbagai pilihan topping dan rasa.",
     location: "Dawe",
-    kecamatanSlug: "dawe", // Ditambahkan
+    kecamatanSlug: "dawe",
     openHour: "09:00-21:00",
     image: "/images/wekategank_hero.webp",
     link: "https://maps.app.goo.gl/hdpT54AXQ2vHhwEc7",
@@ -100,10 +100,10 @@ export const dataUMKM = [
     name: "Rumah Makan Mak Kiyem",
     slug: "rumah-makan-mak-kiyem",
     category: "Makanan",
-    description:
+    subtitle:
       "Tempat makan dengan cita rasa masakan Jawa rumahan yang otentik.",
     location: "Dawe",
-    kecamatanSlug: "dawe", // Ditambahkan
+    kecamatanSlug: "dawe",
     openHour: "08:00-21:00",
     image: "/images/makkiyem_hero.webp",
     link: "https://maps.app.goo.gl/D7Su82QRZCHX7t698",
@@ -113,10 +113,10 @@ export const dataUMKM = [
     name: "Jasa Angkut & Pasir & Bata Merah Jumbo",
     slug: "jasa-angkut-dan-pasir-bata-merah-jumbo",
     category: "Jasa",
-    description:
+    subtitle:
       "Menyediakan layanan angkut material bangunan dan kebutuhan konstruksi.",
     location: "Dawe",
-    kecamatanSlug: "dawe", // Ditambahkan
+    kecamatanSlug: "dawe",
     openHour: "07:00-17:00",
     image: "/images/jasaangkut_hero.webp",
     link: "https://maps.app.goo.gl/yimn1Ms8XH6ekbYLA",
@@ -126,10 +126,10 @@ export const dataUMKM = [
     name: "Ayam Geprek Sa’i Dawe",
     slug: "ayam-geprek-sai",
     category: "Makanan",
-    description:
+    subtitle:
       "Ayam geprek dengan level pedas sesuai selera dan harga bersahabat.",
     location: "Dawe",
-    kecamatanSlug: "dawe", // Ditambahkan
+    kecamatanSlug: "dawe",
     openHour: "10:00-22:00",
     image: "/images/ayamgepreksai_hero.webp",
     link: "https://maps.app.goo.gl/5G3DAEiX19ufwgaS6",
@@ -141,10 +141,10 @@ export const dataUMKM = [
     name: "Warung Makan Mbah Sapar",
     slug: "warung-makan-mbah-sapar",
     category: "Makanan",
-    description:
+    subtitle:
       "Warung makan legendaris dengan menu khas Kudus yang menggugah selera.",
     location: "Gebog",
-    kecamatanSlug: "gebog", // Ditambahkan
+    kecamatanSlug: "gebog",
     openHour: "07:00-20:00",
     image: "/images/mbahsapar_hero.webp",
     link: "https://maps.app.goo.gl/gYeV2iWeC7LmAuHT7",
@@ -154,10 +154,10 @@ export const dataUMKM = [
     name: "Nasi Uduk dan Nasi Kuning Gang Satu",
     slug: "nasi-uduk-dan-nasi-kuning-gang-satu",
     category: "Makanan",
-    description:
+    subtitle:
       "Menyajikan nasi uduk dan nasi kuning dengan lauk variatif setiap hari.",
     location: "Gebog",
-    kecamatanSlug: "gebog", // Ditambahkan
+    kecamatanSlug: "gebog",
     openHour: "06:00-11:00",
     image: "/images/nasiuduk_hero.webp",
     link: "https://maps.app.goo.gl/kwHfceBeg9Je1TSX9",
@@ -167,9 +167,9 @@ export const dataUMKM = [
     name: "Sari Rasa Bakso Malvinas",
     slug: "sari-rasa-bakso-malvinas",
     category: "Makanan",
-    description: "Bakso urat dengan kuah kaldu gurih dan porsi mengenyangkan.",
+    subtitle: "Bakso urat dengan kuah kaldu gurih dan porsi mengenyangkan.",
     location: "Gebog",
-    kecamatanSlug: "gebog", // Ditambahkan
+    kecamatanSlug: "gebog",
     openHour: "09:00-21:00",
     image: "/images/baksomalvinas_hero.webp",
     link: "https://maps.app.goo.gl/ppj9kcANtYxC613S6",
@@ -179,9 +179,9 @@ export const dataUMKM = [
     name: "Warung Makan Mak Ru",
     slug: "warung-makan-mak-ru",
     category: "Makanan",
-    description: "Menu masakan rumahan lengkap dengan sambal khas Kudus.",
+    subtitle: "Menu masakan rumahan lengkap dengan sambal khas Kudus.",
     location: "Gebog",
-    kecamatanSlug: "gebog", // Ditambahkan
+    kecamatanSlug: "gebog",
     openHour: "08:00-20:00",
     image: "/images/warungmakanmakru_hero.webp",
     link: "https://maps.app.goo.gl/ShKhKN6G8jLoNxqb6",
@@ -191,10 +191,10 @@ export const dataUMKM = [
     name: "Kasehito Works",
     slug: "kasehito-works",
     category: "Jasa",
-    description:
+    subtitle:
       "Menyediakan jasa desain, sablon, dan percetakan lokal berkualitas.",
     location: "Gebog",
-    kecamatanSlug: "gebog", // Ditambahkan
+    kecamatanSlug: "gebog",
     openHour: "09:00-18:00",
     image: "/images/kasehitoworks_hero.webp",
     link: "https://maps.app.goo.gl/Hnqm3izDEuR4iDTaA",
@@ -206,10 +206,10 @@ export const dataUMKM = [
     name: "Cakrawala Sego Sambel",
     slug: "cakrawala-sego-sambel",
     category: "Makanan",
-    description:
+    subtitle:
       "Sego sambel khas dengan berbagai lauk pedas yang menggoda selera.",
     location: "Jati",
-    kecamatanSlug: "jati", // Ditambahkan
+    kecamatanSlug: "jati",
     openHour: "09:00-21:00",
     image: "/images/cakrawala_hero.webp",
     link: "https://maps.app.goo.gl/wj7ySDm62qgiSFq89",
@@ -219,13 +219,12 @@ export const dataUMKM = [
     name: "Nasi Opor Sunggingan",
     slug: "nasi-opor-sunggingan",
     category: "Makanan",
-    description:
+    subtitle:
       "Opor ayam lembut dengan kuah santan kental dan bumbu khas Kudus.",
     location: "Jati",
-    kecamatanSlug: "jati", // Ditambahkan
+    kecamatanSlug: "jati",
     openHour: "07:00-14:00",
-    image:
-      "/images/oporsungginan_hero.webp",
+    image: "/images/oporsungginan_hero.webp",
     link: "https://maps.app.goo.gl/ih4WzCWEq4Mw81nw7",
   },
   {
@@ -233,13 +232,12 @@ export const dataUMKM = [
     name: "Warung Enthog Pak Badi",
     slug: "warung-enthog-pak-badi",
     category: "Makanan",
-    description:
+    subtitle:
       "Spesialis olahan enthog dengan sambal korek pedas menggugah selera.",
     location: "Jati",
-    kecamatanSlug: "jati", // Ditambahkan
+    kecamatanSlug: "jati",
     openHour: "10:00-22:00",
-    image:
-      "/images/enthogpakbadi_hero.webp",
+    image: "/images/enthogpakbadi_hero.webp",
     link: "https://maps.app.goo.gl/usFhu6CUCSuysUG2A",
   },
   {
@@ -247,13 +245,12 @@ export const dataUMKM = [
     name: "Jasa Powder Coating & Platting Kudus",
     slug: "jasa-powder-coating-dan-platting-kudus",
     category: "Jasa",
-    description:
+    subtitle:
       "Melayani coating dan platting untuk berbagai kebutuhan industri dan otomotif.",
     location: "Jati",
-    kecamatanSlug: "jati", // Ditambahkan
+    kecamatanSlug: "jati",
     openHour: "08:00-17:00",
-    image:
-      "/images/powdercoating_hero.webp",
+    image: "/images/powdercoating_hero.webp",
     link: "https://maps.app.goo.gl/QeruafGAk4xGBpdFA",
   },
   {
@@ -261,10 +258,10 @@ export const dataUMKM = [
     name: "Kedai Es Bang Maman",
     slug: "kedai-es-bang-maman",
     category: "Minuman",
-    description:
+    subtitle:
       "Es segar berbagai rasa dengan topping buah dan jelly favorit anak muda.",
     location: "Jati",
-    kecamatanSlug: "jati", // Ditambahkan
+    kecamatanSlug: "jati",
     openHour: "10:00-22:00",
     image: "/images/esbangmaman_hero.webp",
     link: "https://maps.app.goo.gl/Fi5eeThuzfuthEyz8",
@@ -276,10 +273,10 @@ export const dataUMKM = [
     name: "Jus Pojokan",
     slug: "jus-pojokan",
     category: "Minuman",
-    description:
+    subtitle:
       "Jus segar berbagai rasa yang cocok dinikmati saat siang hari.",
     location: "Jekulo",
-    kecamatanSlug: "jekulo", // Ditambahkan
+    kecamatanSlug: "jekulo",
     openHour: "09:00-21:00",
     image: "/images/juspojokan_hero.webp",
     link: "https://maps.app.goo.gl/qziXm98Q1MiogAcG7",
@@ -289,10 +286,10 @@ export const dataUMKM = [
     name: "Kedai Twins Seblak Bandung n Juice Jekulo",
     slug: "kedai-twins-seblak-bandung-juice-jekulo",
     category: "Minuman",
-    description:
+    subtitle:
       "Kedai seblak dan jus kekinian khas Bandung dengan cita rasa lokal.",
     location: "Jekulo",
-    kecamatanSlug: "jekulo", // Ditambahkan
+    kecamatanSlug: "jekulo",
     openHour: "10:00-22:00",
     image: "/images/kedaytwins_hero.webp",
     link: "https://maps.app.goo.gl/7UPi7Rnx5UUV6hGXA",
@@ -302,9 +299,9 @@ export const dataUMKM = [
     name: "Lentog Tanjung Bang Saiful",
     slug: "lentog-tanjung-bang-saiful",
     category: "Makanan",
-    description: "Lentog khas Kudus dengan cita rasa gurih yang legendaris.",
+    subtitle: "Lentog khas Kudus dengan cita rasa gurih yang legendaris.",
     location: "Jekulo",
-    kecamatanSlug: "jekulo", // Ditambahkan
+    kecamatanSlug: "jekulo",
     openHour: "06:00-14:00",
     image: "/images/lentogbangsyaiful_hero.webp",
     link: "https://maps.app.goo.gl/i3hFof87YiH1Jfcm7",
@@ -314,10 +311,10 @@ export const dataUMKM = [
     name: "Berkah Es Buah",
     slug: "berkah-es-buah",
     category: "Minuman",
-    description:
+    subtitle:
       "Es buah segar dengan campuran jelly dan susu, favorit semua kalangan.",
     location: "Jekulo",
-    kecamatanSlug: "jekulo", // Ditambahkan
+    kecamatanSlug: "jekulo",
     openHour: "09:00-21:00",
     image: "/images/berkahesbuah_hero.webp",
     link: "https://maps.app.goo.gl/NP9wzm62FCP3voiz5",
@@ -327,13 +324,12 @@ export const dataUMKM = [
     name: "Warnet Jaya Sentosa",
     slug: "warnet-jaya-sentosa",
     category: "Jasa",
-    description:
+    subtitle:
       "Warnet dengan koneksi cepat dan nyaman untuk bermain maupun bekerja.",
     location: "Jekulo",
-    kecamatanSlug: "jekulo", // Ditambahkan
+    kecamatanSlug: "jekulo",
     openHour: "08:00-22:00",
-    image:
-      "/images/warnetjayasentosa_hero.webp",
+    image: "/images/warnetjayasentosa_hero.webp",
     link: "https://maps.app.goo.gl/PmLuRVBMbQZ9TM1P8",
   },
 
@@ -343,9 +339,9 @@ export const dataUMKM = [
     name: "Jahe Rempah Leggit",
     slug: "jahe-rempah-leggit",
     category: "Minuman",
-    description: "Minuman jahe hangat dengan campuran rempah alami khas Kudus.",
+    subtitle: "Minuman jahe hangat dengan campuran rempah alami khas Kudus.",
     location: "Kaliwungu",
-    kecamatanSlug: "kaliwungu", // Ditambahkan
+    kecamatanSlug: "kaliwungu",
     openHour: "08:00-21:00",
     image: "/images/jaherempahreggit_hero.webp",
     link: "https://maps.app.goo.gl/BkJaMkRkfC5fNqEg6",
@@ -355,10 +351,10 @@ export const dataUMKM = [
     name: "Warung Makan Bu Carik",
     slug: "warung-makan-bu-carik",
     category: "Makanan",
-    description:
+    subtitle:
       "Warung makan sederhana dengan menu rumahan yang lezat dan murah.",
     location: "Kaliwungu",
-    kecamatanSlug: "kaliwungu", // Ditambahkan
+    kecamatanSlug: "kaliwungu",
     openHour: "07:00-20:00",
     image: "/images/warungmakanbucarik_hero.webp",
     link: "https://maps.app.goo.gl/gTMSEWRBQXFjzw2w7",
@@ -368,10 +364,10 @@ export const dataUMKM = [
     name: "Tehatea Indonesia",
     slug: "tehatea-indonesia",
     category: "Minuman",
-    description:
+    subtitle:
       "Gerai teh kekinian dengan berbagai varian rasa dan topping menarik.",
     location: "Kaliwungu",
-    kecamatanSlug: "kaliwungu", // Ditambahkan
+    kecamatanSlug: "kaliwungu",
     openHour: "10:00-22:00",
     image: "/images/tehatea_hero.webp",
     link: "https://maps.app.goo.gl/F8N4e7jorns2isec6",
@@ -381,9 +377,9 @@ export const dataUMKM = [
     name: "Warung Makan 2 Putra",
     slug: "warung-makan-2-putra",
     category: "Makanan",
-    description: "Tempat makan dengan menu ayam goreng dan sambal khas.",
+    subtitle: "Tempat makan dengan menu ayam goreng dan sambal khas.",
     location: "Kaliwungu",
-    kecamatanSlug: "kaliwungu", // Ditambahkan
+    kecamatanSlug: "kaliwungu",
     openHour: "08:00-21:00",
     image: "/images/warungmakan2putra_hero.webp",
     link: "https://maps.app.goo.gl/38fiNxsfuYd8tWKe6",
@@ -393,10 +389,10 @@ export const dataUMKM = [
     name: "Jasa Angkut Barang",
     slug: "jasa-angkut-barang",
     category: "Jasa",
-    description:
+    subtitle:
       "Layanan angkut cepat dan aman untuk kebutuhan pindahan dan kiriman.",
     location: "Kaliwungu",
-    kecamatanSlug: "kaliwungu", // Ditambahkan
+    kecamatanSlug: "kaliwungu",
     openHour: "24 Jam",
     image: "/images/jasaangkutbarang_hero.webp",
     link: "https://maps.app.goo.gl/y5THumCBYsXwknGv7",
@@ -408,9 +404,9 @@ export const dataUMKM = [
     name: "Susu Moeria",
     slug: "susu-moeria",
     category: "Minuman",
-    description: "Susu murni dengan berbagai varian rasa khas Kudus.",
+    subtitle: "Susu murni dengan berbagai varian rasa khas Kudus.",
     location: "Kota Kudus",
-    kecamatanSlug: "kota-kudus", // Ditambahkan (menggunakan slug untuk nama 2 kata)
+    kecamatanSlug: "kota-kudus",
     openHour: "09:00-22:00",
     image: "/images/susumoeria_hero.webp",
     link: "https://maps.app.goo.gl/ykPM75GR4zvotqGu7",
@@ -420,10 +416,10 @@ export const dataUMKM = [
     name: "Ramboo Chicken",
     slug: "ramboo-chicken",
     category: "Makanan",
-    description:
+    subtitle:
       "Ayam geprek dengan sambal korek yang pedas dan menggugah selera.",
     location: "Kota Kudus",
-    kecamatanSlug: "kota-kudus", // Ditambahkan
+    kecamatanSlug: "kota-kudus",
     openHour: "08:00-21:00",
     image: "/images/ramboo_hero.webp",
     link: "https://maps.app.goo.gl/LYVqkhzbW1onRtQv6",
@@ -433,10 +429,10 @@ export const dataUMKM = [
     name: "Es Gempol Pak Masykur",
     slug: "es-gempol-pak-masykur",
     category: "Minuman",
-    description:
+    subtitle:
       "Minuman tradisional Kudus dengan gempol segar dan santan manis.",
     location: "Kota Kudus",
-    kecamatanSlug: "kota-kudus", // Ditambahkan
+    kecamatanSlug: "kota-kudus",
     openHour: "09:00-20:00",
     image: "/images/gempol_hero.webp",
     link: "https://maps.app.goo.gl/FbW5YErAMVZPSgE17",
@@ -446,10 +442,10 @@ export const dataUMKM = [
     name: "Sultan Barber Top",
     slug: "sultan-barber-top",
     category: "Jasa",
-    description:
+    subtitle:
       "Barbershop modern dengan pelayanan profesional, tempat nyaman, dan hasil cukur rapi bergaya kekinian.",
     location: "Kota Kudus",
-    kecamatanSlug: "kota-kudus", // Ditambahkan
+    kecamatanSlug: "kota-kudus",
     openHour: "10.00 - 22.00",
     image: "/images/sultanbarbertop_hero.webp",
     link: "https://maps.app.goo.gl/tisWKdCUm5aWueGB9",
@@ -459,10 +455,10 @@ export const dataUMKM = [
     name: "Soto Kudus Bu Jatmi",
     slug: "soto-kudus-bu-jatmi",
     category: "Makanan",
-    description:
+    subtitle:
       "Warung legendaris dengan cita rasa soto khas Kudus yang gurih dan autentik sejak puluhan tahun.",
     location: "Kota Kudus",
-    kecamatanSlug: "kota-kudus", // Ditambahkan
+    kecamatanSlug: "kota-kudus",
     openHour: "07.00 - 22.00",
     image: "/images/sotokudusbujatmi_hero.webp",
     link: "https://maps.app.goo.gl/BDb4ivbpLwgvVNS18",
@@ -474,9 +470,9 @@ export const dataUMKM = [
     name: "XGAM_Tech",
     slug: "xgam-tech",
     category: "Jasa",
-    description: "Layanan servis laptop, komputer, dan rakit PC profesional.",
+    subtitle: "Layanan servis laptop, komputer, dan rakit PC profesional.",
     location: "Mejobo",
-    kecamatanSlug: "mejobo", // Ditambahkan
+    kecamatanSlug: "mejobo",
     openHour: "09:00-21:00",
     image: "/images/xgamtech_hero.webp",
     link: "https://maps.app.goo.gl/gWn3E69AAsSdHF5E8",
@@ -486,10 +482,10 @@ export const dataUMKM = [
     name: "Jasa Las dan Bubut Mulyo Rejo",
     slug: "jasa-las-dan-bubut-mulyo-rejo",
     category: "Jasa",
-    description:
+    subtitle:
       "Layanan las dan bubut untuk kebutuhan industri dan rumah tangga.",
     location: "Mejobo",
-    kecamatanSlug: "mejobo", // Ditambahkan
+    kecamatanSlug: "mejobo",
     openHour: "08:00-17:00",
     image: "/images/jasalas_hero.webp",
     link: "https://maps.app.goo.gl/AxEporVGMVhUg6Gx8",
@@ -499,9 +495,9 @@ export const dataUMKM = [
     name: "Putra Kalimosodo",
     slug: "putra-kalimosodo",
     category: "Jasa",
-    description: "Penyedia jasa transportasi dan material bangunan terpercaya.",
+    subtitle: "Penyedia jasa transportasi dan material bangunan terpercaya.",
     location: "Mejobo",
-    kecamatanSlug: "mejobo", // Ditambahkan
+    kecamatanSlug: "mejobo",
     openHour: "08:00-17:00",
     image: "/images/kalimosodo_hero.webp",
     link: "https://maps.app.goo.gl/uH67vcG4Dvs7KoGk8",
@@ -511,9 +507,9 @@ export const dataUMKM = [
     name: "Ikan Bakar Nasuky Mubarok Jepang",
     slug: "ikan-bakar-nasuky-mubarok-jepang",
     category: "Makanan",
-    description: "Ikan bakar khas Kudus dengan sambal pedas menggoda.",
+    subtitle: "Ikan bakar khas Kudus dengan sambal pedas menggoda.",
     location: "Mejobo",
-    kecamatanSlug: "mejobo", // Ditambahkan
+    kecamatanSlug: "mejobo",
     openHour: "10:00-22:00",
     image: "/images/ikanbakar_hero.webp",
     link: "https://maps.app.goo.gl/gmQKifDFtnkAR7v9A",
@@ -523,9 +519,9 @@ export const dataUMKM = [
     name: "RM Bu Sarah",
     slug: "rm-bu-sarah",
     category: "Makanan",
-    description: "Rumah makan keluarga dengan masakan tradisional Jawa.",
+    subtitle: "Rumah makan keluarga dengan masakan tradisional Jawa.",
     location: "Mejobo",
-    kecamatanSlug: "mejobo", // Ditambahkan
+    kecamatanSlug: "mejobo",
     openHour: "09:00-21:00",
     image: "/images/rmbusarah_hero.webp",
     link: "https://maps.app.goo.gl/7ECiqEckKkN3vUTp6",
@@ -537,10 +533,10 @@ export const dataUMKM = [
     name: "Queen Seblak Prasmanan",
     slug: "queen-seblak-prasmanan",
     category: "Makanan",
-    description:
+    subtitle:
       "Seblak dengan berbagai topping dan level pedas yang bisa dipilih.",
     location: "Undaan",
-    kecamatanSlug: "undaan", // Ditambahkan
+    kecamatanSlug: "undaan",
     openHour: "10:00-22:00",
     image: "/images/queenseblak_hero.webp",
     link: "https://maps.app.goo.gl/jBP4apLhmMCffGhX9",
@@ -550,9 +546,9 @@ export const dataUMKM = [
     name: "Ayam Geprek Mak Ginting",
     slug: "ayam-geprek-mak-ginting",
     category: "Makanan",
-    description: "Ayam geprek renyah dengan sambal pedas khas Kudus.",
+    subtitle: "Ayam geprek renyah dengan sambal pedas khas Kudus.",
     location: "Undaan",
-    kecamatanSlug: "undaan", // Ditambahkan
+    kecamatanSlug: "undaan",
     openHour: "09:00-21:00",
     image: "/images/geprekmakginting_hero.webp",
     link: "https://maps.app.goo.gl/EoNQcjSTJTfPQRcQ7",
@@ -562,9 +558,9 @@ export const dataUMKM = [
     name: "Warung Sate & Gule Pak Sugiyo",
     slug: "warung-sate-dan-gule-pak-sugiyo",
     category: "Makanan",
-    description: "Sate kambing empuk dan gule gurih khas Kudus.",
+    subtitle: "Sate kambing empuk dan gule gurih khas Kudus.",
     location: "Undaan",
-    kecamatanSlug: "undaan", // Ditambahkan
+    kecamatanSlug: "undaan",
     openHour: "08:00-21:00",
     image: "/images/warungsatedangule_hero.webp",
     link: "https://maps.app.goo.gl/1rY63jpYL1TG5zCi7",
@@ -574,9 +570,9 @@ export const dataUMKM = [
     name: "MJ Teknik",
     slug: "mj-teknik",
     category: "Jasa",
-    description: "Layanan instalasi listrik dan servis alat rumah tangga.",
+    subtitle: "Layanan instalasi listrik dan servis alat rumah tangga.",
     location: "Undaan",
-    kecamatanSlug: "undaan", // Ditambahkan
+    kecamatanSlug: "undaan",
     openHour: "08:00-17:00",
     image: "/images/mjteknik_hero.webp",
     link: "https://maps.app.goo.gl/ybAKugTzb2kkbV1s7",
@@ -586,9 +582,9 @@ export const dataUMKM = [
     name: "Fotocopy & Jasa Travel",
     slug: "fotocopy-dan-jasa-travel",
     category: "Jasa",
-    description: "Layanan fotokopi cepat dan travel antar kota.",
+    subtitle: "Layanan fotokopi cepat dan travel antar kota.",
     location: "Undaan",
-    kecamatanSlug: "undaan", // Ditambahkan
+    kecamatanSlug: "undaan",
     openHour: "07:00-21:00",
     image: "/images/fotocopy_hero.webp",
     link: "https://maps.app.goo.gl/bNhm4hXN8YRd7bvz9",

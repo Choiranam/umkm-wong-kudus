@@ -478,7 +478,7 @@ export const dataDetailUMKM = [
     slug: "jasa-angkut-dan-pasir-bata-merah-jumbo",
     heroImage: "/images/jasaangkut_hero.webp",
     heroTitle:
-      "Layanan Lengkap Jasa Angkut, Pasir, & Bata Merah Jumbo di Kudus",
+      'Informasi Lengkap tentang UMKM "Jasa Angkut & Pasir & Bata Merah Jumbo"',
     heroSubtitle:
       "Melayani kebutuhan material bangunan dan pengiriman barang dengan cepat, aman, dan terpercaya.",
     about:
@@ -544,7 +544,7 @@ export const dataDetailUMKM = [
     name: "Ayam Geprek Sai",
     slug: "ayam-geprek-sai",
     heroImage: "/images/ayamgepreksai_hero.webp",
-    heroTitle: "Ayam Geprek Sai – Gurih, Pedas, dan Selalu Bikin Nagih!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Ayam Geprek Sai"',
     heroSubtitle:
       "Rasakan sensasi ayam geprek dengan sambal pilihan dan cita rasa khas yang disukai semua kalangan. Cocok untuk makan siang, malam, atau pesanan bersama teman dan keluarga.",
     about:
@@ -737,8 +737,7 @@ export const dataDetailUMKM = [
     name: "Sari Rasa Bakso Malvinas",
     slug: "sari-rasa-bakso-malvinas",
     heroImage: "/images/baksomalvinas_hero.webp",
-    heroTitle:
-      "Sari Rasa Bakso Malvinas – Bakso Gurih, Kenyal, dan Nikmat di Setiap Suapan!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Sari Rasa Bakso Malvinas"',
     heroSubtitle:
       "Nikmati kelezatan bakso khas Kudus dengan kuah gurih, daging pilihan, dan cita rasa yang selalu bikin rindu.",
     about:
@@ -803,8 +802,7 @@ export const dataDetailUMKM = [
     name: "Warung Makan Mak Ru",
     slug: "warung-makan-mak-ru",
     heroImage: "/images/warungmakanmakru_hero.webp",
-    heroTitle:
-      "Warung Makan Mak Ru – Masakan Rumahan yang Nikmat & Bikin Kangen!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Warung Makan Mak Ru"',
     heroSubtitle:
       "Sajian masakan rumahan khas Kudus dengan cita rasa autentik, harga terjangkau, dan porsi yang memuaskan. Cocok untuk makan siang maupun santai bersama keluarga.Sajian masakan rumahan khas Kudus dengan cita rasa autentik, harga terjangkau, dan porsi yang memuaskan. Cocok untuk makan siang maupun santai bersama keluarga.",
     about:
@@ -891,8 +889,7 @@ export const dataDetailUMKM = [
     name: "Kasehito Works",
     slug: "kasehito-works",
     heroImage: "/images/kasehitoworks_hero.webp",
-    heroTitle:
-      "Kasehito Works – Jasa Editing Video Profesional & Kreatif di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Kasehito Works"',
     heroSubtitle:
       "Membantu kamu mengubah ide menjadi video menarik dengan sentuhan kreatif dan hasil berkualitas tinggi. Cocok untuk konten bisnis, event, YouTube, hingga media sosial.",
     about:
@@ -1008,8 +1005,7 @@ export const dataDetailUMKM = [
     name: "Nasi Opor Sunggingan",
     slug: "nasi-opor-sunggingan",
     heroImage: "/images/oporsungginan_hero.webp",
-    heroTitle:
-      'Nasi Opor Sunggingan – Kelezatan Opor Ayam Khas Kudus yang Melegenda!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Nasi Opor Sunggingan"',
     heroSubtitle:
       "Nikmati sajian nasi opor dengan kuah santan gurih, ayam empuk, dan cita rasa tradisional yang autentik khas Kudus.",
     about:
@@ -1096,8 +1092,7 @@ export const dataDetailUMKM = [
     name: "Warung Enthog Pak Badi",
     slug: "warung-enthog-pak-badi",
     heroImage: "/images/enthogpakbadi_hero.webp",
-    heroTitle:
-      'Warung Enthog Pak Badi – Gurihnya Olahan Enthog Khas Kudus yang Legendaris!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Warung Enthog Pak Badi"',
     heroSubtitle:
       "Rasakan kelezatan daging enthog empuk dengan bumbu rempah khas Jawa, disajikan dengan nasi hangat dan sambal pedas yang menggugah selera.",
     about:
@@ -1177,13 +1172,13 @@ export const dataDetailUMKM = [
     slug: "jasa-powder-coating-dan-platting-kudus",
     heroImage: "/images/powdercoating_hero.webp",
     heroTitle:
-      'Jasa Powder Coating & Platting Kudus – Finishing Tahan Lama dan Profesional!"',
+      'Informasi Lengkap tentang UMKM "Jasa Powder Coating & Platting Kudus"',
     heroSubtitle:
       "Layanan pengecatan dan pelapisan logam dengan hasil rapi, kuat, dan tahan karat. Cocok untuk komponen otomotif, furniture, hingga industri.",
     about:
-      "<strong>Jasa Powder Coating & Platting Kudus</strong> menghadirkan layanan finishing logam berkualitas tinggi untuk berbagai kebutuhan, mulai dari spare part kendaraan, alat industri, hingga produk rumah tangga. Dengan penggunaan bahan dan peralatan modern, kami menjamin hasil lapisan halus, merata, dan awet terhadap panas maupun korosi.",
+      "<strong>Jasa Powder Coating & Platting Kudus</strong> adalah solusi lengkap untuk kebutuhan finishing logam berkualitas premium di Kudus dan sekitarnya. Kami mengkhususkan diri dalam <em>powder coating</em> dan <em>chrome plating</em> menggunakan teknologi modern serta bahan baku impor yang ramah lingkungan. Proses pelapisan dilakukan di fasilitas berstandar industri dengan kontrol kualitas ketat pada setiap tahap — mulai dari pembersihan permukaan (sandblasting), aplikasi cat bubuk elektrostatis, hingga pengeringan di oven suhu tinggi (180–200°C) untuk hasil lapisan yang sempurna, merata, dan tahan lama. Kami melayani berbagai jenis material logam seperti besi, aluminium, stainless steel, hingga kuningan, untuk beragam aplikasi: spare part motor & mobil, rangka mebel, komponen mesin, pagar, aksesoris interior, hingga barang custom sesuai desain Anda. Dengan pengalaman lebih dari 10 tahun, tim teknisi tersertifikasi, dan jaminan ketahanan terhadap karat, panas, serta benturan, kami siap memberikan hasil akhir yang tidak hanya estetis, tetapi juga fungsional dan bernilai investasi jangka panjang. Hubungi kami sekarang untuk konsultasi gratis dan penawaran khusus!",
     description:
-      "Percayakan kebutuhan finishing logam Anda kepada <strong>Jasa Powder Coating & Platting Kudus</strong>. Kami melayani powder coating, chrome plating, dan pelapisan warna sesuai permintaan. Hasil akhir kuat, elegan, serta memberikan perlindungan maksimal pada permukaan logam. Cocok untuk bisnis maupun kebutuhan pribadi Anda di Kudus dan sekitarnya.",
+      "Percayakan finishing logam Anda pada Jasa Powder Coating & Platting Kudus. Spesialis powder coating & chrome plating dengan hasil halus, tahan karat, dan warna custom. Cocok untuk otomotif, industri, dan rumah tangga.",
     rating: "5 / 5",
     location: {
       address: "Plosokrajan, Ploso, Kudus",
@@ -1240,8 +1235,7 @@ export const dataDetailUMKM = [
     name: "Kedai Es Bang Maman",
     slug: "kedai-es-bang-maman",
     heroImage: "/images/esbangmaman_hero.webp",
-    heroTitle:
-      'Kedai Es Bang Maman – Segarnya Minuman Es dengan Rasa Otentik Khas Kudus!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Kedai Es Bang Maman"',
     heroSubtitle:
       "Nikmati kesegaran berbagai varian es buatan Bang Maman, dari es campur, es teler, hingga es buah segar yang manis dan menyegarkan di setiap tegukan.",
     about:
@@ -1316,8 +1310,7 @@ export const dataDetailUMKM = [
     name: "Jus Pojokan",
     slug: "jus-pojokan",
     heroImage: "/images/juspojokan_hero.webp",
-    heroTitle:
-      'Jus Pojokan – Tempat Nongkrong Santai dengan Jus Segar & Minuman Kekinian di Kudus!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Jus Pojokan"',
     heroSubtitle:
       "Nikmati beragam jus buah segar, kopi susu kekinian, dan camilan ringan dalam suasana santai di pojokan favorit warga Kudus.",
     about:
@@ -1366,7 +1359,8 @@ export const dataDetailUMKM = [
     name: "Kedai Twins Seblak Bandung n Juice Jekulo",
     slug: "kedai-twins-seblak-bandung-juice-jekulo",
     heroImage: "/images/kedaytwins_hero.webp",
-    heroTitle: 'Kedai Twins – Seblak Bandung & Jus Segar Favorit di Jekulo!"',
+    heroTitle:
+      'Informasi Lengkap tentang UMKM "Kedai Twins Seblak Bandung & Juice Jekulo"',
     heroSubtitle:
       "Nikmati perpaduan pedas gurih khas Seblak Bandung dan kesegaran jus buah alami dalam satu tempat yang nyaman dan ramah di Jekulo, Kudus.",
     about:
@@ -1431,8 +1425,7 @@ export const dataDetailUMKM = [
     name: "Lentog Tanjung Bang Saiful",
     slug: "lentog-tanjung-bang-saiful",
     heroImage: "/images/lentogbangsyaiful_hero.webp",
-    heroTitle:
-      'Lentog Tanjung Bang Saiful – Cita Rasa Legendaris Kudus yang Selalu Dirindukan!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Lentog Tanjung Bang Saiful"',
     heroSubtitle:
       "Nikmati perpaduan lontong lembut, sayur lodeh gurih, dan sambal khas Kudus yang melegenda. Cita rasa tradisional yang tetap autentik sejak dulu.",
     about:
@@ -1481,8 +1474,7 @@ export const dataDetailUMKM = [
     name: "Berkah Es Buah",
     slug: "berkah-es-buah",
     heroImage: "/images/berkahesbuah_hero.webp",
-    heroTitle:
-      'Berkah Es Buah – Segarnya Perpaduan Buah Pilihan untuk Pelepas Dahaga!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Berkah Es Buah"',
     heroSubtitle:
       "Nikmati kesegaran potongan buah segar dengan sirup manis, susu kental, dan es serut yang menyegarkan. Cocok dinikmati di siang hari atau saat cuaca panas.",
     about:
@@ -1538,8 +1530,7 @@ export const dataDetailUMKM = [
     name: "Warnet Jaya Sentosa",
     slug: "warnet-jaya-sentosa",
     heroImage: "/images/warnetjayasentosa_hero.webp",
-    heroTitle:
-      'Warnet Jaya Sentosa – Tempat Nongkrong & Main Game Paling Asik di Kudus"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Warnet Jaya Sentosa"',
     heroSubtitle:
       "Nikmati pengalaman gaming terbaik dengan koneksi cepat, PC gaming lengkap, dan suasana nyaman untuk teman atau kerja sekolah.",
     about:
@@ -1586,8 +1577,7 @@ export const dataDetailUMKM = [
     name: "Jahe Rempah Leggit",
     slug: "jahe-rempah-leggit",
     heroImage: "/images/jaherempahreggit_hero.webp",
-    heroTitle:
-      'Jahe Rempah Leggit – Minuman Jahe & Rempah Hangat yang Menyegarkan"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Jahe Rempah Leggit"',
     heroSubtitle:
       "Nikmati sensasi hangat dan sehat dari perpaduan jahe segar, rempah pilihan, dan madu asli. Cocok dinikmati kapan saja untuk tubuh yang lebih bugar.",
     about:
@@ -1652,8 +1642,7 @@ export const dataDetailUMKM = [
     name: "Warung Makan Bu Carik",
     slug: "warung-makan-bu-carik",
     heroImage: "/images/warungmakanbucarik_hero.webp",
-    heroTitle:
-      "Warung Makan Bu Carik – Masakan Tradisional Khas Kudus yang Lezat",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Warung Makan Bu Carik"',
     heroSubtitle:
       "Nikmati hidangan tradisional dengan cita rasa autentik, porsi melimpah, dan harga terjangkau. Cocok untuk sarapan, makan siang, atau makan malam.",
     about:
@@ -1723,14 +1712,13 @@ export const dataDetailUMKM = [
     name: "Tehatea Indonesia",
     slug: "tehatea-indonesia",
     heroImage: "/images/tehatea_hero.webp",
-    heroTitle:
-      "Tehatea Indonesia – Minuman Teh & Kreasi Minuman Segar Nusantara",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Tehatea Indonesia"',
     heroSubtitle:
       "Nikmati berbagai minuman teh hangat maupun dingin dengan rasa autentik, paduan rempah dan bahan alami. Cocok untuk dinikmati kapan saja sebagai teman santai atau melepas dahaga.",
     about:
-      "<strong>Tehatea Indonesia</strong> menghadirkan berbagai minuman berbasis teh dan bahan alami pilihan. Mulai dari teh tarik, teh rempah, hingga kreasi minuman buah, semua dibuat dengan cita rasa autentik dan menyegarkan.",
+      "<strong>Tehatea Indonesia</strong> adalah gerai minuman teh kekinian yang menggabungkan tradisi rasa Indonesia dengan sentuhan modern dalam setiap tegukan. Kami menghadirkan lebih dari 30 varian minuman berbasis teh premium, mulai dari <em>classic milk tea</em>, <em>teh tarik khas Melayu</em>, hingga inovasi lokal seperti <em>teh rempah jahe sereh</em>, <em>teh hijau pandan</em>, dan <em>fruit tea tropis</em> dengan potongan buah segar. Semua bahan dipilih langsung: daun teh asli dari perkebunan Jawa dan Sumatera, rempah organik, susu segar, serta gula aren murni tanpa pemanis buatan. Proses pembuatan dilakukan secara higienis dengan takaran presisi untuk menjaga konsistensi rasa — apakah Anda memilih versi hangat yang menenangkan di pagi hari atau es blend yang menyegarkan saat siang terik. Selain minuman, kami juga menyediakan <em>topping premium</em> seperti black boba, crystal jelly, aloe vera, dan cheese foam yang creamy. Cocok untuk nongkrong santai, meeting ringan, atau oleh-oleh khas Kudus. Dengan konsep gerai yang instagramable, pelayanan ramah, dan harga terjangkau, <strong>Tehatea Indonesia</strong> hadir untuk menjadi teman setia dalam setiap momen Anda. Kunjungi kami di Kaliwungu dan rasakan bedanya secangkir teh yang dibuat dengan hati!",
     description:
-      "Tehatea Indonesia menyediakan minuman teh hangat dan dingin yang nikmat, sehat, dan menyegarkan. Setiap minuman dibuat dengan teh berkualitas, rempah pilihan, dan bahan alami lain sehingga memberikan pengalaman rasa yang berbeda dan menyenangkan.",
+      "Tehatea Indonesia Minuman teh premium dengan varian hangat & dingin, rempah alami, dan topping kekinian. Segar, sehat, dan penuh cita rasa Indonesia.",
     rating: "5 / 5",
     location: {
       address: " Kedungdowo, Kabupaten Kudus",
@@ -1777,7 +1765,7 @@ export const dataDetailUMKM = [
     name: "Warung Makan 2 Putra",
     slug: "warung-makan-2-putra",
     heroImage: "/images/warungmakan2putra_hero.webp",
-    heroTitle: "Warung Makan 2 Putra – Masakan Rumahan Khas Kudus yang Lezat",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Warung Makan 2 Putra"',
     heroSubtitle:
       "Nikmati hidangan rumahan dengan cita rasa autentik, porsi melimpah, dan harga terjangkau. Cocok untuk sarapan, makan siang, atau makan malam.",
     about:
@@ -1849,8 +1837,7 @@ export const dataDetailUMKM = [
     name: "Jasa Angkut Barang",
     slug: "jasa-angkut-barang",
     heroImage: "/images/jasaangkutbarang_hero.webp",
-    heroTitle:
-      "Jasa Angkut Barang – Layanan Pengangkutan Cepat dan Aman di Kudus",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Jasa Angkut Barang"',
     heroSubtitle:
       "Melayani pengangkutan barang untuk kebutuhan rumah tangga, kantor, atau usaha dengan aman dan tepat waktu.",
     about:
@@ -1902,8 +1889,7 @@ export const dataDetailUMKM = [
     name: "Susu Moeria",
     slug: "susu-moeria",
     heroImage: "/images/susumoeria_hero.webp",
-    heroTitle:
-      'Susu Moeria – Susu Segar Murni dengan Rasa Lezat dan Menyehatkan!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Susu Moeria"',
     heroSubtitle:
       "Nikmati kesegaran susu murni pilihan yang diolah higienis dan tersedia dalam berbagai varian rasa. Cocok untuk semua usia dan waktu.",
     about:
@@ -2073,8 +2059,7 @@ export const dataDetailUMKM = [
     name: "Es Gempol Pak Masykur",
     slug: "es-gempol-pak-masykur",
     heroImage: "/images/gempol_hero.webp",
-    heroTitle:
-      'Es Gempol Pak Masykur – Segarnya Minuman Tradisional Khas Kudus!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Es Gempol Pak Masykur"',
     heroSubtitle:
       "Rasakan kesegaran es gempol dengan santan gurih, gula merah manis, dan aroma pandan yang khas. Minuman tradisional yang menyegarkan di setiap tegukan.",
     about:
@@ -2278,8 +2263,7 @@ export const dataDetailUMKM = [
     name: "XGAM_Tech",
     slug: "xgam-tech",
     heroImage: "/images/xgamtech_hero.webp",
-    heroTitle:
-      "XGAM_Tech – Solusi Servis & Perawatan Komputer Terpercaya di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "XGAM Tech"',
     heroSubtitle:
       "Layanan profesional untuk perbaikan, upgrade, dan perawatan komputer maupun laptop dengan harga bersahabat.",
     description:
@@ -2343,8 +2327,7 @@ export const dataDetailUMKM = [
     name: "Jasa Las dan Bubut Mulyo Rejo",
     slug: "jasa-las-dan-bubut-mulyo-rejo",
     heroImage: "/images/jasalas_hero.webp",
-    heroTitle:
-      "Jasa Las & Bubut Mulyo Rejo – Solusi Tepat untuk Kebutuhan Logam dan Perbengkelan di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Jasa Las dan Bubut Mulyo Rejo"',
     heroSubtitle:
       "Melayani berbagai pekerjaan las, bubut, dan perakitan logam dengan hasil kuat, rapi, dan presisi.",
     description:
@@ -2368,17 +2351,17 @@ export const dataDetailUMKM = [
     menus: [
       {
         name: "Jasa Las Besi & Konstruksi",
-    description:
-      "Melayani pembuatan dan perbaikan pagar, kanopi, tralis, serta rangka besi untuk berbagai kebutuhan industri maupun rumah tangga.",
-    price: "Mulai Rp 150.000",
-    image: "/images/mulyorejo_menu1.webp",
+        description:
+          "Melayani pembuatan dan perbaikan pagar, kanopi, tralis, serta rangka besi untuk berbagai kebutuhan industri maupun rumah tangga.",
+        price: "Mulai Rp 150.000",
+        image: "/images/mulyorejo_menu1.webp",
       },
       {
-         name: "Pembuatan Mainan Anak dari Besi",
-    description:
-      "Menerima pesanan ayunan, jungkat-jungkit, dan perosotan dari bahan besi berkualitas — aman, kuat, dan berwarna menarik.",
-    price: "Mulai Rp 300.000",
-    image: "/images/mulyorejo_menu2.webp",
+        name: "Pembuatan Mainan Anak dari Besi",
+        description:
+          "Menerima pesanan ayunan, jungkat-jungkit, dan perosotan dari bahan besi berkualitas — aman, kuat, dan berwarna menarik.",
+        price: "Mulai Rp 300.000",
+        image: "/images/mulyorejo_menu2.webp",
       },
     ],
     galleryImages: [
@@ -2396,20 +2379,19 @@ export const dataDetailUMKM = [
       { day: "Minggu", hours: "08.00 - 16.00", isOpen: true },
     ],
   },
-   
-   {
+
+  {
     id: 38,
-   name: "Putra Kalimosodo",
+    name: "Putra Kalimosodo",
     slug: "putra-kalimosodo",
     heroImage: "/images/kalimosodo_hero.webp",
-    heroTitle:
-      "Putra Kalimosodo – Supplier Material & Jasa Transportasi Terpercaya di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Putra Kalimosodo"',
     heroSubtitle:
       "Menyediakan berbagai bahan bangunan serta layanan angkut material dengan armada lengkap dan tepat waktu.",
     description:
       "Putra Kalimosodo melayani penjualan berbagai jenis material seperti pasir, batu, semen, dan sirtu. Selain itu juga menyediakan jasa transportasi material ke berbagai wilayah Kudus dan sekitarnya dengan pelayanan cepat, aman, dan profesional.",
     about:
-      "<<strong>Putra Kalimosodo</strong> merupakan penyedia material bangunan dan jasa transportasi yang berpengalaman di wilayah Kudus. Dengan armada kendaraan yang terawat dan tenaga kerja berpengalaman, kami berkomitmen memberikan layanan terbaik dalam pengiriman bahan bangunan, baik untuk proyek kecil maupun besar.",
+      "<strong>Putra Kalimosodo</strong> merupakan penyedia material bangunan dan jasa transportasi yang berpengalaman di wilayah Kudus. Dengan armada kendaraan yang terawat dan tenaga kerja berpengalaman, kami berkomitmen memberikan layanan terbaik dalam pengiriman bahan bangunan, baik untuk proyek kecil maupun besar.",
     rating: "5 / 5",
     location: {
       address: " Gg. Bhakti No.1, Gulang Kulon, Kudus",
@@ -2426,18 +2408,18 @@ export const dataDetailUMKM = [
     },
     menus: [
       {
-         name: "Pasokan Material Bangunan Dan Mengantarkan",
-      description:
-        "Menyediakan berbagai material seperti pasir, batu kali, semen, dan sirtu, lengkap dengan layanan angkut untuk kebutuhan proyek konstruksi.",
-      price: "Harga bervariasi sesuai jenis material dan jarak pengiriman",
-      image: "/images/kalimosodo_menu1.webp",
+        name: "Pasokan Material Bangunan Dan Mengantarkan",
+        description:
+          "Menyediakan berbagai material seperti pasir, batu kali, semen, dan sirtu, lengkap dengan layanan angkut untuk kebutuhan proyek konstruksi.",
+        price: "Harga bervariasi sesuai jenis material dan jarak pengiriman",
+        image: "/images/kalimosodo_menu1.webp",
       },
       {
-          name: "Jasa Transportasi",
-      description:
-        " Melayani jasa transportasi umum maupun travel antar kota dengan armada nyaman, bersih, dan pengemudi berpengalaman.",
-      price: "Mulai Rp 150.000 per trip",
-      image: "/images/kalimosodo_menu2.webp",
+        name: "Jasa Transportasi",
+        description:
+          " Melayani jasa transportasi umum maupun travel antar kota dengan armada nyaman, bersih, dan pengemudi berpengalaman.",
+        price: "Mulai Rp 150.000 per trip",
+        image: "/images/kalimosodo_menu2.webp",
       },
     ],
     galleryImages: [
@@ -2458,11 +2440,11 @@ export const dataDetailUMKM = [
   },
   {
     id: 39,
-   name: "Ikan Bakar Nasuky Mubarok Jepang",
+    name: "Ikan Bakar Nasuky Mubarok Jepang",
     slug: "ikan-bakar-nasuky-mubarok-jepang",
     heroImage: "/images/ikanbakar_hero.webp",
     heroTitle:
-      "Ikan Bakar Nasuky Mubarok Jepang – Sajian Ikan Bakar Segar Khas Kudus!",
+      'Informasi Lengkap tentang UMKM "Ikan Bakar Nasuky Mubarok Jepang"',
     heroSubtitle:
       "Nikmati ikan bakar lezat dengan bumbu rempah khas dan suasana makan nyaman di daerah Jepang, Kudus.",
     description:
@@ -2485,32 +2467,32 @@ export const dataDetailUMKM = [
     },
     menus: [
       {
-         name: "Ikan Gurame Bakar",
-      description:
-        "Gurame segar dibakar dengan bumbu kecap manis dan rempah pilihan, menghasilkan cita rasa gurih dan sedikit smokey khas Nusantara.",
-      price: "Rp 85.000",
-      image: "/images/nasuky_menu1.webp",
+        name: "Ikan Gurame Bakar",
+        description:
+          "Gurame segar dibakar dengan bumbu kecap manis dan rempah pilihan, menghasilkan cita rasa gurih dan sedikit smokey khas Nusantara.",
+        price: "Rp 85.000",
+        image: "/images/nasuky_menu1.webp",
       },
       {
-          name: "Gurame Goreng",
-      description:
-        " Ikan segar digoreng garing hingga keemasan, disajikan dengan sambal terasi pedas dan lalapan segar.",
-      price: "Rp 85.000",
-      image: "/images/nasuky_menu2.webp",
-      },
-       {
-          name: "Ikan Bakar Ca Kangkung",
-      description:
-        " Perpaduan sempurna antara ikan bakar berbumbu khas dan tumis kangkung pedas gurih yang menggugah selera.",
-      price: "Rp 93.000",
-      image: "/images/nasuky_menu3.webp",
+        name: "Gurame Goreng",
+        description:
+          " Ikan segar digoreng garing hingga keemasan, disajikan dengan sambal terasi pedas dan lalapan segar.",
+        price: "Rp 85.000",
+        image: "/images/nasuky_menu2.webp",
       },
       {
-          name: "Nila Bakar Manis",
-      description:
-        " Ikan nila dibakar dengan olesan bumbu manis gurih khas Mubarok, cocok dinikmati bersama nasi hangat dan sambal bawang.",
-      price: "Rp 70.000",
-      image: "/images/nasuky_menu4.webp",
+        name: "Ikan Bakar Ca Kangkung",
+        description:
+          " Perpaduan sempurna antara ikan bakar berbumbu khas dan tumis kangkung pedas gurih yang menggugah selera.",
+        price: "Rp 93.000",
+        image: "/images/nasuky_menu3.webp",
+      },
+      {
+        name: "Nila Bakar Manis",
+        description:
+          " Ikan nila dibakar dengan olesan bumbu manis gurih khas Mubarok, cocok dinikmati bersama nasi hangat dan sambal bawang.",
+        price: "Rp 70.000",
+        image: "/images/nasuky_menu4.webp",
       },
     ],
     galleryImages: [
@@ -2532,11 +2514,10 @@ export const dataDetailUMKM = [
   },
   {
     id: 40,
-  name: "RM Bu Sarah",
+    name: "RM Bu Sarah",
     slug: "rm-bu-sarah",
     heroImage: "/images/rmbusarah_hero.webp",
-    heroTitle:
-      "Rumah Makan Bu Sarah – Masakan Rumahan Lezat & Harga Bersahabat di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "RM Bu Sarah"',
     heroSubtitle:
       "Nikmati berbagai hidangan rumahan khas Jawa dengan cita rasa autentik dan suasana nyaman seperti di rumah sendiri.",
     description:
@@ -2559,32 +2540,32 @@ export const dataDetailUMKM = [
     },
     menus: [
       {
-         name: "Kepala Manyung",
-      description:
-        "Menu andalan RM Bu Sarah yang terkenal dengan kepala manyung empuk dan kuah rica pedas gurih khas pesisir. Cocok untuk pecinta makanan berkuah rempah.",
-      price: "Rp 28.000",
-      image: "/images/sarah_menu1.webp",
+        name: "Kepala Manyung",
+        description:
+          "Menu andalan RM Bu Sarah yang terkenal dengan kepala manyung empuk dan kuah rica pedas gurih khas pesisir. Cocok untuk pecinta makanan berkuah rempah.",
+        price: "Rp 28.000",
+        image: "/images/sarah_menu1.webp",
       },
       {
-          name: "Mendoan Cinta",
-      description:
-        " Tempe tipis dibalut tepung berbumbu lalu digoreng setengah matang, disajikan hangat dengan sambal kecap dan cabai rawit segar.",
-      price: "Rp 8.000",
-      image: "/images/sarah_menu2.webp",
-      },
-       {
-          name: "Kakap Godog",
-      description:
-        " Ikan kakap segar dimasak dengan bumbu godog khas Jawa Tengah — gurih, sedikit pedas, dan beraroma rempah kuat.",
-      price: "Rp 25.000",
-      image: "/images/sarah_menu3.webp",
+        name: "Mendoan Cinta",
+        description:
+          " Tempe tipis dibalut tepung berbumbu lalu digoreng setengah matang, disajikan hangat dengan sambal kecap dan cabai rawit segar.",
+        price: "Rp 8.000",
+        image: "/images/sarah_menu2.webp",
       },
       {
-          name: "Pecel Lele",
-      description:
-        " Lele goreng garing disajikan bersama sambal tomat pedas dan lalapan segar. Menu sederhana yang selalu jadi favorit pengunjung.",
-      price: "Rp 20.000",
-      image: "/images/sarah_menu4.webp",
+        name: "Kakap Godog",
+        description:
+          " Ikan kakap segar dimasak dengan bumbu godog khas Jawa Tengah — gurih, sedikit pedas, dan beraroma rempah kuat.",
+        price: "Rp 25.000",
+        image: "/images/sarah_menu3.webp",
+      },
+      {
+        name: "Pecel Lele",
+        description:
+          " Lele goreng garing disajikan bersama sambal tomat pedas dan lalapan segar. Menu sederhana yang selalu jadi favorit pengunjung.",
+        price: "Rp 20.000",
+        image: "/images/sarah_menu4.webp",
       },
     ],
     galleryImages: [
@@ -2605,11 +2586,10 @@ export const dataDetailUMKM = [
   // UNDAAN
   {
     id: 41,
-  name: "Queen Seblak Prasmanan",
+    name: "Queen Seblak Prasmanan",
     slug: "queen-seblak-prasmanan",
     heroImage: "/images/queenseblak_hero.webp",
-    heroTitle:
-      "Queen Seblak Prasmanan – Surga Pecinta Seblak dengan Banyak Pilihan Topping di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Queen Seblak Prasmanan"',
     heroSubtitle:
       "Rasakan sensasi seblak pedas gurih dengan berbagai pilihan topping yang bisa kamu ambil sesuka hati.",
     description:
@@ -2631,34 +2611,34 @@ export const dataDetailUMKM = [
       instagram: "-",
     },
     menus: [
-     {
-    name: "Seblak Original",
-    description:
-      "Seblak khas Bandung dengan kuah pedas gurih, isi kerupuk, telur, dan bumbu kencur yang menggugah selera.",
-    price: "Rp 12.000",
-    image: "/images/queenseblak_menu1.webp",
-  },
-  {
-    name: "Seblak Aci",
-    description:
-      "Perpaduan kenyalnya aci, kerupuk, dan topping sederhana dengan kuah pedas creamy yang bikin nagih.",
-    price: "Rp 15.000",
-    image: "/images/queenseblak_menu2.webp",
-  },
-  {
-    name: "Seblak Bakso",
-    description:
-      "Kuah seblak pedas gurih dengan tambahan bakso sapi empuk dan topping khas Queen Seblak Prasmanan.",
-    price: "Rp 18.000",
-    image: "/images/queenseblak_menu3.webp",
-  },
-  {
-    name: "Seblak Sayur",
-    description:
-      "Seblak sehat dengan isian sayur segar, telur, dan kerupuk dalam kuah pedas gurih yang hangat di perut.",
-    price: "Rp 16.000",
-    image: "/images/queenseblak_menu4.webp",
-  },
+      {
+        name: "Seblak Original",
+        description:
+          "Seblak khas Bandung dengan kuah pedas gurih, isi kerupuk, telur, dan bumbu kencur yang menggugah selera.",
+        price: "Rp 12.000",
+        image: "/images/queenseblak_menu1.webp",
+      },
+      {
+        name: "Seblak Aci",
+        description:
+          "Perpaduan kenyalnya aci, kerupuk, dan topping sederhana dengan kuah pedas creamy yang bikin nagih.",
+        price: "Rp 15.000",
+        image: "/images/queenseblak_menu2.webp",
+      },
+      {
+        name: "Seblak Bakso",
+        description:
+          "Kuah seblak pedas gurih dengan tambahan bakso sapi empuk dan topping khas Queen Seblak Prasmanan.",
+        price: "Rp 18.000",
+        image: "/images/queenseblak_menu3.webp",
+      },
+      {
+        name: "Seblak Sayur",
+        description:
+          "Seblak sehat dengan isian sayur segar, telur, dan kerupuk dalam kuah pedas gurih yang hangat di perut.",
+        price: "Rp 16.000",
+        image: "/images/queenseblak_menu4.webp",
+      },
     ],
     galleryImages: [
       "/images/queenseblak_galerifoto1.webp",
@@ -2676,11 +2656,10 @@ export const dataDetailUMKM = [
   },
   {
     id: 42,
-  name: "Ayam Geprek Mak Ginting",
+    name: "Ayam Geprek Mak Ginting",
     slug: "ayam-geprek-mak-ginting",
     heroImage: "/images/geprekmakginting_hero.webp",
-    heroTitle:
-      "Ayam Geprek Mak Ginting – Sensasi Pedas Gurih yang Bikin Ketagihan di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Ayam Geprek Mak Ginting"',
     heroSubtitle:
       "Ayam goreng renyah yang digeprek dengan sambal super pedas khas Mak Ginting. Cocok buat pecinta pedas sejati!",
     description:
@@ -2702,34 +2681,34 @@ export const dataDetailUMKM = [
       instagram: "-",
     },
     menus: [
-     {
-    name: "Ayam Geprek Pedas Manis",
-    description:
-      "Ayam goreng krispi disiram sambal pedas manis khas Mak Ginting, perpaduan rasa gurih, pedas, dan sedikit manis yang pas di lidah.",
-    price: "Rp 10.000",
-    image: "/images/makginting_menu1.webp",
-  },
-  {
-    name: "Mie Geprek Komplit",
-    description:
-      "Mie gurih disajikan dengan ayam geprek, telur mata sapi, dan sambal pilihan — cocok untuk pecinta pedas dan porsi kenyang.",
-    price: "Rp 12.000",
-    image: "/images/makginting_menu2.webp",
-  },
-  {
-    name: "Seblak Biasa",
-    description:
-      "Seblak khas Mak Ginting dengan kuah pedas gurih, isi kerupuk, telur, dan topping sederhana yang menggugah selera.",
-    price: "Rp 8.000",
-    image: "/images/makginting_menu3.webp",
-  },
-  {
-    name: "Ayam Geprek",
-    description:
-      "Menu andalan Mak Ginting — ayam goreng tepung yang digeprek dengan sambal bawang pedas, disajikan bersama nasi hangat.",
-    price: "Rp 8.000",
-    image: "/images/makginting_menu4.webp",
-  },
+      {
+        name: "Ayam Geprek Pedas Manis",
+        description:
+          "Ayam goreng krispi disiram sambal pedas manis khas Mak Ginting, perpaduan rasa gurih, pedas, dan sedikit manis yang pas di lidah.",
+        price: "Rp 10.000",
+        image: "/images/makginting_menu1.webp",
+      },
+      {
+        name: "Mie Geprek Komplit",
+        description:
+          "Mie gurih disajikan dengan ayam geprek, telur mata sapi, dan sambal pilihan — cocok untuk pecinta pedas dan porsi kenyang.",
+        price: "Rp 12.000",
+        image: "/images/makginting_menu2.webp",
+      },
+      {
+        name: "Seblak Biasa",
+        description:
+          "Seblak khas Mak Ginting dengan kuah pedas gurih, isi kerupuk, telur, dan topping sederhana yang menggugah selera.",
+        price: "Rp 8.000",
+        image: "/images/makginting_menu3.webp",
+      },
+      {
+        name: "Ayam Geprek",
+        description:
+          "Menu andalan Mak Ginting — ayam goreng tepung yang digeprek dengan sambal bawang pedas, disajikan bersama nasi hangat.",
+        price: "Rp 8.000",
+        image: "/images/makginting_menu4.webp",
+      },
     ],
     galleryImages: [
       "/images/makginting_galerifoto1.webp",
@@ -2747,19 +2726,18 @@ export const dataDetailUMKM = [
       { day: "Minggu", hours: "09.00 - 22.00", isOpen: true },
     ],
   },
-   {
+  {
     id: 43,
-   name: "Warung Sate & Gule Pak Sugiyo",
+    name: "Warung Sate & Gule Pak Sugiyo",
     slug: "warung-sate-dan-gule-pak-sugiyo",
     heroImage: "/images/warungsatedangule_hero.webp",
-    heroTitle:
-      "Warung Sate & Gule Pak Sugiyo – Cita Rasa Khas Kambing yang Melegenda di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Warung Sate & Gule Pak Sugiyo"',
     heroSubtitle:
       "Nikmati sate kambing empuk dan gule gurih beraroma rempah yang selalu bikin pelanggan datang lagi.",
     description:
       "Warung Sate & Gule Pak Sugiyo sudah dikenal luas di Kudus sebagai tempat legendaris untuk menikmati sate kambing dan gule yang kaya rasa. Dagingnya empuk, bumbu kacangnya gurih manis, dan kuah gulenya kental beraroma rempah. Cocok untuk makan siang maupun malam bersama keluarga.",
     about:
-      "<strong>Warung Sate & Gule Pak Sugiyo</strong> menyajikan hidangan khas Nusantara berbahan dasar kambing pilihan. Dengan resep turun-temurun dan cita rasa yang tetap autentik, setiap tusuk sate dan semangkuk gule memberikan pengalaman kuliner khas Kudus yang tak terlupakan.",
+      "<strong>Warung Sate & Gule Pak Sugiyo</strong> adalah destinasi kuliner legendaris di Undaan, Kudus, yang telah bertahan selama puluhan tahun berkat resep turun-temurun dan komitmen pada kualitas. Kami hanya menggunakan daging kambing muda pilihan — segar, tanpa bau, dan dipotong langsung setiap pagi — untuk menghasilkan sate yang empuk dan beraroma khas saat dibakar di atas arang. Bumbu kacangnya diracik secara tradisional dengan campuran kacang tanah sangrai, bawang, cabe, dan rempah rahasia, menghasilkan rasa gurih manis yang pas di lidah. Sedangkan gule kambing kami dimasak perlahan selama berjam-jam dengan santan kental, kapulaga, cengkeh, dan kayu manis, sehingga kuahnya kaya rempah, hangat, dan sangat cocok disantap dengan nasi putih atau lontong. Setiap porsi disajikan dengan acar mentimun, bawang merah, dan sambal kecap yang menambah kesegaran. Warung kami buka dari pagi hingga malam, selalu ramai dikunjungi keluarga, pekerja kantor, hingga wisatawan yang ingin merasakan kuliner asli Kudus. Datanglah dan nikmati tradisi rasa yang terjaga — karena di sini, setiap tusuk sate dan sendok gule adalah cerita tentang rumah dan kebersamaan.",
     rating: "4.9 / 5",
     location: {
       address: " Jl. Babalan - Prawoto, Kampek Lor, Kudus",
@@ -2775,20 +2753,20 @@ export const dataDetailUMKM = [
       instagram: "-",
     },
     menus: [
-     {
-    name: "Sate",
-    description:
-    "Sate kambing empuk dibakar dengan bumbu kecap manis, bawang, dan sedikit sambal, menghasilkan cita rasa gurih manis khas Kudus.",
-  price: "Rp 25.000",
-    image: "/images/sugiyo_menu1.webp",
-  },
-  {
-    name: "Gule",
-     description:
-    "Gule kambing berkuah santan kental dengan rempah khas Jawa, disajikan hangat bersama nasi putih atau lontong.",
-  price: "Rp 20.000",
-    image: "/images/sugiyo_menu2.webp",
-  },
+      {
+        name: "Sate",
+        description:
+          "Sate kambing empuk dibakar dengan bumbu kecap manis, bawang, dan sedikit sambal, menghasilkan cita rasa gurih manis khas Kudus.",
+        price: "Rp 25.000",
+        image: "/images/sugiyo_menu1.webp",
+      },
+      {
+        name: "Gule",
+        description:
+          "Gule kambing berkuah santan kental dengan rempah khas Jawa, disajikan hangat bersama nasi putih atau lontong.",
+        price: "Rp 20.000",
+        image: "/images/sugiyo_menu2.webp",
+      },
     ],
     galleryImages: [
       "/images/sugiyo_galerifoto1.webp",
@@ -2804,13 +2782,12 @@ export const dataDetailUMKM = [
       { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
     ],
   },
-   {
+  {
     id: 44,
-   name: "MJ Teknik",
+    name: "MJ Teknik",
     slug: "mj-teknik",
     heroImage: "/images/mjteknik_hero.webp",
-    heroTitle:
-      "MJ Teknik – Solusi Jasa Instalasi & Perbaikan Peralatan Rumah Tangga di Kudus!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "MJ Teknik"',
     heroSubtitle:
       "Melayani instalasi listrik, servis pompa air, dan perbaikan berbagai peralatan rumah tangga dengan tenaga ahli berpengalaman.",
     description:
@@ -2832,27 +2809,27 @@ export const dataDetailUMKM = [
       instagram: "-",
     },
     menus: [
-     {
-    name: "Instalasi Listrik Rumah & Gedung",
-    description:
-      "Pemasangan instalasi listrik baru maupun perbaikan sistem kelistrikan lama, dilakukan oleh teknisi berpengalaman dengan standar keamanan tinggi.",
-    price: "Mulai Rp 250.000",
-    image: "/images/mjteknik_menu1.webp",
-  },
-  {
-    name: "Servis Pompa Air & Sibel",
-    description:
-      "Menangani kerusakan pompa air, penggantian sparepart, hingga pembuatan sumur sibel dengan hasil kuat dan aliran air lancar.",
-    price: "Mulai Rp 300.000",
-    image: "/images/mjteknik_menu2.webp",
-  },
-  {
-    name: "Perbaikan Peralatan Rumah Tangga",
-    description:
-      "Jasa servis kipas angin, blender, mesin cuci, dan peralatan rumah tangga lainnya dengan biaya terjangkau dan hasil memuaskan.",
-    price: "Mulai Rp 100.000",
-    image: "/images/mjteknik_menu3.webp",
-  },
+      {
+        name: "Instalasi Listrik Rumah & Gedung",
+        description:
+          "Pemasangan instalasi listrik baru maupun perbaikan sistem kelistrikan lama, dilakukan oleh teknisi berpengalaman dengan standar keamanan tinggi.",
+        price: "Mulai Rp 250.000",
+        image: "/images/mjteknik_menu1.webp",
+      },
+      {
+        name: "Servis Pompa Air & Sibel",
+        description:
+          "Menangani kerusakan pompa air, penggantian sparepart, hingga pembuatan sumur sibel dengan hasil kuat dan aliran air lancar.",
+        price: "Mulai Rp 300.000",
+        image: "/images/mjteknik_menu2.webp",
+      },
+      {
+        name: "Perbaikan Peralatan Rumah Tangga",
+        description:
+          "Jasa servis kipas angin, blender, mesin cuci, dan peralatan rumah tangga lainnya dengan biaya terjangkau dan hasil memuaskan.",
+        price: "Mulai Rp 100.000",
+        image: "/images/mjteknik_menu3.webp",
+      },
     ],
     galleryImages: [
       "/images/mjteknik_galerifoto1.webp",
@@ -2871,11 +2848,10 @@ export const dataDetailUMKM = [
   },
   {
     id: 45,
-   name: "Fotocopy & Jasa Travel",
+    name: "Fotocopy & Jasa Travel",
     slug: "fotocopy-dan-jasa-travel",
     heroImage: "/images/fotocopy_hero.webp",
-    heroTitle:
-      "Fotocopy & Jasa Travel – Layanan Cepat dan Praktis untuk Kebutuhan Dokumen & Perjalanan Anda!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Fotocopy & Jasa Travel"',
     heroSubtitle:
       "Melayani jasa fotokopi, print, scan, serta layanan travel antar kota dengan pelayanan ramah dan harga terjangkau.",
     description:
@@ -2897,17 +2873,15 @@ export const dataDetailUMKM = [
       instagram: "-",
     },
     menus: [
-     {
-    name: "Layanan Fotocopy & Travel",
-    description:
-      "Melayani fotokopi dokumen hitam putih maupun berwarna, print, scan, serta jasa travel antar kota dengan pelayanan cepat, ramah, dan harga terjangkau.",
-    price: "Mulai Rp 2.000 per lembar / Rp 150.000 per trip",
-    image: "/images/jasatravel_menu1.webp",
-  },
+      {
+        name: "Layanan Fotocopy & Travel",
+        description:
+          "Melayani fotokopi dokumen hitam putih maupun berwarna, print, scan, serta jasa travel antar kota dengan pelayanan cepat, ramah, dan harga terjangkau.",
+        price: "Mulai Rp 2.000 per lembar / Rp 150.000 per trip",
+        image: "/images/jasatravel_menu1.webp",
+      },
     ],
-    galleryImages: [
-      "/images/jasatravel_galerifoto1.webp",
-    ],
+    galleryImages: ["/images/jasatravel_galerifoto1.webp"],
     openingHours: [
       { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
       { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
