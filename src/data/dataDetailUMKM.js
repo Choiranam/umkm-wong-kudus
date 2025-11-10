@@ -478,7 +478,7 @@ export const dataDetailUMKM = [
     slug: "jasa-angkut-dan-pasir-bata-merah-jumbo",
     heroImage: "/images/jasaangkut_hero.webp",
     heroTitle:
-      "Layanan Lengkap Jasa Angkut, Pasir, & Bata Merah Jumbo di Kudus",
+      'Informasi Lengkap tentang UMKM "Jasa Angkut & Pasir & Bata Merah Jumbo"',
     heroSubtitle:
       "Melayani kebutuhan material bangunan dan pengiriman barang dengan cepat, aman, dan terpercaya.",
     about:
@@ -544,7 +544,7 @@ export const dataDetailUMKM = [
     name: "Ayam Geprek Sai",
     slug: "ayam-geprek-sai",
     heroImage: "/images/ayamgepreksai_hero.webp",
-    heroTitle: "Ayam Geprek Sai – Gurih, Pedas, dan Selalu Bikin Nagih!",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Ayam Geprek Sai"',
     heroSubtitle:
       "Rasakan sensasi ayam geprek dengan sambal pilihan dan cita rasa khas yang disukai semua kalangan. Cocok untuk makan siang, malam, atau pesanan bersama teman dan keluarga.",
     about:
@@ -738,7 +738,7 @@ export const dataDetailUMKM = [
     slug: "sari-rasa-bakso-malvinas",
     heroImage: "/images/baksomalvinas_hero.webp",
     heroTitle:
-      "Sari Rasa Bakso Malvinas – Bakso Gurih, Kenyal, dan Nikmat di Setiap Suapan!",
+      'Informasi Lengkap tentang UMKM "Sari Rasa Bakso Malvinas"',
     heroSubtitle:
       "Nikmati kelezatan bakso khas Kudus dengan kuah gurih, daging pilihan, dan cita rasa yang selalu bikin rindu.",
     about:
@@ -804,7 +804,7 @@ export const dataDetailUMKM = [
     slug: "warung-makan-mak-ru",
     heroImage: "/images/warungmakanmakru_hero.webp",
     heroTitle:
-      "Warung Makan Mak Ru – Masakan Rumahan yang Nikmat & Bikin Kangen!",
+      'Informasi Lengkap tentang UMKM "Warung Makan Mak Ru"',
     heroSubtitle:
       "Sajian masakan rumahan khas Kudus dengan cita rasa autentik, harga terjangkau, dan porsi yang memuaskan. Cocok untuk makan siang maupun santai bersama keluarga.Sajian masakan rumahan khas Kudus dengan cita rasa autentik, harga terjangkau, dan porsi yang memuaskan. Cocok untuk makan siang maupun santai bersama keluarga.",
     about:
@@ -892,7 +892,7 @@ export const dataDetailUMKM = [
     slug: "kasehito-works",
     heroImage: "/images/kasehitoworks_hero.webp",
     heroTitle:
-      "Kasehito Works – Jasa Editing Video Profesional & Kreatif di Kudus!",
+      'Informasi Lengkap tentang UMKM "Kasehito Works"',
     heroSubtitle:
       "Membantu kamu mengubah ide menjadi video menarik dengan sentuhan kreatif dan hasil berkualitas tinggi. Cocok untuk konten bisnis, event, YouTube, hingga media sosial.",
     about:
@@ -1009,7 +1009,7 @@ export const dataDetailUMKM = [
     slug: "nasi-opor-sunggingan",
     heroImage: "/images/oporsungginan_hero.webp",
     heroTitle:
-      'Nasi Opor Sunggingan – Kelezatan Opor Ayam Khas Kudus yang Melegenda!"',
+      'Informasi Lengkap tentang UMKM "Nasi Opor Sunggingan"',
     heroSubtitle:
       "Nikmati sajian nasi opor dengan kuah santan gurih, ayam empuk, dan cita rasa tradisional yang autentik khas Kudus.",
     about:
@@ -1097,7 +1097,7 @@ export const dataDetailUMKM = [
     slug: "warung-enthog-pak-badi",
     heroImage: "/images/enthogpakbadi_hero.webp",
     heroTitle:
-      'Warung Enthog Pak Badi – Gurihnya Olahan Enthog Khas Kudus yang Legendaris!"',
+      'Informasi Lengkap tentang UMKM "Warung Enthog Pak Badi"',
     heroSubtitle:
       "Rasakan kelezatan daging enthog empuk dengan bumbu rempah khas Jawa, disajikan dengan nasi hangat dan sambal pedas yang menggugah selera.",
     about:
@@ -1177,7 +1177,7 @@ export const dataDetailUMKM = [
     slug: "jasa-powder-coating-dan-platting-kudus",
     heroImage: "/images/powdercoating_hero.webp",
     heroTitle:
-      'Jasa Powder Coating & Platting Kudus – Finishing Tahan Lama dan Profesional!"',
+      'Informasi Lengkap tentang UMKM "Jasa Powder Coating & Platting Kudus"',
     heroSubtitle:
       "Layanan pengecatan dan pelapisan logam dengan hasil rapi, kuat, dan tahan karat. Cocok untuk komponen otomotif, furniture, hingga industri.",
     about:
@@ -1241,7 +1241,7 @@ export const dataDetailUMKM = [
     slug: "kedai-es-bang-maman",
     heroImage: "/images/esbangmaman_hero.webp",
     heroTitle:
-      'Kedai Es Bang Maman – Segarnya Minuman Es dengan Rasa Otentik Khas Kudus!"',
+      'Informasi Lengkap tentang UMKM "Kedai Es Bang Maman"',
     heroSubtitle:
       "Nikmati kesegaran berbagai varian es buatan Bang Maman, dari es campur, es teler, hingga es buah segar yang manis dan menyegarkan di setiap tegukan.",
     about:
@@ -1317,7 +1317,7 @@ export const dataDetailUMKM = [
     slug: "jus-pojokan",
     heroImage: "/images/juspojokan_hero.webp",
     heroTitle:
-      'Jus Pojokan – Tempat Nongkrong Santai dengan Jus Segar & Minuman Kekinian di Kudus!"',
+      'Informasi Lengkap tentang UMKM "Jus Pojokan"',
     heroSubtitle:
       "Nikmati beragam jus buah segar, kopi susu kekinian, dan camilan ringan dalam suasana santai di pojokan favorit warga Kudus.",
     about:
@@ -1366,7 +1366,7 @@ export const dataDetailUMKM = [
     name: "Kedai Twins Seblak Bandung n Juice Jekulo",
     slug: "kedai-twins-seblak-bandung-juice-jekulo",
     heroImage: "/images/kedaytwins_hero.webp",
-    heroTitle: 'Kedai Twins – Seblak Bandung & Jus Segar Favorit di Jekulo!"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Kedai Twins Seblak Bandung & Juice Jekulo"',
     heroSubtitle:
       "Nikmati perpaduan pedas gurih khas Seblak Bandung dan kesegaran jus buah alami dalam satu tempat yang nyaman dan ramah di Jekulo, Kudus.",
     about:
@@ -1432,7 +1432,7 @@ export const dataDetailUMKM = [
     slug: "lentog-tanjung-bang-saiful",
     heroImage: "/images/lentogbangsyaiful_hero.webp",
     heroTitle:
-      'Lentog Tanjung Bang Saiful – Cita Rasa Legendaris Kudus yang Selalu Dirindukan!"',
+     'Informasi Lengkap tentang UMKM "Lentog Tanjung Bang Saiful"',
     heroSubtitle:
       "Nikmati perpaduan lontong lembut, sayur lodeh gurih, dan sambal khas Kudus yang melegenda. Cita rasa tradisional yang tetap autentik sejak dulu.",
     about:
@@ -1482,7 +1482,7 @@ export const dataDetailUMKM = [
     slug: "berkah-es-buah",
     heroImage: "/images/berkahesbuah_hero.webp",
     heroTitle:
-      'Berkah Es Buah – Segarnya Perpaduan Buah Pilihan untuk Pelepas Dahaga!"',
+     'Informasi Lengkap tentang UMKM "Berkah Es Buah"',
     heroSubtitle:
       "Nikmati kesegaran potongan buah segar dengan sirup manis, susu kental, dan es serut yang menyegarkan. Cocok dinikmati di siang hari atau saat cuaca panas.",
     about:
@@ -1539,7 +1539,7 @@ export const dataDetailUMKM = [
     slug: "warnet-jaya-sentosa",
     heroImage: "/images/warnetjayasentosa_hero.webp",
     heroTitle:
-      'Warnet Jaya Sentosa – Tempat Nongkrong & Main Game Paling Asik di Kudus"',
+      'Informasi Lengkap tentang UMKM "Warnet Jaya Sentosa"',
     heroSubtitle:
       "Nikmati pengalaman gaming terbaik dengan koneksi cepat, PC gaming lengkap, dan suasana nyaman untuk teman atau kerja sekolah.",
     about:
@@ -1587,7 +1587,7 @@ export const dataDetailUMKM = [
     slug: "jahe-rempah-leggit",
     heroImage: "/images/jaherempahreggit_hero.webp",
     heroTitle:
-      'Jahe Rempah Leggit – Minuman Jahe & Rempah Hangat yang Menyegarkan"',
+      'Informasi Lengkap tentang UMKM "Jahe Rempah Leggit"',
     heroSubtitle:
       "Nikmati sensasi hangat dan sehat dari perpaduan jahe segar, rempah pilihan, dan madu asli. Cocok dinikmati kapan saja untuk tubuh yang lebih bugar.",
     about:
@@ -1653,7 +1653,7 @@ export const dataDetailUMKM = [
     slug: "warung-makan-bu-carik",
     heroImage: "/images/warungmakanbucarik_hero.webp",
     heroTitle:
-      "Warung Makan Bu Carik – Masakan Tradisional Khas Kudus yang Lezat",
+      'Informasi Lengkap tentang UMKM "Warung Makan Bu Carik"',
     heroSubtitle:
       "Nikmati hidangan tradisional dengan cita rasa autentik, porsi melimpah, dan harga terjangkau. Cocok untuk sarapan, makan siang, atau makan malam.",
     about:
@@ -1724,7 +1724,7 @@ export const dataDetailUMKM = [
     slug: "tehatea-indonesia",
     heroImage: "/images/tehatea_hero.webp",
     heroTitle:
-      "Tehatea Indonesia – Minuman Teh & Kreasi Minuman Segar Nusantara",
+      'Informasi Lengkap tentang UMKM "Tehatea Indonesia"',
     heroSubtitle:
       "Nikmati berbagai minuman teh hangat maupun dingin dengan rasa autentik, paduan rempah dan bahan alami. Cocok untuk dinikmati kapan saja sebagai teman santai atau melepas dahaga.",
     about:
@@ -1777,7 +1777,7 @@ export const dataDetailUMKM = [
     name: "Warung Makan 2 Putra",
     slug: "warung-makan-2-putra",
     heroImage: "/images/warungmakan2putra_hero.webp",
-    heroTitle: "Warung Makan 2 Putra – Masakan Rumahan Khas Kudus yang Lezat",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Warung Makan 2 Putra"',
     heroSubtitle:
       "Nikmati hidangan rumahan dengan cita rasa autentik, porsi melimpah, dan harga terjangkau. Cocok untuk sarapan, makan siang, atau makan malam.",
     about:
@@ -1850,7 +1850,7 @@ export const dataDetailUMKM = [
     slug: "jasa-angkut-barang",
     heroImage: "/images/jasaangkutbarang_hero.webp",
     heroTitle:
-      "Jasa Angkut Barang – Layanan Pengangkutan Cepat dan Aman di Kudus",
+     'Informasi Lengkap tentang UMKM "Jasa Angkut Barang"',
     heroSubtitle:
       "Melayani pengangkutan barang untuk kebutuhan rumah tangga, kantor, atau usaha dengan aman dan tepat waktu.",
     about:
@@ -1903,7 +1903,7 @@ export const dataDetailUMKM = [
     slug: "susu-moeria",
     heroImage: "/images/susumoeria_hero.webp",
     heroTitle:
-      'Susu Moeria – Susu Segar Murni dengan Rasa Lezat dan Menyehatkan!"',
+     'Informasi Lengkap tentang UMKM "Susu Moeria"',
     heroSubtitle:
       "Nikmati kesegaran susu murni pilihan yang diolah higienis dan tersedia dalam berbagai varian rasa. Cocok untuk semua usia dan waktu.",
     about:
@@ -2074,7 +2074,7 @@ export const dataDetailUMKM = [
     slug: "es-gempol-pak-masykur",
     heroImage: "/images/gempol_hero.webp",
     heroTitle:
-      'Es Gempol Pak Masykur – Segarnya Minuman Tradisional Khas Kudus!"',
+      'Informasi Lengkap tentang UMKM "Es Gempol Pak Masykur"',
     heroSubtitle:
       "Rasakan kesegaran es gempol dengan santan gurih, gula merah manis, dan aroma pandan yang khas. Minuman tradisional yang menyegarkan di setiap tegukan.",
     about:
@@ -2279,7 +2279,7 @@ export const dataDetailUMKM = [
     slug: "xgam-tech",
     heroImage: "/images/xgamtech_hero.webp",
     heroTitle:
-      "XGAM_Tech – Solusi Servis & Perawatan Komputer Terpercaya di Kudus!",
+      'Informasi Lengkap tentang UMKM "XGAM Tech"',
     heroSubtitle:
       "Layanan profesional untuk perbaikan, upgrade, dan perawatan komputer maupun laptop dengan harga bersahabat.",
     description:
@@ -2344,7 +2344,7 @@ export const dataDetailUMKM = [
     slug: "jasa-las-dan-bubut-mulyo-rejo",
     heroImage: "/images/jasalas_hero.webp",
     heroTitle:
-      "Jasa Las & Bubut Mulyo Rejo – Solusi Tepat untuk Kebutuhan Logam dan Perbengkelan di Kudus!",
+      'Informasi Lengkap tentang UMKM "Jasa Las dan Bubut Mulyo Rejo"',
     heroSubtitle:
       "Melayani berbagai pekerjaan las, bubut, dan perakitan logam dengan hasil kuat, rapi, dan presisi.",
     description:
@@ -2403,7 +2403,7 @@ export const dataDetailUMKM = [
     slug: "putra-kalimosodo",
     heroImage: "/images/kalimosodo_hero.webp",
     heroTitle:
-      "Putra Kalimosodo – Supplier Material & Jasa Transportasi Terpercaya di Kudus!",
+     'Informasi Lengkap tentang UMKM "Putra Kalimosodo"',
     heroSubtitle:
       "Menyediakan berbagai bahan bangunan serta layanan angkut material dengan armada lengkap dan tepat waktu.",
     description:
@@ -2462,7 +2462,7 @@ export const dataDetailUMKM = [
     slug: "ikan-bakar-nasuky-mubarok-jepang",
     heroImage: "/images/ikanbakar_hero.webp",
     heroTitle:
-      "Ikan Bakar Nasuky Mubarok Jepang – Sajian Ikan Bakar Segar Khas Kudus!",
+     'Informasi Lengkap tentang UMKM "Ikan Bakar Nasuky Mubarok Jepang"',
     heroSubtitle:
       "Nikmati ikan bakar lezat dengan bumbu rempah khas dan suasana makan nyaman di daerah Jepang, Kudus.",
     description:
@@ -2536,7 +2536,7 @@ export const dataDetailUMKM = [
     slug: "rm-bu-sarah",
     heroImage: "/images/rmbusarah_hero.webp",
     heroTitle:
-      "Rumah Makan Bu Sarah – Masakan Rumahan Lezat & Harga Bersahabat di Kudus!",
+      'Informasi Lengkap tentang UMKM "RM Bu Sarah"',
     heroSubtitle:
       "Nikmati berbagai hidangan rumahan khas Jawa dengan cita rasa autentik dan suasana nyaman seperti di rumah sendiri.",
     description:
@@ -2609,7 +2609,7 @@ export const dataDetailUMKM = [
     slug: "queen-seblak-prasmanan",
     heroImage: "/images/queenseblak_hero.webp",
     heroTitle:
-      "Queen Seblak Prasmanan – Surga Pecinta Seblak dengan Banyak Pilihan Topping di Kudus!",
+     'Informasi Lengkap tentang UMKM "Queen Seblak Prasmanan"',
     heroSubtitle:
       "Rasakan sensasi seblak pedas gurih dengan berbagai pilihan topping yang bisa kamu ambil sesuka hati.",
     description:
@@ -2680,7 +2680,7 @@ export const dataDetailUMKM = [
     slug: "ayam-geprek-mak-ginting",
     heroImage: "/images/geprekmakginting_hero.webp",
     heroTitle:
-      "Ayam Geprek Mak Ginting – Sensasi Pedas Gurih yang Bikin Ketagihan di Kudus!",
+      'Informasi Lengkap tentang UMKM "Ayam Geprek Mak Ginting"',
     heroSubtitle:
       "Ayam goreng renyah yang digeprek dengan sambal super pedas khas Mak Ginting. Cocok buat pecinta pedas sejati!",
     description:
@@ -2753,7 +2753,7 @@ export const dataDetailUMKM = [
     slug: "warung-sate-dan-gule-pak-sugiyo",
     heroImage: "/images/warungsatedangule_hero.webp",
     heroTitle:
-      "Warung Sate & Gule Pak Sugiyo – Cita Rasa Khas Kambing yang Melegenda di Kudus!",
+      'Informasi Lengkap tentang UMKM "Warung Sate & Gule Pak Sugiyo"',
     heroSubtitle:
       "Nikmati sate kambing empuk dan gule gurih beraroma rempah yang selalu bikin pelanggan datang lagi.",
     description:
@@ -2810,7 +2810,7 @@ export const dataDetailUMKM = [
     slug: "mj-teknik",
     heroImage: "/images/mjteknik_hero.webp",
     heroTitle:
-      "MJ Teknik – Solusi Jasa Instalasi & Perbaikan Peralatan Rumah Tangga di Kudus!",
+     'Informasi Lengkap tentang UMKM "MJ Teknik"',
     heroSubtitle:
       "Melayani instalasi listrik, servis pompa air, dan perbaikan berbagai peralatan rumah tangga dengan tenaga ahli berpengalaman.",
     description:
@@ -2875,7 +2875,7 @@ export const dataDetailUMKM = [
     slug: "fotocopy-dan-jasa-travel",
     heroImage: "/images/fotocopy_hero.webp",
     heroTitle:
-      "Fotocopy & Jasa Travel – Layanan Cepat dan Praktis untuk Kebutuhan Dokumen & Perjalanan Anda!",
+      'Informasi Lengkap tentang UMKM "Fotocopy & Jasa Travel"',
     heroSubtitle:
       "Melayani jasa fotokopi, print, scan, serta layanan travel antar kota dengan pelayanan ramah dan harga terjangkau.",
     description:
