@@ -11,9 +11,7 @@ export const dataUMKM = [
       "Warung sederhana dengan menu rumahan khas Kudus yang lezat dan terjangkau.",
     location: "Bae",
     kecamatanSlug: "bae",
-    openHour: "09:00-21:00",
     image: "/images/omw_hero.webp",
-    link: "https://maps.app.goo.gl/p2y9yqgkziBTC84BA",
   },
   {
     id: 2,
@@ -24,9 +22,7 @@ export const dataUMKM = [
       "Menyajikan ayam geprek pedas dengan sambal khas yang menggugah selera.",
     location: "Bae",
     kecamatanSlug: "bae",
-    openHour: "09:00-22:00",
     image: "/images/geprekjawi_hero.webp",
-    link: "https://maps.app.goo.gl/34kSNYhPqqgnU87T8",
   },
   {
     id: 3,
@@ -37,9 +33,7 @@ export const dataUMKM = [
       "Soto Lamongan gurih dengan koya melimpah dan potongan ayam kampung.",
     location: "Bae",
     kecamatanSlug: "bae",
-    openHour: "07:00-20:00",
     image: "/images/lamonganyuli_hero.webp",
-    link: "https://maps.app.goo.gl/JdsXJfJK2SiJLZPA7",
   },
   {
     id: 4,
@@ -50,9 +44,7 @@ export const dataUMKM = [
       "Minuman segar dengan cincau hitam khas Pasundan dan gula merah cair.",
     location: "Bae",
     kecamatanSlug: "bae",
-    openHour: "10:00-21:00",
     image: "/images/cincaupasundan_hero.webp",
-    link: "https://maps.app.goo.gl/gVm4V6t2bqPczEJZ9",
   },
   {
     id: 5,
@@ -63,9 +55,7 @@ export const dataUMKM = [
       "Melayani jasa pengetikan, cetak dokumen, dan administrasi harian.",
     location: "Bae",
     kecamatanSlug: "bae",
-    openHour: "08:00-17:00",
     image: "/images/jasatulis_hero.webp",
-    link: "https://maps.app.goo.gl/4sNnVAGGSV7RziFPA",
   },
 
   // DAWE
@@ -78,9 +68,7 @@ export const dataUMKM = [
       "Restoran khas Kudus yang menyajikan swike lezat dengan resep tradisional.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    openHour: "10:00-22:00",
     image: "/images/swikedawe_hero.webp",
-    link: "https://maps.app.goo.gl/USGE5s2iZ31mx3et8",
   },
   {
     id: 7,
@@ -91,9 +79,7 @@ export const dataUMKM = [
       "Kedai minuman kekinian dengan berbagai pilihan topping dan rasa.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    openHour: "09:00-21:00",
     image: "/images/wekategank_hero.webp",
-    link: "https://maps.app.goo.gl/hdpT54AXQ2vHhwEc7",
   },
   {
     id: 8,
@@ -104,9 +90,7 @@ export const dataUMKM = [
       "Tempat makan dengan cita rasa masakan Jawa rumahan yang otentik.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    openHour: "08:00-21:00",
     image: "/images/makkiyem_hero.webp",
-    link: "https://maps.app.goo.gl/D7Su82QRZCHX7t698",
   },
   {
     id: 9,
@@ -117,9 +101,7 @@ export const dataUMKM = [
       "Menyediakan layanan angkut material bangunan dan kebutuhan konstruksi.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    openHour: "07:00-17:00",
     image: "/images/jasaangkut_hero.webp",
-    link: "https://maps.app.goo.gl/yimn1Ms8XH6ekbYLA",
   },
   {
     id: 10,
@@ -130,9 +112,7 @@ export const dataUMKM = [
       "Ayam geprek dengan level pedas sesuai selera dan harga bersahabat.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    openHour: "10:00-22:00",
     image: "/images/ayamgepreksai_hero.webp",
-    link: "https://maps.app.goo.gl/5G3DAEiX19ufwgaS6",
   },
 
   // GEBOG
@@ -145,9 +125,7 @@ export const dataUMKM = [
       "Warung makan legendaris dengan menu khas Kudus yang menggugah selera.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    openHour: "07:00-20:00",
     image: "/images/mbahsapar_hero.webp",
-    link: "https://maps.app.goo.gl/gYeV2iWeC7LmAuHT7",
   },
   {
     id: 12,
@@ -158,9 +136,7 @@ export const dataUMKM = [
       "Menyajikan nasi uduk dan nasi kuning dengan lauk variatif setiap hari.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    openHour: "06:00-11:00",
     image: "/images/nasiuduk_hero.webp",
-    link: "https://maps.app.goo.gl/kwHfceBeg9Je1TSX9",
   },
   {
     id: 13,
@@ -170,9 +146,7 @@ export const dataUMKM = [
     subtitle: "Bakso urat dengan kuah kaldu gurih dan porsi mengenyangkan.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    openHour: "09:00-21:00",
     image: "/images/baksomalvinas_hero.webp",
-    link: "https://maps.app.goo.gl/ppj9kcANtYxC613S6",
   },
   {
     id: 14,
@@ -182,9 +156,7 @@ export const dataUMKM = [
     subtitle: "Menu masakan rumahan lengkap dengan sambal khas Kudus.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    openHour: "08:00-20:00",
     image: "/images/warungmakanmakru_hero.webp",
-    link: "https://maps.app.goo.gl/ShKhKN6G8jLoNxqb6",
   },
   {
     id: 15,
@@ -195,9 +167,7 @@ export const dataUMKM = [
       "Menyediakan jasa desain, sablon, dan percetakan lokal berkualitas.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    openHour: "09:00-18:00",
     image: "/images/kasehitoworks_hero.webp",
-    link: "https://maps.app.goo.gl/Hnqm3izDEuR4iDTaA",
   },
 
   // JATI
@@ -210,9 +180,7 @@ export const dataUMKM = [
       "Sego sambel khas dengan berbagai lauk pedas yang menggoda selera.",
     location: "Jati",
     kecamatanSlug: "jati",
-    openHour: "09:00-21:00",
     image: "/images/cakrawala_hero.webp",
-    link: "https://maps.app.goo.gl/wj7ySDm62qgiSFq89",
   },
   {
     id: 17,
@@ -223,9 +191,7 @@ export const dataUMKM = [
       "Opor ayam lembut dengan kuah santan kental dan bumbu khas Kudus.",
     location: "Jati",
     kecamatanSlug: "jati",
-    openHour: "07:00-14:00",
     image: "/images/oporsungginan_hero.webp",
-    link: "https://maps.app.goo.gl/ih4WzCWEq4Mw81nw7",
   },
   {
     id: 18,
@@ -236,9 +202,7 @@ export const dataUMKM = [
       "Spesialis olahan enthog dengan sambal korek pedas menggugah selera.",
     location: "Jati",
     kecamatanSlug: "jati",
-    openHour: "10:00-22:00",
     image: "/images/enthogpakbadi_hero.webp",
-    link: "https://maps.app.goo.gl/usFhu6CUCSuysUG2A",
   },
   {
     id: 19,
@@ -249,9 +213,7 @@ export const dataUMKM = [
       "Melayani coating dan platting untuk berbagai kebutuhan industri dan otomotif.",
     location: "Jati",
     kecamatanSlug: "jati",
-    openHour: "08:00-17:00",
     image: "/images/powdercoating_hero.webp",
-    link: "https://maps.app.goo.gl/QeruafGAk4xGBpdFA",
   },
   {
     id: 20,
@@ -262,9 +224,7 @@ export const dataUMKM = [
       "Es segar berbagai rasa dengan topping buah dan jelly favorit anak muda.",
     location: "Jati",
     kecamatanSlug: "jati",
-    openHour: "10:00-22:00",
     image: "/images/esbangmaman_hero.webp",
-    link: "https://maps.app.goo.gl/Fi5eeThuzfuthEyz8",
   },
 
   // Jekulo
@@ -277,9 +237,7 @@ export const dataUMKM = [
       "Jus segar berbagai rasa yang cocok dinikmati saat siang hari.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    openHour: "09:00-21:00",
     image: "/images/juspojokan_hero.webp",
-    link: "https://maps.app.goo.gl/qziXm98Q1MiogAcG7",
   },
   {
     id: 22,
@@ -290,9 +248,7 @@ export const dataUMKM = [
       "Kedai seblak dan jus kekinian khas Bandung dengan cita rasa lokal.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    openHour: "10:00-22:00",
     image: "/images/kedaytwins_hero.webp",
-    link: "https://maps.app.goo.gl/7UPi7Rnx5UUV6hGXA",
   },
   {
     id: 23,
@@ -302,9 +258,7 @@ export const dataUMKM = [
     subtitle: "Lentog khas Kudus dengan cita rasa gurih yang legendaris.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    openHour: "06:00-14:00",
     image: "/images/lentogbangsyaiful_hero.webp",
-    link: "https://maps.app.goo.gl/i3hFof87YiH1Jfcm7",
   },
   {
     id: 24,
@@ -315,9 +269,7 @@ export const dataUMKM = [
       "Es buah segar dengan campuran jelly dan susu, favorit semua kalangan.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    openHour: "09:00-21:00",
     image: "/images/berkahesbuah_hero.webp",
-    link: "https://maps.app.goo.gl/NP9wzm62FCP3voiz5",
   },
   {
     id: 25,
@@ -328,9 +280,7 @@ export const dataUMKM = [
       "Warnet dengan koneksi cepat dan nyaman untuk bermain maupun bekerja.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    openHour: "08:00-22:00",
     image: "/images/warnetjayasentosa_hero.webp",
-    link: "https://maps.app.goo.gl/PmLuRVBMbQZ9TM1P8",
   },
 
   // Kaliwungu
@@ -342,9 +292,7 @@ export const dataUMKM = [
     subtitle: "Minuman jahe hangat dengan campuran rempah alami khas Kudus.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    openHour: "08:00-21:00",
     image: "/images/jaherempahreggit_hero.webp",
-    link: "https://maps.app.goo.gl/BkJaMkRkfC5fNqEg6",
   },
   {
     id: 27,
@@ -355,9 +303,7 @@ export const dataUMKM = [
       "Warung makan sederhana dengan menu rumahan yang lezat dan murah.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    openHour: "07:00-20:00",
     image: "/images/warungmakanbucarik_hero.webp",
-    link: "https://maps.app.goo.gl/gTMSEWRBQXFjzw2w7",
   },
   {
     id: 28,
@@ -368,9 +314,7 @@ export const dataUMKM = [
       "Gerai teh kekinian dengan berbagai varian rasa dan topping menarik.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    openHour: "10:00-22:00",
     image: "/images/tehatea_hero.webp",
-    link: "https://maps.app.goo.gl/F8N4e7jorns2isec6",
   },
   {
     id: 29,
@@ -380,9 +324,7 @@ export const dataUMKM = [
     subtitle: "Tempat makan dengan menu ayam goreng dan sambal khas.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    openHour: "08:00-21:00",
     image: "/images/warungmakan2putra_hero.webp",
-    link: "https://maps.app.goo.gl/38fiNxsfuYd8tWKe6",
   },
   {
     id: 30,
@@ -393,9 +335,7 @@ export const dataUMKM = [
       "Layanan angkut cepat dan aman untuk kebutuhan pindahan dan kiriman.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    openHour: "24 Jam",
     image: "/images/jasaangkutbarang_hero.webp",
-    link: "https://maps.app.goo.gl/y5THumCBYsXwknGv7",
   },
 
   // Kota Kudus
@@ -407,9 +347,7 @@ export const dataUMKM = [
     subtitle: "Susu murni dengan berbagai varian rasa khas Kudus.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    openHour: "09:00-22:00",
     image: "/images/susumoeria_hero.webp",
-    link: "https://maps.app.goo.gl/ykPM75GR4zvotqGu7",
   },
   {
     id: 32,
@@ -420,9 +358,7 @@ export const dataUMKM = [
       "Ayam geprek dengan sambal korek yang pedas dan menggugah selera.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    openHour: "08:00-21:00",
     image: "/images/ramboo_hero.webp",
-    link: "https://maps.app.goo.gl/LYVqkhzbW1onRtQv6",
   },
   {
     id: 33,
@@ -433,9 +369,7 @@ export const dataUMKM = [
       "Minuman tradisional Kudus dengan gempol segar dan santan manis.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    openHour: "09:00-20:00",
     image: "/images/gempol_hero.webp",
-    link: "https://maps.app.goo.gl/FbW5YErAMVZPSgE17",
   },
   {
     id: 34,
@@ -446,9 +380,7 @@ export const dataUMKM = [
       "Barbershop modern dengan pelayanan profesional, tempat nyaman, dan hasil cukur rapi bergaya kekinian.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    openHour: "10.00 - 22.00",
     image: "/images/sultanbarbertop_hero.webp",
-    link: "https://maps.app.goo.gl/tisWKdCUm5aWueGB9",
   },
   {
     id: 35,
@@ -459,9 +391,7 @@ export const dataUMKM = [
       "Warung legendaris dengan cita rasa soto khas Kudus yang gurih dan autentik sejak puluhan tahun.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    openHour: "07.00 - 22.00",
     image: "/images/sotokudusbujatmi_hero.webp",
-    link: "https://maps.app.goo.gl/BDb4ivbpLwgvVNS18",
   },
 
   // Mejobo
@@ -473,9 +403,7 @@ export const dataUMKM = [
     subtitle: "Layanan servis laptop, komputer, dan rakit PC profesional.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    openHour: "09:00-21:00",
     image: "/images/xgamtech_hero.webp",
-    link: "https://maps.app.goo.gl/gWn3E69AAsSdHF5E8",
   },
   {
     id: 37,
@@ -486,9 +414,7 @@ export const dataUMKM = [
       "Layanan las dan bubut untuk kebutuhan industri dan rumah tangga.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    openHour: "08:00-17:00",
     image: "/images/jasalas_hero.webp",
-    link: "https://maps.app.goo.gl/AxEporVGMVhUg6Gx8",
   },
   {
     id: 38,
@@ -498,9 +424,7 @@ export const dataUMKM = [
     subtitle: "Penyedia jasa transportasi dan material bangunan terpercaya.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    openHour: "08:00-17:00",
     image: "/images/kalimosodo_hero.webp",
-    link: "https://maps.app.goo.gl/uH67vcG4Dvs7KoGk8",
   },
   {
     id: 39,
@@ -510,9 +434,7 @@ export const dataUMKM = [
     subtitle: "Ikan bakar khas Kudus dengan sambal pedas menggoda.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    openHour: "10:00-22:00",
     image: "/images/ikanbakar_hero.webp",
-    link: "https://maps.app.goo.gl/gmQKifDFtnkAR7v9A",
   },
   {
     id: 40,
@@ -522,9 +444,7 @@ export const dataUMKM = [
     subtitle: "Rumah makan keluarga dengan masakan tradisional Jawa.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    openHour: "09:00-21:00",
     image: "/images/rmbusarah_hero.webp",
-    link: "https://maps.app.goo.gl/7ECiqEckKkN3vUTp6",
   },
 
   // Undaan
@@ -537,9 +457,7 @@ export const dataUMKM = [
       "Seblak dengan berbagai topping dan level pedas yang bisa dipilih.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    openHour: "10:00-22:00",
     image: "/images/queenseblak_hero.webp",
-    link: "https://maps.app.goo.gl/jBP4apLhmMCffGhX9",
   },
   {
     id: 42,
@@ -549,9 +467,7 @@ export const dataUMKM = [
     subtitle: "Ayam geprek renyah dengan sambal pedas khas Kudus.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    openHour: "09:00-21:00",
     image: "/images/geprekmakginting_hero.webp",
-    link: "https://maps.app.goo.gl/EoNQcjSTJTfPQRcQ7",
   },
   {
     id: 43,
@@ -561,9 +477,7 @@ export const dataUMKM = [
     subtitle: "Sate kambing empuk dan gule gurih khas Kudus.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    openHour: "08:00-21:00",
     image: "/images/warungsatedangule_hero.webp",
-    link: "https://maps.app.goo.gl/1rY63jpYL1TG5zCi7",
   },
   {
     id: 44,
@@ -573,9 +487,7 @@ export const dataUMKM = [
     subtitle: "Layanan instalasi listrik dan servis alat rumah tangga.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    openHour: "08:00-17:00",
     image: "/images/mjteknik_hero.webp",
-    link: "https://maps.app.goo.gl/ybAKugTzb2kkbV1s7",
   },
   {
     id: 45,
@@ -585,8 +497,6 @@ export const dataUMKM = [
     subtitle: "Layanan fotokopi cepat dan travel antar kota.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    openHour: "07:00-21:00",
     image: "/images/fotocopy_hero.webp",
-    link: "https://maps.app.goo.gl/bNhm4hXN8YRd7bvz9",
   },
 ];
