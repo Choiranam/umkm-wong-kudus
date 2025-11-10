@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const ArtikelCard = ({ image, category, title, displayDate, author }) => {
+const ArtikelCard = ({ image, category, title, displayDate, author, id }) => {
   const navigate = useNavigate();
 
   const slugify = (text) =>
@@ -13,7 +13,9 @@ const ArtikelCard = ({ image, category, title, displayDate, author }) => {
       .replace(/\s+/g, "-");
 
   const handleClick = () => {
-    navigate(`/artikel/${category.toLowerCase()}/${slugify(title)}`);
+    if (!id) return;
+    const slug = slugify(title);
+    navigate(`/artikel/${id}/${slug}`);
   };
 
   return (

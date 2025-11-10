@@ -13,8 +13,18 @@ import { motion } from "framer-motion";
 export const formatDate = (dateString) => {
   const date = new Date(dateString); // Langsung parse ISO
   const months = [
-    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-    "Juli", "Agustus", "September", "Oktober", "November", "Desember",
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
   ];
   const day = date.getDate();
   const month = months[date.getMonth()];
@@ -65,7 +75,9 @@ const ArtikelPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/categories-blog");
+        const response = await fetch(
+          "https://api-umkmwongkudus.rplrus.com/api/categories-blog"
+        );
         if (!response.ok) throw new Error("Gagal memuat kategori");
         const result = await response.json();
 
@@ -91,7 +103,9 @@ const ArtikelPage = () => {
     const fetchArticles = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://api-umkmwongkudus.rplrus.com/api/articles");
+        const response = await fetch(
+          "https://api-umkmwongkudus.rplrus.com/api/articles"
+        );
         if (!response.ok) throw new Error("Gagal memuat artikel");
         const result = await response.json();
 
@@ -114,7 +128,7 @@ const ArtikelPage = () => {
         console.error("Error fetching articles:", err);
         setError("Gagal memuat artikel. Silakan coba lagi.");
         setArticles([]);
-       } finally {
+      } finally {
         setLoading(false);
       }
     };
@@ -169,7 +183,9 @@ const ArtikelPage = () => {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
           </div>
         ) : error ? (
-          <div className="col-span-full text-center text-orange py-10">{error}</div>
+          <div className="col-span-full text-center text-orange py-10">
+            {error}
+          </div>
         ) : filteredArticles.length > 0 ? (
           filteredArticles.map((article, i) => (
             <motion.div
@@ -183,7 +199,9 @@ const ArtikelPage = () => {
               <Link to={`/artikel/${article.id}/${slugify(article.title)}`}>
                 <ArtikelCard
                   image={article.image}
-                  category={blogCategories[article.category_blog_id] || "Lainnya"}
+                  category={
+                    blogCategories[article.category_blog_id] || "Lainnya"
+                  }
                   title={article.title}
                   author={article.author}
                   displayDate={
@@ -221,7 +239,7 @@ const ArtikelPage = () => {
   );
 
   return (
-    <div className="bg-light min-h-screen w-full">
+    <div className="bg-light min-h-screen w-full overflow-hidden md:overflow-visible">
       <Navbar />
       <HeroContent
         image="/images/hero_artikel.webp"
@@ -231,9 +249,9 @@ const ArtikelPage = () => {
       <PageContainer variant="default" className="relative z-10">
         <div className="bg-dark/5 border border-dark/10 rounded-lg px-4 py-2 text-sm mb-6 sm:mb-8">
           <span className="font-semibold text-orange">Berita Terkini :</span>
-          <span className="text-dark mx-2">
+          <div className="text-dark mx-2 wrap-break-word">
             Pemerintah umumkan jadwal libur nasional dan cuti bersama 2025
-          </span>
+          </div>
         </div>
 
         <div className="flex flex-col gap-6 sm:gap-8">
@@ -282,7 +300,11 @@ const ArtikelPage = () => {
                       icon={item.icon}
                       width="20"
                       height="20"
-                      className={activeCategory === item.name ? "text-white" : "text-dark"}
+                      className={
+                        activeCategory === item.name
+                          ? "text-white"
+                          : "text-dark"
+                      }
                     />
                     {item.name}
                   </button>

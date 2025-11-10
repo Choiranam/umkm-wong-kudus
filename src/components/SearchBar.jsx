@@ -62,16 +62,21 @@ const SearchBar = () => {
         <input
           type="text"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value.slice(0, 50);
+            setSearchTerm(value);
+          }}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}
-          className="w-full py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light"
+          className="w-full py-3 md:py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light text-sm sm:text-base truncate"
           placeholder=""
           autoComplete="off"
-          maxLength={100}
+          maxLength={50}
+          pattern=".{0,50}"
         />
+
         {searchTerm === "" && !isInputFocused && (
-          <div className="pointer-events-none absolute inset-0 flex items-center px-4">
+          <div className="pointer-events-none absolute inset-0 flex items-center px-4 whitespace-nowrap overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.span
                 key={placeholderIndex}
@@ -79,7 +84,7 @@ const SearchBar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="text-dark/50 select-none"
+                className="text-dark/50 select-none truncate"
               >
                 {placeholders[placeholderIndex]}
               </motion.span>
@@ -95,7 +100,7 @@ const SearchBar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-20 w-full bg-light rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto"
+            className="absolute z-20 w-full max-w-full md:max-w-none bg-light rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto"
           >
             {suggestions.map((sug, i) => (
               <div
