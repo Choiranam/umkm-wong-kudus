@@ -2123,7 +2123,7 @@ export const dataDetailUMKM = [
       "Sultan Barber Top adalah barbershop modern yang menjadi salah satu destinasi perawatan rambut pria terpopuler di Kudus. Dengan tim barber berpengalaman, tempat ini menghadirkan berbagai gaya potongan rambut terkini, pelayanan ramah, serta suasana santai dan bersih yang membuat pelanggan merasa nyaman.",
     about:
       "<strong>Sultan Barber Top</strong> adalah barbershop profesional yang mengutamakan kualitas layanan dan kenyamanan pelanggan. Berlokasi strategis di pusat kota Kudus, Sultan Barber Top menyediakan layanan potong rambut modern, shaving, hair wash, hingga styling dengan produk perawatan rambut terbaik. Mengusung konsep tempat yang cozy dan bergaya urban, barbershop ini menjadi pilihan utama bagi pria yang ingin tampil rapi dan stylish setiap hari.",
-    rating: "5.0 / 5",
+    rating: "5 / 5",
     location: {
       address: "Jl. Pemuda No.56, Kudus",
       fullAddress:
