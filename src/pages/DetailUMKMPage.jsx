@@ -287,7 +287,7 @@ const DetailUMKMPage = () => {
   } = umkmData;
 
   return (
-    <div className="w-screen min-h-screen bg-light overflow-x-hidden">
+    <div className="w-full min-h-screen bg-light overflow-hidden md:overflow-visible">
       <Navbar />
       <HeroContent
         image={heroImage}
@@ -298,7 +298,7 @@ const DetailUMKMPage = () => {
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 mt-8 md:mt-10 md:items-start">
           <div className="flex-1 space-y-12 md:space-y-16">
             <section>
-              <h2 className="text-3xl font-bold text-dark mb-4 text-center md:text-left">
+              <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-4 text-center md:text-left">
                 Tentang <span className="font-normal text-dark-600">UMKM</span>
               </h2>
               <div
@@ -308,7 +308,7 @@ const DetailUMKMPage = () => {
             </section>
 
             <section>
-              <h2 className="text-3xl font-bold text-dark mb-6 text-center md:text-left">
+              <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
                 Menu{" "}
                 <span className="font-normal text-dark-600">
                   / Produk Unggulan
@@ -347,7 +347,7 @@ const DetailUMKMPage = () => {
             </section>
 
             <section>
-              <h2 className="text-3xl font-bold text-dark mb-6 text-center md:text-left">
+              <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
                 Galeri <span className="font-normal text-dark">Foto</span>
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -368,7 +368,7 @@ const DetailUMKMPage = () => {
             </section>
 
             <section>
-              <h2 className="text-3xl font-bold text-dark mb-6 text-center md:text-left">
+              <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
                 Temukan <span className="font-normal text-dark">Kami</span>
               </h2>
               <div className="w-full h-80 rounded-[5px] overflow-hidden shadow-lg">
@@ -396,7 +396,7 @@ const DetailUMKMPage = () => {
         </div>
 
         <section className="mt-12 md:mt-16">
-          <h2 className="text-3xl font-bold text-dark mb-6 text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
             UMKM <span className="font-normal text-dark">Lainnya</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">

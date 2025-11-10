@@ -1916,56 +1916,56 @@ export const dataDetailUMKM = [
         description:
           "Susu segar dengan rasa coklat manis dan creamy, cocok diminum dingin maupun hangat.",
         price: "Rp 9.000",
-        image: "/images/moeria_menu1.jpeg",
+        image: "/images/moeria_menu1.webp",
       },
       {
         name: "Tteokbokki",
         description:
           "Camilan khas Korea berbahan kue beras kenyal dengan saus pedas manis yang menggugah selera.",
         price: "Rp 37.000",
-        image: "/images/moeria_menu2.jpeg",
+        image: "/images/moeria_menu2.webp",
       },
       {
         name: "Blackpepper Chicken",
         description:
           "Ayam lembut dengan saus lada hitam khas Moeria yang gurih pedas dan nikmat.",
         price: "Rp 22.000",
-        image: "/images/moeria_menu3.jpeg",
+        image: "/images/moeria_menu3.webp",
       },
       {
         name: "Tteokbokki Mozarella",
         description:
           "Tteokbokki pedas manis disajikan dengan lelehan keju mozarella lembut di atasnya.",
         price: "Rp 31.000",
-        image: "/images/moeria_menu4.jpeg",
+        image: "/images/moeria_menu4.webp",
       },
       {
         name: "Susu Strawberry",
         description:
           "Perpaduan susu segar dan sirup strawberry alami yang menyegarkan.",
         price: "Rp 9.000",
-        image: "/images/moeria_menu5.jpeg",
+        image: "/images/moeria_menu5.webp",
       },
       {
         name: "Budae Jigae",
         description:
           "Sup khas Korea berisi sosis, mie, dan tahu dalam kuah pedas gurih yang hangat.",
         price: "Rp 72.000",
-        image: "/images/moeria_menu6.jpeg",
+        image: "/images/moeria_menu6.webp",
       },
       {
         name: "Sundubu Jigae",
         description:
           "Sup tahu lembut ala Korea dengan kuah pedas gurih dan isian seafood atau daging pilihan.",
         price: "Rp 48.000",
-        image: "/images/moeria_menu7.jpeg",
+        image: "/images/moeria_menu7.webp",
       },
       {
         name: "Nasi Goreng Kimchi",
         description:
           "Nasi goreng dengan cita rasa khas kimchi Korea yang asam, pedas, dan menggugah selera.",
         price: "Rp 48.000",
-        image: "/images/moeria_menu8.jpeg",
+        image: "/images/moeria_menu8.webp",
       },
     ],
     galleryImages: [

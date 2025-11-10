@@ -51,9 +51,11 @@ const PencarianPage = () => {
               height="24"
               className="text-orange sm:w-[30px] sm:h-[30px]"
             />
-            <h2 className="text-base sm:text-lg font-semibold text-dark flex items-center gap-2">
+            <h2 className="text-base sm:text-lg font-semibold text-dark flex flex-wrap gap-2">
               Hasil Pencarian untuk{" "}
-              <span className="italic font-normal">"{keyword}"</span>
+              <span className="italic font-normal max-w-full wrap-break-word">
+                "{keyword}"
+              </span>
             </h2>
           </div>
           <p className="text-sm sm:text-base text-dark/50 mt-1 sm:mt-2 pl-8 sm:pl-[38px]">

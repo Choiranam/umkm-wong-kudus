@@ -17,41 +17,67 @@ import { dataUMKM } from "../data/dataUMKM";
 const UMKMScrollSection = () => {
   const umkmScrollRef = useRef(null);
   const posRef = useRef(0);
-  const [isPausedUMKM, setIsPausedUMKM] = useState(false);
+  const rafRef = useRef(null);
+  const lastTimeRef = useRef(null);
+  const userInteractingRef = useRef(false);
+  const resumeTimerRef = useRef(null);
+  const SPEED = 2.0;
 
   useEffect(() => {
     const el = umkmScrollRef.current;
     if (!el) return;
 
-    let frameId;
+    const half = () => el.scrollWidth / 2;
 
-    const animateScroll = () => {
-      if (!isPausedUMKM && el) {
-        const half = el.scrollWidth / 2;
-        posRef.current += 1;
-        if (posRef.current >= half) {
-          posRef.current = 0;
-        }
+    const animate = (time) => {
+      if (lastTimeRef.current == null) lastTimeRef.current = time;
+      const delta = time - lastTimeRef.current;
+      lastTimeRef.current = time;
+
+      if (!userInteractingRef.current) {
+        posRef.current += SPEED * (delta / 16);
+        const loop = half();
+        if (posRef.current >= loop) posRef.current -= loop;
         el.scrollLeft = posRef.current;
+      } else {
+        posRef.current = el.scrollLeft % half();
       }
-      frameId = requestAnimationFrame(animateScroll);
+
+      rafRef.current = requestAnimationFrame(animate);
     };
 
-    frameId = requestAnimationFrame(animateScroll);
-    return () => cancelAnimationFrame(frameId);
-  }, [isPausedUMKM]);
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
 
-  const handleUMKMScroll = (e) => {
-    const el = e.currentTarget;
-    if (isPausedUMKM) {
+  const startInteraction = () => {
+    userInteractingRef.current = true;
+    if (resumeTimerRef.current) {
+      clearTimeout(resumeTimerRef.current);
+      resumeTimerRef.current = null;
+    }
+  };
+
+  const endInteraction = () => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      userInteractingRef.current = false;
+      const el = umkmScrollRef.current;
+      if (!el) return;
       const loop = el.scrollWidth / 2;
+      posRef.current = el.scrollLeft % loop;
+    }, 300);
+  };
 
-      if (el.scrollLeft >= loop - 1) {
-        el.scrollLeft -= loop;
-      } else if (el.scrollLeft <= 0) {
-        el.scrollLeft += loop;
-      }
+  const handleScroll = (e) => {
+    const el = e.currentTarget;
+    const loop = el.scrollWidth / 2;
+    if (userInteractingRef.current) {
+      if (el.scrollLeft >= loop) el.scrollLeft -= loop;
+      if (el.scrollLeft <= 0) el.scrollLeft = (el.scrollLeft + loop) % loop;
       posRef.current = el.scrollLeft;
+    } else {
+      posRef.current = el.scrollLeft % loop;
     }
   };
 
@@ -77,23 +103,21 @@ const UMKMScrollSection = () => {
         <div
           className="relative w-full overflow-x-auto no-scrollbar"
           ref={umkmScrollRef}
-          onMouseEnter={() => setIsPausedUMKM(true)}
-          onMouseLeave={() => setIsPausedUMKM(false)}
-          onTouchStart={() => setIsPausedUMKM(true)}
-          onTouchEnd={() => setIsPausedUMKM(false)}
-          onScroll={handleUMKMScroll}
+          onPointerDown={startInteraction}
+          onPointerUp={endInteraction}
+          onPointerCancel={endInteraction}
+          onMouseEnter={startInteraction}
+          onMouseLeave={endInteraction}
+          onTouchStart={startInteraction}
+          onTouchEnd={endInteraction}
+          onScroll={handleScroll}
         >
           <motion.div
             style={{ width: "max-content" }}
             className="flex gap-4 py-3"
           >
             {[...dataUMKM, ...dataUMKM].map((item, i) => (
-              <div
-                key={i}
-                data-aos="fade-up"
-                data-aos-delay={(i % 10) * 50}
-                className="snap-start"
-              >
+              <div key={i} className="snap-start">
                 <Link to={`/detail-umkm/${item.slug}`} className="block">
                   <UMKMCard data={item} />
                 </Link>
@@ -110,19 +134,19 @@ const UMKMScrollSection = () => {
 const HomePage = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const navigate = useNavigate();
+  const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // State untuk Artikel
   const [articles, setArticles] = useState([]);
   const [loadingArticles, setLoadingArticles] = useState(true);
   const [errorArticles, setErrorArticles] = useState("");
   const [blogCategories, setBlogCategories] = useState({});
 
-  // State untuk Review
   const [reviewData, setReviewData] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
   const [errorReviews, setErrorReviews] = useState("");
 
-  // Helper Format Tanggal
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     return new Date(dateString).toLocaleDateString("id-ID", options);
@@ -135,7 +159,6 @@ const HomePage = () => {
     }, 200);
   }, []);
 
-  // === Fetch Kategori Blog ===
   useEffect(() => {
     const fetchBlogCategories = async () => {
       try {
@@ -163,9 +186,9 @@ const HomePage = () => {
     fetchBlogCategories();
   }, []);
 
-  // === Fetch Artikel ===
   useEffect(() => {
     const fetchArticles = async () => {
+      if (Object.keys(blogCategories).length === 0) return;
       try {
         setLoadingArticles(true);
         const response = await fetch(
@@ -196,12 +219,9 @@ const HomePage = () => {
       }
     };
 
-    if (Object.keys(blogCategories).length > 0) {
-      fetchArticles();
-    }
+    fetchArticles();
   }, [blogCategories]);
 
-  // === Fetch Reviews ===
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -294,26 +314,62 @@ const HomePage = () => {
     }
   };
 
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (el) {
+      setCanScrollLeft(el.scrollLeft > 0);
+      setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+    }
+  };
+
+  const scrollLeft = () => {
+    if (!scrollRef.current) return;
+    const firstCard = scrollRef.current.children[0];
+    const cardWidth = firstCard?.offsetWidth || 300;
+    scrollRef.current.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    setTimeout(checkScroll, 400);
+  };
+
+  const scrollRight = () => {
+    if (!scrollRef.current) return;
+    const firstCard = scrollRef.current.children[0];
+    const cardWidth = firstCard?.offsetWidth || 300;
+    scrollRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
+    setTimeout(checkScroll, 400);
+  };
+
   useEffect(() => {
-    const el = kecamatanScrollRef.current;
-    if (!el) return;
+    const kecEl = kecamatanScrollRef.current;
+    if (kecEl) {
+      checkScrollKecamatan();
+      const observer = new ResizeObserver(checkScrollKecamatan);
+      observer.observe(kecEl);
+      window.addEventListener("resize", checkScrollKecamatan);
+      return () => {
+        observer.unobserve(kecEl);
+        window.removeEventListener("resize", checkScrollKecamatan);
+      };
+    }
+  }, []);
 
-    checkScrollKecamatan();
-    const observer = new ResizeObserver(checkScrollKecamatan);
-    observer.observe(el);
-    window.addEventListener("resize", checkScrollKecamatan);
-
-    return () => {
-      observer.unobserve(el);
-      window.removeEventListener("resize", checkScrollKecamatan);
-    };
+  useEffect(() => {
+    const revEl = scrollRef.current;
+    if (revEl) {
+      checkScroll();
+      const observer = new ResizeObserver(checkScroll);
+      observer.observe(revEl);
+      window.addEventListener("resize", checkScroll);
+      return () => {
+        observer.unobserve(revEl);
+        window.removeEventListener("resize", checkScroll);
+      };
+    }
   }, []);
 
   return (
     <div className="bg-light min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
       <section className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <iframe
@@ -358,7 +414,7 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            className="mt-10 max-w-4xl flex flex-col md:flex-row gap-3 md:gap-4"
+            className="mt-10 max-w-4xl w-full min-w-0 flex flex-col md:flex-row gap-3 md:gap-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
@@ -367,7 +423,7 @@ const HomePage = () => {
             <button
               type="submit"
               form="searchForm"
-              className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer"
+              className="bg-orange text-light py-3 px-5 rounded-lg flex items-center justify-center md:justify-start font-semibold hover:bg-orange-500 transition-colors shadow-lg cursor-pointer w-full md:w-auto"
             >
               <Icon icon="tabler:search" className="w-4 h-4 mr-2" /> Search
             </button>
@@ -382,11 +438,13 @@ const HomePage = () => {
             <p className="text-light font-normal text-sm lg:text-base">
               Atau berdasarkan Kategori
             </p>
-            <div className="mt-4 pt-1 flex flex-wrap justify-start gap-2 md:gap-4">
+
+            <div className="mt-4 pt-1 flex flex-wrap justify-start gap-3 sm:gap-4 md:gap-4">
               {categories.map((cat, i) => (
                 <motion.button
                   key={cat.slug}
-                  className="rounded-xl flex flex-col items-center justify-center shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer bg-light text-dark hover:bg-orange hover:text-light w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
+                  className="rounded-xl flex flex-col items-center justify-center shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer bg-light text-dark hover:bg-orange hover:text-light
+        w-16 h-16 sm:w-18 sm:h-18 md:w-18 md:h-18 lg:w-20 lg:h-20 p-2"
                   onClick={() => navigate(`/kategori?slug=${cat.slug}`)}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -394,9 +452,9 @@ const HomePage = () => {
                 >
                   <Icon
                     icon={cat.icon}
-                    className="w-5 h-5 sm:w-6 sm:h-6 mb-1"
+                    className="w-6 h-6 sm:w-7 sm:h-7 md:w-7 md:h-7 mb-1"
                   />
-                  <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-center line-clamp-1">
+                  <span className="text-[11px] sm:text-xs md:text-sm font-semibold text-center line-clamp-1 leading-tight">
                     {cat.name}
                   </span>
                 </motion.button>
@@ -406,7 +464,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Cara Menggunakan */}
       <section
         data-aos="fade-up"
         data-aos-delay="200"
@@ -449,7 +506,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Kecamatan */}
       <section
         data-aos="fade-up"
         data-aos-delay="100"
@@ -458,25 +514,48 @@ const HomePage = () => {
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
       >
         <AnimatedIconBackground iconCount={15} color="text-orange" />
-        <div className="mb-2 flex justify-between items-center">
-          <h2 className="text-xl sm:text-2xl text-start text-dark">
-            <span className="font-bold">Jelajahi</span>{" "}
-            <span className="font-normal">UMKM Berdasarkan Kecamatan</span>
-          </h2>
-          <div className="flex md:hidden gap-2">
+
+        <div className="mb-2 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
+          <div className="flex-1">
+            <h2 className="text-lg sm:text-2xl text-start text-dark flex items-center gap-3 justify-between">
+              <div>
+                <span className="font-bold">Jelajahi</span>{" "}
+                <span className="font-normal">UMKM Berdasarkan Kecamatan</span>
+              </div>
+
+              <div className="flex sm:hidden gap-2">
+                <button
+                  onClick={() => scrollKecamatan("left")}
+                  disabled={!canScrollLeftKecamatan}
+                  className="p-2 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <Icon icon="mdi:chevron-left" className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => scrollKecamatan("right")}
+                  disabled={!canScrollRightKecamatan}
+                  className="p-2 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <Icon icon="mdi:chevron-right" className="w-5 h-5" />
+                </button>
+              </div>
+            </h2>
+          </div>
+
+          <div className="hidden sm:flex gap-2">
             <button
               onClick={() => scrollKecamatan("left")}
               disabled={!canScrollLeftKecamatan}
-              className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              className="p-3 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              <Icon icon="tabler:chevron-left" className="w-5 h-5" />
+              <Icon icon="mdi:chevron-left" className="w-6 h-6" />
             </button>
             <button
               onClick={() => scrollKecamatan("right")}
               disabled={!canScrollRightKecamatan}
-              className="text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              className="p-3 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              <Icon icon="tabler:chevron-right" className="w-5 h-5" />
+              <Icon icon="mdi:chevron-right" className="w-6 h-6" />
             </button>
           </div>
         </div>
@@ -502,7 +581,7 @@ const HomePage = () => {
           <div
             ref={kecamatanScrollRef}
             onScroll={checkScrollKecamatan}
-            className="overflow-x-auto flex gap-4 py-3 no-scrollbar snap-x"
+            className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar py-3 snap-x"
           >
             {dataKecamatan.map((kec, i) => {
               const placeCount = dataUMKM.filter(
@@ -512,12 +591,12 @@ const HomePage = () => {
               return (
                 <div
                   key={kec.slug}
-                  className="snap-start"
                   data-aos="zoom-in"
                   data-aos-delay={150 + i * 100}
                   data-aos-duration="800"
                   data-aos-easing="ease-in-out-sine"
                   data-aos-anchor-placement="bottom-bottom"
+                  className="snap-start"
                 >
                   <KecamatanCard data={kecWithCount} />
                 </div>
@@ -526,25 +605,8 @@ const HomePage = () => {
           </div>
           <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
-
-        <button
-          onClick={() => scrollKecamatan("left")}
-          disabled={!canScrollLeftKecamatan}
-          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-[42%] -translate-y-1/2 left-0 xl:left-30 z-20 cursor-pointer"
-        >
-          <Icon icon="tabler:chevron-left" className="w-5 h-5" />
-        </button>
-
-        <button
-          onClick={() => scrollKecamatan("right")}
-          disabled={!canScrollRightKecamatan}
-          className="hidden md:block text-dark p-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed absolute top-[42%] -translate-y-1/2 right-0 xl:right-30 z-20 cursor-pointer"
-        >
-          <Icon icon="tabler:chevron-right" className="w-5 h-5" />
-        </button>
       </section>
 
-      {/* Potret UMKM */}
       <section
         data-aos="fade-up"
         className="px-4 md:px-8 lg:px-20 xl:px-50 mb-2 relative"
@@ -553,7 +615,7 @@ const HomePage = () => {
           <span className="font-bold">Potret</span>{" "}
           <span className="font-normal">UMKM Kudus</span>
         </h2>
-        <p className="text-dark font-medium text-base mt-2">
+        <p className="text-dark/80 font-medium text-sm sm:text-base mt-2">
           Melihat lebih dekat keberagaman usaha masyarakat Kudus yang tumbuh
           dari semangat lokal dan kreativitas.
         </p>
@@ -561,22 +623,58 @@ const HomePage = () => {
 
       <UMKMScrollSection />
 
-      {/* Review */}
       <section
         data-aos="fade-up"
-        className="relative py-14 sm:py-20 mb-14 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-transparent overflow-hidden"
+        className="relative py-4 mb-14 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-transparent overflow-hidden"
       >
         <AnimatedIconBackground iconCount={15} color="text-orange" />
 
         <div className="mb-2 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
           <div className="flex-1">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-dark">
-              <span className="font-bold">Apa Kata</span>{" "}
-              <span className="font-normal">Mereka?</span>
+            <h2 className="text-xl sm:text-2xl font-semibold text-dark flex items-center gap-3 justify-between">
+              <div>
+                <span className="font-bold">Apa</span>{" "}
+                <span className="font-normal">Kata Mereka?</span>
+              </div>
+
+              <div className="flex sm:hidden gap-2">
+                <button
+                  onClick={scrollLeft}
+                  disabled={!canScrollLeft}
+                  className="p-2 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <Icon icon="mdi:chevron-left" className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={scrollRight}
+                  disabled={!canScrollRight}
+                  className="p-2 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <Icon icon="mdi:chevron-right" className="w-5 h-5" />
+                </button>
+              </div>
             </h2>
+
             <p className="text-dark/80 font-medium text-sm sm:text-base mt-2 max-w-xl">
               Ulasan dan testimoni nyata dari para pengguna website kami.
             </p>
+          </div>
+
+          <div className="hidden sm:flex gap-2">
+            <button
+              onClick={scrollLeft}
+              disabled={!canScrollLeft}
+              className="p-3 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <Icon icon="mdi:chevron-left" className="w-6 h-6" />
+            </button>
+            <button
+              onClick={scrollRight}
+              disabled={!canScrollRight}
+              className="p-3 bg-light rounded-lg shadow hover:bg-orange hover:text-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <Icon icon="mdi:chevron-right" className="w-6 h-6" />
+            </button>
           </div>
         </div>
 
@@ -590,15 +688,19 @@ const HomePage = () => {
           ) : reviewData.length === 0 ? (
             <p className="text-center text-dark/60 py-10">Belum ada ulasan.</p>
           ) : (
-            <motion.div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 py-2 sm:py-4 justify-center items-stretch">
-              {reviewData.slice(0, 3).map((rev, i) => (
+            <motion.div
+              ref={scrollRef}
+              onScroll={checkScroll}
+              className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar py-2 sm:py-4 snap-x"
+            >
+              {reviewData.map((rev, i) => (
                 <div
                   key={i}
                   data-aos="fade-up"
                   data-aos-delay={i * 150}
                   data-aos-duration="600"
                   data-aos-easing="ease-out-cubic"
-                  className="shrink-0"
+                  className="min-w-[85%] sm:min-w-[32%] snap-start"
                 >
                   <ReviewCard review={rev} />
                 </div>
@@ -618,7 +720,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Artikel */}
       <section
         data-aos="fade-up"
         className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
@@ -664,6 +765,7 @@ const HomePage = () => {
                 data-aos-delay={100 + i * 100}
               >
                 <ArtikelCard
+                  id={art.id}
                   image={art.image}
                   category={art.category}
                   title={art.title}

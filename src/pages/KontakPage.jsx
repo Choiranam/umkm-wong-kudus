@@ -72,7 +72,7 @@ const KontakPage = () => {
           result.message || "Gagal mengirim pesan. Silakan coba lagi."
         );
       }
-    } catch (err) {
+    } catch {
       setErrorHubungi(
         "Terjadi kesalahan jaringan. Periksa koneksi internet Anda."
       );
@@ -94,7 +94,7 @@ const KontakPage = () => {
   const [successReview, setSuccessReview] = useState("");
   const [isLoadingReview, setIsLoadingReview] = useState(false);
 
-  const MAX_KOMENTAR_LENGTH = 300;
+  const MAX_KOMENTAR_LENGTH = 100;
 
   const handleReviewChange = (label, value) => {
     if (label === "Pesan" && value.length > MAX_KOMENTAR_LENGTH) {
@@ -194,7 +194,7 @@ const KontakPage = () => {
           );
         }
       }
-    } catch (err) {
+    } catch {
       setErrorReview(
         "Terjadi kesalahan jaringan. Periksa koneksi internet Anda."
       );
@@ -424,10 +424,12 @@ const KontakPage = () => {
                       onChange={(e) =>
                         handleReviewChange(label, e.target.value)
                       }
+                      maxLength={30}
                       className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px]"
                       placeholder=" "
                       disabled={isLoadingReview}
                     />
+
                     <label
                       htmlFor={`review-${label}`}
                       className={`absolute left-0 transition-all duration-200 ease-in-out
