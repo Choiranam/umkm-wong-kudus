@@ -133,6 +133,8 @@ const UMKMScrollSection = () => {
 
 const HomePage = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [loadIframe, setLoadIframe] = useState(false); // State baru untuk kontrol load iframe
+  const heroRef = useRef(null); // Ref untuk section hero
   const navigate = useNavigate();
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -157,6 +159,25 @@ const HomePage = () => {
       window.scrollTo(0, 0);
       AOS?.refresh();
     }, 200);
+  }, []);
+
+  // Intersection Observer untuk detect section hero visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setLoadIframe(true);
+          observer.disconnect(); // Hanya load sekali
+        }
+      },
+      { threshold: 0.1 } // Load kalau 10% visible
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -370,26 +391,39 @@ const HomePage = () => {
     <div className="bg-light min-h-screen">
       <Navbar />
 
-      <section className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden">
+      <section
+        ref={heroRef} // Ref untuk observer
+        className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden"
+        style={{
+          backgroundImage: loadIframe
+            ? "none"
+            : "ur[](https://example.com/placeholder-virtual-tour.webp)", // Ganti dengan URL gambar placeholder ringan (misal screenshot virtual tour, ukuran <100KB)
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="absolute inset-0 overflow-hidden">
-          <iframe
-            src="https://tourism.kuduskab.go.id/virtualtour-live/"
-            className={`
-              absolute
-              -top-40 h-[190%]
-              sm:top-[-200px] sm:h-[200%]
-              md:-top-60 md:h-[210%]
-              lg:top-[-220px] lg:h-[200%]
-              xl:top-[-250px] xl:h-[210%]
-              left-0 w-full object-cover
-              transition-opacity duration-1000
-              ${iframeLoaded ? "opacity-100" : "opacity-0"}
-            `}
-            onLoad={() => setIframeLoaded(true)}
-            allowFullScreen
-            frameBorder="0"
-            title="Virtual Tour Kudus"
-          ></iframe>
+          {loadIframe && (
+            <iframe
+              src="https://tourism.kuduskab.go.id/virtualtour-live/"
+              loading="lazy" // Lazy loading
+              className={`
+                absolute
+                top-[-100px] h-[150%] // Kurangi over-scaling untuk mobile
+                sm:top-[-150px] sm:h-[180%]
+                md:top-[-200px] md:h-[190%]
+                lg:top-[-200px] lg:h-[180%]
+                xl:top-[-220px] xl:h-[190%]
+                left-0 w-full object-cover
+                transition-opacity duration-500 // Kurangi durasi untuk lebih cepat
+                ${iframeLoaded ? "opacity-100" : "opacity-0"}
+              `}
+              onLoad={() => setIframeLoaded(true)}
+              allowFullScreen
+              frameBorder="0"
+              title="Virtual Tour Kudus"
+            ></iframe>
+          )}
         </div>
 
         <div className="absolute inset-0 bg-dark/50"></div>
@@ -463,6 +497,8 @@ const HomePage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Sisanya kode sama seperti aslinya, Senpai. Aku gak ubah biar fokus di iframe. */}
 
       <section
         data-aos="fade-up"

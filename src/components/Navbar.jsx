@@ -4,60 +4,48 @@ import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ forceDark = false }) => {
   const { pathname, search } = useLocation();
-
   let activeMenu = "";
   if (pathname === "/") activeMenu = "beranda";
   else if (pathname === "/tentang-umkm") activeMenu = "tentang-umkm";
   else if (pathname === "/kontak") activeMenu = "kontak";
   else if (pathname === "/tentang-kami") activeMenu = "tentang-kami";
   else if (pathname.startsWith("/kategori")) activeMenu = "kategori";
-
   const activeKategoriSlug = new URLSearchParams(search).get("slug");
-
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isKategoriOpen, setIsKategoriOpen] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
     setScrollY(0);
     setIsMobileMenuOpen(false);
     setIsKategoriOpen(false);
-  }, [pathname, search]);
-
-  // ✅ JIKA forceDark = true → abaikan efek transparan
+  }, [pathname]);
   const isAtTop = forceDark ? false : scrollY <= 50;
-
   const bgColor = forceDark
     ? "bg-light shadow-sm"
     : isAtTop && !isMobileMenuOpen
     ? "bg-dark/0"
     : "bg-light shadow-sm";
-
   const textColor = forceDark
     ? "text-dark"
     : isAtTop && !isMobileMenuOpen
     ? "text-white"
     : "text-dark";
-
   const hoverText = forceDark
     ? "hover:text-orange"
     : isAtTop && !isMobileMenuOpen
     ? "hover:text-orange/80"
     : "hover:text-orange";
-
   const logoSrc = forceDark
     ? "/images/logo_navbar_footer.webp"
     : isAtTop && !isMobileMenuOpen
     ? "/images/logo_kudus.webp"
     : "/images/logo_navbar_footer.webp";
-
   const kategoriItems = [
     { icon: "fluent:food-16-regular", text: "Makanan", slug: "makanan" },
     { icon: "fluent:drink-to-go-24-regular", text: "Minuman", slug: "minuman" },
@@ -65,9 +53,10 @@ const Navbar = ({ forceDark = false }) => {
     { icon: "lucide:package-open", text: "Barang", slug: "barang" },
     { icon: "basil:other-1-outline", text: "Lainnya", slug: "lainnya" },
   ];
-
   return (
-    <nav className={`fixed top-0 left-0 w-full ${bgColor} px-8 py-2.5 z-50 transition-all duration-500 ease-in-out`}>
+    <nav
+      className={`fixed top-0 left-0 w-full ${bgColor} px-8 py-2.5 z-50 transition-all duration-500 ease-in-out`}
+    >
       <div className="relative flex items-center justify-between max-w-7xl mx-auto">
         <Link to="/" className="shrink-0">
           <img
@@ -76,8 +65,6 @@ const Navbar = ({ forceDark = false }) => {
             className="h-14 w-auto transition-all duration-500"
           />
         </Link>
-
-        {/* DESKTOP MENU */}
         <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center space-x-8">
           <Link
             to="/"
@@ -89,7 +76,6 @@ const Navbar = ({ forceDark = false }) => {
           >
             <span>Beranda</span>
           </Link>
-
           <div className="relative group">
             <button
               className={`text-base transition-colors duration-200 flex items-center space-x-1 pb-0.5 cursor-pointer ${
@@ -110,8 +96,6 @@ const Navbar = ({ forceDark = false }) => {
                 }`}
               />
             </button>
-
-            {/* DROPDOWN */}
             <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl py-3 z-50 border border-dark/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div className="space-y-1">
                 {kategoriItems.map(({ icon, text, slug }) => {
@@ -142,7 +126,6 @@ const Navbar = ({ forceDark = false }) => {
               </div>
             </div>
           </div>
-
           <Link
             to="/tentang-umkm"
             className={`text-base pb-0.5 transition-colors duration-200 ${
@@ -153,7 +136,6 @@ const Navbar = ({ forceDark = false }) => {
           >
             Tentang UMKM
           </Link>
-
           <Link
             to="/kontak"
             className={`text-base pb-0.5 transition-colors duration-200 ${
@@ -164,7 +146,6 @@ const Navbar = ({ forceDark = false }) => {
           >
             Kontak
           </Link>
-
           <Link
             to="/tentang-kami"
             className={`text-base pb-0.5 transition-colors duration-200 ${
@@ -176,15 +157,12 @@ const Navbar = ({ forceDark = false }) => {
             Tentang Kami
           </Link>
         </div>
-
         <Link
           to="/artikel"
           className="hidden lg:block px-5 py-2.5 bg-orange text-white text-base font-medium rounded-md transition-all duration-300 transform hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97] whitespace-nowrap"
         >
           Baca Artikel UMKM
         </Link>
-
-        {/* MOBILE MENU BUTTON */}
         <button
           className={`lg:hidden p-2 rounded-md transition-colors cursor-pointer ${textColor} ${hoverText}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -196,8 +174,6 @@ const Navbar = ({ forceDark = false }) => {
           />
         </button>
       </div>
-
-      {/* MOBILE MENU DROPDOWN */}
       <div
         className={`lg:hidden absolute top-full left-0 w-full bg-light shadow-lg ${
           isMobileMenuOpen
@@ -217,7 +193,6 @@ const Navbar = ({ forceDark = false }) => {
           >
             Beranda
           </Link>
-
           <div>
             <button
               onClick={() => setIsKategoriOpen(!isKategoriOpen)}
@@ -235,7 +210,6 @@ const Navbar = ({ forceDark = false }) => {
                 }`}
               />
             </button>
-
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
                 isKategoriOpen ? "max-h-96" : "max-h-0"
@@ -270,7 +244,6 @@ const Navbar = ({ forceDark = false }) => {
               </div>
             </div>
           </div>
-
           <Link
             to="/tentang-umkm"
             className={`text-base block w-full p-3 rounded-lg ${
@@ -301,7 +274,6 @@ const Navbar = ({ forceDark = false }) => {
           >
             Tentang Kami
           </Link>
-
           <div className="pt-2">
             <Link
               to="/artikel"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
@@ -94,7 +94,7 @@ const KontakPage = () => {
   const [successReview, setSuccessReview] = useState("");
   const [isLoadingReview, setIsLoadingReview] = useState(false);
 
-  const MAX_KOMENTAR_LENGTH = 100;
+  const MAX_KOMENTAR_LENGTH = 300;
 
   const handleReviewChange = (label, value) => {
     if (label === "Pesan" && value.length > MAX_KOMENTAR_LENGTH) {
@@ -122,6 +122,27 @@ const KontakPage = () => {
 
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+  const generateAvatar = (firstName, lastName) => {
+    const initials = `${firstName[0] || ""}${lastName[0] || ""}`.toUpperCase();
+    const canvas = document.createElement("canvas");
+    canvas.width = 128;
+    canvas.height = 128;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#E9743B";
+    ctx.fillRect(0, 0, 128, 128);
+    ctx.font = "bold 60px sans-serif";
+    ctx.fillStyle = "#FFFFFF";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(initials, 64, 64);
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => {
+        const file = new File([blob], `${initials}.webp`, { type: "image/png" });
+        resolve(file);
+      });
+    });
+  };
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -160,7 +181,12 @@ const KontakPage = () => {
     formDataPayload.append("email", email);
     formDataPayload.append("rating", rating);
     formDataPayload.append("comment", comment);
-    if (selectedFile) formDataPayload.append("photo_profil", selectedFile);
+    if (selectedFile) {
+      formDataPayload.append("photo_profil", selectedFile);
+    } else if (nameFirst && nameLast) {
+      const avatarFile = await generateAvatar(nameFirst, nameLast);
+      formDataPayload.append("photo_profil", avatarFile);
+    }
     try {
       const response = await fetch(
         "https://api-umkmwongkudus.rplrus.com/api/rating",
@@ -221,6 +247,23 @@ const KontakPage = () => {
     }
   }, [location]);
 
+  const pesanRef = useRef(null);
+  const reviewPesanRef = useRef(null);
+
+  useEffect(() => {
+    if (pesanRef.current) {
+      pesanRef.current.style.height = "auto";
+      pesanRef.current.style.height = `${pesanRef.current.scrollHeight}px`;
+    }
+  }, [formData.Pesan]);
+
+  useEffect(() => {
+    if (reviewPesanRef.current) {
+      reviewPesanRef.current.style.height = "auto";
+      reviewPesanRef.current.style.height = `${reviewPesanRef.current.scrollHeight}px`;
+    }
+  }, [reviewData.Pesan]);
+
   return (
     <div className="bg-light min-h-screen overflow-x-hidden w-full">
       <Navbar />
@@ -280,6 +323,7 @@ const KontakPage = () => {
                           e.target.style.height = "auto";
                           e.target.style.height = e.target.scrollHeight + "px";
                         }}
+                        ref={pesanRef}
                         maxLength={MAX_PESAN_LENGTH}
                         className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden resize-none"
                         placeholder=" "
@@ -501,6 +545,7 @@ const KontakPage = () => {
                   e.target.style.height = "auto";
                   e.target.style.height = `${e.target.scrollHeight}px`;
                 }}
+                ref={reviewPesanRef}
                 maxLength={MAX_KOMENTAR_LENGTH}
                 className="peer w-full border-b border-dark/40 bg-transparent focus:outline-none py-2 text-[15px] leading-relaxed overflow-hidden resize-none"
                 placeholder=" "

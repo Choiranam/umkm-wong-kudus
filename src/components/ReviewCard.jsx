@@ -56,7 +56,7 @@ const ReviewCard = ({ review }) => {
 
               {email && (
                 <span className="text-dark/50 text-[11px] sm:text-xs mt-1">
-                  {maskEmail(email)} • {date}
+                  {maskEmail(email)}<br/>{date}
                 </span>
               )}
             </div>

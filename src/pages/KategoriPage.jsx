@@ -1,8 +1,7 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
-
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
@@ -15,42 +14,60 @@ const KATEGORI_CONFIG = {
     title: "Jelajahi Rasa Lokal dari UMKM Kudus",
     subtitle:
       "Nikmati aneka kuliner khas buatan warga Kudus yang penuh cita rasa dan keunikan lokal.",
-    image: "/images/sampel_hero_kategori.webp",
+    image: "/images/hero_makanan.webp",
   },
   minuman: {
     title: "Segarnya Kreasi Minuman dari UMKM Kudus",
     subtitle:
       "Temukan berbagai minuman segar hasil racikan pelaku UMKM dengan inovasi dan cita rasa khas daerah.",
-    image: "/images/sampel_hero_minuman.webp",
+    image: "/images/hero_minuman.webp",
   },
   jasa: {
     title: "Layanan Terbaik dari Pelaku UMKM Kudus",
     subtitle:
       "Dari laundry hingga barbershop, kami hadirkan berbagai jasa berkualitas hasil karya masyarakat lokal.",
-    image: "/images/sampel_hero_jasa.webp",
+    image: "/images/hero_jasa.webp",
   },
   barang: {
     title: "Produk Unggulan Karya UMKM Kudus",
     subtitle:
       "Lihat hasil kreativitas warga Kudus melalui berbagai produk menarik dan bermanfaat bagi kebutuhan Anda.",
-    image: "/images/sampel_hero_barang.webp",
+    image: "/images/hero_barang.webp",
   },
   lainnya: {
     title: "Beragam Inovasi dari UMKM Kudus",
     subtitle:
       "Temukan usaha-usaha unik lainnya yang menunjukkan semangat dan kreativitas pelaku UMKM di Kudus.",
-    image: "/images/sampel_hero_lainnya.webp",
+    image: "/images/hero_lainnya.webp",
   },
 };
 
 const KategoriPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const kategoriSlug = searchParams.get("slug") || "makanan";
-
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(
     parseInt(searchParams.get("page")) || 1
   );
+  const pageContainerRef = useRef(null);
+  const scrollToContainer = () => {
+    if (pageContainerRef.current) {
+      const navbarHeight = 70;
+      const elementPosition =
+        pageContainerRef.current.getBoundingClientRect().top;
+      const offsetPosition = window.scrollY + elementPosition - navbarHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "instant",
+      });
+    }
+  };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const [isOpen, setIsOpen] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(() =>
     window.innerWidth < 640 ? 8 : 15
@@ -65,15 +82,14 @@ const KategoriPage = () => {
       return matchesCategory && matchesSearch;
     });
   }, [kategoriSlug, search]);
-
   const totalPages = Math.ceil(filteredUMKM.length / itemsPerPage);
-
   const paginatedUMKM = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
     return filteredUMKM.slice(start, start + itemsPerPage);
   }, [filteredUMKM, currentPage, itemsPerPage]);
   useEffect(() => {
     setCurrentPage(1);
+    scrollToTop();
   }, [kategoriSlug, search]);
   useEffect(() => {
     setSearchParams({ slug: kategoriSlug, page: currentPage });
@@ -92,10 +108,9 @@ const KategoriPage = () => {
   const goToPage = (page) => {
     if (page < 1 || page > totalPages || page === currentPage) return;
     setCurrentPage(page);
+    scrollToContainer();
   };
-
   const kategoriData = KATEGORI_CONFIG[kategoriSlug] || KATEGORI_CONFIG.makanan;
-
   return (
     <div className="bg-light min-h-screen overflow-x-hidden w-full relative">
       <Navbar />
@@ -104,8 +119,11 @@ const KategoriPage = () => {
         title={kategoriData.title}
         subtitle={kategoriData.subtitle}
       />
-
-      <PageContainer variant="wide" className="py-6 sm:py-10 relative z-10">
+      <PageContainer
+        ref={pageContainerRef}
+        variant="wide"
+        className="py-6 sm:py-10 relative z-10"
+      >
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -116,7 +134,6 @@ const KategoriPage = () => {
             <Icon icon="mdi:home-outline" />
             Beranda
           </Link>
-
           <Icon icon="mdi:chevron-right" className="mx-2" />
           <div
             className="relative"
@@ -128,7 +145,6 @@ const KategoriPage = () => {
               Kategori
               <Icon icon="mdi:chevron-down" className="text-sm" />
             </button>
-
             {isOpen && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -155,7 +171,6 @@ const KategoriPage = () => {
               </motion.div>
             )}
           </div>
-
           <Icon icon="mdi:chevron-right" className="mx-2" />
           <span className="text-orange capitalize font-semibold">
             {kategoriSlug}
@@ -238,7 +253,6 @@ const KategoriPage = () => {
                 height="22"
               />
             </button>
-
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
@@ -252,7 +266,6 @@ const KategoriPage = () => {
                 {page}
               </button>
             ))}
-
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
@@ -271,7 +284,6 @@ const KategoriPage = () => {
           </motion.div>
         )}
       </PageContainer>
-
       <Footer />
     </div>
   );

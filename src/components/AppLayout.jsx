@@ -4,7 +4,7 @@ import { Outlet, ScrollRestoration } from "react-router-dom";
 const AppLayout = () => {
   return (
     <>
-      <ScrollRestoration />
+      {/* <ScrollRestoration /> */}
       <Outlet />
     </>
   );
