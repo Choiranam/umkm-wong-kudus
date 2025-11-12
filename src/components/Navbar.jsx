@@ -25,6 +25,9 @@ const Navbar = ({ forceDark = false }) => {
     setIsMobileMenuOpen(false);
     setIsKategoriOpen(false);
   }, [pathname]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
   const isAtTop = forceDark ? false : scrollY <= 50;
   const bgColor = forceDark
     ? "bg-light shadow-sm"
@@ -76,7 +79,11 @@ const Navbar = ({ forceDark = false }) => {
           >
             <span>Beranda</span>
           </Link>
-          <div className="relative group">
+          <div
+            className="relative"
+            onMouseEnter={() => setIsKategoriOpen(true)}
+            onMouseLeave={() => setIsKategoriOpen(false)}
+          >
             <button
               className={`text-base transition-colors duration-200 flex items-center space-x-1 pb-0.5 cursor-pointer ${
                 activeMenu === "kategori" && !activeKategoriSlug
@@ -87,7 +94,9 @@ const Navbar = ({ forceDark = false }) => {
               <span>Kategori</span>
               <Icon
                 icon="tabler:chevron-down"
-                className={`w-3 h-3 transition-transform duration-200 group-hover:rotate-180 ${
+                className={`w-3 h-3 transition-transform duration-200 ${
+                  isKategoriOpen ? "rotate-180" : ""
+                } ${
                   forceDark
                     ? "text-dark"
                     : isAtTop && !isMobileMenuOpen
@@ -96,7 +105,11 @@ const Navbar = ({ forceDark = false }) => {
                 }`}
               />
             </button>
-            <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl py-3 z-50 border border-dark/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div
+              className={`absolute left-0 mt-2 w-64 bg-white rounded-2xl bg-white shadow-xl py-3 z-50 border border-dark/10 transition-all duration-200 ${
+                isKategoriOpen ? "opacity-100 visible" : "opacity-0 invisible"
+              }`}
+            >
               <div className="space-y-1">
                 {kategoriItems.map(({ icon, text, slug }) => {
                   const kategoriPath = `/kategori?slug=${slug}`;
@@ -105,6 +118,7 @@ const Navbar = ({ forceDark = false }) => {
                     <Link
                       key={slug}
                       to={kategoriPath}
+                      onClick={() => setIsKategoriOpen(false)}
                       className={`group flex items-center px-5 py-3 text-sm font-normal transition-all duration-200 ${
                         isActive
                           ? "bg-linear-to-r from-orange/5 to-orange/10 text-orange"
@@ -223,6 +237,10 @@ const Navbar = ({ forceDark = false }) => {
                     <Link
                       key={slug}
                       to={kategoriPath}
+                      onClick={() => {
+                        setIsKategoriOpen(false);
+                        setIsMobileMenuOpen(false);
+                      }}
                       className={`group flex items-center px-3 py-2.5 text-sm font-normal rounded-lg ${
                         isActive
                           ? "text-orange font-medium"

@@ -58,7 +58,7 @@ const KategoriPage = () => {
       const offsetPosition = window.scrollY + elementPosition - navbarHeight;
       window.scrollTo({
         top: offsetPosition,
-        behavior: "instant",
+        behavior: "smooth",
       });
     }
   };
@@ -90,7 +90,10 @@ const KategoriPage = () => {
   useEffect(() => {
     setCurrentPage(1);
     scrollToTop();
-  }, [kategoriSlug, search]);
+  }, [kategoriSlug]);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search]);
   useEffect(() => {
     setSearchParams({ slug: kategoriSlug, page: currentPage });
   }, [kategoriSlug, currentPage, setSearchParams]);
@@ -108,7 +111,7 @@ const KategoriPage = () => {
   const goToPage = (page) => {
     if (page < 1 || page > totalPages || page === currentPage) return;
     setCurrentPage(page);
-    scrollToContainer();
+    setTimeout(scrollToContainer, 0);
   };
   const kategoriData = KATEGORI_CONFIG[kategoriSlug] || KATEGORI_CONFIG.makanan;
   return (
@@ -183,7 +186,7 @@ const KategoriPage = () => {
               placeholder="Cari nama UMKM..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full border border-dark/20 rounded-[5px] px-5 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange transition placeholder:text-dark/50 text-dark"
+              className="w-full border border-dark/20 rounded-[5px] px-5 py-2 pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange transition placeholder:text-dark/50 text-dark overflow-hidden"
             />
             <Icon
               icon="mdi:magnify"

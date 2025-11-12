@@ -66,7 +66,7 @@ export const dataUMKM = [
       "Restoran modern dengan aneka hidangan lezat dan suasana nyaman untuk berkumpul bersama keluarga dan teman.",
     location: "Bae",
     kecamatanSlug: "bae",
-    image: "/images/restomvr_hero.jpg",
+    image: "/images/restomvr_hero.webp",
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ export const dataUMKM = [
       "Cafe dan bistro bergaya modern yang menyajikan aneka hidangan lezat dan minuman kekinian dengan suasana nyaman.",
     location: "Bae",
     kecamatanSlug: "bae",
-    image: "/images/vjocafe_hero.jpg",
+    image: "/images/vjocafe_hero.webp",
   },
   {
     id: 8,
@@ -88,7 +88,7 @@ export const dataUMKM = [
       "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur harian dengan harga terjangkau dan kualitas terjamin.",
     location: "Bae",
     kecamatanSlug: "bae",
-    image: "/images/tokoalmaira_hero.jpg",
+    image: "/images/tokoalmaira_hero.webp",
   },
   {
     id: 9,
@@ -99,7 +99,7 @@ export const dataUMKM = [
       "Toko pakaian wanita yang menawarkan berbagai busana modern, hijab, dan aksesoris dengan desain elegan dan harga terjangkau.",
     location: "Bae",
     kecamatanSlug: "bae",
-    image: "/images/siskanuna_hero.jpg",
+    image: "/images/siskanuna_hero.webp",
   },
   {
     id: 10,
@@ -110,7 +110,7 @@ export const dataUMKM = [
       "Toko pakaian yang menjual berbagai koleksi batik khas Kudus dengan desain modern dan kualitas terbaik.",
     location: "Bae",
     kecamatanSlug: "bae",
-    image: "/images/terebatik_hero.jpg",
+    image: "/images/terebatik_hero.webp",
   },
 
   // DAWE
@@ -178,7 +178,7 @@ export const dataUMKM = [
       "Rumah makan yang menyajikan aneka hidangan rumahan lezat dengan cita rasa khas dan suasana nyaman.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    image: "/images/sendangmulia_hero.jpg",
+    image: "/images/sendangmulia_hero.webp",
   },
   {
     id: 17,
@@ -189,7 +189,7 @@ export const dataUMKM = [
       "Toko perlengkapan rumah tangga yang menyediakan berbagai kebutuhan harian dengan harga terjangkau.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    image: "/images/tokoadibazka_hero.jpg",
+    image: "/images/tokoadibazka_hero.webp",
   },
   {
     id: 18,
@@ -200,7 +200,7 @@ export const dataUMKM = [
       "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur, bumbu, dan sembako lengkap dengan harga bersahabat.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    image: "/images/tokosridawe_hero.jpg",
+    image: "/images/tokosridawe_hero.webp",
   },
   {
     id: 19,
@@ -211,7 +211,7 @@ export const dataUMKM = [
       "Toko pakaian yang menyediakan berbagai busana trendi dan nyaman untuk segala usia.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    image: "/images/arfanoutfitkudus_hero.jpg",
+    image: "/images/arfanoutfitkudus_hero.webp",
   },
   {
     id: 20,
@@ -222,7 +222,7 @@ export const dataUMKM = [
       "Toko pakaian yang menyediakan berbagai busana trendi, modern, dan nyaman untuk segala usia.",
     location: "Dawe",
     kecamatanSlug: "dawe",
-    image: "/images/dindastore_hero.jpg",
+    image: "/images/dindastore_hero.webp",
   },
 
   // GEBOG
@@ -288,7 +288,7 @@ export const dataUMKM = [
       "Rumah makan yang menyajikan aneka hidangan lezat khas rumahan.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    image: "/images/basina_hero.png",
+    image: "/images/basina_hero.webp",
   },
   {
     id: 27,
@@ -299,7 +299,7 @@ export const dataUMKM = [
       "Kedai kopi modern dengan cita rasa autentik dan suasana nyaman.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    image: "/images/campaigncoffee_hero.jpg",
+    image: "/images/campaigncoffee_hero.webp",
   },
   {
     id: 28,
@@ -310,7 +310,7 @@ export const dataUMKM = [
       "Toko bahan makanan lengkap dengan harga terjangkau dan kualitas terjamin.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    image: "/images/tokotnajaya_hero.jpg",
+    image: "/images/tokotnajaya_hero.webp",
   },
   {
     id: 29,
@@ -321,7 +321,7 @@ export const dataUMKM = [
       "Toko bahan makanan harian yang menyediakan kebutuhan dapur lengkap dan berkualitas.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    image: "/images/tokoteguhsudarsono_hero.jpg",
+    image: "/images/tokoteguhsudarsono_hero.webp",
   },
   {
     id: 30,
@@ -332,7 +332,7 @@ export const dataUMKM = [
       "Toko pakaian modern yang menyediakan berbagai busana stylish dan nyaman untuk semua kalangan.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    image: "/images/nilnadioncollection_hero.jpg",
+    image: "/images/nilnadioncollection_hero.webp",
   },
   {
     id: 31,
@@ -343,7 +343,7 @@ export const dataUMKM = [
       "Toko bahan makanan harian yang menyediakan kebutuhan dapur lengkap dengan harga terjangkau.",
     location: "Gebog",
     kecamatanSlug: "gebog",
-    image: "/images/tokokastimah_hero.jpg",
+    image: "/images/tokokastimah_hero.webp",
   },
 
   // JATI
@@ -411,7 +411,7 @@ export const dataUMKM = [
       "Restoran dengan pemandangan indah di lereng Muria yang menyajikan aneka hidangan lezat dan suasana nyaman.",
     location: "Jati",
     kecamatanSlug: "jati",
-    image: "/images/gravitasiterasmuria_hero.jpg",
+    image: "/images/gravitasiterasmuria_hero.webp",
   },
   {
     id: 38,
@@ -422,7 +422,7 @@ export const dataUMKM = [
       "Toko perlengkapan rumah tangga yang menyediakan berbagai kebutuhan dapur dan alat harian dengan harga terjangkau.",
     location: "Jati",
     kecamatanSlug: "jati",
-    image: "/images/tokokliwon_hero.jpg",
+    image: "/images/tokokliwon_hero.webp",
   },
   {
     id: 39,
@@ -433,7 +433,7 @@ export const dataUMKM = [
       "Toko pakaian anak yang menyediakan berbagai busana lucu, nyaman, dan berkualitas untuk si kecil.",
     location: "Jati",
     kecamatanSlug: "jati",
-    image: "/images/tokohappykids_hero.jpg",
+    image: "/images/tokohappykids_hero.webp",
   },
   {
     id: 40,
@@ -444,7 +444,7 @@ export const dataUMKM = [
       "Toko pakaian modern yang menawarkan berbagai koleksi busana trendi untuk pria dan wanita dengan gaya kekinian.",
     location: "Jati",
     kecamatanSlug: "jati",
-    image: "/images/nobbykudusextension_hero.jpg",
+    image: "/images/nobbykudusextension_hero.webp",
   },
 
   // JEKULO
@@ -511,7 +511,7 @@ export const dataUMKM = [
       "Warung mie legendaris yang menyajikan aneka mie rebus dan goreng dengan cita rasa khas dan porsi mengenyangkan.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    image: "/images/warungmiedadat_hero.jpg",
+    image: "/images/warungmiedadat_hero.webp",
   },
   {
     id: 47,
@@ -522,7 +522,7 @@ export const dataUMKM = [
       "Toko bahan makanan dan grosir snack lengkap yang menyediakan berbagai camilan, makanan ringan, dan kebutuhan dapur dengan harga terjangkau.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    image: "/images/tokorisfan_hero.jpg",
+    image: "/images/tokorisfan_hero.webp",
   },
   {
     id: 48,
@@ -533,7 +533,7 @@ export const dataUMKM = [
       "Toko pakaian muslim yang menyediakan berbagai busana syar’i, gamis, dan hijab modern dengan desain elegan dan harga bersahabat.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    image: "/images/jsmuslim_hero.jpg",
+    image: "/images/jsmuslim_hero.webp",
   },
   {
     id: 49,
@@ -544,7 +544,7 @@ export const dataUMKM = [
       "Toko pakaian yang menyediakan berbagai busana muslim, mukena, dan perlengkapan ibadah dengan kualitas bagus dan harga terjangkau.",
     location: "Jekulo",
     kecamatanSlug: "jekulo",
-    image: "/images/kioshjh_hero.jpg",
+    image: "/images/kioshjh_hero.webp",
   },
 
   // KALIWUNGU
@@ -610,7 +610,7 @@ export const dataUMKM = [
       "Rumah makan yang menyajikan sego sambel pedas nikmat dengan lauk beragam dan cita rasa khas rumahan.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    image: "/images/segosambel_hero.jpg",
+    image: "/images/segosambel_hero.webp",
   },
   {
     id: 56,
@@ -621,7 +621,7 @@ export const dataUMKM = [
       "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur dan sembako dengan harga terjangkau.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    image: "/images/tokojamaah_hero.jpg",
+    image: "/images/tokojamaah_hero.webp",
   },
   {
     id: 57,
@@ -632,7 +632,7 @@ export const dataUMKM = [
       "Minimarket yang menyediakan berbagai kebutuhan harian, mulai dari sembako hingga produk rumah tangga dengan harga bersahabat.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    image: "/images/mmamanah_hero.jpg",
+    image: "/images/mmamanah_hero.webp",
   },
   {
     id: 58,
@@ -643,7 +643,7 @@ export const dataUMKM = [
       "Toko pakaian yang menawarkan berbagai busana trendi dan aksesori dengan harga terjangkau, hanya Rp35.000-an.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    image: "/images/tokovanhelen_hero.jpg",
+    image: "/images/tokovanhelen_hero.webp",
   },
   {
     id: 59,
@@ -654,7 +654,7 @@ export const dataUMKM = [
       "Toko pakaian yang menyediakan berbagai busana keluarga dengan model modern dan harga bersahabat.",
     location: "Kaliwungu",
     kecamatanSlug: "kaliwungu",
-    image: "/images/linafamily_hero.jpg",
+    image: "/images/linafamily_hero.webp",
   },
 
   // KOTA KUDUS
@@ -721,7 +721,7 @@ export const dataUMKM = [
       "Restoran steak modern yang menyajikan aneka daging premium dengan cita rasa lezat dan harga bersahabat.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    image: "/images/treendsteak_hero.jpg",
+    image: "/images/treendsteak_hero.webp",
   },
   {
     id: 66,
@@ -732,7 +732,7 @@ export const dataUMKM = [
       "Toko elektronik lengkap yang menyediakan berbagai peralatan rumah tangga dan gadget dengan harga bersaing.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    image: "/images/lareesjaya_hero.jpg",
+    image: "/images/lareesjaya_hero.webp",
   },
   {
     id: 67,
@@ -743,7 +743,7 @@ export const dataUMKM = [
       "Bistro modern yang menyajikan aneka roti, kue, dan hidangan lezat dengan suasana nyaman dan elegan.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    image: "/images/greensbakerybistro_hero.jpg",
+    image: "/images/greensbakerybistro_hero.webp",
   },
   {
     id: 68,
@@ -754,7 +754,7 @@ export const dataUMKM = [
       "Minuman coklat kekinian dengan rasa creamy dan manis pas, favorit anak muda Kudus.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    image: "/images/escoklatcokotkudus_hero.jpg",
+    image: "/images/escoklatcokotkudus_hero.webp",
   },
   {
     id: 69,
@@ -765,7 +765,7 @@ export const dataUMKM = [
       "Toko pakaian trendi yang menyediakan berbagai busana stylish dan nyaman untuk semua usia.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    image: "/images/richiestore_hero.jpg",
+    image: "/images/richiestore_hero.webp",
   },
   {
     id: 70,
@@ -776,7 +776,7 @@ export const dataUMKM = [
       "Toko pakaian modern yang menawarkan koleksi fashion kasual dan stylish untuk pria dan wanita.",
     location: "Kota Kudus",
     kecamatanSlug: "kota-kudus",
-    image: "/images/3secondstore_hero.jpg",
+    image: "/images/3secondstore_hero.webp",
   },
 
   // MEJOBO
@@ -839,7 +839,7 @@ export const dataUMKM = [
     subtitle: "Warung sate khas yang menyajikan sate kambing empuk dengan bumbu lezat dan cita rasa khas Kudus.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    image: "/images/satekambing_hero.jpg",
+    image: "/images/satekambing_hero.webp",
   },
   {
     id: 77,
@@ -849,7 +849,7 @@ export const dataUMKM = [
     subtitle: "Toko barang antik dan unik yang menjual gelang tasbih, aksesoris klasik, serta koleksi bernuansa tradisional.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    image: "/images/lohjinawi_hero.jpg",
+    image: "/images/lohjinawi_hero.webp",
   },
   {
     id: 78,
@@ -859,7 +859,7 @@ export const dataUMKM = [
     subtitle: "Toko swalayan yang menyediakan berbagai kebutuhan sehari-hari, mulai dari bahan pokok hingga perlengkapan rumah tangga.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    image: "/images/tokoauralia_hero.jpg",
+    image: "/images/tokoauralia_hero.webp",
   },
   {
     id: 79,
@@ -869,7 +869,7 @@ export const dataUMKM = [
     subtitle: "Toko pakaian yang menyediakan berbagai busana wanita, jasa jahit, dan modifikasi pakaian dengan desain elegan.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    image: "/images/sekar_hero.jpg",
+    image: "/images/sekar_hero.webp",
   },
   {
     id: 80,
@@ -879,7 +879,7 @@ export const dataUMKM = [
     subtitle: "Toko pakaian yang menyediakan berbagai busana muslim dan modern dengan harga terjangkau.",
     location: "Mejobo",
     kecamatanSlug: "mejobo",
-    image: "/images/hasna_hero.jpg",
+    image: "/images/hasna_hero.webp",
   },
 
   // UNDAAN
@@ -942,7 +942,7 @@ export const dataUMKM = [
     subtitle: "Rumah makan bernuansa alam yang menyajikan aneka hidangan lezat khas pedesaan dengan cita rasa autentik.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    image: "/images/tombosawahbabalan_hero.jpg",
+    image: "/images/tombosawahbabalan_hero.webp",
   },
   {
     id: 87,
@@ -952,7 +952,7 @@ export const dataUMKM = [
     subtitle: "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur harian dengan harga terjangkau dan kualitas terjamin.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    image: "/images/wmhandayani_hero.jpg",
+    image: "/images/wmhandayani_hero.webp",
   },
   {
     id: 88,
@@ -962,7 +962,7 @@ export const dataUMKM = [
     subtitle: "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur lengkap dengan harga bersahabat dan kualitas terbaik.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    image: "/images/ngabusrejo_hero.jpg",
+    image: "/images/ngabusrejo_hero.webp",
   },
   {
     id: 89,
@@ -972,7 +972,7 @@ export const dataUMKM = [
     subtitle: "Toko pakaian pria yang menjual berbagai koleksi fashion kasual dan streetwear dengan gaya modern dan harga terjangkau.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    image: "/images/nanodistro_hero.jpg",
+    image: "/images/nanodistro_hero.webp",
   },
   {
     id: 90,
@@ -982,6 +982,6 @@ export const dataUMKM = [
     subtitle: "Toko pakaian yang menyediakan berbagai busana modern dan kasual untuk pria maupun wanita dengan harga bersahabat.",
     location: "Undaan",
     kecamatanSlug: "undaan",
-    image: "/images/ilbabalanos_hero.jpg",
+    image: "/images/ilbabalanos_hero.webp",
   },
 ];

@@ -1995,11 +1995,11 @@ export const dataDetailUMKM = [
       "Nikmati cita rasa ayam geprek khas Kudus dengan berbagai pilihan menu lezat dan harga terjangkau.",
     about:
       "<strong>Ramboo Chicken</strong> adalah sebuah usaha kuliner populer di Kudus yang berlokasi di daerah Krandon. Tempat makan ini mengkhususkan diri pada sajian aneka hidangan olahan ayam yang beragam, menjadikannya pilihan favorit bagi warga lokal. Menu andalan mereka berfokus pada ayam geprek dan rice bowl dengan berbagai saus khas.",
-    rating: "4.8 / 5",
+    rating: "4.5 / 5",
     description:
       "Ramboo Chicken dikenal dengan ayam geprek dan sambal koreknya yang pedas menggugah selera. Menggunakan bahan segar dan bumbu khas Kudus yang autentik.",
     location: {
-      address: "Jl. Sunan Muria No.21, Kudus",
+      address: "Jl. KH Moh. Arwani, Kudus",
       fullAddress:
         "Jl. KH Moh. Arwani, Pejaten, Krandon, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59314",
       mapsUrl: "https://maps.app.goo.gl/xVjQFurMT4EqQVaw6",

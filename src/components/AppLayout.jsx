@@ -1,10 +1,12 @@
 import React from "react";
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 
 const AppLayout = () => {
+  const location = useLocation();
+
   return (
     <>
-      {/* <ScrollRestoration /> */}
+      {location.pathname !== "/kategori" && <ScrollRestoration />}
       <Outlet />
     </>
   );
