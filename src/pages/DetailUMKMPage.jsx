@@ -15,7 +15,6 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
   const { contact, location, rating, openingHours, name, description } = data;
 
-  // Helper: Normalisasi dash
   const normalizeHours = (hours) => hours?.trim().replace(/[–—]/g, "-") || "";
 
   const isOpenNow = (hoursStr) => {
@@ -49,14 +48,12 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
     return now >= openTime && now <= closeTime;
   };
 
-  // Auto-refresh tiap menit
   const [, setTick] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setTick((t) => t + 1), 60000);
     return () => clearInterval(id);
   }, []);
 
-  // Hari ini (Indonesia)
   const daysIndo = [
     "Minggu",
     "Senin",
@@ -72,7 +69,6 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
     hours: "Tutup",
   };
 
-  // Status real-time
   const currentlyOpen = today.isOpen && isOpenNow(today.hours);
   const displayText = currentlyOpen
     ? normalizeHours(today.hours).toLowerCase() === "buka 24 jam"
@@ -104,6 +100,30 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
     },
   ];
 
+  const handleOpenMaps = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLat = position.coords.latitude;
+          const userLon = position.coords.longitude;
+          const destination = encodeURIComponent(location.address);
+          const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLon}&destination=${destination}&travelmode=driving`;
+          window.open(directionsUrl, "_blank");
+        },
+        (error) => {
+          window.open(location.mapsUrl, "_blank");
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        }
+      );
+    } else {
+      window.open(location.mapsUrl, "_blank");
+    }
+  };
+
   return (
     <div className="bg-white rounded-t-[5px] p-5 md:p-6 shadow-2xl relative max-h-full">
       {isMobile && (
@@ -118,10 +138,8 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
           <div className="w-12 h-1.5 bg-dark/20 rounded-full mx-auto mb-4" />
         </>
       )}
-
       <h3 className="text-2xl font-bold text-dark mb-3 pr-8">{name}</h3>
       <p className="text-dark/70 text-sm leading-relaxed mb-4">{description}</p>
-
       <ul className="text-sm text-dark/70 space-y-3 mb-4">
         <li className="flex items-center gap-2.5">
           <Icon icon="si:pin-fill" className="text-orange text-lg" />
@@ -132,7 +150,6 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
           {rating} (Ulasan Google)
         </li>
       </ul>
-
       <div className="border-t border-dark/10 pt-4 mt-4">
         <button
           onClick={() => setIsHoursOpen(!isHoursOpen)}
@@ -167,7 +184,6 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
             }`}
           />
         </button>
-
         <AnimatePresence>
           {isHoursOpen && (
             <motion.div
@@ -180,8 +196,6 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
               <ul className="text-sm text-dark/70 space-y-2.5 pt-2">
                 {openingHours.map((day) => {
                   const isToday = day.day === todayName;
-                  const openNow = day.isOpen && isOpenNow(day.hours);
-
                   return (
                     <li
                       key={day.day}
@@ -199,7 +213,6 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
           )}
         </AnimatePresence>
       </div>
-
       <div className="border-t border-dark/10 pt-5 mt-5">
         <h3 className="text-lg font-bold text-dark mb-3">Kontak Kami</h3>
         <ul className="text-sm text-dark/70 space-y-3 mb-4">
@@ -218,9 +231,8 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
           ))}
         </ul>
       </div>
-
       <button
-        onClick={() => window.open(location.mapsUrl, "_blank")}
+        onClick={handleOpenMaps}
         className="w-full bg-orange text-white font-semibold py-3 rounded-xl hover:bg-[#d96230] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-orange/30"
       >
         <Icon icon="mdi:map-search-outline" className="text-lg" />
@@ -237,24 +249,25 @@ const DetailUMKMPage = () => {
   const [umkmData, setUmkmData] = useState(null);
   const [relatedUMKM, setRelatedUMKM] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     const data = dataDetailUMKM.find((item) => item.slug === slug);
     setUmkmData(data || null);
-
     const otherUMKM = dataUMKM.filter((item) => item.slug !== slug);
     const shuffled = [...otherUMKM].sort(() => Math.random() - 0.5);
     const count = isMobile ? 4 : 5;
     setRelatedUMKM(shuffled.slice(0, count));
+    setIsLoading(false);
   }, [slug, isMobile]);
 
   useEffect(() => {
@@ -265,16 +278,14 @@ const DetailUMKMPage = () => {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     }
-
     return () => {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
   }, [showMobilePopup, selectedImage]);
 
-  if (!umkmData) {
-    return <NotFoundPage />;
-  }
+  if (isLoading) return null;
+  if (!umkmData) return <NotFoundPage />;
 
   const {
     heroImage,
@@ -306,7 +317,6 @@ const DetailUMKMPage = () => {
                 dangerouslySetInnerHTML={{ __html: about }}
               />
             </section>
-
             <section>
               <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
                 Menu{" "}
@@ -345,7 +355,6 @@ const DetailUMKMPage = () => {
                 ))}
               </div>
             </section>
-
             <section>
               <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
                 Galeri <span className="font-normal text-dark">Foto</span>
@@ -366,7 +375,6 @@ const DetailUMKMPage = () => {
                 ))}
               </div>
             </section>
-
             <section>
               <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
                 Temukan <span className="font-normal text-dark">Kami</span>
@@ -387,14 +395,12 @@ const DetailUMKMPage = () => {
               </p>
             </section>
           </div>
-
           <div className="hidden md:block md:w-96 lg:w-[400px] shrink-0 sticky top-24">
             <div className="rounded-lg overflow-hidden shadow-2xl">
               <StickyInfo data={umkmData} onClose={() => {}} isMobile={false} />
             </div>
           </div>
         </div>
-
         <section className="mt-12 md:mt-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-6 text-center md:text-left">
             UMKM <span className="font-normal text-dark">Lainnya</span>
@@ -412,7 +418,6 @@ const DetailUMKMPage = () => {
           </div>
         </section>
       </PageContainer>
-
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -446,7 +451,6 @@ const DetailUMKMPage = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
       <div className="fixed bottom-8 right-8 z-40 md:hidden">
         <button
           onClick={() => setShowMobilePopup(true)}
@@ -456,7 +460,6 @@ const DetailUMKMPage = () => {
           <Icon icon="mdi:storefront-outline" className="text-2xl" />
         </button>
       </div>
-
       <AnimatePresence>
         {showMobilePopup && (
           <div
@@ -489,7 +492,6 @@ const DetailUMKMPage = () => {
           </div>
         )}
       </AnimatePresence>
-
       <div className="mt-16 md:mt-24">
         <Footer />
       </div>
