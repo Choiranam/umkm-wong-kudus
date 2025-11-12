@@ -57,10 +57,65 @@ export const dataUMKM = [
     kecamatanSlug: "bae",
     image: "/images/jasatulis_hero.webp",
   },
+  {
+    id: 6,
+    name: "Resto MVR Kudus",
+    slug: "resto-mvr-kudus",
+    category: "Makanan",
+    subtitle:
+      "Restoran modern dengan aneka hidangan lezat dan suasana nyaman untuk berkumpul bersama keluarga dan teman.",
+    location: "Bae",
+    kecamatanSlug: "bae",
+    image: "/images/restomvr_hero.jpg",
+  },
+  {
+    id: 7,
+    name: "VJO Cafe and Bistro",
+    slug: "vjo-cafe-bistro",
+    category: "Makanan",
+    subtitle:
+      "Cafe dan bistro bergaya modern yang menyajikan aneka hidangan lezat dan minuman kekinian dengan suasana nyaman.",
+    location: "Bae",
+    kecamatanSlug: "bae",
+    image: "/images/vjocafe_hero.jpg",
+  },
+  {
+    id: 8,
+    name: "Toko Al Maira",
+    slug: "toko-al-maira",
+    category: "Barang",
+    subtitle:
+      "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur harian dengan harga terjangkau dan kualitas terjamin.",
+    location: "Bae",
+    kecamatanSlug: "bae",
+    image: "/images/tokoalmaira_hero.jpg",
+  },
+  {
+    id: 9,
+    name: "Siskanuna Boutique",
+    slug: "siskanuna-boutique",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian wanita yang menawarkan berbagai busana modern, hijab, dan aksesoris dengan desain elegan dan harga terjangkau.",
+    location: "Bae",
+    kecamatanSlug: "bae",
+    image: "/images/siskanuna_hero.jpg",
+  },
+  {
+    id: 10,
+    name: "Terebatik",
+    slug: "terebatik",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian yang menjual berbagai koleksi batik khas Kudus dengan desain modern dan kualitas terbaik.",
+    location: "Bae",
+    kecamatanSlug: "bae",
+    image: "/images/terebatik_hero.jpg",
+  },
 
   // DAWE
   {
-    id: 6,
+    id: 11,
     name: "Swike Dawe Restaurant",
     slug: "swike-dawe-restaurant",
     category: "Makanan",
@@ -71,7 +126,7 @@ export const dataUMKM = [
     image: "/images/swikedawe_hero.webp",
   },
   {
-    id: 7,
+    id: 12,
     name: "WEKATE GANK",
     slug: "wekate-gank",
     category: "Minuman",
@@ -82,7 +137,7 @@ export const dataUMKM = [
     image: "/images/wekategank_hero.webp",
   },
   {
-    id: 8,
+    id: 13,
     name: "Rumah Makan Mak Kiyem",
     slug: "rumah-makan-mak-kiyem",
     category: "Makanan",
@@ -93,7 +148,7 @@ export const dataUMKM = [
     image: "/images/makkiyem_hero.webp",
   },
   {
-    id: 9,
+    id: 14,
     name: "Jasa Angkut & Pasir & Bata Merah Jumbo",
     slug: "jasa-angkut-dan-pasir-bata-merah-jumbo",
     category: "Jasa",
@@ -104,7 +159,7 @@ export const dataUMKM = [
     image: "/images/jasaangkut_hero.webp",
   },
   {
-    id: 10,
+    id: 15,
     name: "Ayam Geprek Sa’i Dawe",
     slug: "ayam-geprek-sai",
     category: "Makanan",
@@ -114,10 +169,65 @@ export const dataUMKM = [
     kecamatanSlug: "dawe",
     image: "/images/ayamgepreksai_hero.webp",
   },
+  {
+    id: 16,
+    name: "Warung Makan Sendang Mulia",
+    slug: "warung-makan-sendang-mulia",
+    category: "Makanan",
+    subtitle:
+      "Rumah makan yang menyajikan aneka hidangan rumahan lezat dengan cita rasa khas dan suasana nyaman.",
+    location: "Dawe",
+    kecamatanSlug: "dawe",
+    image: "/images/sendangmulia_hero.jpg",
+  },
+  {
+    id: 17,
+    name: "Toko ADIB AZKA",
+    slug: "toko-adib-azka",
+    category: "Barang",
+    subtitle:
+      "Toko perlengkapan rumah tangga yang menyediakan berbagai kebutuhan harian dengan harga terjangkau.",
+    location: "Dawe",
+    kecamatanSlug: "dawe",
+    image: "/images/tokoadibazka_hero.jpg",
+  },
+  {
+    id: 18,
+    name: "Toko Sri Dawe",
+    slug: "toko-sri-dawe",
+    category: "Barang",
+    subtitle:
+      "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur, bumbu, dan sembako lengkap dengan harga bersahabat.",
+    location: "Dawe",
+    kecamatanSlug: "dawe",
+    image: "/images/tokosridawe_hero.jpg",
+  },
+  {
+    id: 19,
+    name: "Arfan Outfit Kudus",
+    slug: "arfan-outfit-kudus",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian yang menyediakan berbagai busana trendi dan nyaman untuk segala usia.",
+    location: "Dawe",
+    kecamatanSlug: "dawe",
+    image: "/images/arfanoutfitkudus_hero.jpg",
+  },
+  {
+    id: 20,
+    name: "Dinda Store DS",
+    slug: "dinda-store-ds",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian yang menyediakan berbagai busana trendi, modern, dan nyaman untuk segala usia.",
+    location: "Dawe",
+    kecamatanSlug: "dawe",
+    image: "/images/dindastore_hero.jpg",
+  },
 
   // GEBOG
   {
-    id: 11,
+    id: 21,
     name: "Warung Makan Mbah Sapar",
     slug: "warung-makan-mbah-sapar",
     category: "Makanan",
@@ -128,7 +238,7 @@ export const dataUMKM = [
     image: "/images/mbahsapar_hero.webp",
   },
   {
-    id: 12,
+    id: 22,
     name: "Nasi Uduk dan Nasi Kuning Gang Satu",
     slug: "nasi-uduk-dan-nasi-kuning-gang-satu",
     category: "Makanan",
@@ -139,7 +249,7 @@ export const dataUMKM = [
     image: "/images/nasiuduk_hero.webp",
   },
   {
-    id: 13,
+    id: 23,
     name: "Sari Rasa Bakso Malvinas",
     slug: "sari-rasa-bakso-malvinas",
     category: "Makanan",
@@ -149,7 +259,7 @@ export const dataUMKM = [
     image: "/images/baksomalvinas_hero.webp",
   },
   {
-    id: 14,
+    id: 24,
     name: "Warung Makan Mak Ru",
     slug: "warung-makan-mak-ru",
     category: "Makanan",
@@ -159,7 +269,7 @@ export const dataUMKM = [
     image: "/images/warungmakanmakru_hero.webp",
   },
   {
-    id: 15,
+    id: 25,
     name: "Kasehito Works",
     slug: "kasehito-works",
     category: "Jasa",
@@ -169,10 +279,76 @@ export const dataUMKM = [
     kecamatanSlug: "gebog",
     image: "/images/kasehitoworks_hero.webp",
   },
+  {
+    id: 26,
+    name: "Basina Food",
+    slug: "basina-food",
+    category: "Makanan",
+    subtitle:
+      "Rumah makan yang menyajikan aneka hidangan lezat khas rumahan.",
+    location: "Gebog",
+    kecamatanSlug: "gebog",
+    image: "/images/basina_hero.png",
+  },
+  {
+    id: 27,
+    name: "Campaign Coffee",
+    slug: "campaign-coffee",
+    category: "Minuman",
+    subtitle:
+      "Kedai kopi modern dengan cita rasa autentik dan suasana nyaman.",
+    location: "Gebog",
+    kecamatanSlug: "gebog",
+    image: "/images/campaigncoffee_hero.jpg",
+  },
+  {
+    id: 28,
+    name: "Toko TNA JAYA",
+    slug: "toko-tna-jaya",
+    category: "Barang",
+    subtitle:
+      "Toko bahan makanan lengkap dengan harga terjangkau dan kualitas terjamin.",
+    location: "Gebog",
+    kecamatanSlug: "gebog",
+    image: "/images/tokotnajaya_hero.jpg",
+  },
+  {
+    id: 29,
+    name: "Toko Teguh Sudarsono",
+    slug: "toko-teguh-sudarsono",
+    category: "Barang",
+    subtitle:
+      "Toko bahan makanan harian yang menyediakan kebutuhan dapur lengkap dan berkualitas.",
+    location: "Gebog",
+    kecamatanSlug: "gebog",
+    image: "/images/tokoteguhsudarsono_hero.jpg",
+  },
+  {
+    id: 30,
+    name: "Nilna Dion Collection",
+    slug: "nilna-dion-collection",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian modern yang menyediakan berbagai busana stylish dan nyaman untuk semua kalangan.",
+    location: "Gebog",
+    kecamatanSlug: "gebog",
+    image: "/images/nilnadioncollection_hero.jpg",
+  },
+  {
+    id: 31,
+    name: "Toko Kastimah",
+    slug: "toko-kastimah",
+    category: "Barang",
+    subtitle:
+      "Toko bahan makanan harian yang menyediakan kebutuhan dapur lengkap dengan harga terjangkau.",
+    location: "Gebog",
+    kecamatanSlug: "gebog",
+    image: "/images/tokokastimah_hero.jpg",
+  },
 
   // JATI
   {
-    id: 16,
+    id: 32,
     name: "Cakrawala Sego Sambel",
     slug: "cakrawala-sego-sambel",
     category: "Makanan",
@@ -183,7 +359,7 @@ export const dataUMKM = [
     image: "/images/cakrawala_hero.webp",
   },
   {
-    id: 17,
+    id: 33,
     name: "Nasi Opor Sunggingan",
     slug: "nasi-opor-sunggingan",
     category: "Makanan",
@@ -194,7 +370,7 @@ export const dataUMKM = [
     image: "/images/oporsungginan_hero.webp",
   },
   {
-    id: 18,
+    id: 34,
     name: "Warung Enthog Pak Badi",
     slug: "warung-enthog-pak-badi",
     category: "Makanan",
@@ -205,7 +381,7 @@ export const dataUMKM = [
     image: "/images/enthogpakbadi_hero.webp",
   },
   {
-    id: 19,
+    id: 35,
     name: "Jasa Powder Coating & Platting Kudus",
     slug: "jasa-powder-coating-dan-platting-kudus",
     category: "Jasa",
@@ -216,7 +392,7 @@ export const dataUMKM = [
     image: "/images/powdercoating_hero.webp",
   },
   {
-    id: 20,
+    id: 36,
     name: "Kedai Es Bang Maman",
     slug: "kedai-es-bang-maman",
     category: "Minuman",
@@ -226,10 +402,54 @@ export const dataUMKM = [
     kecamatanSlug: "jati",
     image: "/images/esbangmaman_hero.webp",
   },
-
-  // Jekulo
   {
-    id: 21,
+    id: 37,
+    name: "Gravitasi Teras Muria",
+    slug: "gravitasi-teras-muria",
+    category: "Makanan",
+    subtitle:
+      "Restoran dengan pemandangan indah di lereng Muria yang menyajikan aneka hidangan lezat dan suasana nyaman.",
+    location: "Jati",
+    kecamatanSlug: "jati",
+    image: "/images/gravitasiterasmuria_hero.jpg",
+  },
+  {
+    id: 38,
+    name: "Toko Kliwon",
+    slug: "toko-kliwon",
+    category: "Barang",
+    subtitle:
+      "Toko perlengkapan rumah tangga yang menyediakan berbagai kebutuhan dapur dan alat harian dengan harga terjangkau.",
+    location: "Jati",
+    kecamatanSlug: "jati",
+    image: "/images/tokokliwon_hero.jpg",
+  },
+  {
+    id: 39,
+    name: "Toko Happy Kids",
+    slug: "toko-happy-kids",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian anak yang menyediakan berbagai busana lucu, nyaman, dan berkualitas untuk si kecil.",
+    location: "Jati",
+    kecamatanSlug: "jati",
+    image: "/images/tokohappykids_hero.jpg",
+  },
+  {
+    id: 40,
+    name: "Nobby Kudus Extension Mall",
+    slug: "nobby-kudus-extension",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian modern yang menawarkan berbagai koleksi busana trendi untuk pria dan wanita dengan gaya kekinian.",
+    location: "Jati",
+    kecamatanSlug: "jati",
+    image: "/images/nobbykudusextension_hero.jpg",
+  },
+
+  // JEKULO
+  {
+    id: 41,
     name: "Jus Pojokan",
     slug: "jus-pojokan",
     category: "Minuman",
@@ -240,7 +460,7 @@ export const dataUMKM = [
     image: "/images/juspojokan_hero.webp",
   },
   {
-    id: 22,
+    id: 42,
     name: "Kedai Twins Seblak Bandung n Juice Jekulo",
     slug: "kedai-twins-seblak-bandung-juice-jekulo",
     category: "Minuman",
@@ -251,7 +471,7 @@ export const dataUMKM = [
     image: "/images/kedaytwins_hero.webp",
   },
   {
-    id: 23,
+    id: 43,
     name: "Lentog Tanjung Bang Saiful",
     slug: "lentog-tanjung-bang-saiful",
     category: "Makanan",
@@ -261,7 +481,7 @@ export const dataUMKM = [
     image: "/images/lentogbangsyaiful_hero.webp",
   },
   {
-    id: 24,
+    id: 44,
     name: "Berkah Es Buah",
     slug: "berkah-es-buah",
     category: "Minuman",
@@ -272,7 +492,7 @@ export const dataUMKM = [
     image: "/images/berkahesbuah_hero.webp",
   },
   {
-    id: 25,
+    id: 45,
     name: "Warnet Jaya Sentosa",
     slug: "warnet-jaya-sentosa",
     category: "Jasa",
@@ -282,10 +502,54 @@ export const dataUMKM = [
     kecamatanSlug: "jekulo",
     image: "/images/warnetjayasentosa_hero.webp",
   },
-
-  // Kaliwungu
   {
-    id: 26,
+    id: 46,
+    name: "Warung Mie Dadat Pak Karnan",
+    slug: "warung-mie-dadat",
+    category: "Makanan",
+    subtitle:
+      "Warung mie legendaris yang menyajikan aneka mie rebus dan goreng dengan cita rasa khas dan porsi mengenyangkan.",
+    location: "Jekulo",
+    kecamatanSlug: "jekulo",
+    image: "/images/warungmiedadat_hero.jpg",
+  },
+  {
+    id: 47,
+    name: "Toko Risfan Snack - Pusat Grosir Snack Lengkap di Kudus",
+    slug: "toko-risfan-snack",
+    category: "Barang",
+    subtitle:
+      "Toko bahan makanan dan grosir snack lengkap yang menyediakan berbagai camilan, makanan ringan, dan kebutuhan dapur dengan harga terjangkau.",
+    location: "Jekulo",
+    kecamatanSlug: "jekulo",
+    image: "/images/tokorisfan_hero.jpg",
+  },
+  {
+    id: 48,
+    name: "Js Muslim Collection Kudus",
+    slug: "js-muslim-collection",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian muslim yang menyediakan berbagai busana syar’i, gamis, dan hijab modern dengan desain elegan dan harga bersahabat.",
+    location: "Jekulo",
+    kecamatanSlug: "jekulo",
+    image: "/images/jsmuslim_hero.jpg",
+  },
+  {
+    id: 49,
+    name: "Kios Hjh Zaroah",
+    slug: "kios-hjh",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian yang menyediakan berbagai busana muslim, mukena, dan perlengkapan ibadah dengan kualitas bagus dan harga terjangkau.",
+    location: "Jekulo",
+    kecamatanSlug: "jekulo",
+    image: "/images/kioshjh_hero.jpg",
+  },
+
+  // KALIWUNGU
+  {
+    id: 50,
     name: "Jahe Rempah Leggit",
     slug: "jahe-rempah-leggit",
     category: "Minuman",
@@ -295,7 +559,7 @@ export const dataUMKM = [
     image: "/images/jaherempahreggit_hero.webp",
   },
   {
-    id: 27,
+    id: 51,
     name: "Warung Makan Bu Carik",
     slug: "warung-makan-bu-carik",
     category: "Makanan",
@@ -306,7 +570,7 @@ export const dataUMKM = [
     image: "/images/warungmakanbucarik_hero.webp",
   },
   {
-    id: 28,
+    id: 52,
     name: "Tehatea Indonesia",
     slug: "tehatea-indonesia",
     category: "Minuman",
@@ -317,7 +581,7 @@ export const dataUMKM = [
     image: "/images/tehatea_hero.webp",
   },
   {
-    id: 29,
+    id: 53,
     name: "Warung Makan 2 Putra",
     slug: "warung-makan-2-putra",
     category: "Makanan",
@@ -327,7 +591,7 @@ export const dataUMKM = [
     image: "/images/warungmakan2putra_hero.webp",
   },
   {
-    id: 30,
+    id: 54,
     name: "Jasa Angkut Barang",
     slug: "jasa-angkut-barang",
     category: "Jasa",
@@ -337,10 +601,65 @@ export const dataUMKM = [
     kecamatanSlug: "kaliwungu",
     image: "/images/jasaangkutbarang_hero.webp",
   },
-
-  // Kota Kudus
   {
-    id: 31,
+    id: 55,
+    name: "Sego Sambel Lek Kas 2",
+    slug: "sego-sambel-lek-kas2",
+    category: "Makanan",
+    subtitle:
+      "Rumah makan yang menyajikan sego sambel pedas nikmat dengan lauk beragam dan cita rasa khas rumahan.",
+    location: "Kaliwungu",
+    kecamatanSlug: "kaliwungu",
+    image: "/images/segosambel_hero.jpg",
+  },
+  {
+    id: 56,
+    name: "Toko Jamaah",
+    slug: "toko-jamaah",
+    category: "Barang",
+    subtitle:
+      "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur dan sembako dengan harga terjangkau.",
+    location: "Kaliwungu",
+    kecamatanSlug: "kaliwungu",
+    image: "/images/tokojamaah_hero.jpg",
+  },
+  {
+    id: 57,
+    name: "MM Amanah",
+    slug: "mm-amanah",
+    category: "Barang",
+    subtitle:
+      "Minimarket yang menyediakan berbagai kebutuhan harian, mulai dari sembako hingga produk rumah tangga dengan harga bersahabat.",
+    location: "Kaliwungu",
+    kecamatanSlug: "kaliwungu",
+    image: "/images/mmamanah_hero.jpg",
+  },
+  {
+    id: 58,
+    name: "Toko Van Helen Serba 35000",
+    slug: "toko-van-helen",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian yang menawarkan berbagai busana trendi dan aksesori dengan harga terjangkau, hanya Rp35.000-an.",
+    location: "Kaliwungu",
+    kecamatanSlug: "kaliwungu",
+    image: "/images/tokovanhelen_hero.jpg",
+  },
+  {
+    id: 59,
+    name: "Lina Family",
+    slug: "lina-family",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian yang menyediakan berbagai busana keluarga dengan model modern dan harga bersahabat.",
+    location: "Kaliwungu",
+    kecamatanSlug: "kaliwungu",
+    image: "/images/linafamily_hero.jpg",
+  },
+
+  // KOTA KUDUS
+  {
+    id: 60,
     name: "Susu Moeria",
     slug: "susu-moeria",
     category: "Minuman",
@@ -350,7 +669,7 @@ export const dataUMKM = [
     image: "/images/susumoeria_hero.webp",
   },
   {
-    id: 32,
+    id: 61,
     name: "Ramboo Chicken",
     slug: "ramboo-chicken",
     category: "Makanan",
@@ -361,7 +680,7 @@ export const dataUMKM = [
     image: "/images/ramboo_hero.webp",
   },
   {
-    id: 33,
+    id: 62,
     name: "Es Gempol Pak Masykur",
     slug: "es-gempol-pak-masykur",
     category: "Minuman",
@@ -372,7 +691,7 @@ export const dataUMKM = [
     image: "/images/gempol_hero.webp",
   },
   {
-    id: 34,
+    id: 63,
     name: "Sultan Barber Top",
     slug: "sultan-barber-top",
     category: "Jasa",
@@ -383,7 +702,7 @@ export const dataUMKM = [
     image: "/images/sultanbarbertop_hero.webp",
   },
   {
-    id: 35,
+    id: 64,
     name: "Soto Kudus Bu Jatmi",
     slug: "soto-kudus-bu-jatmi",
     category: "Makanan",
@@ -393,10 +712,76 @@ export const dataUMKM = [
     kecamatanSlug: "kota-kudus",
     image: "/images/sotokudusbujatmi_hero.webp",
   },
-
-  // Mejobo
   {
-    id: 36,
+    id: 65,
+    name: "Treend Steak Kudus",
+    slug: "treend-steak-kudus",
+    category: "Makanan",
+    subtitle:
+      "Restoran steak modern yang menyajikan aneka daging premium dengan cita rasa lezat dan harga bersahabat.",
+    location: "Kota Kudus",
+    kecamatanSlug: "kota-kudus",
+    image: "/images/treendsteak_hero.jpg",
+  },
+  {
+    id: 66,
+    name: "Larees Jaya Electronics",
+    slug: "larees-jaya-electronics",
+    category: "Barang",
+    subtitle:
+      "Toko elektronik lengkap yang menyediakan berbagai peralatan rumah tangga dan gadget dengan harga bersaing.",
+    location: "Kota Kudus",
+    kecamatanSlug: "kota-kudus",
+    image: "/images/lareesjaya_hero.jpg",
+  },
+  {
+    id: 67,
+    name: "Greens Bakery & Bistro",
+    slug: "greens-bakery-bistro",
+    category: "Makanan",
+    subtitle:
+      "Bistro modern yang menyajikan aneka roti, kue, dan hidangan lezat dengan suasana nyaman dan elegan.",
+    location: "Kota Kudus",
+    kecamatanSlug: "kota-kudus",
+    image: "/images/greensbakerybistro_hero.jpg",
+  },
+  {
+    id: 68,
+    name: "Es Coklat Cokot Kudus",
+    slug: "es-coklat-cokot-kudus",
+    category: "Minuman",
+    subtitle:
+      "Minuman coklat kekinian dengan rasa creamy dan manis pas, favorit anak muda Kudus.",
+    location: "Kota Kudus",
+    kecamatanSlug: "kota-kudus",
+    image: "/images/escoklatcokotkudus_hero.jpg",
+  },
+  {
+    id: 69,
+    name: "Richie Store Kudus",
+    slug: "richie-store-kudus",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian trendi yang menyediakan berbagai busana stylish dan nyaman untuk semua usia.",
+    location: "Kota Kudus",
+    kecamatanSlug: "kota-kudus",
+    image: "/images/richiestore_hero.jpg",
+  },
+  {
+    id: 70,
+    name: "3Second Store Kudus",
+    slug: "3second-store-kudus",
+    category: "Lainnya",
+    subtitle:
+      "Toko pakaian modern yang menawarkan koleksi fashion kasual dan stylish untuk pria dan wanita.",
+    location: "Kota Kudus",
+    kecamatanSlug: "kota-kudus",
+    image: "/images/3secondstore_hero.jpg",
+  },
+
+  // MEJOBO
+  {
+    id: 71,
     name: "XGAM_Tech",
     slug: "xgam-tech",
     category: "Jasa",
@@ -406,7 +791,7 @@ export const dataUMKM = [
     image: "/images/xgamtech_hero.webp",
   },
   {
-    id: 37,
+    id: 72,
     name: "Jasa Las dan Bubut Mulyo Rejo",
     slug: "jasa-las-dan-bubut-mulyo-rejo",
     category: "Jasa",
@@ -417,7 +802,7 @@ export const dataUMKM = [
     image: "/images/jasalas_hero.webp",
   },
   {
-    id: 38,
+    id: 73,
     name: "Putra Kalimosodo",
     slug: "putra-kalimosodo",
     category: "Jasa",
@@ -427,7 +812,7 @@ export const dataUMKM = [
     image: "/images/kalimosodo_hero.webp",
   },
   {
-    id: 39,
+    id: 74,
     name: "Ikan Bakar Nasuky Mubarok Jepang",
     slug: "ikan-bakar-nasuky-mubarok-jepang",
     category: "Makanan",
@@ -437,7 +822,7 @@ export const dataUMKM = [
     image: "/images/ikanbakar_hero.webp",
   },
   {
-    id: 40,
+    id: 75,
     name: "RM Bu Sarah",
     slug: "rm-bu-sarah",
     category: "Makanan",
@@ -446,10 +831,60 @@ export const dataUMKM = [
     kecamatanSlug: "mejobo",
     image: "/images/rmbusarah_hero.webp",
   },
-
-  // Undaan
   {
-    id: 41,
+    id: 76,
+    name: "Sate Kambing Pak Brewok Pekeng",
+    slug: "sate-kambing-pak-brewok",
+    category: "Makanan",
+    subtitle: "Warung sate khas yang menyajikan sate kambing empuk dengan bumbu lezat dan cita rasa khas Kudus.",
+    location: "Mejobo",
+    kecamatanSlug: "mejobo",
+    image: "/images/satekambing_hero.jpg",
+  },
+  {
+    id: 77,
+    name: "Loh Jinawi Olshop (Lapak Gelang Tasbih)",
+    slug: "loh-jinawi",
+    category: "Barang",
+    subtitle: "Toko barang antik dan unik yang menjual gelang tasbih, aksesoris klasik, serta koleksi bernuansa tradisional.",
+    location: "Mejobo",
+    kecamatanSlug: "mejobo",
+    image: "/images/lohjinawi_hero.jpg",
+  },
+  {
+    id: 78,
+    name: "Toko Auralia Jaya",
+    slug: "toko-auralia",
+    category: "Barang",
+    subtitle: "Toko swalayan yang menyediakan berbagai kebutuhan sehari-hari, mulai dari bahan pokok hingga perlengkapan rumah tangga.",
+    location: "Mejobo",
+    kecamatanSlug: "mejobo",
+    image: "/images/tokoauralia_hero.jpg",
+  },
+  {
+    id: 79,
+    name: "Sekar Modiste",
+    slug: "sekar-modiste",
+    category: "Lainnya",
+    subtitle: "Toko pakaian yang menyediakan berbagai busana wanita, jasa jahit, dan modifikasi pakaian dengan desain elegan.",
+    location: "Mejobo",
+    kecamatanSlug: "mejobo",
+    image: "/images/sekar_hero.jpg",
+  },
+  {
+    id: 80,
+    name: "Hasna Fashion 01",
+    slug: "hasna-fashion",
+    category: "Lainnya",
+    subtitle: "Toko pakaian yang menyediakan berbagai busana muslim dan modern dengan harga terjangkau.",
+    location: "Mejobo",
+    kecamatanSlug: "mejobo",
+    image: "/images/hasna_hero.jpg",
+  },
+
+  // UNDAAN
+  {
+    id: 81,
     name: "Queen Seblak Prasmanan",
     slug: "queen-seblak-prasmanan",
     category: "Makanan",
@@ -460,7 +895,7 @@ export const dataUMKM = [
     image: "/images/queenseblak_hero.webp",
   },
   {
-    id: 42,
+    id: 82,
     name: "Ayam Geprek Mak Ginting",
     slug: "ayam-geprek-mak-ginting",
     category: "Makanan",
@@ -470,7 +905,7 @@ export const dataUMKM = [
     image: "/images/geprekmakginting_hero.webp",
   },
   {
-    id: 43,
+    id: 83,
     name: "Warung Sate & Gule Pak Sugiyo",
     slug: "warung-sate-dan-gule-pak-sugiyo",
     category: "Makanan",
@@ -480,7 +915,7 @@ export const dataUMKM = [
     image: "/images/warungsatedangule_hero.webp",
   },
   {
-    id: 44,
+    id: 84,
     name: "MJ Teknik",
     slug: "mj-teknik",
     category: "Jasa",
@@ -490,7 +925,7 @@ export const dataUMKM = [
     image: "/images/mjteknik_hero.webp",
   },
   {
-    id: 45,
+    id: 85,
     name: "Fotocopy & Jasa Travel",
     slug: "fotocopy-dan-jasa-travel",
     category: "Jasa",
@@ -498,5 +933,55 @@ export const dataUMKM = [
     location: "Undaan",
     kecamatanSlug: "undaan",
     image: "/images/fotocopy_hero.webp",
+  },
+  {
+    id: 86,
+    name: "RM. Tombo Sawah Babalan",
+    slug: "tombo-sawah-babalan",
+    category: "Makanan",
+    subtitle: "Rumah makan bernuansa alam yang menyajikan aneka hidangan lezat khas pedesaan dengan cita rasa autentik.",
+    location: "Undaan",
+    kecamatanSlug: "undaan",
+    image: "/images/tombosawahbabalan_hero.jpg",
+  },
+  {
+    id: 87,
+    name: "WM Handayani",
+    slug: "wm-handayani",
+    category: "Barang",
+    subtitle: "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur harian dengan harga terjangkau dan kualitas terjamin.",
+    location: "Undaan",
+    kecamatanSlug: "undaan",
+    image: "/images/wmhandayani_hero.jpg",
+  },
+  {
+    id: 88,
+    name: "Ngabus Rejo",
+    slug: "ngabus-rejo",
+    category: "Barang",
+    subtitle: "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur lengkap dengan harga bersahabat dan kualitas terbaik.",
+    location: "Undaan",
+    kecamatanSlug: "undaan",
+    image: "/images/ngabusrejo_hero.jpg",
+  },
+  {
+    id: 89,
+    name: "Nano Distro",
+    slug: "nano-distro",
+    category: "Lainnya",
+    subtitle: "Toko pakaian pria yang menjual berbagai koleksi fashion kasual dan streetwear dengan gaya modern dan harga terjangkau.",
+    location: "Undaan",
+    kecamatanSlug: "undaan",
+    image: "/images/nanodistro_hero.jpg",
+  },
+  {
+    id: 90,
+    name: "Ilbabalanos Store",
+    slug: "ilbabalanos",
+    category: "Lainnya",
+    subtitle: "Toko pakaian yang menyediakan berbagai busana modern dan kasual untuk pria maupun wanita dengan harga bersahabat.",
+    location: "Undaan",
+    kecamatanSlug: "undaan",
+    image: "/images/ilbabalanos_hero.jpg",
   },
 ];

@@ -437,7 +437,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.7530186,110.865249&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/6285640083741",
+      whatsapp: "6285640083741",
       email: "-",
       instagram: "-",
     },
@@ -697,7 +697,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.7489773,110.8442676&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/6285866665024",
+      whatsapp: "6285866665024",
       email: "-",
       instagram: "nasi_uduk_gang_satu",
     },
@@ -953,7 +953,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8197711,110.8367989&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/628562765946",
+      whatsapp: "628562765946",
       email: "-",
       instagram: "-",
     },
@@ -1022,7 +1022,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8141086,110.830343&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/085641756023",
+      whatsapp: "085641756023",
       email: "-",
       instagram: "-",
     },
@@ -1109,7 +1109,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8167599,110.8235253&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/08562707781",
+      whatsapp: "08562707781",
       email: "-",
       instagram: "-",
     },
@@ -1189,7 +1189,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.81532,110.8273077&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/082133222004",
+      whatsapp: "082133222004",
       email: "-",
       instagram: "-",
     },
@@ -1377,7 +1377,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8099173,110.9227112&hl=id&z=17&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/085600878980",
+      whatsapp: "085600878980",
       email: "-",
       instagram: "-",
     },
@@ -1442,7 +1442,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8132827,110.9230951&hl=id&z=17&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/085747474714",
+      whatsapp: "085747474714",
       email: "-",
       instagram: "-",
     },
@@ -1491,7 +1491,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8072038,110.918911&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/085888445959",
+      whatsapp: "085888445959",
       email: "-",
       instagram: "-",
     },
@@ -1547,7 +1547,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8092817,110.92246&hl=id&z=17&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/085640256542",
+      whatsapp: "085640256542",
       email: "-",
       instagram: "-",
     },
@@ -1594,7 +1594,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.7931315,110.7985926&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/081939666657  ",
+      whatsapp: "081939666657  ",
       email: "-",
       instagram: "-",
     },
@@ -1782,7 +1782,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.7966961,110.8019642&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/0895383599877",
+      whatsapp: "0895383599877",
       email: "-",
       instagram: "-",
     },
@@ -1823,13 +1823,13 @@ export const dataDetailUMKM = [
       "/images/putra_galerifoto4.webp",
     ],
     openingHours: [
-      { day: "Senin", hours: "10.00 - 20.00", isOpen: true },
-      { day: "Selasa", hours: "10.00 - 20.00", isOpen: true },
-      { day: "Rabu", hours: "10.00 - 20.00", isOpen: true },
-      { day: "Kamis", hours: "10.00 - 20.00", isOpen: true },
-      { day: "Jumat", hours: "08.00 - 20.00", isOpen: true },
-      { day: "Sabtu", hours: "10.00 - 20.00", isOpen: true },
-      { day: "Minggu", hours: "10.00 - 20.00", isOpen: true },
+      { day: "Senin", hours: "07.00 - 10.00", isOpen: true },
+      { day: "Selasa", hours: "07.00 - 10.00", isOpen: true },
+      { day: "Rabu", hours: "07.00 - 10.00", isOpen: true },
+      { day: "Kamis", hours: "07.00 - 10.00", isOpen: true },
+      { day: "Jumat", hours: "07.00 - 10.00", isOpen: true },
+      { day: "Sabtu", hours: "07.00 - 10.00", isOpen: true },
+      { day: "Minggu", hours: "07.00 - 10.00", isOpen: true },
     ],
   },
   {
@@ -1854,7 +1854,7 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.8066691,110.7843391&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "https://wa.me/085691006788",
+      whatsapp: "085691006788",
       email: "-",
       instagram: "-",
     },
@@ -2007,8 +2007,8 @@ export const dataDetailUMKM = [
         "https://www.google.com/maps?q=-6.792574,110.8408274&hl=id&z=15&output=embed",
     },
     contact: {
-      whatsapp: "6289673183625",
-      email: "ramboo@gmail.com",
+      whatsapp: "085800008696",
+      email: "-",
       instagram: "ramboochicken",
     },
     menus: [
