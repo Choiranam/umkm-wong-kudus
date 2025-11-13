@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/admin/layout/Layout";
 import api from "../../services/api.js";
-
 export default function InfoProfilePage() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -12,10 +11,8 @@ export default function InfoProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
   const fileInputRef = useRef(null);
-
   const API_USER = "/user";
   const API_UPDATE = "/user/update";
-
   const fetchUser = async () => {
     setIsLoading(true);
     try {
@@ -32,15 +29,12 @@ export default function InfoProfilePage() {
       setIsLoading(false);
     }
   };
-
   const handleImageChange = (file) => {
     if (!file) return;
-
     if (file.size > 5 * 1024 * 1024) {
       showToast("Ukuran maksimal 5MB!", "error");
       return;
     }
-
     const validTypes = [
       "image/jpeg",
       "image/jpg",
@@ -51,42 +45,36 @@ export default function InfoProfilePage() {
       showToast("Format harus JPG, PNG, atau SVG!", "error");
       return;
     }
-
     const reader = new FileReader();
     reader.onloadend = () => setPhotoUrl(reader.result);
     reader.readAsDataURL(file);
   };
-
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
     handleImageChange(file);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim()) {
       showToast("Nama wajib diisi!", "error");
       return;
     }
-
     const formData = new FormData();
     formData.append("name", name);
-
     if (fileInputRef.current?.files[0]) {
       formData.append("foto_profil", fileInputRef.current.files[0]);
     }
-
     setIsLoading(true);
     try {
       const res = await api.post(API_UPDATE, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
       if (res.data.status) {
         showToast("Profil berhasil diperbarui!", "success");
-        fetchUser();
+        await fetchUser();
+        window.dispatchEvent(new Event("userUpdated"));
       }
     } catch (err) {
       const msg = err.response?.data?.message || "Gagal memperbarui profil";
@@ -95,21 +83,18 @@ export default function InfoProfilePage() {
       setIsLoading(false);
     }
   };
-
   const showToast = (msg, type = "success") => {
     setToast({ show: true, message: msg, type });
     setTimeout(() => setToast({ show: false, message: "", type: "" }), 3000);
   };
-
   useEffect(() => {
     fetchUser();
   }, []);
-
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50 p-4 md:p-6">
+      <div className="min-h-screen bg-gray-50 p-4 md:p-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+          <div className="bg-white rounded-2xl shadow-sm p-6 mb-8">
             <div className="flex justify-between items-center">
               <div>
                 <h1 className="text-2xl font-bold text-gray-800">
@@ -159,17 +144,15 @@ export default function InfoProfilePage() {
               </div>
             </div>
           </div>
-
-          <div className="bg-white rounded-2xl shadow-sm p-6">
-            <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">
                   Foto Profil mu
                 </h3>
-                <p className="text-sm text-gray-500 mb-4">
+                <p className="text-sm text-gray-500 mb-6">
                   Akan di display di pojok kanan atas dashboard
                 </p>
-
                 <div
                   onDragOver={(e) => {
                     e.preventDefault();
@@ -180,7 +163,7 @@ export default function InfoProfilePage() {
                     setIsDragging(false);
                   }}
                   onDrop={handleDrop}
-                  className={`relative border-2 border-dashed rounded-2xl p-8 text-center transition-all ${
+                  className={`relative border-2 border-dashed rounded-2xl p-10 text-center transition-all ${
                     isDragging
                       ? "border-orange bg-orange-50"
                       : "border-gray-300"
@@ -209,7 +192,6 @@ export default function InfoProfilePage() {
                       </svg>
                     </div>
                   )}
-
                   <p className="mt-4 text-sm font-medium text-orange">
                     {isDragging
                       ? "Lepaskan untuk upload"
@@ -218,7 +200,6 @@ export default function InfoProfilePage() {
                   <p className="text-xs text-gray-500 mt-1">
                     SVG, PNG, JPG ( MAX 800 x 800 px )
                   </p>
-
                   <input
                     type="file"
                     ref={fileInputRef}
@@ -234,8 +215,7 @@ export default function InfoProfilePage() {
                   </button>
                 </div>
               </div>
-
-              <div className="space-y-5">
+              <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Nama
@@ -248,7 +228,6 @@ export default function InfoProfilePage() {
                     placeholder="Masukkan nama"
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Email
@@ -267,7 +246,6 @@ export default function InfoProfilePage() {
             </div>
           </div>
         </div>
-
         {toast.show && (
           <div
             className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 animate-pulse z-50 ${
