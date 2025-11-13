@@ -5,6 +5,7 @@ import HeroContent from "../components/HeroContent";
 import { Icon } from "@iconify/react";
 import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
+import ReactCrop from "react-easy-crop";
 
 const KontakPage = () => {
   const [formData, setFormData] = useState({
@@ -81,6 +82,23 @@ const KontakPage = () => {
     }
   };
 
+  // === FOTO PROFIL & CROP ===
+  const [showPhotoMenu, setShowPhotoMenu] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [showCropper, setShowCropper] = useState(false);
+  const [tempImage, setTempImage] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+
+  useEffect(() => {
+    const handleClickOutside = () => setShowPhotoMenu(false);
+    if (showPhotoMenu) {
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
+    }
+  }, [showPhotoMenu]);
+
   const [rating, setRating] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
@@ -103,23 +121,6 @@ const KontakPage = () => {
     setReviewData({ ...reviewData, [label]: value });
   };
 
-  const handleProfileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        setErrorReview("Ukuran foto terlalu besar. Maksimal 5MB.");
-        return;
-      }
-      if (!file.type.startsWith("image/")) {
-        setErrorReview("Hanya file gambar yang diperbolehkan.");
-        return;
-      }
-      setSelectedFile(file);
-      setProfilePic(URL.createObjectURL(file));
-      setErrorReview("");
-    }
-  };
-
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
@@ -138,7 +139,9 @@ const KontakPage = () => {
     ctx.fillText(initials, 64, 64);
     return new Promise((resolve) => {
       canvas.toBlob((blob) => {
-        const file = new File([blob], `${initials}.webp`, { type: "image/png" });
+        const file = new File([blob], `${initials}.webp`, {
+          type: "image/png",
+        });
         resolve(file);
       });
     });
@@ -206,7 +209,7 @@ const KontakPage = () => {
           Email: "",
           Pesan: "",
         });
-        const fileInput = document.querySelector('input[type="file"]');
+        const fileInput = document.getElementById("profile-photo-input");
         if (fileInput) fileInput.value = "";
         setTimeout(() => setSuccessReview(""), 5000);
       } else {
@@ -402,7 +405,7 @@ const KontakPage = () => {
         </div>
 
         <div
-          className="overflow-hidden rounded-[5px] shadow-md h-[350px] md:h-[550px]"
+          className="overflow-hidden rounded-[5px] shadow-md h-[350px] md:h-[580px]"
           data-aos="fade-left"
         >
           <iframe
@@ -418,7 +421,7 @@ const KontakPage = () => {
         </div>
 
         <div
-          className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[530px] hidden md:block"
+          className="rounded-[5px] overflow-hidden shadow-md h-[350px] md:h-[550px] hidden md:block"
           data-aos="fade-right"
         >
           <img
@@ -438,25 +441,135 @@ const KontakPage = () => {
           </p>
           <form onSubmit={handleReviewSubmit} className="space-y-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
-              <div className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light hover:bg-orange/10 transition shrink-0">
-                {profilePic ? (
-                  <img
-                    src={profilePic}
-                    alt="Profil"
-                    className="w-full h-full object-cover"
+              <div className="relative group">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-label={
+                    profilePic
+                      ? selectedFile?.name || "Foto profil"
+                      : "Tambah foto profil"
+                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (profilePic) {
+                      setShowPhotoMenu(true);
+                    } else {
+                      document.getElementById("profile-photo-input").click();
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      if (profilePic) {
+                        setShowPhotoMenu(true);
+                      } else {
+                        document.getElementById("profile-photo-input").click();
+                      }
+                    }
+                  }}
+                  className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light transition shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2"
+                >
+                  {profilePic ? (
+                    <>
+                      <img
+                        src={profilePic}
+                        alt="Foto profil"
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Teks Ganti Foto - transparan */}
+                      <div className="absolute inset-0 bg-transparent bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                        <p className="text-white text-xs font-medium">
+                          Ganti Foto
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex flex-col justify-center items-center h-full text-orange">
+                      <Icon
+                        icon="mdi:image-outline"
+                        className="text-3xl mb-1"
+                      />
+                      <p className="text-[10px] font-medium">Tambah Foto</p>
+                    </div>
+                  )}
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    id="profile-photo-input"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        if (file.size > 5 * 1024 * 1024) {
+                          setErrorReview(
+                            "Ukuran foto terlalu besar. Maksimal 5MB."
+                          );
+                          return;
+                        }
+                        if (!file.type.startsWith("image/")) {
+                          setErrorReview(
+                            "Hanya file gambar yang diperbolehkan."
+                          );
+                          return;
+                        }
+                        const url = URL.createObjectURL(file);
+                        setTempImage(url);
+                        setSelectedFile(file);
+                        setShowCropper(true);
+                        setErrorReview("");
+                      }
+                    }}
+                    className="sr-only"
+                    aria-hidden="true"
                   />
-                ) : (
-                  <div className="flex flex-col justify-center items-center h-full text-orange">
-                    <Icon icon="mdi:camera-outline" className="text-3xl mb-1" />
-                    <p className="text-[10px] font-medium">Tambah Foto</p>
+                </div>
+                {showPhotoMenu && profilePic && (
+                  <div
+                    className="absolute bottom-0 right-0 transform translate-y-full translate-x-full mt-2 w-48 bg-light rounded-md shadow-lg border border-gray-200 z-50 overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ul className="py-1 text-sm">
+                      <li
+                        onClick={() => {
+                          setShowPhotoModal(true);
+                          setShowPhotoMenu(false);
+                        }}
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
+                      >
+                        <Icon icon="mdi:eye" className="text-lg" />
+                        Lihat Foto
+                      </li>
+                      <li
+                        onClick={() => {
+                          setShowPhotoMenu(false);
+                          document
+                            .getElementById("profile-photo-input")
+                            .click();
+                        }}
+                        className="px-4 py-2 hover:bg-orange/10 cursor-pointer flex items-center gap-2 text-orange font-medium"
+                      >
+                        <Icon icon="mdi:pencil" className="text-lg" />
+                        Unggah Foto
+                      </li>
+                      <li
+                        onClick={() => {
+                          setSelectedFile(null);
+                          setProfilePic(null);
+                          setShowPhotoMenu(false);
+                          const input = document.getElementById(
+                            "profile-photo-input"
+                          );
+                          if (input) input.value = "";
+                        }}
+                        className="px-4 py-2 hover:bg-red-50 hover:text-red-600 cursor-pointer flex items-center gap-2 text-red-500"
+                      >
+                        <Icon icon="mdi:delete-outline" className="text-lg" />
+                        Hapus Foto
+                      </li>
+                    </ul>
                   </div>
                 )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleProfileUpload}
-                  className="absolute inset-0 opacity-0 cursor-pointer"
-                />
               </div>
               <div className="flex flex-col flex-1 gap-4 w-full sm:w-auto">
                 {["Nama Depan", "Nama Belakang"].map((label) => (
@@ -473,7 +586,6 @@ const KontakPage = () => {
                       placeholder=" "
                       disabled={isLoadingReview}
                     />
-
                     <label
                       htmlFor={`review-${label}`}
                       className={`absolute left-0 transition-all duration-200 ease-in-out
@@ -490,7 +602,6 @@ const KontakPage = () => {
                 ))}
               </div>
             </div>
-
             <div className="relative">
               <input
                 type="email"
@@ -590,6 +701,158 @@ const KontakPage = () => {
             </button>
           </form>
         </div>
+        {showPhotoModal && profilePic && (
+          <div
+            className="fixed inset-0 bg-black/60 flex items-center justify-center z-9999 p-4 overflow-hidden"
+            onClick={() => setShowPhotoModal(false)}
+          >
+            <div
+              className="relative max-w-md w-full bg-white rounded-xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={profilePic}
+                alt="Pratinjau foto profil"
+                className="w-full h-auto max-h-[80vh] object-contain"
+              />
+              <button
+                onClick={() => setShowPhotoModal(false)}
+                className="absolute top-3 right-3 bg-white/80 rounded-full p-2 shadow hover:bg-gray-100 transition"
+                aria-label="Tutup"
+              >
+                <Icon icon="mdi:close" className="text-2xl" />
+              </button>
+            </div>
+          </div>
+        )}
+        {showCropper && tempImage && (
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-9999 p-4"
+            onClick={() => {
+              setShowCropper(false);
+              setTempImage(null);
+            }}
+          >
+            <div
+              className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden border border-gray-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative flex items-center px-6 py-2 border-b border-gray-200 bg-white">
+                <button
+                  onClick={() => {
+                    setShowCropper(false);
+                    setTempImage(null);
+                  }}
+                  className="p-1.5 bg-gray-100 hover:bg-gray-200 rounded-full transition"
+                  aria-label="Batal"
+                >
+                  <Icon icon="mdi:close" className="text-black/50 text-lg" />
+                </button>
+                <p className="ml-2 text-base font-medium text-black flex-1">
+                  Seret gambar untuk menyesuaikan
+                </p>
+                <button
+                  onClick={() => {
+                    // Reset semua state crop
+                    setShowCropper(false);
+                    setTempImage(null);
+                    setSelectedFile(null);
+                    setCrop({ x: 0, y: 0 });
+                    setZoom(1);
+                    setCroppedAreaPixels(null);
+                    const fileInput = document.getElementById(
+                      "profile-photo-input"
+                    );
+                    if (fileInput) {
+                      fileInput.value = "";
+                      fileInput.click();
+                    }
+                  }}
+                  className="text-sm text-dark/50 hover:text-dark font-medium transition"
+                >
+                  Upload ulang
+                </button>
+              </div>
+              <div className="relative bg-light flex items-center justify-center h-72">
+                <ReactCrop
+                  image={tempImage}
+                  crop={crop}
+                  zoom={zoom}
+                  aspect={1}
+                  cropShape="round"
+                  showGrid={false}
+                  onCropChange={setCrop}
+                  onZoomChange={setZoom}
+                  onCropComplete={(croppedArea, croppedAreaPixels) =>
+                    setCroppedAreaPixels(croppedAreaPixels)
+                  }
+                  classes={{
+                    containerClassName: "absolute inset-0",
+                    mediaClassName: "w-full h-full object-contain",
+                  }}
+                />
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+                  <button
+                    onClick={() => setZoom(Math.min(3, zoom + 0.1))}
+                    className="w-9 h-9 rounded-full bg-white/50 hover:bg-white flex items-center justify-center transition"
+                  >
+                    <Icon icon="mdi:plus" className="text-dark text-sm" />
+                  </button>
+                  <button
+                    onClick={() => setZoom(Math.max(1, zoom - 0.1))}
+                    className="w-9 h-9 rounded-full bg-white/50 hover:bg-white flex items-center justify-center transition"
+                  >
+                    <Icon icon="mdi:minus" className="text-dark text-sm" />
+                  </button>
+                </div>
+              </div>
+              <div className="relative bg-white h-20">
+                <button
+                  onClick={async () => {
+                    if (!croppedAreaPixels || !tempImage) return;
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+                    const image = new Image();
+                    image.src = tempImage;
+
+                    await new Promise((resolve) => {
+                      image.onload = () => {
+                        canvas.width = 256;
+                        canvas.height = 256;
+                        ctx.drawImage(
+                          image,
+                          croppedAreaPixels.x,
+                          croppedAreaPixels.y,
+                          croppedAreaPixels.width,
+                          croppedAreaPixels.height,
+                          0,
+                          0,
+                          256,
+                          256
+                        );
+                        resolve();
+                      };
+                    });
+
+                    canvas.toBlob((blob) => {
+                      const croppedFile = new File([blob], selectedFile.name, {
+                        type: selectedFile.type,
+                      });
+                      setSelectedFile(croppedFile);
+                      setProfilePic(URL.createObjectURL(croppedFile));
+                      setShowCropper(false);
+                      setTempImage(null);
+                    }, selectedFile.type);
+                  }}
+                  className="absolute -top-7 right-6 bg-orange hover:bg-orange-600 text-white rounded-full p-4 shadow-xl transition-all duration-200"
+                  aria-label="Simpan foto"
+                >
+                  <Icon icon="mdi:check" className="text-2xl" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </PageContainer>
       <Footer />
     </div>
