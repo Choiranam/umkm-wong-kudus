@@ -15,35 +15,38 @@ const LoginPage = () => {
 
   const { login, loading, error } = useLogin();
 
-  // Redirect kalau sudah login
   useEffect(() => {
-    if (AuthService.isAuthenticated()) {
-      navigate("/dashboard", { replace: true });
-    }
+    const checkAuth = async () => {
+      const isAuth = await AuthService.isAuthenticated();
+      if (isAuth) {
+        navigate("/dashboard", { replace: true });
+      }
+    };
+    checkAuth();
   }, [navigate]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setShowPopup(true);
     const res = await login(email, password, remember);
-
     if (res) {
-      navigate("/dashboard", { replace: true });
+      setShowPopup(true);
+      setTimeout(() => {
+        navigate("/dashboard", { replace: true });
+      }, 1000);
     } else {
       setShowPopup(false);
     }
   };
 
   return (
-    <div className="bg-light min-h-screen h-screen overflow-hidden relative">
-      {/* Popup sukses instan */}
+    <div className="bg-light min-h-screen flex flex-col">
       {showPopup && (
         <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white py-2 px-4 rounded shadow animate-fade-in z-50">
           Login berhasil! Mengalihkan...
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
+      <div className="grid grid-cols-1 md:grid-cols-2 flex-1">
         <div className="flex flex-col justify-center items-center px-6 md:px-12 lg:px-16">
           <img src={logo} alt="Logo Kudus" className="w-28 mb-3" />
           <h1 className="text-2xl font-bold mb-1">Welcome Back</h1>
