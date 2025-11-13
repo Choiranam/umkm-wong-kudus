@@ -6,10 +6,10 @@ import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { dataDetailUMKM } from "../data/dataDetailUMKM";
 import UMKMCard from "../components/UMKMCard";
-import { dataUMKM } from "../data/dataUMKM";
 import NotFoundPage from "./NotFoundPage";
+import api from "../services/api";
+import { getBaseUrl } from "../utils/getBaseUrl";
 
 const StickyInfo = ({ data, onClose, isMobile }) => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
@@ -101,17 +101,22 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
   ];
 
   const handleOpenMaps = () => {
+    const destination = encodeURIComponent(
+      location.fullAddress || location.address
+    );
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const userLat = position.coords.latitude;
           const userLon = position.coords.longitude;
-          const destination = encodeURIComponent(location.address);
           const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLon}&destination=${destination}&travelmode=driving`;
           window.open(directionsUrl, "_blank");
         },
         (error) => {
-          window.open(location.mapsUrl, "_blank");
+          console.error("Geolocation error:", error);
+          const fallbackUrl = `https://www.google.com/maps/search/?api=1&query=${destination}`;
+          window.open(fallbackUrl, "_blank");
         },
         {
           enableHighAccuracy: true,
@@ -120,7 +125,8 @@ const StickyInfo = ({ data, onClose, isMobile }) => {
         }
       );
     } else {
-      window.open(location.mapsUrl, "_blank");
+      const fallbackUrl = `https://www.google.com/maps/search/?api=1&query=${destination}`;
+      window.open(fallbackUrl, "_blank");
     }
   };
 
@@ -260,14 +266,71 @@ const DetailUMKMPage = () => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    const data = dataDetailUMKM.find((item) => item.slug === slug);
-    setUmkmData(data || null);
-    const otherUMKM = dataUMKM.filter((item) => item.slug !== slug);
-    const shuffled = [...otherUMKM].sort(() => Math.random() - 0.5);
-    const count = isMobile ? 4 : 5;
-    setRelatedUMKM(shuffled.slice(0, count));
-    setIsLoading(false);
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const listResponse = await api.get("/umkm");
+
+        if (listResponse.data.status && Array.isArray(listResponse.data.data)) {
+          const allUMKM = listResponse.data.data;
+          const targetUMKM = allUMKM.find((item) => item.slug === slug);
+
+          if (targetUMKM) {
+            const detailResponse = await api.get(`/umkm/${targetUMKM.id}`);
+
+            if (detailResponse.data.status && detailResponse.data.data) {
+              const apiData = detailResponse.data.data;
+
+              const formattedData = {
+                name: apiData.name,
+                description: apiData.description,
+                heroTitle: apiData.hero_title,
+                heroSubtitle: apiData.hero_subtitle,
+                heroImage: apiData.hero_image,
+                about: apiData.about,
+                rating: apiData.rating,
+                location: {
+                  address: apiData.location?.address,
+                  fullAddress: apiData.location?.full_address,
+                  embedUrl: apiData.location?.embed_url,
+                  mapsUrl: apiData.location?.maps_url,
+                },
+                contact: apiData.contact,
+                openingHours: apiData.opening_hours.map((oh) => ({
+                  day: oh.day,
+                  hours: oh.hours,
+                  isOpen: oh.is_open,
+                })),
+                menus: apiData.menus.map((menu) => ({
+                  ...menu,
+                  image: menu.image.startsWith("http")
+                    ? menu.image
+                    : `https://api-umkmwongkudus.rplrus.com/storage/${menu.image}`,
+                })),
+                galleryImages: apiData.gallery.map((g) => g.image),
+              };
+              setUmkmData(formattedData);
+
+              const otherUMKM = allUMKM.filter((item) => item.slug !== slug);
+              const shuffled = [...otherUMKM].sort(() => Math.random() - 0.5);
+              const count = isMobile ? 4 : 5;
+              setRelatedUMKM(shuffled.slice(0, count));
+            } else {
+              setUmkmData(null);
+            }
+          } else {
+            setUmkmData(null);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setUmkmData(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (slug) fetchData();
   }, [slug, isMobile]);
 
   useEffect(() => {
@@ -284,7 +347,13 @@ const DetailUMKMPage = () => {
     };
   }, [showMobilePopup, selectedImage]);
 
-  if (isLoading) return null;
+  if (isLoading)
+    return (
+      <div className="bg-light min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
+      </div>
+    );
+
   if (!umkmData) return <NotFoundPage />;
 
   const {

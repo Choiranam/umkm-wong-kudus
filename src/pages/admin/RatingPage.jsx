@@ -8,7 +8,7 @@ import {
   FaTimes,
   FaStar,
 } from "react-icons/fa";
-import api from "../../API/auth.js";
+import api from "../../services/api.js";
 import * as XLSX from "xlsx";
 
 export default function RatingAdminPage() {

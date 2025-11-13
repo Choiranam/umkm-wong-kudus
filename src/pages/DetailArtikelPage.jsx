@@ -7,9 +7,10 @@ import HeroContent from "../components/HeroContent";
 import ArtikelCard from "../components/ArtikelCard";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import api from "../services/api";
 
 const DetailArtikelPage = () => {
-  const { id } = useParams(); // Ambil ID dari URL
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [article, setArticle] = useState(null);
@@ -17,7 +18,6 @@ const DetailArtikelPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Format tanggal utama
   const formatMainDate = (dateString) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, "0");
@@ -28,16 +28,17 @@ const DetailArtikelPage = () => {
     return `Admin • ${day}/${month}/${year} • ${hours}.${minutes} WIB — diupload oleh admin`;
   };
 
-  // Format tanggal sidebar
   const formatSidebarDate = (dateString) => {
     const date = new Date(dateString);
     const options = { day: "numeric", month: "long", year: "numeric" };
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
-    return `${date.toLocaleDateString("id-ID", options)} • ${hours}.${minutes} WIB`;
+    return `${date.toLocaleDateString(
+      "id-ID",
+      options
+    )} • ${hours}.${minutes} WIB`;
   };
 
-  // Slugify (untuk link)
   const slugify = (text) =>
     text
       .toLowerCase()
@@ -45,15 +46,12 @@ const DetailArtikelPage = () => {
       .trim()
       .replace(/\s+/g, "-");
 
-  // === Fetch Detail Artikel dari API BARU ===
   useEffect(() => {
     const fetchDetail = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://api-umkmwongkudus.rplrus.com/api/articles/${id}/detail`);
-        if (!response.ok) throw new Error("Gagal memuat artikel");
-
-        const result = await response.json();
+        const response = await api.get(`/articles/${id}/detail`);
+        const result = response.data;
 
         if (result.status && result.data) {
           const { article: apiArticle, related_articles } = result.data;
@@ -74,7 +72,6 @@ const DetailArtikelPage = () => {
     if (id) fetchDetail();
   }, [id]);
 
-  // === Share Functions ===
   const shareLink = () => {
     const url = window.location.href;
     navigator.clipboard.writeText(url);
@@ -83,16 +80,20 @@ const DetailArtikelPage = () => {
 
   const shareWhatsApp = () => {
     const url = window.location.href;
-    const text = encodeURIComponent(`Baca artikel: ${article?.title || "Artikel UMKM"}\n${url}`);
+    const text = encodeURIComponent(
+      `Baca artikel: ${article?.title || "Artikel UMKM"}\n${url}`
+    );
     window.open(`https://wa.me/?text=${text}`, "_blank");
   };
 
   const shareFacebook = () => {
     const url = window.location.href;
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      "_blank"
+    );
   };
 
-  // === Loading & Error ===
   if (loading) {
     return (
       <div className="bg-light min-h-screen font-poppins flex items-center justify-center">
@@ -106,7 +107,9 @@ const DetailArtikelPage = () => {
       <div className="bg-light min-h-screen font-poppins">
         <Navbar />
         <PageContainer variant="default" className="py-20 text-center">
-          <h1 className="text-2xl font-bold text-dark mb-3">Artikel tidak ditemukan</h1>
+          <h1 className="text-2xl font-bold text-dark mb-3">
+            Artikel tidak ditemukan
+          </h1>
           <p className="text-dark mb-6">
             Artikel yang kamu cari mungkin sudah dihapus atau URL-nya salah.
           </p>
@@ -127,8 +130,10 @@ const DetailArtikelPage = () => {
       <Navbar />
       <HeroContent image={article.image} title={article.title} />
 
-      <PageContainer variant="default" className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-6 sm:mt-8">
-        {/* Konten Utama */}
+      <PageContainer
+        variant="default"
+        className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-6 sm:mt-8"
+      >
         <div className="lg:w-2/3">
           <motion.nav
             initial={{ opacity: 0, y: -10 }}
@@ -136,14 +141,20 @@ const DetailArtikelPage = () => {
             transition={{ duration: 0.5 }}
             className="flex items-center text-dark/70 text-sm sm:text-base mb-6"
           >
-            <Link to="/artikel" className="hover:text-orange flex items-center gap-1">
+            <Link
+              to="/artikel"
+              className="hover:text-orange flex items-center gap-1"
+            >
               <Icon icon="mdi:newspaper-variant-multiple-outline" />
               Artikel
             </Link>
             <Icon icon="mdi:chevron-right" className="mx-2" />
             <span className="text-dark/50 capitalize">{article.category}</span>
             <Icon icon="mdi:chevron-right" className="mx-2" />
-            <span className="text-orange font-medium line-clamp-1" title={article.title}>
+            <span
+              className="text-orange font-medium line-clamp-1"
+              title={article.title}
+            >
               {article.title}
             </span>
           </motion.nav>
@@ -159,7 +170,6 @@ const DetailArtikelPage = () => {
           />
         </div>
 
-        {/* Sidebar */}
         <div className="lg:w-1/3 flex flex-col">
           <div className="flex items-center gap-3 mb-6 lg:ml-10">
             <span className="text-dark font-bold">Bagikan:</span>
@@ -168,21 +178,32 @@ const DetailArtikelPage = () => {
               onClick={shareLink}
               className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8"
             >
-              <Icon icon="mingcute:link-line" className="w-full h-full text-dark" />
+              <Icon
+                icon="mingcute:link-line"
+                className="w-full h-full text-dark"
+              />
             </button>
 
             <button
               onClick={shareWhatsApp}
               className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8"
             >
-              <Icon icon="basil:whatsapp-solid" className="w-full h-full" color="#25D366" />
+              <Icon
+                icon="basil:whatsapp-solid"
+                className="w-full h-full"
+                color="#25D366"
+              />
             </button>
 
             <button
               onClick={shareFacebook}
               className="hover:opacity-80 transition-transform transform hover:scale-110 flex items-center justify-center w-8 h-8"
             >
-              <Icon icon="mdi:facebook" className="w-full h-full" color="#1877F2" />
+              <Icon
+                icon="mdi:facebook"
+                className="w-full h-full"
+                color="#1877F2"
+              />
             </button>
           </div>
 
@@ -210,7 +231,9 @@ const DetailArtikelPage = () => {
                 </div>
               ))
             ) : (
-              <p className="text-dark/60 text-sm lg:ml-10">Belum ada artikel terkait.</p>
+              <p className="text-dark/60 text-sm lg:ml-10">
+                Belum ada artikel terkait.
+              </p>
             )}
           </div>
         </div>

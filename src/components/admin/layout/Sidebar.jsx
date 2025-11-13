@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import UKS2 from "/images/logo_navbar_footer.webp";
-import api from "../../../API/auth"; // Pastikan path ini benar
+import api from "../../../services/api.js"; // Pastikan path ini benar
 
 function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
   const location = useLocation();
@@ -34,11 +34,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
     }
 
     try {
-      await api.post("/logout", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      await api.post(
+        "/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
     } catch (err) {
       console.warn("Logout gagal di server, tetap lanjutkan logout lokal");
     } finally {
@@ -94,8 +98,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
     if (isActive(["/kategori-admin", "/artikel-admin"])) setOpenArtikel(true);
     if (isActive(["/ratingadmin"])) setOpenRating(true);
     if (isActive(["/kontakadmin"])) setOpenKontak(true);
-    if (isActive(["/settings", "/account", "/profile"])) setOpenPengaturan(true);
-    if (isActive(["/register", "/forgot-password", "/registerexcel"])) setOpenAutentikasi(true);
+    if (isActive(["/settings", "/account", "/profile"]))
+      setOpenPengaturan(true);
+    if (isActive(["/register", "/forgot-password", "/registerexcel"]))
+      setOpenAutentikasi(true);
   }, [pathname]);
 
   // Helper: toggle grup
@@ -399,8 +405,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
                         to="/artikel-admin"
                         className={({ isActive }) =>
                           `block text-sm transition truncate ${
-                            isActive ||
-                            pathname === "/artikel-admin/create"
+                            isActive || pathname === "/artikel-admin/create"
                               ? "text-orange-500"
                               : "text-gray-500/90 hover:text-orange-600"
                           }`
@@ -656,9 +661,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
 
                 <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
                   <ul className={`pl-9 mt-1 ${!openAutentikasi && "hidden"}`}>
-                    <li className="mb-1">
-                      {/* KOSONGIN AJA */}
-                    </li>
+                    <li className="mb-1">{/* KOSONGIN AJA */}</li>
                     <li className="mb-1">
                       <button
                         onClick={handleLogout}

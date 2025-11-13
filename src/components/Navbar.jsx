@@ -106,7 +106,7 @@ const Navbar = ({ forceDark = false }) => {
               />
             </button>
             <div
-              className={`absolute left-0 mt-2 w-64 bg-white rounded-2xl bg-white shadow-xl py-3 z-50 border border-dark/10 transition-all duration-200 ${
+              className={`absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl py-3 z-50 border border-dark/10 transition-all duration-200 ${
                 isKategoriOpen ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >

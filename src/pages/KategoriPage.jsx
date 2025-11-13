@@ -7,7 +7,7 @@ import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
 import UMKMCard from "../components/UMKMCard";
 import PageContainer from "../components/PageContainer";
-import { dataUMKM } from "../data/dataUMKM";
+import api from "../services/api";
 
 const KATEGORI_CONFIG = {
   makanan: {
@@ -49,7 +49,12 @@ const KategoriPage = () => {
   const [currentPage, setCurrentPage] = useState(
     parseInt(searchParams.get("page")) || 1
   );
+
+  const [umkmData, setUmkmData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const pageContainerRef = useRef(null);
+
   const scrollToContainer = () => {
     if (pageContainerRef.current) {
       const navbarHeight = 70;
@@ -62,41 +67,68 @@ const KategoriPage = () => {
       });
     }
   };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+
   const [isOpen, setIsOpen] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(() =>
     window.innerWidth < 640 ? 8 : 15
   );
+
+  useEffect(() => {
+    const fetchUMKM = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get("/umkm");
+        if (response.data.status && Array.isArray(response.data.data)) {
+          setUmkmData(response.data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching UMKM:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUMKM();
+  }, []);
+
   const filteredUMKM = useMemo(() => {
-    return dataUMKM.filter((item) => {
+    return umkmData.filter((item) => {
+      const categoryName = item.category?.name || "";
       const matchesCategory =
-        item.category.toLowerCase() === kategoriSlug.toLowerCase();
+        categoryName.toLowerCase() === kategoriSlug.toLowerCase();
       const matchesSearch = item.name
         .toLowerCase()
         .includes(search.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [kategoriSlug, search]);
+  }, [kategoriSlug, search, umkmData]);
+
   const totalPages = Math.ceil(filteredUMKM.length / itemsPerPage);
   const paginatedUMKM = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
     return filteredUMKM.slice(start, start + itemsPerPage);
   }, [filteredUMKM, currentPage, itemsPerPage]);
+
   useEffect(() => {
     setCurrentPage(1);
     scrollToTop();
   }, [kategoriSlug]);
+
   useEffect(() => {
     setCurrentPage(1);
   }, [search]);
+
   useEffect(() => {
     setSearchParams({ slug: kategoriSlug, page: currentPage });
   }, [kategoriSlug, currentPage, setSearchParams]);
+
   useEffect(() => {
     const handleResize = () => {
       const newItemsPerPage = window.innerWidth < 640 ? 8 : 15;
@@ -108,12 +140,15 @@ const KategoriPage = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [itemsPerPage]);
+
   const goToPage = (page) => {
     if (page < 1 || page > totalPages || page === currentPage) return;
     setCurrentPage(page);
     setTimeout(scrollToContainer, 0);
   };
+
   const kategoriData = KATEGORI_CONFIG[kategoriSlug] || KATEGORI_CONFIG.makanan;
+
   return (
     <div className="bg-light min-h-screen overflow-x-hidden w-full relative">
       <Navbar />
@@ -205,36 +240,47 @@ const KategoriPage = () => {
             </span>
           </span>
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 justify-items-center mt-6 sm:mt-10">
-          {paginatedUMKM.length > 0 ? (
-            paginatedUMKM.map((umkm, index) => (
-              <motion.div
-                key={umkm.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 120,
-                  damping: 12,
-                  delay: index * 0.08,
-                }}
-                viewport={{ once: true }}
-                className="w-full flex justify-center"
-              >
-                <Link to={`/detail-umkm/${umkm.slug}`} className="block w-full">
-                  <UMKMCard data={umkm} />
-                </Link>
-              </motion.div>
-            ))
-          ) : (
-            <div className="col-span-full text-center text-dark/60 italic py-10">
-              Tidak ditemukan hasil untuk pencarian{" "}
-              <span className="font-semibold text-orange">"{search}"</span> di
-              kategori <span className="capitalize">"{kategoriSlug}"</span>.
-            </div>
-          )}
-        </div>
-        {totalPages > 1 && (
+
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 justify-items-center mt-6 sm:mt-10">
+            {paginatedUMKM.length > 0 ? (
+              paginatedUMKM.map((umkm, index) => (
+                <motion.div
+                  key={umkm.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 12,
+                    delay: index * 0.08,
+                  }}
+                  viewport={{ once: true }}
+                  className="w-full flex justify-center"
+                >
+                  <Link
+                    to={`/detail-umkm/${umkm.slug}`}
+                    className="block w-full"
+                  >
+                    <UMKMCard data={umkm} />
+                  </Link>
+                </motion.div>
+              ))
+            ) : (
+              <div className="col-span-full text-center text-dark/60 italic py-10">
+                Tidak ditemukan hasil untuk pencarian{" "}
+                <span className="font-semibold text-orange">"{search}"</span> di
+                kategori <span className="capitalize">"{kategoriSlug}"</span>.
+              </div>
+            )}
+          </div>
+        )}
+
+        {!loading && totalPages > 1 && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

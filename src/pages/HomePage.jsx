@@ -3,138 +3,20 @@ import Footer from "../components/Footer";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import KecamatanCard from "../components/KecamatanCard";
-import UMKMCard from "../components/UMKMCard";
 import ReviewCard from "../components/ReviewCard";
 import { Link, useNavigate } from "react-router-dom";
 import ArtikelCard from "../components/ArtikelCard";
 import AOS from "aos";
 import AnimatedIconBackground from "../components/AnimatedIconBackground";
-import { dataKecamatan } from "../data/dataKecamatan";
 import SearchBar from "../components/SearchBar";
 import { useRef, useState, useEffect } from "react";
-import { dataUMKM } from "../data/dataUMKM";
-
-const UMKMScrollSection = () => {
-  const umkmScrollRef = useRef(null);
-  const posRef = useRef(0);
-  const rafRef = useRef(null);
-  const lastTimeRef = useRef(null);
-  const userInteractingRef = useRef(false);
-  const resumeTimerRef = useRef(null);
-  const SPEED = 2.0;
-
-  useEffect(() => {
-    const el = umkmScrollRef.current;
-    if (!el) return;
-
-    const half = () => el.scrollWidth / 2;
-
-    const animate = (time) => {
-      if (lastTimeRef.current == null) lastTimeRef.current = time;
-      const delta = time - lastTimeRef.current;
-      lastTimeRef.current = time;
-
-      if (!userInteractingRef.current) {
-        posRef.current += SPEED * (delta / 16);
-        const loop = half();
-        if (posRef.current >= loop) posRef.current -= loop;
-        el.scrollLeft = posRef.current;
-      } else {
-        posRef.current = el.scrollLeft % half();
-      }
-
-      rafRef.current = requestAnimationFrame(animate);
-    };
-
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, []);
-
-  const startInteraction = () => {
-    userInteractingRef.current = true;
-    if (resumeTimerRef.current) {
-      clearTimeout(resumeTimerRef.current);
-      resumeTimerRef.current = null;
-    }
-  };
-
-  const endInteraction = () => {
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      userInteractingRef.current = false;
-      const el = umkmScrollRef.current;
-      if (!el) return;
-      const loop = el.scrollWidth / 2;
-      posRef.current = el.scrollLeft % loop;
-    }, 300);
-  };
-
-  const handleScroll = (e) => {
-    const el = e.currentTarget;
-    const loop = el.scrollWidth / 2;
-    if (userInteractingRef.current) {
-      if (el.scrollLeft >= loop) el.scrollLeft -= loop;
-      if (el.scrollLeft <= 0) el.scrollLeft = (el.scrollLeft + loop) % loop;
-      posRef.current = el.scrollLeft;
-    } else {
-      posRef.current = el.scrollLeft % loop;
-    }
-  };
-
-  return (
-    <section
-      data-aos="fade-up"
-      data-aos-delay="100"
-      className="pb-16 sm:pb-20 px-4 md:px-8 lg:px-20 xl:px-50 relative"
-    >
-      <AnimatedIconBackground iconCount={15} color="text-orange" />
-      <style jsx>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
-
-      <div className="relative">
-        <div className="absolute top-0 left-0 w-4 sm:w-16 h-full bg-linear-to-r from-light to-transparent z-10 pointer-events-none" />
-        <div
-          className="relative w-full overflow-x-auto no-scrollbar"
-          ref={umkmScrollRef}
-          onPointerDown={startInteraction}
-          onPointerUp={endInteraction}
-          onPointerCancel={endInteraction}
-          onMouseEnter={startInteraction}
-          onMouseLeave={endInteraction}
-          onTouchStart={startInteraction}
-          onTouchEnd={endInteraction}
-          onScroll={handleScroll}
-        >
-          <motion.div
-            style={{ width: "max-content" }}
-            className="flex gap-4 py-3"
-          >
-            {[...dataUMKM, ...dataUMKM].map((item, i) => (
-              <div key={i} className="snap-start">
-                <Link to={`/detail-umkm/${item.slug}`} className="block">
-                  <UMKMCard data={item} />
-                </Link>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-        <div className="absolute top-0 right-0 w-4 sm:w-16 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
-      </div>
-    </section>
-  );
-};
+import UMKMScrollSection from "../components/UMKMScrollSection";
+import api from "../services/api";
 
 const HomePage = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
-  const [loadIframe, setLoadIframe] = useState(false); // State baru untuk kontrol load iframe
-  const heroRef = useRef(null); // Ref untuk section hero
+  const [loadIframe, setLoadIframe] = useState(false);
+  const heroRef = useRef(null);
   const navigate = useNavigate();
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -149,6 +31,8 @@ const HomePage = () => {
   const [loadingReviews, setLoadingReviews] = useState(true);
   const [errorReviews, setErrorReviews] = useState("");
 
+  const [kecamatanList, setKecamatanList] = useState([]);
+
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     return new Date(dateString).toLocaleDateString("id-ID", options);
@@ -161,16 +45,15 @@ const HomePage = () => {
     }, 200);
   }, []);
 
-  // Intersection Observer untuk detect section hero visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           setLoadIframe(true);
-          observer.disconnect(); // Hanya load sekali
+          observer.disconnect();
         }
       },
-      { threshold: 0.1 } // Load kalau 10% visible
+      { threshold: 0.1 }
     );
 
     if (heroRef.current) {
@@ -181,13 +64,43 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
+    const fetchKecamatanAndCount = async () => {
+      try {
+        const [kecResponse, listingsResponse] = await Promise.all([
+          api.get("/kecamatan"),
+          api.get("/umkm-listings"),
+        ]);
+
+        const kecData = kecResponse.data;
+        const listingsData = listingsResponse.data.data;
+
+        if (Array.isArray(kecData)) {
+          const umkmArray = Array.isArray(listingsData) ? listingsData : [];
+
+          const processedData = kecData.map((kec) => {
+            const count = umkmArray.filter(
+              (item) => item.kecamatan_slug === kec.slug
+            ).length;
+            return {
+              ...kec,
+              placeCount: count,
+            };
+          });
+          setKecamatanList(processedData);
+        }
+      } catch (err) {
+        console.error("Error fetching kecamatan data:", err);
+      }
+    };
+
+    fetchKecamatanAndCount();
+  }, []);
+
+  useEffect(() => {
     const fetchBlogCategories = async () => {
       try {
-        const response = await fetch(
-          "https://api-umkmwongkudus.rplrus.com/api/categories-blog"
-        );
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const result = await response.json();
+        const response = await api.get("/categories-blog");
+        const result = response.data;
 
         if (result.status && Array.isArray(result.data)) {
           const map = {};
@@ -212,11 +125,8 @@ const HomePage = () => {
       if (Object.keys(blogCategories).length === 0) return;
       try {
         setLoadingArticles(true);
-        const response = await fetch(
-          "https://api-umkmwongkudus.rplrus.com/api/articles"
-        );
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const result = await response.json();
+        const response = await api.get("/articles");
+        const result = response.data;
 
         if (result.status && Array.isArray(result.data)) {
           const formatted = result.data.slice(0, 3).map((item) => ({
@@ -247,10 +157,8 @@ const HomePage = () => {
     const fetchReviews = async () => {
       try {
         setLoadingReviews(true);
-        const response = await fetch(
-          "https://api-umkmwongkudus.rplrus.com/api/rating"
-        );
-        const result = await response.json();
+        const response = await api.get("/rating");
+        const result = response.data;
 
         if (result.status && Array.isArray(result.data)) {
           const formatted = result.data.map((item) => ({
@@ -287,7 +195,11 @@ const HomePage = () => {
 
   const categories = [
     { name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
-    { name: "Minuman", slug: "minuman", icon: "fluent:drink-to-go-24-regular" },
+    {
+      name: "Minuman",
+      slug: "minuman",
+      icon: "fluent:drink-to-go-24-regular",
+    },
     { name: "Jasa", slug: "jasa", icon: "ph:wrench" },
     { name: "Barang", slug: "barang", icon: "lucide:package-open" },
     { name: "Lainnya", slug: "lainnya", icon: "basil:other-1-outline" },
@@ -392,12 +304,12 @@ const HomePage = () => {
       <Navbar />
 
       <section
-        ref={heroRef} // Ref untuk observer
+        ref={heroRef}
         className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden"
         style={{
           backgroundImage: loadIframe
             ? "none"
-            : "ur[](https://example.com/placeholder-virtual-tour.webp)", // Ganti dengan URL gambar placeholder ringan (misal screenshot virtual tour, ukuran <100KB)
+            : "url(https://example.com/placeholder-virtual-tour.webp)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -406,16 +318,16 @@ const HomePage = () => {
           {loadIframe && (
             <iframe
               src="https://tourism.kuduskab.go.id/virtualtour-live/"
-              loading="lazy" // Lazy loading
+              loading="lazy"
               className={`
                 absolute
-                top-[-100px] h-[150%] // Kurangi over-scaling untuk mobile
+                top-[-130px] h-[150%]
                 sm:top-[-150px] sm:h-[180%]
                 md:top-[-200px] md:h-[190%]
                 lg:top-[-200px] lg:h-[180%]
                 xl:top-[-220px] xl:h-[190%]
                 left-0 w-full object-cover
-                transition-opacity duration-500 // Kurangi durasi untuk lebih cepat
+                transition-opacity duration-500
                 ${iframeLoaded ? "opacity-100" : "opacity-0"}
               `}
               onLoad={() => setIframeLoaded(true)}
@@ -497,8 +409,6 @@ const HomePage = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Sisanya kode sama seperti aslinya, Senpai. Aku gak ubah biar fokus di iframe. */}
 
       <section
         data-aos="fade-up"
@@ -619,25 +529,19 @@ const HomePage = () => {
             onScroll={checkScrollKecamatan}
             className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar py-3 snap-x"
           >
-            {dataKecamatan.map((kec, i) => {
-              const placeCount = dataUMKM.filter(
-                (umkm) => umkm.kecamatanSlug === kec.slug
-              ).length;
-              const kecWithCount = { ...kec, placeCount };
-              return (
-                <div
-                  key={kec.slug}
-                  data-aos="zoom-in"
-                  data-aos-delay={150 + i * 100}
-                  data-aos-duration="800"
-                  data-aos-easing="ease-in-out-sine"
-                  data-aos-anchor-placement="bottom-bottom"
-                  className="snap-start"
-                >
-                  <KecamatanCard data={kecWithCount} />
-                </div>
-              );
-            })}
+            {kecamatanList.map((kec, i) => (
+              <div
+                key={kec.slug}
+                data-aos="zoom-in"
+                data-aos-delay={150 + i * 100}
+                data-aos-duration="800"
+                data-aos-easing="ease-in-out-sine"
+                data-aos-anchor-placement="bottom-bottom"
+                className="snap-start"
+              >
+                <KecamatanCard data={kec} />
+              </div>
+            ))}
           </div>
           <div className="absolute top-0 right-0 w-4 sm:w-6 h-full bg-linear-to-l from-light to-transparent z-10 pointer-events-none" />
         </div>
