@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import AuthService from "../API/authService";
+import AuthService from "../services/authService";
 
 const UserRoute = ({ children }) => {
   let rawUser = localStorage.getItem("user") || sessionStorage.getItem("user");

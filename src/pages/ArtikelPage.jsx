@@ -8,10 +8,10 @@ import PageContainer from "../components/PageContainer";
 import { Icon } from "@iconify/react";
 import ArtikelCard from "../components/ArtikelCard";
 import { motion } from "framer-motion";
+import api from "../services/api";
 
-// Format tanggal lengkap
 export const formatDate = (dateString) => {
-  const date = new Date(dateString); // Langsung parse ISO
+  const date = new Date(dateString);
   const months = [
     "Januari",
     "Februari",
@@ -34,7 +34,6 @@ export const formatDate = (dateString) => {
   return `${day} ${month} ${year}, ${hours}.${minutes} WIB`;
 };
 
-// Waktu lalu
 const getTimeAgo = (dateString) => {
   const now = new Date();
   const date = new Date(dateString);
@@ -48,7 +47,6 @@ const getTimeAgo = (dateString) => {
   return `${diffDays} hari yang lalu`;
 };
 
-// Slugify
 const slugify = (text) =>
   text
     .toLowerCase()
@@ -71,15 +69,11 @@ const ArtikelPage = () => {
     { id: 5, name: "30 Hari Terakhir", icon: "mdi:calendar-month-outline" },
   ];
 
-  // === 1. Fetch Kategori Blog ===
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(
-          "https://api-umkmwongkudus.rplrus.com/api/categories-blog"
-        );
-        if (!response.ok) throw new Error("Gagal memuat kategori");
-        const result = await response.json();
+        const response = await api.get("/categories-blog");
+        const result = response.data;
 
         if (result.status && Array.isArray(result.data)) {
           const map = {};
@@ -98,26 +92,22 @@ const ArtikelPage = () => {
     fetchCategories();
   }, []);
 
-  // === 2. Fetch Artikel (hanya active) ===
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          "https://api-umkmwongkudus.rplrus.com/api/articles"
-        );
-        if (!response.ok) throw new Error("Gagal memuat artikel");
-        const result = await response.json();
+        const response = await api.get("/articles");
+        const result = response.data;
 
         if (result.status && Array.isArray(result.data)) {
           const formatted = result.data
-            .filter((item) => item.status === "active") // Pastikan hanya active
+            .filter((item) => item.status === "active")
             .map((item) => ({
               id: item.id,
               image: item.image || "/images/sampel_artikel.webp",
               category_blog_id: item.category_blog_id,
               title: item.title,
-              created_at: item.created_at, // Full datetime
+              created_at: item.created_at,
               author: item.author,
             }));
           setArticles(formatted);
@@ -136,7 +126,6 @@ const ArtikelPage = () => {
     fetchArticles();
   }, []);
 
-  // === Filter & Sort ===
   const now = new Date();
   const filteredArticles = articles
     .filter((article) => {
@@ -255,7 +244,6 @@ const ArtikelPage = () => {
         </div>
 
         <div className="flex flex-col gap-6 sm:gap-8">
-          {/* Mobile Filter */}
           <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
             {kategoriList.map((item) => (
               <button
@@ -274,7 +262,6 @@ const ArtikelPage = () => {
             ))}
           </div>
 
-          {/* Desktop Layout */}
           <div className="hidden md:flex flex-row gap-6 sm:gap-8">
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
@@ -290,7 +277,7 @@ const ArtikelPage = () => {
                   <button
                     key={item.id}
                     onClick={() => setActiveCategory(item.name)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 shadow-sm border ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all duration-20D00 shadow-sm border ${
                       activeCategory === item.name
                         ? "bg-orange text-light shadow-md border-orange"
                         : "bg-white text-dark hover:bg-orange/5 hover:shadow-md border-dark/10 hover:border-orange/30"
@@ -315,7 +302,6 @@ const ArtikelPage = () => {
             <div className="w-9/12">{renderArticleGrid(false)}</div>
           </div>
 
-          {/* Mobile Grid */}
           <div className="md:hidden">{renderArticleGrid(true)}</div>
         </div>
       </PageContainer>

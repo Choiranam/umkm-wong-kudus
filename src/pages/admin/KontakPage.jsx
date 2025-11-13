@@ -1,18 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
 import Layout from "../../components/admin/layout/Layout";
 import { FaEye, FaTrash, FaSync, FaFileExcel, FaTimes } from "react-icons/fa";
-import api from "../../API/auth.js";
+import api from "../../services/api.js";
 import * as XLSX from "xlsx";
 
 export default function KontakAdminPage() {
   const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState({ all: false, unread: false, read: false, inactive: false });
+  const [loading, setLoading] = useState({
+    all: false,
+    unread: false,
+    read: false,
+    inactive: false,
+  });
   const [activeTab, setActiveTab] = useState("unread");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("success");
   const [toastTarget, setToastTarget] = useState("");
-  const [currentPage, setCurrentPage] = useState({ unread: 1, read: 1, inactive: 1 });
+  const [currentPage, setCurrentPage] = useState({
+    unread: 1,
+    read: 1,
+    inactive: 1,
+  });
   const [selectedMessage, setSelectedMessage] = useState(null);
   const modalRef = useRef(null);
 
@@ -32,7 +41,7 @@ export default function KontakAdminPage() {
 
   const fetchContacts = async (tab = null) => {
     const key = tab || "all";
-    setLoading(prev => ({ ...prev, [key]: true }));
+    setLoading((prev) => ({ ...prev, [key]: true }));
     try {
       const res = await api.get(API_URL);
       if (res.data.status) {
@@ -41,7 +50,7 @@ export default function KontakAdminPage() {
     } catch (err) {
       showToastMessage("Gagal memuat pesan", "error");
     } finally {
-      setLoading(prev => ({ ...prev, [key]: false }));
+      setLoading((prev) => ({ ...prev, [key]: false }));
     }
   };
 
@@ -62,7 +71,13 @@ export default function KontakAdminPage() {
       const res = await api.delete(`${API_URL}/${id}`);
       if (res.data.status) {
         showToastMessage("Pesan dinonaktifkan", "success", "inactive");
-        fetchContacts(activeTab === "unread" ? "unread" : activeTab === "read" ? "read" : "inactive");
+        fetchContacts(
+          activeTab === "unread"
+            ? "unread"
+            : activeTab === "read"
+            ? "read"
+            : "inactive"
+        );
       }
     } catch (err) {
       showToastMessage("Gagal menonaktifkan pesan", "error");
@@ -70,14 +85,19 @@ export default function KontakAdminPage() {
   };
 
   const exportToExcel = (data, filename) => {
-    const exportData = data.map(item => ({
+    const exportData = data.map((item) => ({
       "Nama Depan": item.sender_name,
       "Nama Belakang": item.sender_name_last,
-      "Email": item.sender_email,
+      Email: item.sender_email,
       "No. Telepon": item.no_telepon,
-      "Pesan": item.message,
-      "Status": item.status === "active" ? "Belum Dibaca" : item.status === "read" ? "Dibaca" : "Nonaktif",
-      "Waktu": new Date(item.created_at).toLocaleString("id-ID")
+      Pesan: item.message,
+      Status:
+        item.status === "active"
+          ? "Belum Dibaca"
+          : item.status === "read"
+          ? "Dibaca"
+          : "Nonaktif",
+      Waktu: new Date(item.created_at).toLocaleString("id-ID"),
     }));
 
     const ws = XLSX.utils.json_to_sheet(exportData);
@@ -97,9 +117,9 @@ export default function KontakAdminPage() {
     }
   }, [toastTarget]);
 
-  const unread = contacts.filter(c => c.status === "active");
-  const read = contacts.filter(c => c.status === "read");
-  const inactive = contacts.filter(c => c.status === "inactive");
+  const unread = contacts.filter((c) => c.status === "active");
+  const read = contacts.filter((c) => c.status === "read");
+  const inactive = contacts.filter((c) => c.status === "inactive");
 
   const getPaginated = (data, pageKey) => {
     const start = (currentPage[pageKey] - 1) * itemsPerPage;
@@ -110,9 +130,10 @@ export default function KontakAdminPage() {
   const totalPages = (data) => Math.ceil(data.length / itemsPerPage);
 
   const handlePageChange = (pageKey, page) => {
-    const data = pageKey === "unread" ? unread : pageKey === "read" ? read : inactive;
+    const data =
+      pageKey === "unread" ? unread : pageKey === "read" ? read : inactive;
     if (page >= 1 && page <= totalPages(data)) {
-      setCurrentPage(prev => ({ ...prev, [pageKey]: page }));
+      setCurrentPage((prev) => ({ ...prev, [pageKey]: page }));
     }
   };
 
@@ -124,7 +145,14 @@ export default function KontakAdminPage() {
     setSelectedMessage(null);
   };
 
-  const TableContent = ({ data, pageKey, emptyMsg, showRead, showInactive, tabName }) => {
+  const TableContent = ({
+    data,
+    pageKey,
+    emptyMsg,
+    showRead,
+    showInactive,
+    tabName,
+  }) => {
     const currentData = getPaginated(data, pageKey);
     const pages = totalPages(data);
 
@@ -143,13 +171,27 @@ export default function KontakAdminPage() {
         <table className="w-full min-w-max text-sm">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">No</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Pengirim</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Email</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">No. Telepon</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Pesan</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Waktu</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
+              <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
+                No
+              </th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">
+                Pengirim
+              </th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">
+                Email
+              </th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">
+                No. Telepon
+              </th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">
+                Pesan
+              </th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">
+                Waktu
+              </th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">
+                Aksi
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -160,12 +202,21 @@ export default function KontakAdminPage() {
                     {(currentPage[pageKey] - 1) * itemsPerPage + idx + 1}
                   </td>
                   <td className="px-6 py-3 text-center">
-                    <p className="font-medium text-gray-900">{item.sender_name} {item.sender_name_last}</p>
+                    <p className="font-medium text-gray-900">
+                      {item.sender_name} {item.sender_name_last}
+                    </p>
                   </td>
-                  <td className="px-6 py-3 text-center text-gray-600">{item.sender_email}</td>
-                  <td className="px-6 py-3 text-center text-gray-600">{item.no_telepon}</td>
+                  <td className="px-6 py-3 text-center text-gray-600">
+                    {item.sender_email}
+                  </td>
+                  <td className="px-6 py-3 text-center text-gray-600">
+                    {item.no_telepon}
+                  </td>
                   <td className="px-6 py-3 text-center max-w-xs">
-                    <p className="text-gray-700 truncate block" title={item.message}>
+                    <p
+                      className="text-gray-700 truncate block"
+                      title={item.message}
+                    >
                       {item.message}
                     </p>
                   </td>
@@ -205,7 +256,10 @@ export default function KontakAdminPage() {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="px-4 py-12 text-center text-gray-500 italic">
+                <td
+                  colSpan="7"
+                  className="px-4 py-12 text-center text-gray-500 italic"
+                >
                   {emptyMsg}
                 </td>
               </tr>
@@ -217,11 +271,14 @@ export default function KontakAdminPage() {
           <div className="flex justify-center items-center p-4 border-t text-sm text-gray-600 space-x-2">
             <span>
               Menampilkan {(currentPage[pageKey] - 1) * itemsPerPage + 1}-
-              {Math.min(currentPage[pageKey] * itemsPerPage, data.length)} dari {data.length}
+              {Math.min(currentPage[pageKey] * itemsPerPage, data.length)} dari{" "}
+              {data.length}
             </span>
             <div className="flex gap-1">
               <button
-                onClick={() => handlePageChange(pageKey, currentPage[pageKey] - 1)}
+                onClick={() =>
+                  handlePageChange(pageKey, currentPage[pageKey] - 1)
+                }
                 disabled={currentPage[pageKey] === 1}
                 className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-100 transition"
               >
@@ -232,14 +289,18 @@ export default function KontakAdminPage() {
                   key={i + 1}
                   onClick={() => handlePageChange(pageKey, i + 1)}
                   className={`px-3 py-1 border rounded transition ${
-                    currentPage[pageKey] === i + 1 ? "bg-orange text-white" : "hover:bg-gray-100"
+                    currentPage[pageKey] === i + 1
+                      ? "bg-orange text-white"
+                      : "hover:bg-gray-100"
                   }`}
                 >
                   {i + 1}
                 </button>
               ))}
               <button
-                onClick={() => handlePageChange(pageKey, currentPage[pageKey] + 1)}
+                onClick={() =>
+                  handlePageChange(pageKey, currentPage[pageKey] + 1)
+                }
                 disabled={currentPage[pageKey] === pages}
                 className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-100 transition"
               >
@@ -259,19 +320,41 @@ export default function KontakAdminPage() {
           <div className="max-w-7xl mx-auto">
             {/* TOAST */}
             {showToast && (
-              <div className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 px-5 py-2.5 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in-out z-50 text-sm font-medium ${
-                toastType === "success" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-              }`}>
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                  toastType === "success" ? "bg-green-600" : "bg-red-600"
-                }`}>
+              <div
+                className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 px-5 py-2.5 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in-out z-50 text-sm font-medium ${
+                  toastType === "success"
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
+                }`}
+              >
+                <div
+                  className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                    toastType === "success" ? "bg-green-600" : "bg-red-600"
+                  }`}
+                >
                   {toastType === "success" ? (
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414L9 13.414l4.707-4.707z" clipRule="evenodd" />
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414L9 13.414l4.707-4.707z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   ) : (
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   )}
                 </div>
@@ -291,7 +374,9 @@ export default function KontakAdminPage() {
 
             {/* HEADER (KIRI) */}
             <div className="mb-5">
-              <h1 className="text-2xl font-bold text-gray-800">Kotak Masuk Kontak</h1>
+              <h1 className="text-2xl font-bold text-gray-800">
+                Kotak Masuk Kontak
+              </h1>
             </div>
 
             {/* TABS (CENTER) */}
@@ -347,15 +432,32 @@ export default function KontakAdminPage() {
                 {loading[activeTab] ? (
                   <>
                     <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      />
                     </svg>
                     Memuat...
                   </>
                 ) : (
                   <>
                     <FaSync className="w-4 h-4" />
-                    Refresh {activeTab === "unread" ? "Belum Dibaca" : activeTab === "read" ? "Dibaca" : "Nonaktif"}
+                    Refresh{" "}
+                    {activeTab === "unread"
+                      ? "Belum Dibaca"
+                      : activeTab === "read"
+                      ? "Dibaca"
+                      : "Nonaktif"}
                   </>
                 )}
               </button>
@@ -405,7 +507,7 @@ export default function KontakAdminPage() {
 
         {/* DETAIL MODAL – JOSJIS MODERN */}
         {selectedMessage && (
-          <div 
+          <div
             className="fixed inset-0  bg-opacity-60 flex items-center justify-center z-50 p-4 "
             onClick={closeDetail}
           >
@@ -416,7 +518,7 @@ export default function KontakAdminPage() {
             >
               {/* Gradient Border Effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-orange-400  rounded-2xl blur opacity-30"></div>
-              
+
               <div className="relative bg-white rounded-2xl p-8">
                 {/* Header */}
                 <div className="flex justify-between items-start mb-6">
@@ -428,20 +530,29 @@ export default function KontakAdminPage() {
                         </div>
                       </div>
                       <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </div>
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-gray-900">
-                        {selectedMessage.sender_name} {selectedMessage.sender_name_last}
+                        {selectedMessage.sender_name}{" "}
+                        {selectedMessage.sender_name_last}
                       </h3>
                       <p className="text-sm text-gray-500">Pengirim Pesan</p>
                     </div>
                   </div>
-                  <button 
-                    onClick={closeDetail} 
+                  <button
+                    onClick={closeDetail}
                     className="text-gray-400 hover:text-gray-600 transition transform hover:scale-110"
                   >
                     <FaTimes className="w-6 h-6" />
@@ -450,13 +561,15 @@ export default function KontakAdminPage() {
 
                 {/* Status Badge */}
                 <div className="mb-6">
-                  <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
-                    selectedMessage.status === "active" 
-                      ? "bg-orange-100 text-orange-700 border border-orange-300" :
-                    selectedMessage.status === "read" 
-                      ? "bg-emerald-100 text-emerald-700 border border-emerald-300" :
-                      "bg-gray-100 text-gray-600 border border-gray-300"
-                  }`}>
+                  <span
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                      selectedMessage.status === "active"
+                        ? "bg-orange-100 text-orange-700 border border-orange-300"
+                        : selectedMessage.status === "read"
+                        ? "bg-emerald-100 text-emerald-700 border border-emerald-300"
+                        : "bg-gray-100 text-gray-600 border border-gray-300"
+                    }`}
+                  >
                     {selectedMessage.status === "active" ? (
                       <>
                         <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
@@ -464,15 +577,31 @@ export default function KontakAdminPage() {
                       </>
                     ) : selectedMessage.status === "read" ? (
                       <>
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414L9 13.414l4.707-4.707z" clipRule="evenodd" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414L9 13.414l4.707-4.707z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                         Dibaca
                       </>
                     ) : (
                       <>
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                         Nonaktif
                       </>
@@ -486,19 +615,38 @@ export default function KontakAdminPage() {
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Email</p>
-                        <p className="text-sm text-gray-900 mt-1 font-medium">{selectedMessage.sender_email}</p>
+                        <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
+                          Email
+                        </p>
+                        <p className="text-sm text-gray-900 mt-1 font-medium">
+                          {selectedMessage.sender_email}
+                        </p>
                       </div>
                       <button
                         onClick={() => {
-                          navigator.clipboard.writeText(selectedMessage.sender_email);
-                          showToastMessage("Email disalin ke clipboard!", "success");
+                          navigator.clipboard.writeText(
+                            selectedMessage.sender_email
+                          );
+                          showToastMessage(
+                            "Email disalin ke clipboard!",
+                            "success"
+                          );
                         }}
                         className="text-blue-600 hover:text-blue-800 transition"
                         title="Salin Email"
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -508,20 +656,36 @@ export default function KontakAdminPage() {
                   <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs font-semibold text-green-600 uppercase tracking-wider">No. Telepon</p>
-                        <p className="text-sm text-gray-900 mt-1 font-medium">{selectedMessage.no_telepon || "-"}</p>
+                        <p className="text-xs font-semibold text-green-600 uppercase tracking-wider">
+                          No. Telepon
+                        </p>
+                        <p className="text-sm text-gray-900 mt-1 font-medium">
+                          {selectedMessage.no_telepon || "-"}
+                        </p>
                       </div>
                       {selectedMessage.no_telepon && (
                         <button
                           onClick={() => {
-                            navigator.clipboard.writeText(selectedMessage.no_telepon);
+                            navigator.clipboard.writeText(
+                              selectedMessage.no_telepon
+                            );
                             showToastMessage("No. Telepon disalin!", "success");
                           }}
                           className="text-green-600 hover:text-green-800 transition"
                           title="Salin No. Telepon"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                            />
                           </svg>
                         </button>
                       )}
@@ -531,7 +695,9 @@ export default function KontakAdminPage() {
 
                 {/* Message Card */}
                 <div className="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-200">
-                  <p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">Pesan Lengkap</p>
+                  <p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">
+                    Pesan Lengkap
+                  </p>
                   <p className="text-gray-800 leading-relaxed whitespace-pre-wrap font-medium">
                     {selectedMessage.message}
                   </p>
@@ -540,17 +706,32 @@ export default function KontakAdminPage() {
                 {/* Footer */}
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2 text-gray-500">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
-                    <span>{new Date(selectedMessage.created_at).toLocaleString("id-ID", {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}</span>
+                    <span>
+                      {new Date(selectedMessage.created_at).toLocaleString(
+                        "id-ID",
+                        {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )}
+                    </span>
                   </div>
                   <div className="text-xs text-gray-400">
                     ID: #{selectedMessage.id}
@@ -563,10 +744,18 @@ export default function KontakAdminPage() {
 
         <style jsx>{`
           @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            10%, 90% { opacity: 1; }
+            0%,
+            100% {
+              opacity: 0;
+            }
+            10%,
+            90% {
+              opacity: 1;
+            }
           }
-          .animate-fade-in-out { animation: fadeInOut 3s ease-in-out; }
+          .animate-fade-in-out {
+            animation: fadeInOut 3s ease-in-out;
+          }
         `}</style>
       </div>
     </Layout>

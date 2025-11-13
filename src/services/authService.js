@@ -1,4 +1,4 @@
-import api, { setAuthToken, clearAuthToken } from "../API/auth";
+import api, { auth } from "./api";
 
 const AuthService = {
   login: async (email, password, remember = true) => {
@@ -22,7 +22,8 @@ const AuthService = {
           })
         );
 
-        setAuthToken(token);
+        auth.setToken(token);
+
         return { token, user, expired_at };
       } else {
         throw new Error(resData.message || "Login gagal");
@@ -33,7 +34,7 @@ const AuthService = {
   },
 
   logout: () => {
-    clearAuthToken();
+    auth.clearToken();
     localStorage.clear();
     sessionStorage.clear();
     return { message: "Logout berhasil" };
@@ -47,7 +48,7 @@ const AuthService = {
   isAuthenticated: () => {
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token && !api.defaults.headers.common["Authorization"]) {
-      setAuthToken(token);
+      auth.setToken(token);
     }
     return !!token;
   },

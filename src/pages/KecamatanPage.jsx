@@ -8,8 +8,7 @@ import HeroContent from "../components/HeroContent";
 import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
 import UMKMCard from "../components/UMKMCard";
-
-import { dataUMKM } from "../data/dataUMKM";
+import api from "../services/api";
 
 const allKecamatanInfo = {
   bae: {
@@ -90,34 +89,57 @@ const KecamatanPage = () => {
 
   const [kecamatanInfo, setKecamatanInfo] = useState(null);
   const [umkmInKecamatan, setUmkmInKecamatan] = useState([]);
-  const [activeCategory, setActiveCategory] = useState("");
+  const [activeCategory, setActiveCategory] = useState("makanan");
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchUMKM = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get("/umkm");
+        const result = response.data;
+
+        if (result.status && Array.isArray(result.data)) {
+          const filtered = result.data.filter(
+            (u) => u.listing?.kecamatan_slug === slug
+          );
+
+          setUmkmInKecamatan(filtered);
+
+          const availableCats = [
+            ...new Set(filtered.map((u) => u.category?.name)),
+          ];
+          const firstCat = availableCats[0] || "Makanan";
+          setActiveCategory(firstCat);
+        }
+      } catch (error) {
+        console.error("Error fetching UMKM:", error);
+        setUmkmInKecamatan([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     const info = allKecamatanInfo[slug] || null;
-    const umkms = dataUMKM.filter((u) => u.kecamatanSlug === slug);
-
-    // Kategori pertama yang ada di data (fallback ke "Makanan")
-    const availableCats = [...new Set(umkms.map((u) => u.category))];
-    const firstCat = availableCats[0] || "Makanan";
-
     setKecamatanInfo(info);
-    setUmkmInKecamatan(umkms);
-    setActiveCategory("Makanan");
     setSearch("");
+    fetchUMKM();
   }, [slug]);
 
   const filteredUmkm = useMemo(() => {
     if (!umkmInKecamatan.length) return [];
 
     return umkmInKecamatan
-      .filter((u) => u.category.toLowerCase() === activeCategory.toLowerCase())
+      .filter(
+        (u) => u.category?.name?.toLowerCase() === activeCategory.toLowerCase()
+      )
       .filter((u) => u.name.toLowerCase().includes(search.toLowerCase()));
   }, [umkmInKecamatan, activeCategory, search]);
 
   const hasUmkmInCategory = umkmInKecamatan.some(
-    (u) => u.category.toLowerCase() === activeCategory.toLowerCase()
+    (u) => u.category?.name?.toLowerCase() === activeCategory.toLowerCase()
   );
   const hasSearchResult = filteredUmkm.length > 0;
 
@@ -185,7 +207,7 @@ const KecamatanPage = () => {
         <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
           {kategoriList.map((item) => {
             const disabled = !umkmInKecamatan.some(
-              (u) => u.category === item.name
+              (u) => u.category?.name === item.name
             );
             return (
               <button
@@ -226,7 +248,7 @@ const KecamatanPage = () => {
             <div className="flex flex-col gap-2">
               {kategoriList.map((item) => {
                 const disabled = !umkmInKecamatan.some(
-                  (u) => u.category === item.name
+                  (u) => u.category?.name === item.name
                 );
                 return (
                   <button
@@ -258,7 +280,6 @@ const KecamatanPage = () => {
             </div>
           </motion.aside>
           <div className="w-9/12">
-            {/* Search */}
             <div className="flex justify-start mb-8">
               <div className="relative w-full sm:w-3/4 md:w-1/2">
                 <input
@@ -276,50 +297,58 @@ const KecamatanPage = () => {
                 />
               </div>
             </div>
-            <div
-              key={`${slug}-${activeCategory}-${search}`}
-              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center"
-            >
-              {hasSearchResult ? (
-                filteredUmkm.map((umkm, idx) => (
-                  <motion.div
-                    key={umkm.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 120,
-                      damping: 12,
-                      delay: idx * 0.08,
-                    }}
-                    viewport={{ once: true }}
-                    className="w-full flex justify-center"
-                  >
-                    <Link
-                      to={`/detail-umkm/${umkm.slug}`}
-                      className="block w-full"
+            {loading ? (
+              <div className="flex justify-center items-center py-20">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
+              </div>
+            ) : (
+              <div
+                key={`${slug}-${activeCategory}-${search}`}
+                className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center"
+              >
+                {hasSearchResult ? (
+                  filteredUmkm.map((umkm, idx) => (
+                    <motion.div
+                      key={umkm.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 12,
+                        delay: idx * 0.08,
+                      }}
+                      viewport={{ once: true }}
+                      className="w-full flex justify-center"
                     >
-                      <UMKMCard data={umkm} />
-                    </Link>
-                  </motion.div>
-                ))
-              ) : hasUmkmInCategory ? (
-                <div className="col-span-full text-center text-dark/60 italic py-10">
-                  Tidak ditemukan hasil untuk pencarian{" "}
-                  <span className="font-semibold text-orange">"{search}"</span>{" "}
-                  di kategori "<strong>{activeCategory}</strong>".
-                </div>
-              ) : (
-                <div className="col-span-full text-center text-dark/60 italic py-10">
-                  Belum ada UMKM di kategori{" "}
-                  <span className="font-semibold text-orange">
-                    "{activeCategory}"
-                  </span>
-                  .
-                </div>
-              )}
-            </div>
-            {filteredUmkm.length > 0 && (
+                      <Link
+                        to={`/detail-umkm/${umkm.slug}`}
+                        className="block w-full"
+                      >
+                        <UMKMCard data={umkm} />
+                      </Link>
+                    </motion.div>
+                  ))
+                ) : hasUmkmInCategory ? (
+                  <div className="col-span-full text-center text-dark/60 italic py-10">
+                    Tidak ditemukan hasil untuk pencarian{" "}
+                    <span className="font-semibold text-orange">
+                      "{search}"
+                    </span>{" "}
+                    di kategori "<strong>{activeCategory}</strong>".
+                  </div>
+                ) : (
+                  <div className="col-span-full text-center text-dark/60 italic py-10">
+                    Belum ada UMKM di kategori{" "}
+                    <span className="font-semibold text-orange">
+                      "{activeCategory}"
+                    </span>
+                    .
+                  </div>
+                )}
+              </div>
+            )}
+            {!loading && filteredUmkm.length > 0 && (
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -350,7 +379,6 @@ const KecamatanPage = () => {
           </div>
         </div>
         <div className="md:hidden">
-          {/* Search */}
           <div className="flex justify-center mb-8">
             <div className="relative w-full sm:w-3/4">
               <input
@@ -369,46 +397,51 @@ const KecamatanPage = () => {
             </div>
           </div>
 
-          {/* Grid */}
-          <div
-            key={`${slug}-${activeCategory}-${search}-mobile`}
-            className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6 justify-items-center"
-          >
-            {hasSearchResult ? (
-              filteredUmkm.map((umkm, idx) => (
-                <motion.div
-                  key={umkm.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 12,
-                    delay: idx * 0.08,
-                  }}
-                  viewport={{ once: true }}
-                  className="w-full flex justify-center"
-                >
-                  <UMKMCard data={umkm} />
-                </motion.div>
-              ))
-            ) : hasUmkmInCategory ? (
-              <div className="col-span-full text-center text-dark/60 italic py-10">
-                Tidak ditemukan hasil untuk pencarian{" "}
-                <span className="font-semibold text-orange">"{search}"</span> di
-                kategori "<strong>{activeCategory}</strong>".
-              </div>
-            ) : (
-              <div className="col-span-full text-center text-dark/60 italic py-10">
-                Belum ada UMKM di kategori{" "}
-                <span className="font-semibold text-orange">
-                  "{activeCategory}"
-                </span>
-                .
-              </div>
-            )}
-          </div>
-          {filteredUmkm.length > 0 && (
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
+            </div>
+          ) : (
+            <div
+              key={`${slug}-${activeCategory}-${search}-mobile`}
+              className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6 justify-items-center"
+            >
+              {hasSearchResult ? (
+                filteredUmkm.map((umkm, idx) => (
+                  <motion.div
+                    key={umkm.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 120,
+                      damping: 12,
+                      delay: idx * 0.08,
+                    }}
+                    viewport={{ once: true }}
+                    className="w-full flex justify-center"
+                  >
+                    <UMKMCard data={umkm} />
+                  </motion.div>
+                ))
+              ) : hasUmkmInCategory ? (
+                <div className="col-span-full text-center text-dark/60 italic py-10">
+                  Tidak ditemukan hasil untuk pencarian{" "}
+                  <span className="font-semibold text-orange">"{search}"</span>{" "}
+                  di kategori "<strong>{activeCategory}</strong>".
+                </div>
+              ) : (
+                <div className="col-span-full text-center text-dark/60 italic py-10">
+                  Belum ada UMKM di kategori{" "}
+                  <span className="font-semibold text-orange">
+                    "{activeCategory}"
+                  </span>
+                  .
+                </div>
+              )}
+            </div>
+          )}
+          {!loading && filteredUmkm.length > 0 && (
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}

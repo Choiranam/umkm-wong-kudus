@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { dataDetailUMKM } from "../data/dataDetailUMKM";
 import { useEffect, useState } from "react";
 
 const categories = [
@@ -54,17 +53,13 @@ const isOpenNow = (hours) => {
 };
 
 export default function UMKMCard({ data }) {
-  const safeCategory = data?.category || "Lainnya";
+  const safeCategory = data?.category?.name || "Lainnya";
   const safeName = data?.name || "";
-
-  const detail = dataDetailUMKM?.find(
-    (item) =>
-      item?.slug === data?.slug ||
-      item?.name?.toLowerCase() === safeName.toLowerCase()
-  );
-
-  const rating = detail?.rating || "4.8 / 5";
-  const openingHours = detail?.openingHours || [];
+  const rating = data?.rating || "0.0";
+  const openingHours = data?.opening_hours || [];
+  const imageUrl = data?.hero_image || "/placeholder-image.webp";
+  const subtitle = data?.hero_subtitle || data?.listing?.subtitle || "";
+  const location = data?.kecamatan || data?.location || "";
 
   const todayIndo = getCurrentDayIndo();
   const todaySchedule = openingHours.find((s) => s.day === todayIndo);
@@ -83,17 +78,19 @@ export default function UMKMCard({ data }) {
   if (todaySchedule) {
     const hours = todaySchedule.hours;
     const trimmed = hours?.trim().toLowerCase();
+    const isOpenStatus =
+      todaySchedule.is_open === 1 || todaySchedule.is_open === true;
 
     if (trimmed === "buka 24 jam") {
       isCurrentlyOpen = true;
       openHourText = "Buka 24 Jam";
       openHourColor = "text-green-600";
       iconColor = "text-green-600";
-    } else if (trimmed === "tutup") {
+    } else if (trimmed === "tutup" || !isOpenStatus) {
       isCurrentlyOpen = false;
       openHourText = "Tutup";
     } else {
-      isCurrentlyOpen = todaySchedule.isOpen && isOpenNow(hours);
+      isCurrentlyOpen = isOpenStatus && isOpenNow(hours);
       openHourText = isCurrentlyOpen ? `Buka ${hours}` : "Tutup";
       openHourColor = isCurrentlyOpen ? "text-green-600" : "text-red-600";
       iconColor = isCurrentlyOpen ? "text-green-600" : "text-red-600";
@@ -113,8 +110,8 @@ export default function UMKMCard({ data }) {
     >
       <div className="relative rounded-[5px] overflow-hidden">
         <img
-          src={data?.image}
-          alt={data?.name}
+          src={imageUrl}
+          alt={safeName}
           className="w-full h-40 object-cover"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
@@ -132,7 +129,7 @@ export default function UMKMCard({ data }) {
 
       <div className="pt-4 pb-5 text-left">
         <h3 className="text-[16px] font-bold text-dark leading-snug group-hover:text-orange transition-colors duration-300 truncate">
-          {data?.name}
+          {safeName}
         </h3>
 
         <p className="text-dark/60 text-sm font-medium mb-1 flex items-center gap-1">
@@ -141,7 +138,7 @@ export default function UMKMCard({ data }) {
         </p>
 
         <p className="text-dark/60 text-xs mt-1 line-clamp-2 mb-3">
-          {data?.subtitle}
+          {subtitle}
         </p>
 
         <div className="border-t border-gray-200 my-3" />
@@ -154,7 +151,7 @@ export default function UMKMCard({ data }) {
               height="12"
               className="text-orange shrink-0"
             />
-            <span className="truncate">{data?.location}</span>
+            <span className="truncate">{location}</span>
           </div>
 
           <div className="flex items-center justify-center">

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Layout from "../../components/admin/layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaImage } from "react-icons/fa";
-import api from "../../API/auth.js";
+import api from "../../services/api.js";
 
 export default function CreateArtikelPage() {
   const [categories, setCategories] = useState([]);
@@ -18,7 +18,8 @@ export default function CreateArtikelPage() {
 
   const navigate = useNavigate();
   const API_ARTIKEL = "https://api-umkmwongkudus.rplrus.com/api/articles";
-  const API_KATEGORI = "https://api-umkmwongkudus.rplrus.com/api/categories-blog";
+  const API_KATEGORI =
+    "https://api-umkmwongkudus.rplrus.com/api/categories-blog";
 
   const MAX_CONTENT_LENGTH = 2000; // MAKSIMAL 1000 KARAKTER
 
@@ -31,7 +32,8 @@ export default function CreateArtikelPage() {
   };
 
   // === GET TOKEN ===
-  const getToken = () => localStorage.getItem("token") || sessionStorage.getItem("token");
+  const getToken = () =>
+    localStorage.getItem("token") || sessionStorage.getItem("token");
 
   // === FETCH KATEGORI ===
   const fetchCategories = async () => {
@@ -106,7 +108,10 @@ export default function CreateArtikelPage() {
       return;
     }
     if (content.length > MAX_CONTENT_LENGTH) {
-      showToastMessage(`Isi artikel maksimal ${MAX_CONTENT_LENGTH} karakter!`, "error");
+      showToastMessage(
+        `Isi artikel maksimal ${MAX_CONTENT_LENGTH} karakter!`,
+        "error"
+      );
       setLoading(false);
       return;
     }
@@ -167,7 +172,9 @@ export default function CreateArtikelPage() {
             {showToast && (
               <div
                 className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 px-5 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in-out z-50 ${
-                  toastType === "success" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                  toastType === "success"
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
                 }`}
               >
                 <div
@@ -190,7 +197,9 @@ export default function CreateArtikelPage() {
                 >
                   <FaArrowLeft className="w-5 h-5 text-gray-600" />
                 </Link>
-                <h1 className="text-2xl font-bold text-gray-800">Tambah Artikel Baru</h1>
+                <h1 className="text-2xl font-bold text-gray-800">
+                  Tambah Artikel Baru
+                </h1>
               </div>
             </div>
 
@@ -304,7 +313,9 @@ export default function CreateArtikelPage() {
                     <span>Maksimal {MAX_CONTENT_LENGTH} karakter</span>
                     <span
                       className={
-                        contentLength > MAX_CONTENT_LENGTH * 0.9 ? "text-red-600" : ""
+                        contentLength > MAX_CONTENT_LENGTH * 0.9
+                          ? "text-red-600"
+                          : ""
                       }
                     >
                       {contentLength}/{MAX_CONTENT_LENGTH}

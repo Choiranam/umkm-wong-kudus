@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import SearchBar from "../ui/SearchBar";
 import { Bell, ChevronDown, LogOut, User, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import api from "../../../API/auth.js"; // Pastikan ini axios instance
+import api from "../../../services/api.js"; // Pastikan ini axios instance
 
 export default function Header({ activeTab, setActiveTab }) {
   const navigate = useNavigate();
@@ -61,7 +61,8 @@ export default function Header({ activeTab, setActiveTab }) {
 
   // === LOAD USER SAAT MOUNT ===
   useEffect(() => {
-    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    const token =
+      localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token) {
       fetchUser();
     } else {
@@ -96,13 +97,22 @@ export default function Header({ activeTab, setActiveTab }) {
         <div className="flex items-center gap-4">
           {/* Tab Buttons */}
           <div className="flex gap-2">
-            <button className={getButtonClass("Files")} onClick={() => setActiveTab("Files")}>
+            <button
+              className={getButtonClass("Files")}
+              onClick={() => setActiveTab("Files")}
+            >
               Files
             </button>
-            <button className={getButtonClass("Calendar")} onClick={() => setActiveTab("Calendar")}>
+            <button
+              className={getButtonClass("Calendar")}
+              onClick={() => setActiveTab("Calendar")}
+            >
               Calendar
             </button>
-            <button className={getButtonClass("Aktivitas")} onClick={() => setActiveTab("Aktivitas")}>
+            <button
+              className={getButtonClass("Aktivitas")}
+              onClick={() => setActiveTab("Aktivitas")}
+            >
               Aktivitas
             </button>
           </div>
@@ -137,7 +147,9 @@ export default function Header({ activeTab, setActiveTab }) {
             {openDropdown && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
                 <div className="px-4 py-2 border-b">
-                  <p className="text-sm font-semibold text-gray-800">{user?.name || "User"}</p>
+                  <p className="text-sm font-semibold text-gray-800">
+                    {user?.name || "User"}
+                  </p>
                   <p className="text-xs text-gray-500">{user?.email || ""}</p>
                 </div>
 
