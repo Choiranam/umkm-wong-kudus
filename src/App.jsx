@@ -1,17 +1,23 @@
 import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
-import OfflineToast from "./components/toast/OfflineToast";
+import NetworkToast from "./components/NetworkToast";
 import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <div>
       <Toaster
+        position="top-center"
+        containerClassName="
+    !top-4
+    md:!top-auto md:!bottom-4 md:!left-4 md:!right-auto
+  "
         toastOptions={{
           className: "font-poppins",
         }}
       />
-      <OfflineToast />
+
+      <NetworkToast />
       <AppRoutes />
     </div>
   );
