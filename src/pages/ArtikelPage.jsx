@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HeroContent from "../components/HeroContent";
@@ -60,14 +60,38 @@ const ArtikelPage = () => {
   const [error, setError] = useState("");
   const [blogCategories, setBlogCategories] = useState({});
   const [activeCategory, setActiveCategory] = useState("Semua Waktu");
+  const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(() =>
+    window.innerWidth < 640 ? 6 : 9
+  );
 
-  const kategoriList = [
-    { id: 1, name: "Semua Waktu", icon: "mdi:clock-outline" },
-    { id: 2, name: "24 Jam Terakhir", icon: "mdi:clock-time-four-outline" },
-    { id: 3, name: "3 Hari Terakhir", icon: "mdi:calendar-clock" },
-    { id: 4, name: "7 Hari Terakhir", icon: "mdi:calendar-week-outline" },
-    { id: 5, name: "30 Hari Terakhir", icon: "mdi:calendar-month-outline" },
-  ];
+  const pageContainerRef = useRef(null);
+
+  const scrollToContainer = () => {
+    if (pageContainerRef.current) {
+      const navbarHeight = 70;
+      const elementPosition =
+        pageContainerRef.current.getBoundingClientRect().top;
+      const offsetPosition = window.scrollY + elementPosition - navbarHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newItemsPerPage = window.innerWidth < 640 ? 6 : 9;
+      if (newItemsPerPage !== itemsPerPage) {
+        setItemsPerPage(newItemsPerPage);
+        setCurrentPage(1);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [itemsPerPage]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -127,27 +151,56 @@ const ArtikelPage = () => {
   }, []);
 
   const now = new Date();
-  const filteredArticles = articles
-    .filter((article) => {
-      const articleDate = new Date(article.created_at);
-      const diffMs = now - articleDate;
-      const diffHours = diffMs / (1000 * 60 * 60);
-      const diffDays = Math.floor(diffHours / 24);
+  const filteredArticles = useMemo(() => {
+    return articles
+      .filter((article) => {
+        const articleDate = new Date(article.created_at);
+        const diffMs = now - articleDate;
+        const diffHours = diffMs / (1000 * 60 * 60);
+        const diffDays = Math.floor(diffHours / 24);
 
-      switch (activeCategory) {
-        case "24 Jam Terakhir":
-          return diffHours >= 0 && diffHours <= 24;
-        case "3 Hari Terakhir":
-          return diffDays >= 0 && diffDays <= 3;
-        case "7 Hari Terakhir":
-          return diffDays >= 0 && diffDays <= 7;
-        case "30 Hari Terakhir":
-          return diffDays >= 0 && diffDays <= 30;
-        default:
-          return true;
-      }
-    })
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        let matchesTime = true;
+        switch (activeCategory) {
+          case "24 Jam Terakhir":
+            matchesTime = diffHours >= 0 && diffHours <= 24;
+            break;
+          case "3 Hari Terakhir":
+            matchesTime = diffDays >= 0 && diffDays <= 3;
+            break;
+          case "7 Hari Terakhir":
+            matchesTime = diffDays >= 0 && diffDays <= 7;
+            break;
+          case "30 Hari Terakhir":
+            matchesTime = diffDays >= 0 && diffDays <= 30;
+            break;
+          default:
+            matchesTime = true;
+        }
+
+        const matchesSearch = article.title
+          .toLowerCase()
+          .includes(search.toLowerCase());
+
+        return matchesTime && matchesSearch;
+      })
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  }, [articles, activeCategory, search]);
+
+  const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+  const paginatedArticles = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredArticles.slice(start, start + itemsPerPage);
+  }, [filteredArticles, currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, activeCategory]);
+
+  const goToPage = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+    setTimeout(scrollToContainer, 0);
+  };
 
   const cardVariant = {
     hidden: { opacity: 0, y: 25 },
@@ -157,6 +210,14 @@ const ArtikelPage = () => {
       transition: { delay: i * 0.08, duration: 0.4, ease: "easeOut" },
     }),
   };
+
+  const kategoriList = [
+    { id: 1, name: "Semua Waktu", icon: "mdi:clock-outline" },
+    { id: 2, name: "24 Jam Terakhir", icon: "mdi:clock-time-four-outline" },
+    { id: 3, name: "3 Hari Terakhir", icon: "mdi:calendar-clock" },
+    { id: 4, name: "7 Hari Terakhir", icon: "mdi:calendar-week-outline" },
+    { id: 5, name: "30 Hari Terakhir", icon: "mdi:calendar-month-outline" },
+  ];
 
   const renderArticleGrid = (isMobile = false) => (
     <>
@@ -168,15 +229,11 @@ const ArtikelPage = () => {
         } gap-4 sm:gap-6`}
       >
         {loading ? (
-          <div className="col-span-full flex justify-center items-center py-16">
+          <div className="col-span-full flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
           </div>
-        ) : error ? (
-          <div className="col-span-full text-center text-orange py-10">
-            {error}
-          </div>
-        ) : filteredArticles.length > 0 ? (
-          filteredArticles.map((article, i) => (
+        ) : paginatedArticles.length > 0 ? (
+          paginatedArticles.map((article, i) => (
             <motion.div
               key={article.id}
               custom={i}
@@ -203,26 +260,70 @@ const ArtikelPage = () => {
             </motion.div>
           ))
         ) : (
-          <div className="col-span-full text-center text-dark/70 py-10">
-            Tidak ada artikel yang ditemukan pada waktu ini.
+          <div className="col-span-full text-center text-dark/60 italic py-10">
+            {search ? (
+              <>
+                Tidak ditemukan hasil untuk pencarian{" "}
+                <span className="font-semibold text-orange">"{search}"</span>
+                {activeCategory !== "Semua Waktu" && (
+                  <> pada kategori waktu ini</>
+                )}
+                .
+              </>
+            ) : (
+              <>Tidak ada artikel pada kategori waktu ini.</>
+            )}
           </div>
         )}
       </div>
 
-      {filteredArticles.length > 0 && !loading && (
-        <div className="flex justify-center mt-6 sm:mt-10">
-          <div className="flex items-center gap-2">
-            <button className="p-2 rounded text-dark/50 hover:text-orange transition flex items-center justify-center">
-              <Icon icon="fluent:chevron-left-12-filled" width="20" />
+      {!loading && totalPages > 1 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex justify-center items-center gap-2 mt-10 flex-wrap"
+        >
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={`p-2 rounded-md transition ${
+              currentPage === 1
+                ? "text-dark/30 cursor-not-allowed"
+                : "text-dark/70 hover:text-orange"
+            }`}
+          >
+            <Icon icon="fluent:chevron-left-12-filled" width="22" height="22" />
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              onClick={() => goToPage(page)}
+              className={`px-3 py-1 rounded-md text-sm font-medium transition ${
+                currentPage === page
+                  ? "bg-orange text-white shadow"
+                  : "text-dark/70 hover:bg-orange/10"
+              }`}
+            >
+              {page}
             </button>
-            <span className="px-4 py-1 rounded-md bg-orange text-white font-medium">
-              1
-            </span>
-            <button className="p-2 rounded text-dark/50 hover:text-orange transition flex items-center justify-center">
-              <Icon icon="fluent:chevron-right-12-filled" width="20" />
-            </button>
-          </div>
-        </div>
+          ))}
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={`p-2 rounded-md transition ${
+              currentPage === totalPages
+                ? "text-dark/30 cursor-not-allowed"
+                : "text-dark/70 hover:text-orange"
+            }`}
+          >
+            <Icon
+              icon="fluent:chevron-right-12-filled"
+              width="22"
+              height="22"
+            />
+          </button>
+        </motion.div>
       )}
     </>
   );
@@ -235,74 +336,119 @@ const ArtikelPage = () => {
         title="Temukan Cerita dan Inspirasi UMKM Kudus melalui Artikel"
         subtitle="Kumpulan kisah, wawasan, dan inovasi pelaku UMKM di Kudus untuk menginspirasi langkah Anda."
       />
-      <PageContainer variant="default" className="relative z-10">
-        <div className="bg-dark/5 border border-dark/10 rounded-lg px-4 py-2 text-sm mb-6 sm:mb-8">
-          <span className="font-semibold text-orange">Berita Terkini :</span>
-          <div className="text-dark mx-2 wrap-break-word">
-            Pemerintah umumkan jadwal libur nasional dan cuti bersama 2025
+      <PageContainer
+        ref={pageContainerRef}
+        variant="default"
+        className="relative z-10"
+      >
+        <motion.nav
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center text-dark/70 text-sm sm:text-base mb-6 relative"
+        >
+          <Link to="/" className="hover:text-orange flex items-center gap-1">
+            <Icon icon="mdi:home-outline" />
+            Beranda
+          </Link>
+          <Icon icon="mdi:chevron-right" className="mx-2" />
+          <span className="text-orange font-semibold">Artikel</span>
+        </motion.nav>
+
+        <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
+          {kategoriList.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveCategory(item.name)}
+              className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-md font-medium text-sm transition-all duration-200 shadow-lg 
+                ${
+                  activeCategory === item.name
+                    ? "bg-orange text-light shadow-orange/40"
+                    : "bg-light text-dark hover:bg-orange/10"
+                }`}
+            >
+              <Icon icon={item.icon} width="18" height="18" />
+              {item.name}
+            </button>
+          ))}
+        </div>
+
+        <div className="hidden md:flex flex-row gap-6 sm:gap-8">
+          <motion.aside
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full md:w-3/12 bg-white rounded-lg shadow-md p-4 md:p-6 border border-dark/5 md:sticky md:top-24 md:self-start z-20"
+          >
+            <h3 className="text-lg font-semibold text-dark mb-4">
+              Filter Waktu
+            </h3>
+            <div className="flex flex-col gap-2">
+              {kategoriList.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveCategory(item.name)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 shadow-sm border ${
+                    activeCategory === item.name
+                      ? "bg-orange text-light shadow-md border-orange"
+                      : "bg-white text-dark hover:bg-orange/5 hover:shadow-md border-dark/10 hover:border-orange/30"
+                  }`}
+                >
+                  <Icon
+                    icon={item.icon}
+                    width="20"
+                    height="20"
+                    className={
+                      activeCategory === item.name ? "text-white" : "text-dark"
+                    }
+                  />
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          </motion.aside>
+
+          <div className="w-9/12">
+            <div className="flex justify-start mb-8">
+              <div className="relative w-full">
+                <input
+                  type="text"
+                  placeholder="Cari judul artikel..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full border border-dark/20 rounded-[5px] px-5 py-2 pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange transition placeholder:text-dark/50 text-dark"
+                />
+                <Icon
+                  icon="mdi:magnify"
+                  className="absolute right-4 top-2.5 text-dark/50"
+                  width="22"
+                  height="22"
+                />
+              </div>
+            </div>
+            {renderArticleGrid(false)}
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 sm:gap-8">
-          <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
-            {kategoriList.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setActiveCategory(item.name)}
-                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-md font-medium text-sm transition-all duration-200 shadow-lg 
-                  ${
-                    activeCategory === item.name
-                      ? "bg-orange text-light shadow-orange/40"
-                      : "bg-light text-dark hover:bg-orange/10"
-                  }`}
-              >
-                <Icon icon={item.icon} width="18" height="18" />
-                {item.name}
-              </button>
-            ))}
+        <div className="md:hidden">
+          <div className="flex justify-center mb-8">
+            <div className="relative w-full">
+              <input
+                type="text"
+                placeholder="Cari judul artikel..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full border border-dark/20 rounded-[5px] px-5 py-2 pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange transition placeholder:text-dark/50 text-dark"
+              />
+              <Icon
+                icon="mdi:magnify"
+                className="absolute right-4 top-2.5 text-dark/50"
+                width="22"
+                height="22"
+              />
+            </div>
           </div>
-
-          <div className="hidden md:flex flex-row gap-6 sm:gap-8">
-            <motion.aside
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="w-full md:w-3/12 bg-white rounded-lg shadow-md p-4 md:p-6 border border-dark/5 md:sticky md:top-24 md:self-start z-20"
-            >
-              <h3 className="text-lg font-semibold text-dark mb-4">
-                Filter Waktu
-              </h3>
-              <div className="flex flex-col gap-2">
-                {kategoriList.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveCategory(item.name)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all duration-20D00 shadow-sm border ${
-                      activeCategory === item.name
-                        ? "bg-orange text-light shadow-md border-orange"
-                        : "bg-white text-dark hover:bg-orange/5 hover:shadow-md border-dark/10 hover:border-orange/30"
-                    }`}
-                  >
-                    <Icon
-                      icon={item.icon}
-                      width="20"
-                      height="20"
-                      className={
-                        activeCategory === item.name
-                          ? "text-white"
-                          : "text-dark"
-                      }
-                    />
-                    {item.name}
-                  </button>
-                ))}
-              </div>
-            </motion.aside>
-
-            <div className="w-9/12">{renderArticleGrid(false)}</div>
-          </div>
-
-          <div className="md:hidden">{renderArticleGrid(true)}</div>
+          {renderArticleGrid(true)}
         </div>
       </PageContainer>
       <Footer />

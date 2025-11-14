@@ -115,7 +115,7 @@ const LoginPage = () => {
 
         <div className="hidden md:flex items-center justify-center">
           <img
-            src="https://www.daaruttauhiid.org/wp-content/uploads/2020/05/Melancong-Asik-ke-Masjid-Menara-Kudus_Daarut-Tauhiid.webp"
+            src="/images/login_image.webp"
             className="w-full h-full object-cover"
             alt="Masjid Menara Kudus"
           />

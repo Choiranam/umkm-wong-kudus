@@ -8,6 +8,7 @@ import ArtikelCard from "../components/ArtikelCard";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import api from "../services/api";
+import NotFoundPage from "./NotFoundPage";
 
 const DetailArtikelPage = () => {
   const { id } = useParams();
@@ -33,7 +34,10 @@ const DetailArtikelPage = () => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
-    return `${date.toLocaleDateString("id-ID", options)} • ${hours}.${minutes} WIB`;
+    return `${date.toLocaleDateString(
+      "id-ID",
+      options
+    )} • ${hours}.${minutes} WIB`;
   };
 
   const slugify = (text) =>
@@ -100,26 +104,7 @@ const DetailArtikelPage = () => {
   }
 
   if (error || !article) {
-    return (
-      <div className="bg-light min-h-screen font-poppins">
-        <Navbar />
-        <PageContainer variant="default" className="py-20 text-center">
-          <h1 className="text-2xl font-bold text-dark mb-3">
-            Artikel tidak ditemukan
-          </h1>
-          <p className="text-dark mb-6">
-            Artikel yang kamu cari mungkin sudah dihapus atau URL-nya salah.
-          </p>
-          <button
-            onClick={() => navigate("/artikel")}
-            className="bg-orange text-light px-6 py-2 rounded-lg hover:bg-orange-500 transition"
-          >
-            Kembali ke Artikel
-          </button>
-        </PageContainer>
-        <Footer />
-      </div>
-    );
+    return <NotFoundPage />;
   }
 
   return (
