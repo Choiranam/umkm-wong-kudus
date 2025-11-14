@@ -736,17 +736,6 @@ export const dataUMKM = [
   },
   {
     id: 67,
-    name: "Greens Bakery & Bistro",
-    slug: "greens-bakery-bistro",
-    category: "Makanan",
-    subtitle:
-      "Bistro modern yang menyajikan aneka roti, kue, dan hidangan lezat dengan suasana nyaman dan elegan.",
-    location: "Kota Kudus",
-    kecamatanSlug: "kota-kudus",
-    image: "/images/greensbakerybistro_hero.webp",
-  },
-  {
-    id: 68,
     name: "Es Coklat Cokot Kudus",
     slug: "es-coklat-cokot-kudus",
     category: "Minuman",
@@ -757,7 +746,7 @@ export const dataUMKM = [
     image: "/images/escoklatcokotkudus_hero.webp",
   },
   {
-    id: 69,
+    id: 68,
     name: "Richie Store Kudus",
     slug: "richie-store-kudus",
     category: "Lainnya",
@@ -767,21 +756,10 @@ export const dataUMKM = [
     kecamatanSlug: "kota-kudus",
     image: "/images/richiestore_hero.webp",
   },
-  {
-    id: 70,
-    name: "3Second Store Kudus",
-    slug: "3second-store-kudus",
-    category: "Lainnya",
-    subtitle:
-      "Toko pakaian modern yang menawarkan koleksi fashion kasual dan stylish untuk pria dan wanita.",
-    location: "Kota Kudus",
-    kecamatanSlug: "kota-kudus",
-    image: "/images/3secondstore_hero.webp",
-  },
 
   // MEJOBO
   {
-    id: 71,
+    id: 69,
     name: "XGAM_Tech",
     slug: "xgam-tech",
     category: "Jasa",
@@ -791,7 +769,7 @@ export const dataUMKM = [
     image: "/images/xgamtech_hero.webp",
   },
   {
-    id: 72,
+    id: 70,
     name: "Jasa Las dan Bubut Mulyo Rejo",
     slug: "jasa-las-dan-bubut-mulyo-rejo",
     category: "Jasa",
@@ -802,7 +780,7 @@ export const dataUMKM = [
     image: "/images/jasalas_hero.webp",
   },
   {
-    id: 73,
+    id: 71,
     name: "Putra Kalimosodo",
     slug: "putra-kalimosodo",
     category: "Jasa",
@@ -812,7 +790,7 @@ export const dataUMKM = [
     image: "/images/kalimosodo_hero.webp",
   },
   {
-    id: 74,
+    id: 72,
     name: "Ikan Bakar Nasuky Mubarok Jepang",
     slug: "ikan-bakar-nasuky-mubarok-jepang",
     category: "Makanan",
@@ -822,7 +800,7 @@ export const dataUMKM = [
     image: "/images/ikanbakar_hero.webp",
   },
   {
-    id: 75,
+    id: 73,
     name: "RM Bu Sarah",
     slug: "rm-bu-sarah",
     category: "Makanan",
@@ -832,7 +810,7 @@ export const dataUMKM = [
     image: "/images/rmbusarah_hero.webp",
   },
   {
-    id: 76,
+    id: 74,
     name: "Sate Kambing Pak Brewok Pekeng",
     slug: "sate-kambing-pak-brewok",
     category: "Makanan",
@@ -842,7 +820,7 @@ export const dataUMKM = [
     image: "/images/satekambing_hero.webp",
   },
   {
-    id: 77,
+    id: 75,
     name: "Loh Jinawi Olshop (Lapak Gelang Tasbih)",
     slug: "loh-jinawi",
     category: "Barang",
@@ -852,7 +830,7 @@ export const dataUMKM = [
     image: "/images/lohjinawi_hero.webp",
   },
   {
-    id: 78,
+    id: 76,
     name: "Toko Auralia Jaya",
     slug: "toko-auralia",
     category: "Barang",
@@ -862,7 +840,7 @@ export const dataUMKM = [
     image: "/images/tokoauralia_hero.webp",
   },
   {
-    id: 79,
+    id: 77,
     name: "Sekar Modiste",
     slug: "sekar-modiste",
     category: "Lainnya",
@@ -872,7 +850,7 @@ export const dataUMKM = [
     image: "/images/sekar_hero.webp",
   },
   {
-    id: 80,
+    id: 78,
     name: "Hasna Fashion 01",
     slug: "hasna-fashion",
     category: "Lainnya",
@@ -884,7 +862,7 @@ export const dataUMKM = [
 
   // UNDAAN
   {
-    id: 81,
+    id: 79,
     name: "Queen Seblak Prasmanan",
     slug: "queen-seblak-prasmanan",
     category: "Makanan",
@@ -895,7 +873,7 @@ export const dataUMKM = [
     image: "/images/queenseblak_hero.webp",
   },
   {
-    id: 82,
+    id: 80,
     name: "Ayam Geprek Mak Ginting",
     slug: "ayam-geprek-mak-ginting",
     category: "Makanan",
@@ -905,7 +883,7 @@ export const dataUMKM = [
     image: "/images/geprekmakginting_hero.webp",
   },
   {
-    id: 83,
+    id: 81,
     name: "Warung Sate & Gule Pak Sugiyo",
     slug: "warung-sate-dan-gule-pak-sugiyo",
     category: "Makanan",
@@ -915,7 +893,7 @@ export const dataUMKM = [
     image: "/images/warungsatedangule_hero.webp",
   },
   {
-    id: 84,
+    id: 82,
     name: "MJ Teknik",
     slug: "mj-teknik",
     category: "Jasa",
@@ -925,7 +903,7 @@ export const dataUMKM = [
     image: "/images/mjteknik_hero.webp",
   },
   {
-    id: 85,
+    id: 83,
     name: "Fotocopy & Jasa Travel",
     slug: "fotocopy-dan-jasa-travel",
     category: "Jasa",
@@ -935,27 +913,7 @@ export const dataUMKM = [
     image: "/images/fotocopy_hero.webp",
   },
   {
-    id: 86,
-    name: "RM. Tombo Sawah Babalan",
-    slug: "tombo-sawah-babalan",
-    category: "Makanan",
-    subtitle: "Rumah makan bernuansa alam yang menyajikan aneka hidangan lezat khas pedesaan dengan cita rasa autentik.",
-    location: "Undaan",
-    kecamatanSlug: "undaan",
-    image: "/images/tombosawahbabalan_hero.webp",
-  },
-  {
-    id: 87,
-    name: "WM Handayani",
-    slug: "wm-handayani",
-    category: "Barang",
-    subtitle: "Toko bahan makanan yang menyediakan berbagai kebutuhan dapur harian dengan harga terjangkau dan kualitas terjamin.",
-    location: "Undaan",
-    kecamatanSlug: "undaan",
-    image: "/images/wmhandayani_hero.webp",
-  },
-  {
-    id: 88,
+    id: 84,
     name: "Ngabus Rejo",
     slug: "ngabus-rejo",
     category: "Barang",
@@ -965,7 +923,7 @@ export const dataUMKM = [
     image: "/images/ngabusrejo_hero.webp",
   },
   {
-    id: 89,
+    id: 85,
     name: "Nano Distro",
     slug: "nano-distro",
     category: "Lainnya",
@@ -975,7 +933,7 @@ export const dataUMKM = [
     image: "/images/nanodistro_hero.webp",
   },
   {
-    id: 90,
+    id: 86,
     name: "Ilbabalanos Store",
     slug: "ilbabalanos",
     category: "Lainnya",
