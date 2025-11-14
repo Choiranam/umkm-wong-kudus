@@ -49,10 +49,10 @@ body {
   /* Easing halus untuk feel modern */
 }
 
-@keyframes fade-in {
+/* @keyframes slide-in-top {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(-20px);
   }
 
   to {
@@ -61,6 +61,78 @@ body {
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.5s ease-out;
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+} */
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out-top {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s ease-out forwards;
+}
+
+.animate-slide-out-left {
+  animation: slide-out-left 0.5s ease-in forwards;
+}
+
+.animate-slide-in-top {
+  animation: slide-in-top 0.5s ease-out forwards;
+}
+
+.animate-slide-out-top {
+  animation: slide-out-top 0.5s ease-in forwards;
 }
