@@ -42,7 +42,6 @@ const KATEGORI_CONFIG = {
   },
 };
 
-// Daftar kecamatan (sama seperti di KecamatanPage)
 const allKecamatanInfo = {
   bae: { name: "Bae", slug: "bae" },
   kaliwungu: { name: "Kaliwungu", slug: "kaliwungu" },
@@ -55,6 +54,68 @@ const allKecamatanInfo = {
   undaan: { name: "Undaan", slug: "undaan" },
 };
 
+const KecamatanButton = ({
+  slug,
+  name,
+  isActive,
+  disabled,
+  onClick,
+  isMobile,
+}) => {
+  const imageSlug = slug === "" ? "semua" : slug;
+  const imageUrl = `/images/hero_${imageSlug}.webp`;
+
+  return (
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      className={`relative overflow-hidden flex items-center justify-start gap-1 px-3 py-2 rounded-md font-medium text-sm transition-all shadow-sm group ${
+        isMobile ? "h-10" : "px-4 py-3"
+      } ${
+        isActive
+          ? "text-white shadow-md"
+          : disabled
+          ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+          : "bg-white text-dark border border-dark/10"
+      }`}
+    >
+      <div
+        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ${
+          isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
+        style={{ backgroundImage: `url(${imageUrl})` }}
+      />
+      <div
+        className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+          isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
+      />
+      <div
+        className={`relative flex items-center gap-1 transition-colors duration-300 ${
+          isActive
+            ? "text-white"
+            : disabled
+            ? "text-gray-400"
+            : "group-hover:text-white"
+        }`}
+      >
+        <Icon
+          icon={slug === "" ? "mdi:map-marker-radius-outline" : "mdi:map-marker-outline"}
+          width={isMobile ? "16" : "20"}
+          className={`transition-colors duration-300 ${
+            isActive
+              ? "text-white"
+              : disabled
+              ? "text-gray-400"
+              : "group-hover:text-white"
+          }`}
+        />
+        {name}
+      </div>
+    </button>
+  );
+};
+
 const KategoriPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const kategoriSlug = searchParams.get("slug") || "makanan";
@@ -65,7 +126,9 @@ const KategoriPage = () => {
 
   const [umkmData, setUmkmData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeKecamatan, setActiveKecamatan] = useState(""); // default: semua
+  const [activeKecamatan, setActiveKecamatan] = useState(
+    searchParams.get("kec") || ""
+  );
 
   const pageContainerRef = useRef(null);
 
@@ -82,16 +145,9 @@ const KategoriPage = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const [isOpen, setIsOpen] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(() =>
-    window.innerWidth < 640 ? 8 : 15
+    window.innerWidth < 640 ? 8 : 12
   );
 
   useEffect(() => {
@@ -112,15 +168,16 @@ const KategoriPage = () => {
     fetchUMKM();
   }, []);
 
-  // Reset filter saat ganti kategori
   useEffect(() => {
-    setActiveKecamatan("");
+    setActiveKecamatan(searchParams.get("kec") || "");
     setSearch("");
-    setCurrentPage(1);
-    scrollToTop();
+    setCurrentPage(parseInt(searchParams.get("page")) || 1);
+  }, [kategoriSlug, searchParams]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, [kategoriSlug]);
 
-  // Filter UMKM: kategori + pencarian + kecamatan
   const filteredUMKM = useMemo(() => {
     return umkmData.filter((item) => {
       const categoryName = item.category?.name?.toLowerCase() || "";
@@ -146,16 +203,17 @@ const KategoriPage = () => {
   }, [search, activeKecamatan]);
 
   useEffect(() => {
-    setSearchParams({
+    const params = {
       slug: kategoriSlug,
       page: currentPage,
-      ...(activeKecamatan && { kec: activeKecamatan }),
-    });
+    };
+    if (activeKecamatan) params.kec = activeKecamatan;
+    setSearchParams(params);
   }, [kategoriSlug, currentPage, activeKecamatan, setSearchParams]);
 
   useEffect(() => {
     const handleResize = () => {
-      const newItemsPerPage = window.innerWidth < 640 ? 8 : 15;
+      const newItemsPerPage = window.innerWidth < 640 ? 8 : 12;
       if (newItemsPerPage !== itemsPerPage) {
         setItemsPerPage(newItemsPerPage);
         setCurrentPage(1);
@@ -168,12 +226,17 @@ const KategoriPage = () => {
   const goToPage = (page) => {
     if (page < 1 || page > totalPages || page === currentPage) return;
     setCurrentPage(page);
-    setTimeout(scrollToContainer, 0);
+    setTimeout(scrollToContainer, 50);
+  };
+
+  const handleKecamatanClick = (slug) => {
+    setActiveKecamatan(slug);
+    setCurrentPage(1);
+    setTimeout(scrollToContainer, 50);
   };
 
   const kategoriData = KATEGORI_CONFIG[kategoriSlug] || KATEGORI_CONFIG.makanan;
 
-  // Cek apakah kecamatan punya UMKM di kategori ini
   const hasUmkmInKecamatan = (slug) => {
     return umkmData.some(
       (u) =>
@@ -183,7 +246,7 @@ const KategoriPage = () => {
   };
 
   return (
-    <div className="bg-light min-h-screen w-full relative">
+    <div className="bg-light min-h-screen w-full relative overflow-hidden md:overflow-visible">
       <Navbar />
       <HeroContent
         image={kategoriData.image}
@@ -248,42 +311,31 @@ const KategoriPage = () => {
           </span>
         </motion.nav>
         <div className="md:hidden grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
-          <button
-            onClick={() => setActiveKecamatan("")}
-            className={`flex items-center justify-center gap-2 px-3 py-2 rounded-md font-medium text-sm transition-all shadow-sm ${
-              !activeKecamatan
-                ? "bg-orange text-white"
-                : "bg-white text-dark border border-dark/10 hover:bg-orange/10"
-            }`}
-          >
-            <Icon icon="mdi:map-marker-off-outline" width="16" />
-            Semua
-          </button>
+          <KecamatanButton
+            slug=""
+            name="Semua"
+            isActive={!activeKecamatan}
+            disabled={false}
+            onClick={() => handleKecamatanClick("")}
+            isMobile={true}
+          />
           {Object.entries(allKecamatanInfo).map(([slug, info]) => {
             const disabled = !hasUmkmInKecamatan(slug);
             return (
-              <button
+              <KecamatanButton
                 key={slug}
+                slug={slug}
+                name={info.name}
+                isActive={activeKecamatan === slug}
                 disabled={disabled}
-                onClick={() => setActiveKecamatan(slug)}
-                className={`flex items-center justify-center gap-1 px-3 py-2 rounded-md font-medium text-sm transition-all shadow-sm ${
-                  activeKecamatan === slug
-                    ? "bg-orange text-white"
-                    : disabled
-                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-dark border border-dark/10 hover:bg-orange/10"
-                }`}
-              >
-                <Icon icon="mdi:map-marker" width="16" />
-                {info.name}
-              </button>
+                onClick={() => handleKecamatanClick(slug)}
+                isMobile={true}
+              />
             );
           })}
         </div>
 
-        {/* Desktop: Layout 2 kolom */}
         <div className="hidden md:flex flex-row gap-6">
-          {/* Sidebar: Filter Kecamatan */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -294,48 +346,39 @@ const KategoriPage = () => {
               Filter Kecamatan
             </h3>
             <div className="flex flex-col gap-2">
-              <button
-                onClick={() => setActiveKecamatan("")}
-                className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all shadow-sm border ${
-                  !activeKecamatan
-                    ? "bg-orange text-white shadow-md border-orange"
-                    : "bg-white text-dark hover:bg-orange/5 border-dark/10 hover:border-orange/30"
-                }`}
-              >
-                <Icon icon="mdi:map-marker-off-outline" width="20" />
-                Semua Kecamatan
-              </button>
+              <KecamatanButton
+                slug=""
+                name="Semua Kecamatan"
+                isActive={!activeKecamatan}
+                disabled={false}
+                onClick={() => handleKecamatanClick("")}
+                isMobile={false}
+              />
               {Object.entries(allKecamatanInfo).map(([slug, info]) => {
                 const disabled = !hasUmkmInKecamatan(slug);
                 return (
-                  <button
+                  <KecamatanButton
                     key={slug}
+                    slug={slug}
+                    name={info.name}
+                    isActive={activeKecamatan === slug}
                     disabled={disabled}
-                    onClick={() => setActiveKecamatan(slug)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all shadow-sm border ${
-                      activeKecamatan === slug
-                        ? "bg-orange text-white shadow-md border-orange"
-                        : disabled
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300"
-                        : "bg-white text-dark hover:bg-orange/5 border-dark/10 hover:border-orange/30"
-                    }`}
-                  >
-                    <Icon icon="mdi:map-marker" width="20" />
-                    {info.name}
-                  </button>
+                    onClick={() => handleKecamatanClick(slug)}
+                    isMobile={false}
+                  />
                 );
               })}
             </div>
           </motion.aside>
 
-          {/* Konten Utama */}
           <div className="w-9/12">
             <div className="flex justify-start mb-8">
-              <div className="relative w-full sm:w-3/4">
+              <div className="relative w-full">
                 <input
                   type="text"
                   placeholder="Cari nama UMKM..."
                   value={search}
+                  maxLength={50}
                   onChange={(e) => setSearch(e.target.value)}
                   className="w-full border border-dark/20 rounded-[5px] px-5 py-2 pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange transition placeholder:text-dark/50 text-dark"
                 />
@@ -347,25 +390,6 @@ const KategoriPage = () => {
                 />
               </div>
             </div>
-
-            <h2 className="text-center text-xl sm:text-2xl font-semibold text-dark mb-6">
-              Menampilkan {filteredUMKM.length} UMKM Kudus{" "}
-              <span className="block mt-1 font-normal text-dark/80">
-                dalam kategori{" "}
-                <span className="text-orange italic capitalize">
-                  "{kategoriSlug}"
-                </span>
-                {activeKecamatan && (
-                  <>
-                    {" "}
-                    di{" "}
-                    <span className="capitalize">
-                      {allKecamatanInfo[activeKecamatan]?.name}
-                    </span>
-                  </>
-                )}
-              </span>
-            </h2>
 
             {loading ? (
               <div className="flex justify-center items-center py-20">
@@ -483,7 +507,6 @@ const KategoriPage = () => {
           </div>
         </div>
 
-        {/* Mobile: Konten Utama */}
         <div className="md:hidden">
           <div className="flex justify-center mb-8">
             <div className="relative w-full">
@@ -491,6 +514,7 @@ const KategoriPage = () => {
                 type="text"
                 placeholder="Cari nama UMKM..."
                 value={search}
+                maxLength={50}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full border border-dark/20 rounded-[5px] px-5 py-2 pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange transition placeholder:text-dark/50 text-dark"
               />

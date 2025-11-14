@@ -11,7 +11,6 @@ const NotFoundPage = () => {
       <Navbar forceDark={true} />
       <PageContainer variant="default" className="flex-1 pt-24 pb-16 md:pt-32">
         <div className="flex flex-col justify-center items-center text-center space-y-8 max-w-2xl mx-auto px-4">
-          {/* Ilustrasi 404 */}
           <img
             src="/images/404notfound.webp"
             alt="Halaman tidak ditemukan"

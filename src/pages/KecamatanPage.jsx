@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
@@ -30,7 +30,7 @@ const allKecamatanInfo = {
     title: "Daftar UMKM di Kecamatan Kota Kudus",
     subtitle:
       "Pusat kuliner, kerajinan, dan jasa premium dari UMKM di jantung Kota Kudus.",
-    image: "/images/hero_kotakudus.webp",
+    image: "/images/hero_kota-kudus.webp",
   },
   gebog: {
     name: "Gebog",
@@ -77,22 +77,101 @@ const allKecamatanInfo = {
 };
 
 const kategoriList = [
-  { id: 1, name: "Makanan", icon: "fluent:food-16-regular" },
-  { id: 2, name: "Minuman", icon: "fluent:drink-to-go-24-regular" },
-  { id: 3, name: "Jasa", icon: "ph:wrench" },
-  { id: 4, name: "Barang", icon: "lucide:package-open" },
-  { id: 5, name: "Lainnya", icon: "basil:other-1-outline" },
+  { id: 1, name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
+  {
+    id: 2,
+    name: "Minuman",
+    slug: "minuman",
+    icon: "fluent:drink-to-go-24-regular",
+  },
+  { id: 3, name: "Jasa", slug: "jasa", icon: "ph:wrench" },
+  { id: 4, name: "Barang", slug: "barang", icon: "lucide:package-open" },
+  { id: 5, name: "Lainnya", slug: "lainnya", icon: "basil:other-1-outline" },
 ];
+
+const KategoriButton = ({ name, slug, icon, isActive, onClick, isMobile }) => {
+  const imageUrl = `/images/hero_${slug}.webp`;
+
+  return (
+    <button
+      onClick={onClick}
+      className={`relative overflow-hidden flex items-center justify-start gap-1 px-3 py-2 rounded-md font-medium text-sm transition-all shadow-sm group ${
+        isMobile ? "h-10" : "px-4 py-3"
+      } ${
+        isActive
+          ? "text-white shadow-md"
+          : "bg-white text-dark border border-dark/10"
+      }`}
+    >
+      <div
+        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ${
+          isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
+        style={{ backgroundImage: `url(${imageUrl})` }}
+      />
+      <div
+        className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+          isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
+      />
+      <div
+        className={`relative flex items-center gap-1 transition-colors duration-300 ${
+          isActive ? "text-white" : "group-hover:text-white"
+        }`}
+      >
+        <Icon
+          icon={icon}
+          width={isMobile ? "18" : "20"}
+          className={`transition-colors duration-300 ${
+            isActive ? "text-white" : "group-hover:text-white"
+          }`}
+        />
+        {name}
+      </div>
+    </button>
+  );
+};
 
 const KecamatanPage = () => {
   const { slug } = useParams();
 
   const [kecamatanInfo, setKecamatanInfo] = useState(null);
   const [umkmInKecamatan, setUmkmInKecamatan] = useState([]);
-  const [activeCategory, setActiveCategory] = useState("makanan");
+  const [activeCategory, setActiveCategory] = useState("Makanan");
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(() =>
+    window.innerWidth < 640 ? 8 : 12
+  );
+
+  const pageContainerRef = useRef(null);
+
+  const scrollToContainer = () => {
+    if (pageContainerRef.current) {
+      const navbarHeight = 70;
+      const elementPosition =
+        pageContainerRef.current.getBoundingClientRect().top;
+      const offsetPosition = window.scrollY + elementPosition - navbarHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newItemsPerPage = window.innerWidth < 640 ? 8 : 12;
+      if (newItemsPerPage !== itemsPerPage) {
+        setItemsPerPage(newItemsPerPage);
+        setCurrentPage(1);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [itemsPerPage]);
 
   useEffect(() => {
     const fetchUMKM = async () => {
@@ -107,12 +186,6 @@ const KecamatanPage = () => {
           );
 
           setUmkmInKecamatan(filtered);
-
-          const availableCats = [
-            ...new Set(filtered.map((u) => u.category?.name)),
-          ];
-          const firstCat = availableCats[0] || "Makanan";
-          setActiveCategory(firstCat);
         }
       } catch (error) {
         console.error("Error fetching UMKM:", error);
@@ -125,6 +198,7 @@ const KecamatanPage = () => {
     const info = allKecamatanInfo[slug] || null;
     setKecamatanInfo(info);
     setSearch("");
+    setCurrentPage(1);
     fetchUMKM();
   }, [slug]);
 
@@ -133,18 +207,136 @@ const KecamatanPage = () => {
 
     return umkmInKecamatan
       .filter(
-        (u) => u.category?.name?.toLowerCase() === activeCategory.toLowerCase()
+        (u) =>
+          (u.category?.name || "Lainnya").toLowerCase() ===
+          activeCategory.toLowerCase()
       )
       .filter((u) => u.name.toLowerCase().includes(search.toLowerCase()));
   }, [umkmInKecamatan, activeCategory, search]);
 
-  const hasUmkmInCategory = umkmInKecamatan.some(
-    (u) => u.category?.name?.toLowerCase() === activeCategory.toLowerCase()
+  const totalPages = Math.ceil(filteredUmkm.length / itemsPerPage);
+  const paginatedUmkm = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredUmkm.slice(start, start + itemsPerPage);
+  }, [filteredUmkm, currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, activeCategory]);
+
+  const goToPage = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+    setTimeout(scrollToContainer, 50);
+  };
+
+  const handleCategoryClick = (catName) => {
+    setActiveCategory(catName);
+    setCurrentPage(1);
+    setTimeout(scrollToContainer, 50);
+  };
+
+  const hasUmkmInCategory = (catName) => {
+    return umkmInKecamatan.some(
+      (u) => (u.category?.name || "Lainnya") === catName
+    );
+  };
+
+  const hasSearchResult = paginatedUmkm.length > 0;
+
+  const renderGrid = (isMobile = false) => (
+    <div
+      key={`${slug}-${activeCategory}-${search}-${currentPage}`}
+      className={`grid ${
+        isMobile
+          ? "grid-cols-2 gap-4 sm:gap-6"
+          : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+      } justify-items-center`}
+    >
+      {hasSearchResult ? (
+        paginatedUmkm.map((umkm, idx) => (
+          <motion.div
+            key={umkm.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              type: "spring",
+              stiffness: 120,
+              damping: 12,
+              delay: idx * 0.08,
+            }}
+            viewport={{ once: true }}
+            className="w-full flex justify-center"
+          >
+            <Link to={`/detail-umkm/${umkm.slug}`} className="block w-full">
+              <UMKMCard data={umkm} />
+            </Link>
+          </motion.div>
+        ))
+      ) : hasUmkmInCategory(activeCategory) ? (
+        <div className="col-span-full text-center text-dark/60 italic py-10">
+          Tidak ditemukan hasil untuk pencarian{" "}
+          <span className="font-semibold text-orange">"{search}"</span> di
+          kategori "<strong>{activeCategory}</strong>".
+        </div>
+      ) : (
+        <div className="col-span-full text-center text-dark/60 italic py-10">
+          Belum ada UMKM di kategori{" "}
+          <span className="font-semibold text-orange">"{activeCategory}</span>".
+        </div>
+      )}
+    </div>
   );
-  const hasSearchResult = filteredUmkm.length > 0;
+
+  const renderPagination = () =>
+    !loading &&
+    totalPages > 1 && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="flex justify-center items-center gap-2 mt-10 flex-wrap"
+      >
+        <button
+          onClick={() => goToPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className={`p-2 rounded-md transition ${
+            currentPage === 1
+              ? "text-dark/30 cursor-not-allowed"
+              : "text-dark/70 hover:text-orange"
+          }`}
+        >
+          <Icon icon="fluent:chevron-left-12-filled" width="22" height="22" />
+        </button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => goToPage(page)}
+            className={`px-3 py-1 rounded-md text-sm font-medium transition ${
+              currentPage === page
+                ? "bg-orange text-white shadow"
+                : "text-dark/70 hover:bg-orange/10"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+        <button
+          onClick={() => goToPage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className={`p-2 rounded-md transition ${
+            currentPage === totalPages
+              ? "text-dark/30 cursor-not-allowed"
+              : "text-dark/70 hover:text-orange"
+          }`}
+        >
+          <Icon icon="fluent:chevron-right-12-filled" width="22" height="22" />
+        </button>
+      </motion.div>
+    );
 
   return (
-    <div className="bg-light min-h-screen w-full relative">
+    <div className="bg-light min-h-screen w-full relative overflow-hidden md:overflow-visible">
       <Navbar />
       <HeroContent
         image={kecamatanInfo?.image || "/images/sampel_hero_content.webp"}
@@ -152,7 +344,11 @@ const KecamatanPage = () => {
         subtitle={kecamatanInfo?.subtitle || "Silakan tunggu..."}
       />
 
-      <PageContainer variant="wide" className="py-6 sm:py-10 relative z-10">
+      <PageContainer
+        ref={pageContainerRef}
+        variant="wide"
+        className="py-6 sm:py-10 relative z-10"
+      >
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -200,40 +396,22 @@ const KecamatanPage = () => {
             )}
           </div>
           <Icon icon="mdi:chevron-right" className="mx-2" />
-          <span className="text-orange capitalize font-semibold">
-            {slug || "—"}
+          <span className="text-orange font-semibold">
+            {kecamatanInfo?.name || "—"}
           </span>
         </motion.nav>
         <div className="md:hidden grid grid-cols-2 sm:flex sm:flex-wrap justify-start gap-2 sm:gap-3 mb-6 sm:mb-10">
-          {kategoriList.map((item) => {
-            const disabled = !umkmInKecamatan.some(
-              (u) => u.category?.name === item.name
-            );
-            return (
-              <button
-                key={item.id}
-                disabled={disabled}
-                onClick={() => setActiveCategory(item.name)}
-                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-md font-medium text-sm transition-all duration-200 cursor-pointer shadow-lg ${
-                  activeCategory === item.name
-                    ? "bg-orange text-light"
-                    : disabled
-                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-dark hover:bg-orange/10 hover:shadow-lg border border-dark/10"
-                }`}
-              >
-                <Icon
-                  icon={item.icon}
-                  width="18"
-                  height="18"
-                  className={
-                    activeCategory === item.name ? "text-white" : "text-dark"
-                  }
-                />
-                {item.name}
-              </button>
-            );
-          })}
+          {kategoriList.map((item) => (
+            <KategoriButton
+              key={item.id}
+              name={item.name}
+              slug={item.slug}
+              icon={item.icon}
+              isActive={activeCategory === item.name}
+              onClick={() => handleCategoryClick(item.name)}
+              isMobile={true}
+            />
+          ))}
         </div>
         <div className="hidden md:flex flex-row gap-6 sm:gap-8">
           <motion.aside
@@ -246,42 +424,22 @@ const KecamatanPage = () => {
               Filter Kategori
             </h3>
             <div className="flex flex-col gap-2">
-              {kategoriList.map((item) => {
-                const disabled = !umkmInKecamatan.some(
-                  (u) => u.category?.name === item.name
-                );
-                return (
-                  <button
-                    key={item.id}
-                    disabled={disabled}
-                    onClick={() => setActiveCategory(item.name)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 shadow-sm border ${
-                      activeCategory === item.name
-                        ? "bg-orange text-light shadow-md border-orange"
-                        : disabled
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300"
-                        : "bg-white text-dark hover:bg-orange/5 hover:shadow-md border-dark/10 hover:border-orange/30"
-                    }`}
-                  >
-                    <Icon
-                      icon={item.icon}
-                      width="20"
-                      height="20"
-                      className={
-                        activeCategory === item.name
-                          ? "text-white"
-                          : "text-dark"
-                      }
-                    />
-                    {item.name}
-                  </button>
-                );
-              })}
+              {kategoriList.map((item) => (
+                <KategoriButton
+                  key={item.id}
+                  name={item.name}
+                  slug={item.slug}
+                  icon={item.icon}
+                  isActive={activeCategory === item.name}
+                  onClick={() => handleCategoryClick(item.name)}
+                  isMobile={false}
+                />
+              ))}
             </div>
           </motion.aside>
           <div className="w-9/12">
             <div className="flex justify-start mb-8">
-              <div className="relative w-full sm:w-3/4 md:w-1/2">
+              <div className="relative w-full">
                 <input
                   type="text"
                   placeholder="Cari nama UMKM..."
@@ -302,80 +460,9 @@ const KecamatanPage = () => {
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
               </div>
             ) : (
-              <div
-                key={`${slug}-${activeCategory}-${search}`}
-                className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center"
-              >
-                {hasSearchResult ? (
-                  filteredUmkm.map((umkm, idx) => (
-                    <motion.div
-                      key={umkm.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 120,
-                        damping: 12,
-                        delay: idx * 0.08,
-                      }}
-                      viewport={{ once: true }}
-                      className="w-full flex justify-center"
-                    >
-                      <Link
-                        to={`/detail-umkm/${umkm.slug}`}
-                        className="block w-full"
-                      >
-                        <UMKMCard data={umkm} />
-                      </Link>
-                    </motion.div>
-                  ))
-                ) : hasUmkmInCategory ? (
-                  <div className="col-span-full text-center text-dark/60 italic py-10">
-                    Tidak ditemukan hasil untuk pencarian{" "}
-                    <span className="font-semibold text-orange">
-                      "{search}"
-                    </span>{" "}
-                    di kategori "<strong>{activeCategory}</strong>".
-                  </div>
-                ) : (
-                  <div className="col-span-full text-center text-dark/60 italic py-10">
-                    Belum ada UMKM di kategori{" "}
-                    <span className="font-semibold text-orange">
-                      "{activeCategory}"
-                    </span>
-                    .
-                  </div>
-                )}
-              </div>
+              renderGrid(false)
             )}
-            {!loading && filteredUmkm.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex justify-center mt-6 sm:mt-10"
-              >
-                <div className="flex items-center gap-3">
-                  <button className="text-dark/50 hover:text-orange transition">
-                    <Icon
-                      icon="fluent:chevron-left-12-filled"
-                      width="22"
-                      height="22"
-                    />
-                  </button>
-                  <span className="px-4 py-1 rounded-md bg-orange text-white font-medium shadow">
-                    1
-                  </span>
-                  <button className="text-dark/50 hover:text-orange transition">
-                    <Icon
-                      icon="fluent:chevron-right-12-filled"
-                      width="22"
-                      height="22"
-                    />
-                  </button>
-                </div>
-              </motion.div>
-            )}
+            {renderPagination()}
           </div>
         </div>
         <div className="md:hidden">
@@ -402,73 +489,9 @@ const KecamatanPage = () => {
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange"></div>
             </div>
           ) : (
-            <div
-              key={`${slug}-${activeCategory}-${search}-mobile`}
-              className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6 justify-items-center"
-            >
-              {hasSearchResult ? (
-                filteredUmkm.map((umkm, idx) => (
-                  <motion.div
-                    key={umkm.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 120,
-                      damping: 12,
-                      delay: idx * 0.08,
-                    }}
-                    viewport={{ once: true }}
-                    className="w-full flex justify-center"
-                  >
-                    <UMKMCard data={umkm} />
-                  </motion.div>
-                ))
-              ) : hasUmkmInCategory ? (
-                <div className="col-span-full text-center text-dark/60 italic py-10">
-                  Tidak ditemukan hasil untuk pencarian{" "}
-                  <span className="font-semibold text-orange">"{search}"</span>{" "}
-                  di kategori "<strong>{activeCategory}</strong>".
-                </div>
-              ) : (
-                <div className="col-span-full text-center text-dark/60 italic py-10">
-                  Belum ada UMKM di kategori{" "}
-                  <span className="font-semibold text-orange">
-                    "{activeCategory}"
-                  </span>
-                  .
-                </div>
-              )}
-            </div>
+            renderGrid(true)
           )}
-          {!loading && filteredUmkm.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="flex justify-center mt-6 sm:mt-10"
-            >
-              <div className="flex items-center gap-3">
-                <button className="text-dark/50 hover:text-orange transition">
-                  <Icon
-                    icon="fluent:chevron-left-12-filled"
-                    width="22"
-                    height="22"
-                  />
-                </button>
-                <span className="px-4 py-1 rounded-md bg-orange text-white font-medium shadow">
-                  1
-                </span>
-                <button className="text-dark/50 hover:text-orange transition">
-                  <Icon
-                    icon="fluent:chevron-right-12-filled"
-                    width="22"
-                    height="22"
-                  />
-                </button>
-              </div>
-            </motion.div>
-          )}
+          {renderPagination()}
         </div>
       </PageContainer>
 
