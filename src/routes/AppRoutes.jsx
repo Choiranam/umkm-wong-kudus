@@ -16,7 +16,7 @@ import LoginPage from "../pages/admin/LoginPage";
 import DetailArtikelPage from "../pages/DetailArtikelPage";
 import DashboardPage from "../pages/admin/DashboardPage";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
-import UserRoute from "./UserRoute.jsx";
+import UserRoute from "./userRoute.jsx";
 import UMKMPage from "../pages/admin/UMKMPage.jsx";
 import KategoriAdminPage from "../pages/admin/KategoriPage.jsx";
 import ArtikelAdmin from "../pages/admin/ArtikelPage.jsx";
