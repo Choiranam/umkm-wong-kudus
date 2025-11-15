@@ -132,7 +132,6 @@ const DetailArtikelPage = () => {
         variant="default"
         className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-6 sm:mt-8"
       >
-        {/* KONTEN UTAMA */}
         <div className="lg:w-2/3">
           <motion.nav
             initial={{ opacity: 0, y: -10 }}
@@ -163,11 +162,8 @@ const DetailArtikelPage = () => {
             <span>{formatMainDate(article.created_at)}</span>
           </div>
 
-          {/* PERBAIKAN: Tambah break-words agar kata panjang tidak tembus */}
           <div
-            className="prose prose-lg max-w-none text-dark leading-relaxed space-y-4 break-words"
-            // Jika ingin lebih ketat, bisa tambah style:
-            // style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+            className="prose prose-lg max-w-none text-dark leading-relaxed space-y-4 wrap-break-word"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
         </div>

@@ -1,15 +1,19 @@
-// components/SearchBar.jsx
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
-import { dataUMKM } from "../data/dataUMKM";
+import { useState, useEffect, useRef } from "react";
+import api from "../services/api.js";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedTerm, setDebouncedTerm] = useState("");
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const containerRef = useRef(null);
+  const abortRef = useRef(null);
 
   const placeholders = [
     "Cari produk unggulan UMKM Kudus...",
@@ -19,22 +23,55 @@ const SearchBar = () => {
   ];
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
 
-  // Debounce
   useEffect(() => {
-    const timer = setTimeout(() => setDebouncedTerm(searchTerm), 300);
+    const timer = setTimeout(() => setDebouncedTerm(searchTerm), 250);
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
-  // Filtering dengan useMemo
-  const suggestions = useMemo(() => {
-    if (!debouncedTerm.trim()) return [];
-    const lower = debouncedTerm.toLowerCase();
-    return dataUMKM
-      .filter((umkm) => umkm.name.toLowerCase().includes(lower))
-      .slice(0, 8);
+  useEffect(() => {
+    if (!isInputFocused) return;
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setIsInputFocused(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isInputFocused]);
+
+  useEffect(() => {
+    if (!debouncedTerm.trim()) {
+      setSuggestions([]);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+
+    if (abortRef.current) abortRef.current.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    api
+      .get("/umkm", {
+        params: { search: debouncedTerm },
+        signal: controller.signal,
+      })
+      .then((res) => {
+        const data = Array.isArray(res.data.data) ? res.data.data : [];
+
+        const filtered = data.filter((item) =>
+          item.name.toLowerCase().includes(debouncedTerm.toLowerCase())
+        );
+
+        setSuggestions(filtered.slice(0, 8));
+      })
+      .catch(() => setSuggestions([]))
+      .finally(() => setLoading(false));
+
+    return () => controller.abort();
   }, [debouncedTerm]);
 
-  // Animasi placeholder hanya saat tidak fokus & kosong
   useEffect(() => {
     if (isInputFocused || searchTerm) return;
     const interval = setInterval(() => {
@@ -57,17 +94,18 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grow relative" id="searchForm">
+    <form
+      onSubmit={handleSubmit}
+      className="grow relative"
+      id="searchForm"
+      ref={containerRef}
+    >
       <div className="relative">
         <input
           type="text"
           value={searchTerm}
-          onChange={(e) => {
-            const value = e.target.value.slice(0, 50);
-            setSearchTerm(value);
-          }}
+          onChange={(e) => setSearchTerm(e.target.value.slice(0, 50))}
           onFocus={() => setIsInputFocused(true)}
-          onBlur={() => setIsInputFocused(false)}
           className="w-full py-3 md:py-3 px-4 rounded-lg border-none focus:ring-2 focus:ring-orange focus:outline-none text-dark placeholder:text-dark/50 shadow-lg bg-light text-sm sm:text-base truncate"
           placeholder=""
           autoComplete="off"
@@ -94,14 +132,17 @@ const SearchBar = () => {
       </div>
 
       <AnimatePresence>
-        {suggestions.length > 0 && (
+        {isInputFocused && (suggestions.length > 0 || loading) && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-20 w-full max-w-full md:max-w-none bg-light rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto"
+            className="absolute z-20 w-full bg-light rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto"
           >
+            {loading && (
+              <div className="px-4 py-2 text-dark/50 text-sm">Mencari...</div>
+            )}
             {suggestions.map((sug, i) => (
               <div
                 key={sug.slug + i}
