@@ -1440,7 +1440,7 @@ description:
     about:
       "<strong>Warung Makan Mak Ru</strong> dikenal dengan hidangan rumahan lezat seperti sayur lodeh, tempe goreng, ayam opor, dan berbagai lauk khas Jawa yang menggugah selera. Semua masakan dimasak dengan bumbu tradisional dan disajikan hangat, menciptakan rasa seperti masakan ibu di rumah. Pelayanan ramah dan suasana sederhana membuat pelanggan merasa nyaman dan betah.",
     description:
-      "BakNikmati berbagai pilihan masakan rumahan khas Kudus di Warung Makan Mak Ru. Mulai dari sayur, lauk pauk, hingga sambal pedas yang selalu menggoda selera. Cocok untuk makan bersama keluarga, teman, atau sekadar menikmati hidangan hangat di suasana yang akrab dan bersahaja.",
+      "Nikmati berbagai pilihan masakan rumahan khas Kudus di Warung Makan Mak Ru. Mulai dari sayur, lauk pauk, hingga sambal pedas yang selalu menggoda selera. Cocok untuk makan bersama keluarga, teman, atau sekadar menikmati hidangan hangat di suasana yang akrab dan bersahaja.",
     rating: "4.4 / 5",
     location: {
       address: "Besito Kulon, Besito, Kudus",

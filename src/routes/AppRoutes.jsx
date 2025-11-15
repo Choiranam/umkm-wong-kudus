@@ -44,18 +44,82 @@ const router = createBrowserRouter([
       { path: "/artikel", element: <ArtikelPage /> },
       { path: "/artikel/:id/:slug", element: <DetailArtikelPage /> },
       { path: "/login", element: <LoginPage /> },
-      {path: "/dashboard",element:(<UserRoute><DashboardPage /></UserRoute>),},
-      {path: "/kategori-admin",element:(<UserRoute><KategoriAdminPage /></UserRoute>),},
-      {path: "/artikel-admin",element: (<UserRoute><ArtikelAdmin /></UserRoute>),},
-      {path: "/profile",element: (<UserRoute><InfoProfilePage /></UserRoute>),},
-      {path: "/ratingadmin",element: (<UserRoute> <RatingAdminPage /></UserRoute>),},
-      {path: "/KategoriUMKM",element: <UserRoute><KategoriUMKMPage /></UserRoute>,},
-      {path: "/DetailKategoriUmkmPage",element: <UserRoute><DetailKategoriUmkm /></UserRoute>,},
-      {path: "/galeri-umkm",element: <UserRoute><GaleriUMKM /></UserRoute>,},
-      {path: "/artikel-admin/create", element: <CreateArtikelPage /> },
-      {path: "/kontakadmin", element: <KontakAdminPage /> },
-      {path: "/UMKM",element: (<UserRoute><UMKMPage /></UserRoute>),},
-      {path: "*", element: <NotFoundPage /> },
+      {
+        path: "/dashboard",
+        element: (
+          <UserRoute>
+            <DashboardPage />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/kategori-admin",
+        element: (
+          <UserRoute>
+            <KategoriAdminPage />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/artikel-admin",
+        element: (
+          <UserRoute>
+            <ArtikelAdmin />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <UserRoute>
+            <InfoProfilePage />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/ratingadmin",
+        element: (
+          <UserRoute>
+            {" "}
+            <RatingAdminPage />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/KategoriUMKM",
+        element: (
+          <UserRoute>
+            <KategoriUMKMPage />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/DetailKategoriUmkmPage",
+        element: (
+          <UserRoute>
+            <DetailKategoriUmkm />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/galeri-umkm",
+        element: (
+          <UserRoute>
+            <GaleriUMKM />
+          </UserRoute>
+        ),
+      },
+      { path: "/artikel-admin/create", element: <CreateArtikelPage /> },
+      { path: "/kontakadmin", element: <KontakAdminPage /> },
+      {
+        path: "/UMKM",
+        element: (
+          <UserRoute>
+            <UMKMPage />
+          </UserRoute>
+        ),
+      },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ]);
