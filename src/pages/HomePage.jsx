@@ -195,11 +195,7 @@ const HomePage = () => {
 
   const categories = [
     { name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
-    {
-      name: "Minuman",
-      slug: "minuman",
-      icon: "fluent:drink-to-go-24-regular",
-    },
+    { name: "Minuman",slug: "minuman",icon: "fluent:drink-to-go-24-regular",},
     { name: "Jasa", slug: "jasa", icon: "ph:wrench" },
     { name: "Barang", slug: "barang", icon: "lucide:package-open" },
     { name: "Lainnya", slug: "lainnya", icon: "basil:other-1-outline" },
