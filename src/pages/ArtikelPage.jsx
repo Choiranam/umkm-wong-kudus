@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
