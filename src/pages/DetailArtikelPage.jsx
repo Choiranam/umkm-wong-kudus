@@ -51,16 +51,32 @@ const DetailArtikelPage = () => {
     const fetchDetail = async () => {
       try {
         setLoading(true);
-        const response = await api.get(`/articles/${id}/detail`);
-        const result = response.data;
 
-        if (result.status && result.data) {
-          const { article: apiArticle, related_articles } = result.data;
+        const detailResponse = await api.get(`/articles/${id}`);
+        const detailResult = detailResponse.data;
 
-          setArticle(apiArticle);
-          setRelatedArticles(related_articles || []);
-        } else {
-          throw new Error(result.message || "Data tidak valid");
+        if (!detailResult.status || !detailResult.data) {
+          throw new Error("Artikel tidak ditemukan");
+        }
+
+        const apiArticle = detailResult.data;
+        setArticle({
+          ...apiArticle,
+          category: "UMKM",
+        });
+
+        if (apiArticle.category_blog_id) {
+          const relatedResponse = await api.get(
+            `/articles/category/${apiArticle.category_blog_id}`
+          );
+          const relatedResult = relatedResponse.data;
+
+          if (relatedResult.status && relatedResult.data) {
+            const related = relatedResult.data
+              .filter((item) => item.id !== parseInt(id))
+              .slice(0, 3);
+            setRelatedArticles(related);
+          }
         }
       } catch (err) {
         setError("Artikel tidak ditemukan atau gagal dimuat.");
