@@ -16,7 +16,6 @@ import LoginPage from "../pages/admin/LoginPage";
 import DetailArtikelPage from "../pages/DetailArtikelPage";
 import DashboardPage from "../pages/admin/DashboardPage";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
-import UserRoute from "./userRoute.jsx";
 import UMKMPage from "../pages/admin/UMKMPage.jsx";
 import KategoriAdminPage from "../pages/admin/KategoriPage.jsx";
 import ArtikelAdmin from "../pages/admin/ArtikelPage.jsx";
@@ -27,6 +26,7 @@ import RatingAdminPage from "../pages/admin/RatingPage.jsx";
 import KategoriUMKMPage from "../pages/admin/KategoriUmkmPage.jsx";
 import DetailKategoriUmkm from "../pages/admin/DetailKategoriUmkm.jsx";
 import GaleriUMKM from "../pages/admin/GaleriPage.jsx";
+import UserRoute from "./UserRoute.jsx";
 
 const router = createBrowserRouter([
   {
