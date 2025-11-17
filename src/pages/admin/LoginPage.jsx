@@ -25,10 +25,33 @@ const LoginPage = () => {
     checkAuth();
   }, [navigate]);
 
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("remember_email");
+    const savedPassword = localStorage.getItem("remember_password");
+    const savedRemember = localStorage.getItem("remember_me") === "true";
+
+    if (savedRemember) {
+      setEmail(savedEmail || "");
+      setPassword(savedPassword || "");
+      setRemember(true);
+    }
+  }, []);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await login(email, password, remember);
+
     if (res) {
+      if (remember) {
+        localStorage.setItem("remember_email", email);
+        localStorage.setItem("remember_password", password);
+        localStorage.setItem("remember_me", "true");
+      } else {
+        localStorage.removeItem("remember_email");
+        localStorage.removeItem("remember_password");
+        localStorage.removeItem("remember_me");
+      }
+
       setShowPopup(true);
       setTimeout(() => {
         navigate("/dashboard", { replace: true });

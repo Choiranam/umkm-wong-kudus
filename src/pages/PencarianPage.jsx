@@ -5,26 +5,55 @@ import HeroContent from "../components/HeroContent";
 import UMKMCard from "../components/UMKMCard";
 import { Icon } from "@iconify/react";
 import PageContainer from "../components/PageContainer";
-import { dataUMKM } from "../data/dataUMKM";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
+import api from "../services/api";
 
 const PencarianPage = () => {
   const [searchParams] = useSearchParams();
   const [hasilPencarian, setHasilPencarian] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const [loading, setLoading] = useState(false);
   const contentRef = useRef(null);
+  const abortRef = useRef(null);
 
   useEffect(() => {
-    const query = searchParams.get("query") || "";
+    const query = (searchParams.get("query") || "").trim();
     setKeyword(query);
-    if (query.trim()) {
-      const filtered = dataUMKM.filter((umkm) =>
-        umkm.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setHasilPencarian(filtered);
-    } else {
+
+    if (!query) {
       setHasilPencarian([]);
+      return;
     }
+
+    setLoading(true);
+
+    if (abortRef.current) {
+      abortRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    api
+      .get("/umkm", { params: { search: query }, signal: controller.signal })
+      .then((res) => {
+        const data = Array.isArray(res?.data?.data) ? res.data.data : [];
+
+        const q = query.toLowerCase();
+
+        const filtered = data.filter((item) => {
+          const name = (item?.name || "").toString().toLowerCase();
+          return name.includes(q);
+        });
+
+        setHasilPencarian(filtered);
+      })
+      .catch((err) => {
+        if (err?.name === "CanceledError" || err?.name === "AbortError") return;
+        setHasilPencarian([]);
+      })
+      .finally(() => setLoading(false));
+
+    return () => controller.abort();
   }, [searchParams]);
 
   useEffect(() => {
@@ -59,15 +88,30 @@ const PencarianPage = () => {
             </h2>
           </div>
           <p className="text-sm sm:text-base text-dark/50 mt-1 sm:mt-2 pl-8 sm:pl-[38px]">
-            Ditemukan{" "}
-            <span className="font-medium">{hasilPencarian.length}</span> UMKM
-            yang terkait
+            {loading ? (
+              "Mencari..."
+            ) : (
+              <>
+                Ditemukan{" "}
+                <span className="font-medium">{hasilPencarian.length}</span>{" "}
+                UMKM yang terkait
+              </>
+            )}
           </p>
         </div>
-        {hasilPencarian.length > 0 ? (
+
+        {loading ? (
+          <p className="text-center text-dark text-base">Mencari data...</p>
+        ) : hasilPencarian.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 justify-items-center">
             {hasilPencarian.map((umkm, index) => (
-              <UMKMCard key={index} data={umkm} />
+              <Link
+                key={umkm.id ?? index}
+                to={`/detail-umkm/${umkm.slug}`}
+                className="block w-full"
+              >
+                <UMKMCard data={umkm} />
+              </Link>
             ))}
           </div>
         ) : (
