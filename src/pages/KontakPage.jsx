@@ -6,6 +6,7 @@ import { Icon } from "@iconify/react";
 import Footer from "../components/Footer";
 import PageContainer from "../components/PageContainer";
 import ReactCrop from "react-easy-crop";
+import { Transition } from "@headlessui/react";
 
 const KontakPage = () => {
   const [formData, setFormData] = useState({
@@ -90,9 +91,56 @@ const KontakPage = () => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dropRef = useRef(null);
+
+  // === KOMPONEN MENU ITEM DENGAN ANIMASI STAGGERED ===
+  const MenuItem = ({
+    icon,
+    label,
+    delay,
+    onClick,
+    hoverClass,
+    className = "",
+    isDestructive = false,
+  }) => {
+    return (
+      <Transition
+        enter={`transition-all ease-out duration-300 delay-[${delay}]`}
+        enterFrom="opacity-0 -translate-y-2 scale-95"
+        enterTo="opacity-100 translate-y-0 scale-100"
+        leave={`transition-all ease-in duration-200 delay-[${Math.max(
+          0,
+          200 - parseInt(delay)
+        )}]ms`}
+        leaveFrom="opacity-100 translate-y-0 scale-100"
+        leaveTo="opacity-0 -translate-y-2 scale-95"
+      >
+        <li
+          onClick={onClick}
+          className={`
+            px-4 py-3 flex items-center gap-3 cursor-pointer transition-all duration-200 select-none
+            ${hoverClass || "hover:bg-gray-50 hover:text-gray-900"}
+            ${isDestructive ? "text-red-600" : ""}
+            ${className}
+          `}
+        >
+          <Icon
+            icon={icon}
+            className="text-lg transition-colors duration-200"
+          />
+          <span>{label}</span>
+        </li>
+      </Transition>
+    );
+  };
 
   useEffect(() => {
-    const handleClickOutside = () => setShowPhotoMenu(false);
+    const handleClickOutside = (e) => {
+      if (dropRef.current && !dropRef.current.contains(e.target)) {
+        setShowPhotoMenu(false);
+      }
+    };
     if (showPhotoMenu) {
       document.addEventListener("click", handleClickOutside);
       return () => document.removeEventListener("click", handleClickOutside);
@@ -145,6 +193,25 @@ const KontakPage = () => {
         resolve(file);
       });
     });
+  };
+
+  const handleFileSelect = (file) => {
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      setErrorReview("Ukuran foto terlalu besar. Maksimal 5MB.");
+      return;
+    }
+    if (!file.type.startsWith("image/")) {
+      setErrorReview("Hanya file gambar yang diperbolehkan.");
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+    setTempImage(url);
+    setSelectedFile(file);
+    setShowCropper(true);
+    setErrorReview("");
   };
 
   const handleReviewSubmit = async (e) => {
@@ -440,22 +507,30 @@ const KontakPage = () => {
             website ini.
           </p>
           <form onSubmit={handleReviewSubmit} className="space-y-6">
+            {/* === FOTO PROFIL + DRAG & DROP === */}
             <div className="flex flex-col sm:flex-row items-center gap-6">
-              <div className="relative group">
+              <div className="relative group" ref={dropRef}>
                 <div
-                  role="button"
-                  tabIndex={0}
-                  aria-label={
-                    profilePic
-                      ? selectedFile?.name || "Foto profil"
-                      : "Tambah foto profil"
-                  }
+                  className={`
+                    relative w-28 h-28 rounded-full border-2 
+                    ${
+                      isDragging
+                        ? "border-orange bg-orange/5 ring-4 ring-orange/30 scale-105"
+                        : "border-orange"
+                    } 
+                    overflow-hidden bg-light transition-all duration-200 
+                    shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2
+                    flex items-center justify-center
+                  `}
                   onClick={(e) => {
                     e.stopPropagation();
                     if (profilePic) {
                       setShowPhotoMenu(true);
                     } else {
-                      document.getElementById("profile-photo-input").click();
+                      const input = document.getElementById(
+                        "profile-photo-input"
+                      );
+                      if (input) input.click();
                     }
                   }}
                   onKeyDown={(e) => {
@@ -464,11 +539,37 @@ const KontakPage = () => {
                       if (profilePic) {
                         setShowPhotoMenu(true);
                       } else {
-                        document.getElementById("profile-photo-input").click();
+                        const input = document.getElementById(
+                          "profile-photo-input"
+                        );
+                        if (input) input.click();
                       }
                     }
                   }}
-                  className="relative w-28 h-28 rounded-full border-2 border-orange overflow-hidden bg-light transition shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2"
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  onDragEnter={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsDragging(true);
+                  }}
+                  onDragLeave={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsDragging(false);
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsDragging(false);
+
+                    const file = e.dataTransfer?.files?.[0];
+                    if (file) {
+                      handleFileSelect(file);
+                    }
+                  }}
                 >
                   {profilePic ? (
                     <>
@@ -477,82 +578,96 @@ const KontakPage = () => {
                         alt="Foto profil"
                         className="w-full h-full object-cover"
                       />
-                      {/* Teks Ganti Foto - transparan */}
-                      <div className="absolute inset-0 bg-transparent bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                         <p className="text-white text-xs font-medium">
                           Ganti Foto
                         </p>
                       </div>
                     </>
                   ) : (
-                    <div className="flex flex-col justify-center items-center h-full text-orange">
-                      <Icon
-                        icon="mdi:image-outline"
-                        className="text-3xl mb-1"
-                      />
-                      <p className="text-[10px] font-medium">Tambah Foto</p>
+                    <div className="flex flex-col items-center justify-center h-full text-orange p-3">
+                      {isDragging ? (
+                        <>
+                          <Icon
+                            icon="mdi:cloud-upload-outline"
+                            className="text-3xl mb-1"
+                          />
+                          <p className="text-[9px] font-medium text-center">
+                            Lepaskan di sini
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <Icon
+                            icon="mdi:image-plus"
+                            className="text-3xl mb-1"
+                          />
+                          <p className="text-[9px] font-medium text-center leading-tight">
+                            Drag & Drop
+                            <br />
+                            atau Klik
+                          </p>
+                        </>
+                      )}
                     </div>
                   )}
-
-                  <input
-                    type="file"
-                    accept="image/*"
-                    id="profile-photo-input"
-                    onChange={(e) => {
-                      const file = e.target.files[0];
-                      if (file) {
-                        if (file.size > 5 * 1024 * 1024) {
-                          setErrorReview(
-                            "Ukuran foto terlalu besar. Maksimal 5MB."
-                          );
-                          return;
-                        }
-                        if (!file.type.startsWith("image/")) {
-                          setErrorReview(
-                            "Hanya file gambar yang diperbolehkan."
-                          );
-                          return;
-                        }
-                        const url = URL.createObjectURL(file);
-                        setTempImage(url);
-                        setSelectedFile(file);
-                        setShowCropper(true);
-                        setErrorReview("");
-                      }
-                    }}
-                    className="sr-only"
-                    aria-hidden="true"
-                  />
                 </div>
-                {showPhotoMenu && profilePic && (
+
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="profile-photo-input"
+                  className="sr-only"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleFileSelect(file);
+                  }}
+                />
+
+                {/* === MENU FOTO DENGAN ANIMASI STAGGERED === */}
+                <Transition
+                  show={showPhotoMenu && profilePic}
+                  enter="transition ease-out duration-200"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
                   <div
-                    className="absolute bottom-0 right-0 transform translate-y-full translate-x-full mt-2 w-48 bg-light rounded-md shadow-lg border border-gray-200 z-50 overflow-hidden"
+                    className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-full w-52 bg-white rounded-xl shadow-2xl border border-gray-100 z-50 overflow-hidden origin-top-left"
+                    style={{ marginTop: 0 }}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ul className="py-1 text-sm">
-                      <li
+                    <ul className="py-2 text-sm">
+                      <MenuItem
+                        icon="mdi:eye"
+                        label="Lihat Foto"
+                        delay="0ms"
                         onClick={() => {
                           setShowPhotoModal(true);
                           setShowPhotoMenu(false);
                         }}
-                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
-                      >
-                        <Icon icon="mdi:eye" className="text-lg" />
-                        Lihat Foto
-                      </li>
-                      <li
+                        hoverClass="hover:bg-blue-50 hover:text-blue-600"
+                      />
+                      <MenuItem
+                        icon="mdi:pencil"
+                        label="Ganti Foto"
+                        delay="100ms"
                         onClick={() => {
                           setShowPhotoMenu(false);
-                          document
-                            .getElementById("profile-photo-input")
-                            .click();
+                          const input = document.getElementById(
+                            "profile-photo-input"
+                          );
+                          if (input) input.click();
                         }}
-                        className="px-4 py-2 hover:bg-orange/10 cursor-pointer flex items-center gap-2 text-orange font-medium"
-                      >
-                        <Icon icon="mdi:pencil" className="text-lg" />
-                        Unggah Foto
-                      </li>
-                      <li
+                        hoverClass="hover:bg-orange-50 hover:text-orange-600"
+                        className="font-medium"
+                      />
+                      <MenuItem
+                        icon="mdi:delete-outline"
+                        label="Hapus Foto"
+                        delay="200ms"
                         onClick={() => {
                           setSelectedFile(null);
                           setProfilePic(null);
@@ -562,15 +677,14 @@ const KontakPage = () => {
                           );
                           if (input) input.value = "";
                         }}
-                        className="px-4 py-2 hover:bg-red-50 hover:text-red-600 cursor-pointer flex items-center gap-2 text-red-500"
-                      >
-                        <Icon icon="mdi:delete-outline" className="text-lg" />
-                        Hapus Foto
-                      </li>
+                        hoverClass="hover:bg-red-50 hover:text-red-600"
+                        isDestructive={true}
+                      />
                     </ul>
                   </div>
-                )}
+                </Transition>
               </div>
+
               <div className="flex flex-col flex-1 gap-4 w-full sm:w-auto">
                 {["Nama Depan", "Nama Belakang"].map((label) => (
                   <div key={label} className="relative">
@@ -602,6 +716,7 @@ const KontakPage = () => {
                 ))}
               </div>
             </div>
+
             <div className="relative">
               <input
                 type="email"
@@ -701,6 +816,8 @@ const KontakPage = () => {
             </button>
           </form>
         </div>
+
+        {/* === MODAL LIHAT FOTO === */}
         {showPhotoModal && profilePic && (
           <div
             className="fixed inset-0 bg-black/60 flex items-center justify-center z-9999 p-4 overflow-hidden"
@@ -725,10 +842,12 @@ const KontakPage = () => {
             </div>
           </div>
         )}
+
+        {/* === CROPPER MODAL === */}
         {showCropper && tempImage && (
           <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-9999 p-4"
-            onClick={() => { 
+            onClick={() => {
               setShowCropper(false);
               setTempImage(null);
             }}
@@ -753,7 +872,6 @@ const KontakPage = () => {
                 </p>
                 <button
                   onClick={() => {
-                    // Reset semua state crop
                     setShowCropper(false);
                     setTempImage(null);
                     setSelectedFile(null);
