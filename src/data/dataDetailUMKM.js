@@ -462,26 +462,26 @@ export const dataDetailUMKM = [
     },
     menus: [
       {
-  name: "Bahan Bahan Makanan",
-  description:
-    "Menjual berbagai bahan makanan pokok seperti beras, gula, minyak goreng, tepung, dan bumbu dapur lengkap untuk kebutuhan rumah tangga.",
-  price: "Mulai dari Rp 5.000",
-  image: "/images/tokoalmaria_menu1.webp",
-},
-{
-  name: "Minuman dan Snack",
-  description:
-    "Tersedia aneka minuman ringan, kopi, teh, serta berbagai camilan kemasan untuk teman bersantai.",
-  price: "Mulai dari Rp 3.000",
-  image: "/images/tokoalmaria_menu1.webp",
-},
-{
-  name: "Produk Rumah Tangga",
-  description:
-    "Menyediakan perlengkapan harian seperti sabun, deterjen, dan kebutuhan kebersihan rumah.",
-  price: "Mulai dari Rp 7.000",
-  image: "/images/tokoalmaria_menu1.webp",
-},
+        name: "Bahan Bahan Makanan",
+        description:
+          "Menjual berbagai bahan makanan pokok seperti beras, gula, minyak goreng, tepung, dan bumbu dapur lengkap untuk kebutuhan rumah tangga.",
+        price: "Mulai dari Rp 5.000",
+        image: "/images/tokoalmaria_menu1.webp",
+      },
+      {
+        name: "Minuman dan Snack",
+        description:
+          "Tersedia aneka minuman ringan, kopi, teh, serta berbagai camilan kemasan untuk teman bersantai.",
+        price: "Mulai dari Rp 3.000",
+        image: "/images/tokoalmaria_menu1.webp",
+      },
+      {
+        name: "Produk Rumah Tangga",
+        description:
+          "Menyediakan perlengkapan harian seperti sabun, deterjen, dan kebutuhan kebersihan rumah.",
+        price: "Mulai dari Rp 7.000",
+        image: "/images/tokoalmaria_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/tokoalmaira_galerifoto1.webp",
@@ -525,27 +525,27 @@ export const dataDetailUMKM = [
       instagram: "-",
     },
     menus: [
-       {
-    name: "Dress & Gamis",
-    description:
-      "Koleksi dress dan gamis elegan untuk berbagai acara, dari kasual hingga formal.",
-    price: "Mulai dari Rp 75.000",
-    image: "/images/siskanuna_menu1.webp",
-  },
-  {
-    name: "Blouse & Atasan",
-    description:
-      "Beragam model blouse dan atasan modis dengan bahan nyaman dan desain kekinian.",
-    price: "Mulai dari Rp 50.000",
-    image: "/images/siskanuna_menu1.webp",
-  },
-  {
-    name: "Hijab & Aksesoris",
-    description:
-      "Pilihan hijab segi empat, pashmina, dan aksesoris wanita yang stylish dan serasi.",
-    price: "Mulai dari Rp 25.000",
-    image: "/images/siskanuna_menu1.webp",
-  },
+      {
+        name: "Dress & Gamis",
+        description:
+          "Koleksi dress dan gamis elegan untuk berbagai acara, dari kasual hingga formal.",
+        price: "Mulai dari Rp 75.000",
+        image: "/images/siskanuna_menu1.webp",
+      },
+      {
+        name: "Blouse & Atasan",
+        description:
+          "Beragam model blouse dan atasan modis dengan bahan nyaman dan desain kekinian.",
+        price: "Mulai dari Rp 50.000",
+        image: "/images/siskanuna_menu1.webp",
+      },
+      {
+        name: "Hijab & Aksesoris",
+        description:
+          "Pilihan hijab segi empat, pashmina, dan aksesoris wanita yang stylish dan serasi.",
+        price: "Mulai dari Rp 25.000",
+        image: "/images/siskanuna_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/siskanuna_galerifoto1.webp",
@@ -589,34 +589,34 @@ export const dataDetailUMKM = [
       instagram: "-",
     },
     menus: [
-   {
-    name: "Busana Pria",
-    description:
-      "Koleksi pakaian pria mulai dari kemeja batik, kaos, hingga busana formal dengan desain modern dan bahan berkualitas.",
-    price: "Mulai dari Rp 75.000",
-    image: "/images/terebatik_menu1.webp",
-  },
-  {
-    name: "Busana Wanita",
-    description:
-      "Tersedia berbagai pilihan busana wanita seperti gamis, blouse, batik, dan dress elegan untuk berbagai acara.",
-    price: "Mulai dari Rp 85.000",
-    image: "/images/terebatik_menu1.webp",
-  },
-  {
-    name: "Busana Anak-anak",
-    description:
-      "Menawarkan pakaian anak-anak dengan motif lucu dan bahan nyaman, cocok untuk aktivitas sehari-hari maupun acara spesial.",
-    price: "Mulai dari Rp 50.000",
-    image: "/images/terebatik_menu1.webp",
-  },
-  {
-    name: "Aksesori & Pelengkap",
-    description:
-      "Lengkapi penampilan Anda dengan aksesori seperti sabuk, jilbab, topi, dan tas yang serasi dengan gaya busana pilihan.",
-    price: "Mulai dari Rp 20.000",
-    image: "/images/terebatik_menu1.webp",
-  },
+      {
+        name: "Busana Pria",
+        description:
+          "Koleksi pakaian pria mulai dari kemeja batik, kaos, hingga busana formal dengan desain modern dan bahan berkualitas.",
+        price: "Mulai dari Rp 75.000",
+        image: "/images/terebatik_menu1.webp",
+      },
+      {
+        name: "Busana Wanita",
+        description:
+          "Tersedia berbagai pilihan busana wanita seperti gamis, blouse, batik, dan dress elegan untuk berbagai acara.",
+        price: "Mulai dari Rp 85.000",
+        image: "/images/terebatik_menu1.webp",
+      },
+      {
+        name: "Busana Anak-anak",
+        description:
+          "Menawarkan pakaian anak-anak dengan motif lucu dan bahan nyaman, cocok untuk aktivitas sehari-hari maupun acara spesial.",
+        price: "Mulai dari Rp 50.000",
+        image: "/images/terebatik_menu1.webp",
+      },
+      {
+        name: "Aksesori & Pelengkap",
+        description:
+          "Lengkapi penampilan Anda dengan aksesori seperti sabuk, jilbab, topi, dan tas yang serasi dengan gaya busana pilihan.",
+        price: "Mulai dari Rp 20.000",
+        image: "/images/terebatik_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/terebatik_galerifoto1.webp",
@@ -692,7 +692,7 @@ export const dataDetailUMKM = [
     ],
   },
   {
-    id:12,
+    id: 12,
     name: "WEKATE GANK",
     slug: "wekate-gank",
     heroImage: "/images/wekategank_hero.webp",
@@ -965,16 +965,16 @@ export const dataDetailUMKM = [
     menus: [
       {
         name: "Aneka Masakan Rumahan",
-    description:
-      "Menawarkan berbagai hidangan lezat seperti swike, sup ayam, ayam goreng, tumis sayur, dan masakan rumahan lainnya yang disajikan hangat setiap hari.",
-    price: "Mulai dari Rp 10.000",
+        description:
+          "Menawarkan berbagai hidangan lezat seperti swike, sup ayam, ayam goreng, tumis sayur, dan masakan rumahan lainnya yang disajikan hangat setiap hari.",
+        price: "Mulai dari Rp 10.000",
         image: "/images/sendangmulia_menu1.webp",
       },
     ],
     galleryImages: [
       "/images/sendangmulia_galerifoto1.webp",
       "/images/sendangmulia_galerifoto2.webp",
-      "/images/sendangmulia_galerifoto3.webp", 
+      "/images/sendangmulia_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "06.30 - 15.00", isOpen: true },
@@ -1014,34 +1014,34 @@ export const dataDetailUMKM = [
     },
     menus: [
       {
-    name: "Peralatan Dapur",
-    description: "Beragam perlengkapan dapur seperti panci, wajan, spatula, dan tempat bumbu dengan kualitas bagus dan harga terjangkau.",
-    price: "Mulai dari Rp 10.000",
-    image: "/images/adibazka_menu1.webp",
-  },
-  {
-    name: "Peralatan Mandi",
-    description: "Tersedia ember, gayung, sikat, dan rak sabun berbagai ukuran dan warna untuk kebutuhan rumah tangga Anda.",
-    price: "Mulai dari Rp 5.000",
-    image: "/images/adibazka_menu2.webp",
-  },
-  {
-    name: "Tempat Penyimpanan",
-    description: "Koleksi toples, kotak makan, dan wadah plastik serbaguna untuk menyimpan makanan atau perlengkapan rumah.",
-    price: "Mulai dari Rp 8.000",
-    image: "/images/adibazka_menu3.webp",
-  },
-  {
-    name: "Peralatan Kebersihan",
-    description: "Sapu, pel, lap microfiber, dan perlengkapan kebersihan lain untuk menjaga rumah tetap bersih dan rapi.",
-    price: "Mulai dari Rp 7.000",
-    image: "/images/adibazka_menu4.webp",
-  },
+        name: "Peralatan Dapur",
+        description: "Beragam perlengkapan dapur seperti panci, wajan, spatula, dan tempat bumbu dengan kualitas bagus dan harga terjangkau.",
+        price: "Mulai dari Rp 10.000",
+        image: "/images/adibazka_menu1.webp",
+      },
+      {
+        name: "Peralatan Mandi",
+        description: "Tersedia ember, gayung, sikat, dan rak sabun berbagai ukuran dan warna untuk kebutuhan rumah tangga Anda.",
+        price: "Mulai dari Rp 5.000",
+        image: "/images/adibazka_menu2.webp",
+      },
+      {
+        name: "Tempat Penyimpanan",
+        description: "Koleksi toples, kotak makan, dan wadah plastik serbaguna untuk menyimpan makanan atau perlengkapan rumah.",
+        price: "Mulai dari Rp 8.000",
+        image: "/images/adibazka_menu3.webp",
+      },
+      {
+        name: "Peralatan Kebersihan",
+        description: "Sapu, pel, lap microfiber, dan perlengkapan kebersihan lain untuk menjaga rumah tetap bersih dan rapi.",
+        price: "Mulai dari Rp 7.000",
+        image: "/images/adibazka_menu4.webp",
+      },
     ],
     galleryImages: [
       "/images/tokoadib_galerifoto1.webp",
       "/images/tokoadib_galerifoto2.webp",
-      "/images/tokoadib_galerifoto3.webp", 
+      "/images/tokoadib_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "07.00 - 20.00", isOpen: true },
@@ -1060,11 +1060,11 @@ export const dataDetailUMKM = [
     heroImage: "/images/tokosridawe_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Sri Dawe"',
     heroSubtitle:
-  "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur seperti beras, minyak, gula, dan bahan pokok lainnya dengan harga terjangkau.",
-about:
-  "<strong>Toko ADIB AZKA</strong> merupakan toko bahan makanan yang melayani kebutuhan pokok sehari-hari masyarakat Kudus. Tersedia beragam bahan dapur seperti beras, minyak goreng, telur, tepung, hingga bumbu dapur lengkap. Dengan pelayanan cepat dan harga bersahabat, toko ini menjadi pilihan utama warga sekitar untuk berbelanja kebutuhan rumah tangga.",
-description:
-  "Toko bahan makanan di Kudus yang menyediakan kebutuhan pokok dan bumbu dapur lengkap dengan harga terjangkau dan kualitas terjamin.",
+      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur seperti beras, minyak, gula, dan bahan pokok lainnya dengan harga terjangkau.",
+    about:
+      "<strong>Toko ADIB AZKA</strong> merupakan toko bahan makanan yang melayani kebutuhan pokok sehari-hari masyarakat Kudus. Tersedia beragam bahan dapur seperti beras, minyak goreng, telur, tepung, hingga bumbu dapur lengkap. Dengan pelayanan cepat dan harga bersahabat, toko ini menjadi pilihan utama warga sekitar untuk berbelanja kebutuhan rumah tangga.",
+    description:
+      "Toko bahan makanan di Kudus yang menyediakan kebutuhan pokok dan bumbu dapur lengkap dengan harga terjangkau dan kualitas terjamin.",
     rating: "4.8 / 5",
     location: {
       address: " Jl. Dawe - Gebog, Madu, Cendono, Kudus",
@@ -1080,18 +1080,18 @@ description:
       instagram: "-",
     },
     menus: [
-     {
-    name: "Bahan Pokok & Sembako Lengkap",
-    description:
-      "Toko Sri Dawe menyediakan berbagai kebutuhan dapur dan bahan pokok sehari-hari seperti beras, gula pasir, minyak goreng, telur ayam, tepung terigu, garam, mie instan, dan aneka bumbu dapur. Semua tersedia dalam berbagai merek dan ukuran, dijamin segar dan berkualitas.",
-    price: "Harga mulai dari Rp 2.000 – Rp 150.000 tergantung jenis produk",
-    image: "/images/sridawe_menu1.webp",
-  },
+      {
+        name: "Bahan Pokok & Sembako Lengkap",
+        description:
+          "Toko Sri Dawe menyediakan berbagai kebutuhan dapur dan bahan pokok sehari-hari seperti beras, gula pasir, minyak goreng, telur ayam, tepung terigu, garam, mie instan, dan aneka bumbu dapur. Semua tersedia dalam berbagai merek dan ukuran, dijamin segar dan berkualitas.",
+        price: "Harga mulai dari Rp 2.000 – Rp 150.000 tergantung jenis produk",
+        image: "/images/sridawe_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/sridawe_galerifoto1.webp",
       "/images/sridawe_galerifoto2.webp",
-      "/images/sridawe_galerifoto3.webp", 
+      "/images/sridawe_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "06.00 - 22.00", isOpen: true },
@@ -1110,11 +1110,11 @@ description:
     heroImage: "/images/arfanoutfitkudus_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Arfan Outfit Kudus"',
     heroSubtitle:
-  "Toko pakaian di Kudus yang menyediakan berbagai outfit pria, wanita, dan anak dengan model kekinian dan harga terjangkau.",
-about:
-  "<strong>Arfan Outfit Kudus</strong> adalah toko pakaian yang menghadirkan beragam busana modern dan nyaman untuk seluruh keluarga. Tersedia pakaian pria, wanita, dan anak-anak, mulai dari kaos, kemeja, celana, gamis, hingga jilbab. Dengan koleksi fashion terkini dan pelayanan ramah, Arfan Outfit Kudus menjadi destinasi favorit warga Kudus untuk berbelanja pakaian.",
-description:
-  "Toko pakaian di Kudus yang menjual berbagai outfit trendi dan berkualitas untuk segala usia, cocok untuk gaya kasual maupun formal.",
+      "Toko pakaian di Kudus yang menyediakan berbagai outfit pria, wanita, dan anak dengan model kekinian dan harga terjangkau.",
+    about:
+      "<strong>Arfan Outfit Kudus</strong> adalah toko pakaian yang menghadirkan beragam busana modern dan nyaman untuk seluruh keluarga. Tersedia pakaian pria, wanita, dan anak-anak, mulai dari kaos, kemeja, celana, gamis, hingga jilbab. Dengan koleksi fashion terkini dan pelayanan ramah, Arfan Outfit Kudus menjadi destinasi favorit warga Kudus untuk berbelanja pakaian.",
+    description:
+      "Toko pakaian di Kudus yang menjual berbagai outfit trendi dan berkualitas untuk segala usia, cocok untuk gaya kasual maupun formal.",
     rating: "4.7 / 5",
     location: {
       address: "Cendono Wetan, Cendono, Kudus",
@@ -1130,41 +1130,41 @@ description:
       instagram: "arfanoutfit",
     },
     menus: [
-     {
-    name: "Gamis Muslimah Modern",
-    description: "Gamis polos dan motif elegan berbahan adem cocok untuk acara formal maupun harian.",
-    price: "Mulai dari Rp 120.000",
-    image: "/images/arfanoutfit_menu1.webp",
-  },
-  {
-    name: "Tunik Wanita",
-    description: "Tunik panjang dengan desain kekinian dan potongan longgar, nyaman dipakai seharian.",
-    price: "Mulai dari Rp 85.000",
-    image: "/images/arfanoutfit_menu1.webp",
-  },
-  {
-    name: "Dress Casual",
-    description: "Dress santai berbahan katun dan rayon, cocok untuk hangout atau acara keluarga.",
-    price: "Mulai dari Rp 95.000",
-    image: "/images/arfanoutfit_menu1.webp",
-  },
-  {
-    name: "Celana Kulot",
-    description: "Celana kulot wanita dengan bahan lembut dan potongan lebar, ideal untuk tampilan stylish dan sopan.",
-    price: "Mulai dari Rp 75.000",
-    image: "/images/arfanoutfit_menu1.webp",
-  },
-  {
-    name: "Hijab Segi Empat & Pashmina",
-    description: "Berbagai pilihan hijab segi empat dan pashmina dengan bahan voal dan diamond crepe premium.",
-    price: "Mulai dari Rp 35.000",
-    image: "/images/arfanoutfit_menu1.webp",
-  },
+      {
+        name: "Gamis Muslimah Modern",
+        description: "Gamis polos dan motif elegan berbahan adem cocok untuk acara formal maupun harian.",
+        price: "Mulai dari Rp 120.000",
+        image: "/images/arfanoutfit_menu1.webp",
+      },
+      {
+        name: "Tunik Wanita",
+        description: "Tunik panjang dengan desain kekinian dan potongan longgar, nyaman dipakai seharian.",
+        price: "Mulai dari Rp 85.000",
+        image: "/images/arfanoutfit_menu1.webp",
+      },
+      {
+        name: "Dress Casual",
+        description: "Dress santai berbahan katun dan rayon, cocok untuk hangout atau acara keluarga.",
+        price: "Mulai dari Rp 95.000",
+        image: "/images/arfanoutfit_menu1.webp",
+      },
+      {
+        name: "Celana Kulot",
+        description: "Celana kulot wanita dengan bahan lembut dan potongan lebar, ideal untuk tampilan stylish dan sopan.",
+        price: "Mulai dari Rp 75.000",
+        image: "/images/arfanoutfit_menu1.webp",
+      },
+      {
+        name: "Hijab Segi Empat & Pashmina",
+        description: "Berbagai pilihan hijab segi empat dan pashmina dengan bahan voal dan diamond crepe premium.",
+        price: "Mulai dari Rp 35.000",
+        image: "/images/arfanoutfit_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/arfanoutfit_galerifoto1.webp",
       "/images/arfanoutfit_galerifoto2.webp",
-      "/images/arfanoutfit_galerifoto3.webp", 
+      "/images/arfanoutfit_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
@@ -1183,11 +1183,11 @@ description:
     heroImage: "/images/dindastore_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Dinda Store DS"',
     heroSubtitle:
-  "Toko pakaian pria di Kudus yang menyediakan berbagai outfit trendi seperti kaos, kemeja, celana jeans, dan tas dengan harga terjangkau.",
-about:
-  "<strong>Dinda Store DS</strong> merupakan toko pakaian pria di Kudus yang menawarkan berbagai koleksi fashion modern, mulai dari kaos kasual, kemeja formal, hingga celana jeans berkualitas. Selain itu, tersedia juga berbagai tas dan aksesoris pria yang stylish. Dengan harga bersahabat dan pelayanan ramah, toko ini menjadi pilihan favorit pria muda untuk tampil keren setiap hari.",
-description:
-  "Toko pakaian pria di Kudus yang menyediakan berbagai model kaos, kemeja, jeans, dan tas dengan gaya kekinian dan harga ramah di kantong.",
+      "Toko pakaian pria di Kudus yang menyediakan berbagai outfit trendi seperti kaos, kemeja, celana jeans, dan tas dengan harga terjangkau.",
+    about:
+      "<strong>Dinda Store DS</strong> merupakan toko pakaian pria di Kudus yang menawarkan berbagai koleksi fashion modern, mulai dari kaos kasual, kemeja formal, hingga celana jeans berkualitas. Selain itu, tersedia juga berbagai tas dan aksesoris pria yang stylish. Dengan harga bersahabat dan pelayanan ramah, toko ini menjadi pilihan favorit pria muda untuk tampil keren setiap hari.",
+    description:
+      "Toko pakaian pria di Kudus yang menyediakan berbagai model kaos, kemeja, jeans, dan tas dengan gaya kekinian dan harga ramah di kantong.",
     rating: "4.4 / 5",
     location: {
       address: "Madu, Cendono, Kudus",
@@ -1203,35 +1203,35 @@ description:
       instagram: "-",
     },
     menus: [
-     {
-    name: "Kaos Pria Kasual",
-    description: "Kaos pria berbahan katun lembut dengan berbagai desain trendi dan nyaman dipakai harian.",
-    price: "Mulai dari Rp 60.000",
-    image: "/images/dindastore_menu1.webp",
-  },
-  {
-    name: "Kemeja Pria",
-    description: "Kemeja polos dan motif dengan potongan slim fit, cocok untuk acara santai maupun formal.",
-    price: "Mulai dari Rp 95.000",
-    image: "/images/dindastore_menu2.webp",
-  },
-  {
-    name: "Celana Jeans Pria",
-    description: "Jeans pria dengan bahan tebal dan fleksibel, tersedia berbagai warna dan ukuran.",
-    price: "Mulai dari Rp 130.000",
-    image: "/images/dindastore_menu3.webp",
-  },
-  {
-    name: "Tas Selempang Pria",
-    description: "Tas selempang kecil untuk gaya kasual, cocok untuk kegiatan sehari-hari.",
-    price: "Mulai dari Rp 85.000",
-    image: "/images/dindastore_menu4.webp",
-  },
+      {
+        name: "Kaos Pria Kasual",
+        description: "Kaos pria berbahan katun lembut dengan berbagai desain trendi dan nyaman dipakai harian.",
+        price: "Mulai dari Rp 60.000",
+        image: "/images/dindastore_menu1.webp",
+      },
+      {
+        name: "Kemeja Pria",
+        description: "Kemeja polos dan motif dengan potongan slim fit, cocok untuk acara santai maupun formal.",
+        price: "Mulai dari Rp 95.000",
+        image: "/images/dindastore_menu2.webp",
+      },
+      {
+        name: "Celana Jeans Pria",
+        description: "Jeans pria dengan bahan tebal dan fleksibel, tersedia berbagai warna dan ukuran.",
+        price: "Mulai dari Rp 130.000",
+        image: "/images/dindastore_menu3.webp",
+      },
+      {
+        name: "Tas Selempang Pria",
+        description: "Tas selempang kecil untuk gaya kasual, cocok untuk kegiatan sehari-hari.",
+        price: "Mulai dari Rp 85.000",
+        image: "/images/dindastore_menu4.webp",
+      },
     ],
     galleryImages: [
       "/images/dindastore_galerifoto1.webp",
       "/images/dindastore_galerifoto2.webp",
-      "/images/dindastore_galerifoto3.webp", 
+      "/images/dindastore_galerifoto3.webp",
     ],
     openingHours: [
       { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
@@ -1569,11 +1569,11 @@ description:
     heroImage: "/images/basina_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Basina Food"',
     heroSubtitle:
-  "Rumah makan di Kudus yang menyajikan aneka masakan rumahan dan lauk pauk lezat dengan cita rasa khas Jawa, cocok untuk makan siang maupun acara keluarga.",
-about:
-  "<strong>Basina Food</strong> merupakan rumah makan yang menghadirkan berbagai menu masakan rumahan dengan cita rasa autentik dan bahan-bahan segar. Tersedia beragam lauk seperti ayam goreng, ikan bakar, sayur asem, sambal terasi, dan berbagai pilihan minuman segar. Dengan suasana nyaman dan pelayanan ramah, Basina Food menjadi pilihan favorit warga Kudus untuk menikmati hidangan sehari-hari maupun acara keluarga.",
-description:
-  "Rumah makan di Kudus yang menyediakan beragam menu masakan rumahan khas Jawa dengan rasa lezat dan harga bersahabat.",
+      "Rumah makan di Kudus yang menyajikan aneka masakan rumahan dan lauk pauk lezat dengan cita rasa khas Jawa, cocok untuk makan siang maupun acara keluarga.",
+    about:
+      "<strong>Basina Food</strong> merupakan rumah makan yang menghadirkan berbagai menu masakan rumahan dengan cita rasa autentik dan bahan-bahan segar. Tersedia beragam lauk seperti ayam goreng, ikan bakar, sayur asem, sambal terasi, dan berbagai pilihan minuman segar. Dengan suasana nyaman dan pelayanan ramah, Basina Food menjadi pilihan favorit warga Kudus untuk menikmati hidangan sehari-hari maupun acara keluarga.",
+    description:
+      "Rumah makan di Kudus yang menyediakan beragam menu masakan rumahan khas Jawa dengan rasa lezat dan harga bersahabat.",
     rating: "4.0 / 5",
     location: {
       address: "Besito Kulon, Besito, Kudus",
@@ -1590,11 +1590,11 @@ description:
     },
     menus: [
       {
-         name: "Aneka Masakan Rumahan Basina Food",
-    description:
-      "Nikmati berbagai pilihan menu rumahan seperti nasi goreng, ayam geprek, ayam bali, sayur lodeh, dan lauk pauk lainnya yang dimasak setiap hari dengan bahan segar dan cita rasa khas Basina Food.",
-    price: "Mulai dari Rp 1.000 - Rp 25.000",
-    image: "/images/basina_menu1.webp",
+        name: "Aneka Masakan Rumahan Basina Food",
+        description:
+          "Nikmati berbagai pilihan menu rumahan seperti nasi goreng, ayam geprek, ayam bali, sayur lodeh, dan lauk pauk lainnya yang dimasak setiap hari dengan bahan segar dan cita rasa khas Basina Food.",
+        price: "Mulai dari Rp 1.000 - Rp 25.000",
+        image: "/images/basina_menu1.webp",
       },
     ],
     galleryImages: [
@@ -1619,11 +1619,11 @@ description:
     heroImage: "/images/campaigncoffee_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Campaign Coffee"',
     heroSubtitle:
-  "Kedai kopi di Kudus yang menyajikan berbagai pilihan kopi dan minuman kekinian seperti espresso, latte, dan teh dengan suasana nyaman untuk bersantai atau bekerja.",
-about:
-  "<strong>Campaign Coffee</strong> merupakan kedai kopi modern di Kudus yang menjadi tempat favorit bagi pecinta kopi dan penikmat suasana santai. Menyediakan berbagai jenis kopi mulai dari espresso, cappuccino, latte, hingga minuman manual brew seperti V60 dan tubruk. Selain kopi, tersedia juga aneka minuman non-kopi seperti teh, cokelat, dan minuman dingin lainnya. Dengan interior estetik dan pelayanan ramah, Campaign Coffee menjadi destinasi pas untuk nongkrong, bekerja, atau sekadar menikmati secangkir kopi hangat.",
-description:
-  "Kedai kopi di Kudus yang menghadirkan berbagai varian kopi dan minuman non-kopi dengan cita rasa khas dan suasana nyaman.",
+      "Kedai kopi di Kudus yang menyajikan berbagai pilihan kopi dan minuman kekinian seperti espresso, latte, dan teh dengan suasana nyaman untuk bersantai atau bekerja.",
+    about:
+      "<strong>Campaign Coffee</strong> merupakan kedai kopi modern di Kudus yang menjadi tempat favorit bagi pecinta kopi dan penikmat suasana santai. Menyediakan berbagai jenis kopi mulai dari espresso, cappuccino, latte, hingga minuman manual brew seperti V60 dan tubruk. Selain kopi, tersedia juga aneka minuman non-kopi seperti teh, cokelat, dan minuman dingin lainnya. Dengan interior estetik dan pelayanan ramah, Campaign Coffee menjadi destinasi pas untuk nongkrong, bekerja, atau sekadar menikmati secangkir kopi hangat.",
+    description:
+      "Kedai kopi di Kudus yang menghadirkan berbagai varian kopi dan minuman non-kopi dengan cita rasa khas dan suasana nyaman.",
     rating: "5 / 5",
     location: {
       address: "Besito Kulon, Besito, Kudus",
@@ -1640,11 +1640,11 @@ description:
     },
     menus: [
       {
-         name: "Kopi & Minuman Spesial Campaign Coffee",
-    description:
-      "Nikmati beragam pilihan kopi seperti espresso, cappuccino, latte, dan manual brew, serta minuman non-kopi seperti teh lemon, matcha latte, dan cokelat dingin yang cocok untuk menemani waktu santaimu.",
-    price: "Mulai dari Rp 13.000",
-    image: "/images/campaigncoffee_menu1.webp",
+        name: "Kopi & Minuman Spesial Campaign Coffee",
+        description:
+          "Nikmati beragam pilihan kopi seperti espresso, cappuccino, latte, dan manual brew, serta minuman non-kopi seperti teh lemon, matcha latte, dan cokelat dingin yang cocok untuk menemani waktu santaimu.",
+        price: "Mulai dari Rp 13.000",
+        image: "/images/campaigncoffee_menu1.webp",
       },
     ],
     galleryImages: [
@@ -1668,11 +1668,11 @@ description:
     heroImage: "/images/tokotnajaya_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Toko TNA JAYA"',
     heroSubtitle:
-  "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, mulai dari sembako, bumbu dapur, hingga makanan ringan dengan harga terjangkau dan kualitas terjamin.",
-about:
-  "<strong>Toko TNA JAYA</strong> merupakan toko bahan makanan yang telah lama melayani masyarakat Kudus dengan menyediakan berbagai kebutuhan dapur dan rumah tangga. Di sini tersedia beragam produk seperti beras, minyak goreng, gula, tepung, bumbu masak, mie instan, serta aneka makanan ringan dan minuman. Dengan pelayanan yang ramah dan harga yang kompetitif, TNA JAYA menjadi pilihan utama bagi warga sekitar untuk berbelanja kebutuhan sehari-hari.",
-description:
-  "Toko bahan makanan lengkap di Kudus yang menawarkan sembako, bumbu dapur, makanan ringan, dan berbagai produk rumah tangga lainnya dengan harga terjangkau dan pelayanan cepat.",
+      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, mulai dari sembako, bumbu dapur, hingga makanan ringan dengan harga terjangkau dan kualitas terjamin.",
+    about:
+      "<strong>Toko TNA JAYA</strong> merupakan toko bahan makanan yang telah lama melayani masyarakat Kudus dengan menyediakan berbagai kebutuhan dapur dan rumah tangga. Di sini tersedia beragam produk seperti beras, minyak goreng, gula, tepung, bumbu masak, mie instan, serta aneka makanan ringan dan minuman. Dengan pelayanan yang ramah dan harga yang kompetitif, TNA JAYA menjadi pilihan utama bagi warga sekitar untuk berbelanja kebutuhan sehari-hari.",
+    description:
+      "Toko bahan makanan lengkap di Kudus yang menawarkan sembako, bumbu dapur, makanan ringan, dan berbagai produk rumah tangga lainnya dengan harga terjangkau dan pelayanan cepat.",
     rating: "5 / 5",
     location: {
       address: "Karang Rejosari, Jurang, Gebog, Kudus",
@@ -1689,11 +1689,11 @@ description:
     },
     menus: [
       {
-          name: "Bahan Bahan Makanan",
-  description:
-    "Menjual berbagai bahan makanan pokok seperti beras, gula, minyak goreng, tepung, dan bumbu dapur lengkap untuk kebutuhan rumah tangga.",
-  price: "Mulai dari Rp 5.000",
-  image: "/images/tokotnajaya_menu1.webp",
+        name: "Bahan Bahan Makanan",
+        description:
+          "Menjual berbagai bahan makanan pokok seperti beras, gula, minyak goreng, tepung, dan bumbu dapur lengkap untuk kebutuhan rumah tangga.",
+        price: "Mulai dari Rp 5.000",
+        image: "/images/tokotnajaya_menu1.webp",
       },
     ],
     galleryImages: [
@@ -1715,12 +1715,12 @@ description:
     slug: "toko-teguh-sudarsono",
     heroImage: "/images/tokoteguhsudarsono_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Teguh Sudarsono"',
-     heroSubtitle:
-    "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, mulai dari sembako, bumbu dapur, hingga makanan ringan dengan harga terjangkau dan kualitas terjamin.",
-  about:
-    "<strong>Toko Teguh Sudarsono</strong> merupakan toko bahan makanan yang telah lama melayani masyarakat Kudus dengan menyediakan berbagai kebutuhan dapur dan rumah tangga. Di sini tersedia beragam produk seperti beras, minyak goreng, gula, tepung, bumbu masak, mie instan, serta aneka makanan ringan dan minuman. Dengan pelayanan yang ramah dan harga yang kompetitif, toko ini menjadi pilihan utama bagi warga sekitar untuk berbelanja kebutuhan sehari-hari.",
-  description:
-    "Toko bahan makanan lengkap di Kudus yang menawarkan sembako, bumbu dapur, dan berbagai kebutuhan pokok dengan harga terjangkau dan pelayanan cepat.",
+    heroSubtitle:
+      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, mulai dari sembako, bumbu dapur, hingga makanan ringan dengan harga terjangkau dan kualitas terjamin.",
+    about:
+      "<strong>Toko Teguh Sudarsono</strong> merupakan toko bahan makanan yang telah lama melayani masyarakat Kudus dengan menyediakan berbagai kebutuhan dapur dan rumah tangga. Di sini tersedia beragam produk seperti beras, minyak goreng, gula, tepung, bumbu masak, mie instan, serta aneka makanan ringan dan minuman. Dengan pelayanan yang ramah dan harga yang kompetitif, toko ini menjadi pilihan utama bagi warga sekitar untuk berbelanja kebutuhan sehari-hari.",
+    description:
+      "Toko bahan makanan lengkap di Kudus yang menawarkan sembako, bumbu dapur, dan berbagai kebutuhan pokok dengan harga terjangkau dan pelayanan cepat.",
     rating: "4.8 / 5",
     location: {
       address: "Sendang, Klontong, Kedungsari, Gebog, Kudus",
@@ -1737,11 +1737,11 @@ description:
     },
     menus: [
       {
-         name: "Kebutuhan Dapur Lengkap",
-    description:
-      "Menyediakan berbagai kebutuhan dapur seperti minyak goreng, tepung, garam, kecap, dan saus. Semua tersedia dalam berbagai ukuran kemasan untuk keperluan rumah tangga maupun usaha kecil.",
-    price: "Mulai dari Rp 3.000",
-    image: "/images/tokoteguh_menu1.webp",
+        name: "Kebutuhan Dapur Lengkap",
+        description:
+          "Menyediakan berbagai kebutuhan dapur seperti minyak goreng, tepung, garam, kecap, dan saus. Semua tersedia dalam berbagai ukuran kemasan untuk keperluan rumah tangga maupun usaha kecil.",
+        price: "Mulai dari Rp 3.000",
+        image: "/images/tokoteguh_menu1.webp",
       },
     ],
     galleryImages: [
@@ -1764,11 +1764,11 @@ description:
     heroImage: "/images/nilnadioncollection_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Nilna Dion Collection"',
     heroSubtitle:
-  "Butik pakaian muslim wanita di Kudus yang menyediakan berbagai busana syar’i, gamis, hijab, dan outfit elegan dengan model kekinian serta harga terjangkau.",
-about:
-  "<strong>Nilna Dion Collection</strong> adalah butik fashion muslim wanita di Kudus yang menghadirkan koleksi busana syar’i, gamis modern, tunik, dan hijab dengan desain yang anggun dan nyaman dikenakan. Mengutamakan kualitas bahan dan keanggunan gaya, butik ini menjadi pilihan bagi para wanita muslimah yang ingin tampil modis namun tetap sopan. Pelayanan ramah dan koleksi yang selalu up-to-date membuat Nilna Dion Collection semakin digemari pelanggan.",
-description:
-  "Butik pakaian muslim wanita di Kudus yang menawarkan berbagai pilihan gamis, hijab, dan busana syar’i bergaya modern dengan kualitas unggul dan harga bersahabat.",
+      "Butik pakaian muslim wanita di Kudus yang menyediakan berbagai busana syar’i, gamis, hijab, dan outfit elegan dengan model kekinian serta harga terjangkau.",
+    about:
+      "<strong>Nilna Dion Collection</strong> adalah butik fashion muslim wanita di Kudus yang menghadirkan koleksi busana syar’i, gamis modern, tunik, dan hijab dengan desain yang anggun dan nyaman dikenakan. Mengutamakan kualitas bahan dan keanggunan gaya, butik ini menjadi pilihan bagi para wanita muslimah yang ingin tampil modis namun tetap sopan. Pelayanan ramah dan koleksi yang selalu up-to-date membuat Nilna Dion Collection semakin digemari pelanggan.",
+    description:
+      "Butik pakaian muslim wanita di Kudus yang menawarkan berbagai pilihan gamis, hijab, dan busana syar’i bergaya modern dengan kualitas unggul dan harga bersahabat.",
     rating: "4.3 / 5",
     location: {
       address: "Bonalas, Besito, Kudus",
@@ -1785,11 +1785,11 @@ description:
     },
     menus: [
       {
-         name: "Busana Muslim & Fashion Wanita",
-    description:
-      "Menawarkan berbagai koleksi busana muslim modern seperti gamis, tunik, hijab, dress, dan atasan wanita dengan desain elegan dan bahan berkualitas. Cocok untuk kegiatan sehari-hari maupun acara spesial.",
-    price: "Mulai dari Rp 75.000",
-    image: "/images/nilnadion_menu1.webp",
+        name: "Busana Muslim & Fashion Wanita",
+        description:
+          "Menawarkan berbagai koleksi busana muslim modern seperti gamis, tunik, hijab, dress, dan atasan wanita dengan desain elegan dan bahan berkualitas. Cocok untuk kegiatan sehari-hari maupun acara spesial.",
+        price: "Mulai dari Rp 75.000",
+        image: "/images/nilnadion_menu1.webp",
       },
     ],
     galleryImages: [
@@ -1813,11 +1813,11 @@ description:
     heroImage: "/images/tokokastimah_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Kastimah"',
     heroSubtitle:
-  "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan pokok, mulai dari beras, minyak, gula, hingga bumbu dapur dengan harga terjangkau dan kualitas terjamin.",
-about:
-  "<strong>Toko Kastimah</strong> merupakan toko bahan makanan yang melayani masyarakat Kudus dengan menyediakan berbagai kebutuhan dapur sehari-hari. Di sini tersedia beragam produk seperti beras, tepung, minyak goreng, mie instan, gula, kopi, teh, hingga makanan ringan. Dengan pelayanan ramah dan harga bersahabat, Toko Kastimah menjadi tempat belanja favorit warga sekitar untuk memenuhi kebutuhan rumah tangga.",
-description:
-  "Toko bahan makanan lengkap di Kudus yang menyediakan sembako, bumbu dapur, dan berbagai kebutuhan rumah tangga dengan harga terjangkau dan pelayanan cepat.",
+      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan pokok, mulai dari beras, minyak, gula, hingga bumbu dapur dengan harga terjangkau dan kualitas terjamin.",
+    about:
+      "<strong>Toko Kastimah</strong> merupakan toko bahan makanan yang melayani masyarakat Kudus dengan menyediakan berbagai kebutuhan dapur sehari-hari. Di sini tersedia beragam produk seperti beras, tepung, minyak goreng, mie instan, gula, kopi, teh, hingga makanan ringan. Dengan pelayanan ramah dan harga bersahabat, Toko Kastimah menjadi tempat belanja favorit warga sekitar untuk memenuhi kebutuhan rumah tangga.",
+    description:
+      "Toko bahan makanan lengkap di Kudus yang menyediakan sembako, bumbu dapur, dan berbagai kebutuhan rumah tangga dengan harga terjangkau dan pelayanan cepat.",
     rating: "4.3 / 5",
     location: {
       address: " Menawan, Besito, Kudus",
@@ -1834,11 +1834,11 @@ description:
     },
     menus: [
       {
-         name: "Sembako & Bumbu Dapur",
-    description:
-      "Toko Kastimah menyediakan berbagai bahan pokok seperti beras, gula pasir, minyak goreng, tepung, garam, serta aneka bumbu dapur seperti bawang merah, bawang putih, cabai, dan ketumbar. Cocok untuk kebutuhan rumah tangga maupun warung makan.",
-    price: "Mulai dari Rp 2.000",
-    image: "/images/tokokastimah_menu1.webp",
+        name: "Sembako & Bumbu Dapur",
+        description:
+          "Toko Kastimah menyediakan berbagai bahan pokok seperti beras, gula pasir, minyak goreng, tepung, garam, serta aneka bumbu dapur seperti bawang merah, bawang putih, cabai, dan ketumbar. Cocok untuk kebutuhan rumah tangga maupun warung makan.",
+        price: "Mulai dari Rp 2.000",
+        image: "/images/tokokastimah_menu1.webp",
       },
     ],
     galleryImages: [
@@ -2233,13 +2233,13 @@ description:
     name: "Gravitasi Teras Muria",
     slug: "gravitasi-teras-muria",
     heroImage: "/images/gravitasiterasmuria_hero.webp",
-     heroTitle: 'Informasi Lengkap tentang UMKM "Gravitasi Teras Muria"',
+    heroTitle: 'Informasi Lengkap tentang UMKM "Gravitasi Teras Muria"',
     heroSubtitle:
-  "Tempat makan nyaman di Kudus yang menyajikan beragam menu khas nusantara dengan cita rasa rumahan dan suasana santai di bawah rindangnya Teras Muria.",
-about:
-  "<strong>Gravitasi Teras Muria</strong> adalah restoran keluarga yang menghadirkan suasana hangat dan alami khas pegunungan Muria. Menyajikan berbagai hidangan tradisional seperti ayam bakar, nasi goreng, sop iga, dan menu minuman segar, restoran ini menjadi tempat favorit untuk bersantai dan menikmati kelezatan kuliner lokal. Dengan pelayanan ramah dan pemandangan yang asri, setiap kunjungan ke Gravitasi Teras Muria selalu meninggalkan kesan hangat.",
-description:
-  "Restoran keluarga di Kudus dengan konsep alam terbuka, menyuguhkan makanan khas nusantara dan minuman segar dalam suasana nyaman dan tenang. Cocok untuk makan bersama keluarga, teman, atau acara kecil di akhir pekan.",
+      "Tempat makan nyaman di Kudus yang menyajikan beragam menu khas nusantara dengan cita rasa rumahan dan suasana santai di bawah rindangnya Teras Muria.",
+    about:
+      "<strong>Gravitasi Teras Muria</strong> adalah restoran keluarga yang menghadirkan suasana hangat dan alami khas pegunungan Muria. Menyajikan berbagai hidangan tradisional seperti ayam bakar, nasi goreng, sop iga, dan menu minuman segar, restoran ini menjadi tempat favorit untuk bersantai dan menikmati kelezatan kuliner lokal. Dengan pelayanan ramah dan pemandangan yang asri, setiap kunjungan ke Gravitasi Teras Muria selalu meninggalkan kesan hangat.",
+    description:
+      "Restoran keluarga di Kudus dengan konsep alam terbuka, menyuguhkan makanan khas nusantara dan minuman segar dalam suasana nyaman dan tenang. Cocok untuk makan bersama keluarga, teman, atau acara kecil di akhir pekan.",
     rating: "4.5 / 5",
     location: {
       address: "Pasuruhan Lor, Kudus",
@@ -2256,26 +2256,26 @@ description:
     },
     menus: [
       {
-    name: "Nasi Goreng Gravitasi",
-    description:
-      "Nasi goreng spesial dengan bumbu rempah pilihan, potongan ayam, telur, dan sayuran segar. Disajikan dengan kerupuk dan acar khas Gravitasi yang menggugah selera.",
-    price: "Rp 22.000",
-    image: "/images/gravitasi_menu1.webp",
-  },
-  {
-    name: "Mie Atjeh",
-    description:
-      "Mie khas Aceh dengan cita rasa pedas gurih yang menggoda, disajikan dengan potongan daging sapi empuk dan taburan bawang goreng yang renyah.",
-    price: "Rp 25.000",
-    image: "/images/gravitasi_menu2.webp",
-  },
-  {
-    name: "Chicken Katsu",
-    description:
-      "Daging ayam fillet dibalut tepung roti renyah dan digoreng hingga keemasan, disajikan dengan nasi hangat, saus katsu, dan salad segar.",
-    price: "Rp 25.000",
-    image: "/images/gravitasi_menu3.webp",
-  },
+        name: "Nasi Goreng Gravitasi",
+        description:
+          "Nasi goreng spesial dengan bumbu rempah pilihan, potongan ayam, telur, dan sayuran segar. Disajikan dengan kerupuk dan acar khas Gravitasi yang menggugah selera.",
+        price: "Rp 22.000",
+        image: "/images/gravitasi_menu1.webp",
+      },
+      {
+        name: "Mie Atjeh",
+        description:
+          "Mie khas Aceh dengan cita rasa pedas gurih yang menggoda, disajikan dengan potongan daging sapi empuk dan taburan bawang goreng yang renyah.",
+        price: "Rp 25.000",
+        image: "/images/gravitasi_menu2.webp",
+      },
+      {
+        name: "Chicken Katsu",
+        description:
+          "Daging ayam fillet dibalut tepung roti renyah dan digoreng hingga keemasan, disajikan dengan nasi hangat, saus katsu, dan salad segar.",
+        price: "Rp 25.000",
+        image: "/images/gravitasi_menu3.webp",
+      },
     ],
     galleryImages: [
       "/images/gravitasi_galerifoto1.webp",
@@ -2294,18 +2294,18 @@ description:
       { day: "Minggu", hours: "10.00 - 22.00", isOpen: true },
     ],
   },
-   {
+  {
     id: 38,
     name: "Toko Kliwon",
     slug: "toko-kliwon",
     heroImage: "/images/tokokliwon_hero.webp",
-     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Kliwon"',
-   heroSubtitle:
-  "Toko perlengkapan rumah tangga di Kudus yang menyediakan berbagai kebutuhan sehari-hari seperti peralatan dapur, kebersihan, hingga perlengkapan rumah dengan harga terjangkau.",
-about:
-  "<strong>Toko Kliwon</strong> merupakan toko perlengkapan rumah tangga yang sudah dikenal masyarakat Kudus karena menyediakan berbagai kebutuhan rumah tangga lengkap di satu tempat. Di sini tersedia berbagai produk seperti ember, sapu, alat masak, piring, gelas, rak plastik, hingga perlengkapan kebersihan rumah. Dengan kualitas produk yang baik dan harga yang ramah di kantong, Toko Kliwon menjadi solusi praktis untuk melengkapi kebutuhan rumah Anda.",
-description:
-  "Toko perlengkapan rumah tangga di Kudus yang menawarkan berbagai produk seperti alat dapur, peralatan kebersihan, dan kebutuhan rumah tangga lainnya dengan harga terjangkau dan pelayanan ramah.",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Toko Kliwon"',
+    heroSubtitle:
+      "Toko perlengkapan rumah tangga di Kudus yang menyediakan berbagai kebutuhan sehari-hari seperti peralatan dapur, kebersihan, hingga perlengkapan rumah dengan harga terjangkau.",
+    about:
+      "<strong>Toko Kliwon</strong> merupakan toko perlengkapan rumah tangga yang sudah dikenal masyarakat Kudus karena menyediakan berbagai kebutuhan rumah tangga lengkap di satu tempat. Di sini tersedia berbagai produk seperti ember, sapu, alat masak, piring, gelas, rak plastik, hingga perlengkapan kebersihan rumah. Dengan kualitas produk yang baik dan harga yang ramah di kantong, Toko Kliwon menjadi solusi praktis untuk melengkapi kebutuhan rumah Anda.",
+    description:
+      "Toko perlengkapan rumah tangga di Kudus yang menawarkan berbagai produk seperti alat dapur, peralatan kebersihan, dan kebutuhan rumah tangga lainnya dengan harga terjangkau dan pelayanan ramah.",
     rating: "4.6 / 5",
     location: {
       address: "Pasuruhan Lor, Kudus",
@@ -2322,26 +2322,26 @@ description:
     },
     menus: [
       {
-    name: "Peralatan Dapur",
-    description:
-      "Beragam peralatan dapur seperti wajan, panci, spatula, pisau, dan perlengkapan masak lainnya dengan kualitas awet dan harga terjangkau.",
-    price: "Mulai dari Rp 15.000",
-    image: "/images/tokokliwon_menu1.webp",
-  },
-  {
-    name: "Peralatan Kebersihan",
-    description:
-      "Menyediakan sapu, pel, ember, kain pel, dan perlengkapan kebersihan lainnya untuk menjaga rumah tetap bersih dan nyaman.",
-    price: "Mulai dari Rp 10.000",
-    image: "/images/tokokliwon_menu2.webp",
-  },
-  {
-    name: "Perlengkapan Rumah Tangga",
-    description:
-      "Lengkap dengan berbagai kebutuhan rumah seperti rak, gantungan, tempat sampah, hingga perlengkapan kamar mandi.",
-    price: "Mulai dari Rp 12.000",
-    image: "/images/tokokliwon_menu3.webp",
-  },
+        name: "Peralatan Dapur",
+        description:
+          "Beragam peralatan dapur seperti wajan, panci, spatula, pisau, dan perlengkapan masak lainnya dengan kualitas awet dan harga terjangkau.",
+        price: "Mulai dari Rp 15.000",
+        image: "/images/tokokliwon_menu1.webp",
+      },
+      {
+        name: "Peralatan Kebersihan",
+        description:
+          "Menyediakan sapu, pel, ember, kain pel, dan perlengkapan kebersihan lainnya untuk menjaga rumah tetap bersih dan nyaman.",
+        price: "Mulai dari Rp 10.000",
+        image: "/images/tokokliwon_menu2.webp",
+      },
+      {
+        name: "Perlengkapan Rumah Tangga",
+        description:
+          "Lengkap dengan berbagai kebutuhan rumah seperti rak, gantungan, tempat sampah, hingga perlengkapan kamar mandi.",
+        price: "Mulai dari Rp 12.000",
+        image: "/images/tokokliwon_menu3.webp",
+      },
     ],
     galleryImages: [
       "/images/tokokliwon_galerifoto1.webp",
@@ -2362,13 +2362,13 @@ description:
     name: "Toko Happy Kids",
     slug: "toko-happy-kids",
     heroImage: "/images/tokohappykids_hero.webp",
-     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Happy Kids"',
-   heroSubtitle:
-  "Toko pakaian anak di Kudus yang menyediakan berbagai busana lucu, nyaman, dan berkualitas untuk anak laki-laki maupun perempuan.",
-about:
-  "<strong>Toko Happy Kids</strong> merupakan toko pakaian anak yang berlokasi di Kudus. Menawarkan berbagai pilihan busana anak mulai dari pakaian harian, baju pesta, hingga perlengkapan bayi dengan desain menarik dan bahan yang lembut di kulit. Dengan koleksi terbaru dan harga bersahabat, Toko Happy Kids menjadi pilihan tepat bagi orang tua yang ingin anaknya tampil modis dan nyaman.",
-description:
-  "Toko Happy Kids menyediakan pakaian anak dengan beragam model dan ukuran, cocok untuk kebutuhan sekolah, bermain, atau acara spesial. Mengutamakan kenyamanan, kualitas bahan, dan desain yang ceria.",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Toko Happy Kids"',
+    heroSubtitle:
+      "Toko pakaian anak di Kudus yang menyediakan berbagai busana lucu, nyaman, dan berkualitas untuk anak laki-laki maupun perempuan.",
+    about:
+      "<strong>Toko Happy Kids</strong> merupakan toko pakaian anak yang berlokasi di Kudus. Menawarkan berbagai pilihan busana anak mulai dari pakaian harian, baju pesta, hingga perlengkapan bayi dengan desain menarik dan bahan yang lembut di kulit. Dengan koleksi terbaru dan harga bersahabat, Toko Happy Kids menjadi pilihan tepat bagi orang tua yang ingin anaknya tampil modis dan nyaman.",
+    description:
+      "Toko Happy Kids menyediakan pakaian anak dengan beragam model dan ukuran, cocok untuk kebutuhan sekolah, bermain, atau acara spesial. Mengutamakan kenyamanan, kualitas bahan, dan desain yang ceria.",
     rating: "4.5 / 5",
     location: {
       address: "Plosokrajan, Ploso, Kudus",
@@ -2384,20 +2384,20 @@ description:
       instagram: "-",
     },
     menus: [
-     {
-    name: "Pakaian Anak Laki-Laki",
-    description:
-      "Beragam pilihan baju anak laki-laki mulai dari kaos, kemeja, hingga celana jeans dengan desain lucu dan nyaman dipakai.",
-    price: "Mulai dari Rp 30.000",
-    image: "/images/tokohappy_menu1.webp",
-  },
-  {
-    name: "Pakaian Anak Perempuan",
-    description:
-      "Koleksi dress, rok, dan blus cantik dengan motif menarik dan bahan lembut yang nyaman untuk anak-anak.",
-    price: "Mulai dari Rp 35.000",
-    image: "/images/tokohappy_menu2.webp",
-  },
+      {
+        name: "Pakaian Anak Laki-Laki",
+        description:
+          "Beragam pilihan baju anak laki-laki mulai dari kaos, kemeja, hingga celana jeans dengan desain lucu dan nyaman dipakai.",
+        price: "Mulai dari Rp 30.000",
+        image: "/images/tokohappy_menu1.webp",
+      },
+      {
+        name: "Pakaian Anak Perempuan",
+        description:
+          "Koleksi dress, rok, dan blus cantik dengan motif menarik dan bahan lembut yang nyaman untuk anak-anak.",
+        price: "Mulai dari Rp 35.000",
+        image: "/images/tokohappy_menu2.webp",
+      },
     ],
     galleryImages: [
       "/images/tokohappy_galerifoto1.webp",
@@ -2413,18 +2413,18 @@ description:
       { day: "Minggu", hours: "09.00 - 14.00", isOpen: true },
     ],
   },
-   {
+  {
     id: 40,
     name: "Nobby Kudus Extension Mall",
     slug: "nobby-kudus-extension",
     heroImage: "/images/nobbykudusextension_hero.webp",
-     heroTitle: 'Informasi Lengkap tentang UMKM "Nobby Kudus Extension Mall"',
-   heroSubtitle:
-  "Butik busana muslim wanita modern yang menyediakan berbagai koleksi hijab, gamis, dan pakaian modest fashion berkualitas di Kudus.",
-about:
-  "<strong>Nobby Kudus Extension Mall</strong> merupakan butik busana muslim wanita yang berlokasi di Kudus. Menawarkan berbagai koleksi pakaian seperti gamis, tunik, hijab, dan dress modern dengan desain elegan dan bahan nyaman. Toko ini menjadi destinasi belanja favorit bagi wanita yang ingin tampil anggun dan modis sesuai syariat.",
-description:
-  "Nobby Kudus Extension Mall menghadirkan busana muslim wanita dengan berbagai pilihan gaya — mulai dari kasual hingga formal — yang memadukan desain modern dengan sentuhan syar’i, cocok untuk berbagai aktivitas dan acara spesial.",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Nobby Kudus Extension Mall"',
+    heroSubtitle:
+      "Butik busana muslim wanita modern yang menyediakan berbagai koleksi hijab, gamis, dan pakaian modest fashion berkualitas di Kudus.",
+    about:
+      "<strong>Nobby Kudus Extension Mall</strong> merupakan butik busana muslim wanita yang berlokasi di Kudus. Menawarkan berbagai koleksi pakaian seperti gamis, tunik, hijab, dan dress modern dengan desain elegan dan bahan nyaman. Toko ini menjadi destinasi belanja favorit bagi wanita yang ingin tampil anggun dan modis sesuai syariat.",
+    description:
+      "Nobby Kudus Extension Mall menghadirkan busana muslim wanita dengan berbagai pilihan gaya — mulai dari kasual hingga formal — yang memadukan desain modern dengan sentuhan syar’i, cocok untuk berbagai aktivitas dan acara spesial.",
     rating: "5 / 5",
     location: {
       address: "Getas, Getas Pejaten, Kudus",
@@ -2441,23 +2441,23 @@ description:
     },
     menus: [
       {
-    name: "Gamis & Dress",
-    description: "Pilihan gamis dan dress muslimah yang anggun dan nyaman untuk berbagai kesempatan.",
-    price: "Mulai dari Rp 150.000",
-    image: "/images/nobby_menu1.webp",
-  },
-  {
-    name: "Hijab & Pashmina",
-    description: "Beragam hijab dan pashmina dari bahan lembut dengan warna serta motif terbaru.",
-    price: "Mulai dari Rp 45.000",
-    image: "/images/nobby_menu2.webp",
-  },
-  {
-    name: "Tunik & Atasan",
-    description: "Tunik dan atasan muslim modern yang tetap syar’i dan stylish.",
-    price: "Mulai dari Rp 90.000",
-    image: "/images/nobby_menu3.webp",
-  },
+        name: "Gamis & Dress",
+        description: "Pilihan gamis dan dress muslimah yang anggun dan nyaman untuk berbagai kesempatan.",
+        price: "Mulai dari Rp 150.000",
+        image: "/images/nobby_menu1.webp",
+      },
+      {
+        name: "Hijab & Pashmina",
+        description: "Beragam hijab dan pashmina dari bahan lembut dengan warna serta motif terbaru.",
+        price: "Mulai dari Rp 45.000",
+        image: "/images/nobby_menu2.webp",
+      },
+      {
+        name: "Tunik & Atasan",
+        description: "Tunik dan atasan muslim modern yang tetap syar’i dan stylish.",
+        price: "Mulai dari Rp 90.000",
+        image: "/images/nobby_menu3.webp",
+      },
     ],
     galleryImages: [
       "/images/nobby_galerifoto1.webp",
@@ -2748,11 +2748,11 @@ description:
     heroImage: "/images/warungmiedadat_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Warung Mie Dadat Pak Karnan"',
     heroSubtitle:
-  "Warung mie populer di Kudus yang menyajikan berbagai olahan mie lezat dengan cita rasa khas dan harga bersahabat.",
-about:
-  "<strong>Warung Mie Dadat Pak Karnan</strong> merupakan tempat makan yang terkenal di Kudus karena menyajikan aneka mie dengan rasa gurih dan bumbu khas rumahan. Warung ini menjadi favorit banyak pelanggan karena porsinya pas, rasanya konsisten, dan suasananya nyaman untuk makan santai bersama keluarga maupun teman.",
-description:
-  "Warung ini menawarkan beragam menu mie, mulai dari mie goreng, mie rebus, hingga mie pedas spesial. Semua dibuat dari bahan segar dan racikan bumbu pilihan yang menggugah selera. Dengan harga terjangkau, Warung Mie Dadat Pak Karnan menjadi destinasi kuliner yang wajib dicoba di Kudus.",
+      "Warung mie populer di Kudus yang menyajikan berbagai olahan mie lezat dengan cita rasa khas dan harga bersahabat.",
+    about:
+      "<strong>Warung Mie Dadat Pak Karnan</strong> merupakan tempat makan yang terkenal di Kudus karena menyajikan aneka mie dengan rasa gurih dan bumbu khas rumahan. Warung ini menjadi favorit banyak pelanggan karena porsinya pas, rasanya konsisten, dan suasananya nyaman untuk makan santai bersama keluarga maupun teman.",
+    description:
+      "Warung ini menawarkan beragam menu mie, mulai dari mie goreng, mie rebus, hingga mie pedas spesial. Semua dibuat dari bahan segar dan racikan bumbu pilihan yang menggugah selera. Dengan harga terjangkau, Warung Mie Dadat Pak Karnan menjadi destinasi kuliner yang wajib dicoba di Kudus.",
     rating: "4.7 / 5",
     location: {
       address: "Tambak, Jekulo,, Kudus",
@@ -2768,20 +2768,20 @@ description:
       instagram: "-",
     },
     menus: [
-       {
-    name: "Mie Dadat",
-    description:
-      "Mie gurih khas Warung Mie Dadat tanpa tambahan saus dan sambal, cocok untuk yang suka rasa original dan tidak terlalu pedas.",
-    price: "Rp 15.000",
-    image: "/images/miedadat_menu1.webp",
-  },
-  {
-    name: "Mie Dadatan",
-    description:
-      "Mie khas Warung Mie Dadat dengan tambahan saus dan sambal pedas yang menggugah selera. Favorit bagi pecinta rasa pedas.",
-    price: "Rp 17.000",
-    image: "/images/miedadat_menu2.webp",
-  },
+      {
+        name: "Mie Dadat",
+        description:
+          "Mie gurih khas Warung Mie Dadat tanpa tambahan saus dan sambal, cocok untuk yang suka rasa original dan tidak terlalu pedas.",
+        price: "Rp 15.000",
+        image: "/images/miedadat_menu1.webp",
+      },
+      {
+        name: "Mie Dadatan",
+        description:
+          "Mie khas Warung Mie Dadat dengan tambahan saus dan sambal pedas yang menggugah selera. Favorit bagi pecinta rasa pedas.",
+        price: "Rp 17.000",
+        image: "/images/miedadat_menu2.webp",
+      },
     ],
     galleryImages: [
       "/images/miedadat_galerifoto1.webp",
@@ -2804,11 +2804,11 @@ description:
     heroImage: "/images/tokorisfan_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Risfan Snack"',
     heroSubtitle:
-  "Toko bahan makanan dan camilan di Kudus yang menyediakan berbagai kebutuhan dapur, jajanan, serta bahan kue dengan harga terjangkau.",
-about:
-  "<strong>Toko Risfan Snack</strong> merupakan toko bahan makanan yang berlokasi di Kudus. Menyediakan berbagai bahan pokok, bumbu dapur, bahan kue, hingga aneka snack kemasan. Toko ini dikenal dengan produknya yang lengkap, berkualitas, dan harga yang bersahabat, cocok untuk kebutuhan rumah tangga maupun usaha kecil.",
-description:
-  "Toko Risfan Snack menjadi pilihan praktis bagi masyarakat Kudus yang ingin belanja bahan makanan, bumbu dapur, dan camilan dalam satu tempat. Pelayanan ramah dan stok barang yang selalu tersedia menjadikan toko ini salah satu destinasi belanja favorit di daerahnya.",
+      "Toko bahan makanan dan camilan di Kudus yang menyediakan berbagai kebutuhan dapur, jajanan, serta bahan kue dengan harga terjangkau.",
+    about:
+      "<strong>Toko Risfan Snack</strong> merupakan toko bahan makanan yang berlokasi di Kudus. Menyediakan berbagai bahan pokok, bumbu dapur, bahan kue, hingga aneka snack kemasan. Toko ini dikenal dengan produknya yang lengkap, berkualitas, dan harga yang bersahabat, cocok untuk kebutuhan rumah tangga maupun usaha kecil.",
+    description:
+      "Toko Risfan Snack menjadi pilihan praktis bagi masyarakat Kudus yang ingin belanja bahan makanan, bumbu dapur, dan camilan dalam satu tempat. Pelayanan ramah dan stok barang yang selalu tersedia menjadikan toko ini salah satu destinasi belanja favorit di daerahnya.",
     rating: "4.3 / 5",
     location: {
       address: "Jekulo, Klaling,, Kudus",
@@ -2824,13 +2824,13 @@ description:
       instagram: "-",
     },
     menus: [
-       {
-    name: "Aneka Snack dan Camilan",
-    description:
-      "Menjual berbagai macam makanan ringan seperti keripik, kue kering, wafer, biskuit, permen, dan minuman kemasan. Cocok untuk kebutuhan pribadi, acara, maupun grosir.",
-    price: "Mulai dari Rp 30.000",
-    image: "/images/tokorisfan_menu1.webp",
-  },
+      {
+        name: "Aneka Snack dan Camilan",
+        description:
+          "Menjual berbagai macam makanan ringan seperti keripik, kue kering, wafer, biskuit, permen, dan minuman kemasan. Cocok untuk kebutuhan pribadi, acara, maupun grosir.",
+        price: "Mulai dari Rp 30.000",
+        image: "/images/tokorisfan_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/tokorisfan_galerifoto1.webp",
@@ -2853,11 +2853,11 @@ description:
     heroImage: "/images/jsmuslim_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Js Muslim Collection Kudus"',
     heroSubtitle:
-  "Toko busana muslim di Kudus yang menyediakan berbagai pilihan pakaian syar’i, gamis, hijab, dan aksesori muslimah dengan desain modern dan harga terjangkau.",
-about:
-  "<strong>JS Muslim Collection Kudus</strong> merupakan toko pakaian muslim yang berlokasi di Kudus. Menyediakan berbagai koleksi busana muslim seperti gamis, tunik, hijab, dan koko dengan bahan nyaman serta model kekinian. Cocok untuk kebutuhan harian maupun acara spesial.",
-description:
-  "JS Muslim Collection Kudus menghadirkan busana muslim berkualitas dengan harga bersahabat, menjadikannya destinasi belanja favorit bagi masyarakat yang ingin tampil modis dan tetap syar’i.",
+      "Toko busana muslim di Kudus yang menyediakan berbagai pilihan pakaian syar’i, gamis, hijab, dan aksesori muslimah dengan desain modern dan harga terjangkau.",
+    about:
+      "<strong>JS Muslim Collection Kudus</strong> merupakan toko pakaian muslim yang berlokasi di Kudus. Menyediakan berbagai koleksi busana muslim seperti gamis, tunik, hijab, dan koko dengan bahan nyaman serta model kekinian. Cocok untuk kebutuhan harian maupun acara spesial.",
+    description:
+      "JS Muslim Collection Kudus menghadirkan busana muslim berkualitas dengan harga bersahabat, menjadikannya destinasi belanja favorit bagi masyarakat yang ingin tampil modis dan tetap syar’i.",
     rating: "4.9 / 5",
     location: {
       address: "Pulutan, Jekulo, Kudus",
@@ -2874,19 +2874,19 @@ description:
     },
     menus: [
       {
-    name: "Gamis Wanita",
-    description:
-      "Koleksi gamis wanita dengan desain elegan dan bahan nyaman, cocok untuk acara formal maupun santai.",
-    price: "Mulai dari Rp 120.000",
-    image: "/images/jsmuslim_menu1.webp",
-  },
-  {
-    name: "Hijab & Aksesori",
-    description:
-      "Beragam model hijab dan aksesori pelengkap seperti ciput, bros, dan pin hijab dengan bahan berkualitas.",
-    price: "Mulai dari Rp 25.000",
-    image: "/images/jsmuslim_menu1.webp",
-  },
+        name: "Gamis Wanita",
+        description:
+          "Koleksi gamis wanita dengan desain elegan dan bahan nyaman, cocok untuk acara formal maupun santai.",
+        price: "Mulai dari Rp 120.000",
+        image: "/images/jsmuslim_menu1.webp",
+      },
+      {
+        name: "Hijab & Aksesori",
+        description:
+          "Beragam model hijab dan aksesori pelengkap seperti ciput, bros, dan pin hijab dengan bahan berkualitas.",
+        price: "Mulai dari Rp 25.000",
+        image: "/images/jsmuslim_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/jsmuslim_galerifoto1.webp",
@@ -2910,11 +2910,11 @@ description:
     heroImage: "/images/kioshjh_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Kios Hjh Zaroah"',
     heroSubtitle:
-  "Toko busana muslim di Kudus yang menyediakan berbagai pilihan pakaian syar’i, gamis, hijab, dan aksesori muslimah dengan desain modern dan harga terjangkau.",
-about:
-  "<strong>Kios Hjh Zaroah</strong> merupakan toko pakaian muslim yang berlokasi di Kudus. Menawarkan beragam koleksi busana muslim seperti gamis, tunik, hijab, dan koko dengan bahan nyaman serta model yang mengikuti tren. Tempat ini menjadi pilihan tepat bagi keluarga yang ingin tampil sopan namun tetap stylish.",
-description:
-  "Kios Hjh Zaroah menghadirkan busana muslim berkualitas dengan harga bersahabat, cocok untuk kegiatan sehari-hari, ibadah, maupun acara spesial.",
+      "Toko busana muslim di Kudus yang menyediakan berbagai pilihan pakaian syar’i, gamis, hijab, dan aksesori muslimah dengan desain modern dan harga terjangkau.",
+    about:
+      "<strong>Kios Hjh Zaroah</strong> merupakan toko pakaian muslim yang berlokasi di Kudus. Menawarkan beragam koleksi busana muslim seperti gamis, tunik, hijab, dan koko dengan bahan nyaman serta model yang mengikuti tren. Tempat ini menjadi pilihan tepat bagi keluarga yang ingin tampil sopan namun tetap stylish.",
+    description:
+      "Kios Hjh Zaroah menghadirkan busana muslim berkualitas dengan harga bersahabat, cocok untuk kegiatan sehari-hari, ibadah, maupun acara spesial.",
     rating: "4.2 / 5",
     location: {
       address: "Karang, Jekulo, Kudus",
@@ -2931,12 +2931,12 @@ description:
     },
     menus: [
       {
-    name: "Gamis dan Hijab Syar’i",
-    description:
-      "Koleksi busana muslim berkualitas seperti gamis dan hijab syar’i dengan desain modern, bahan nyaman, serta harga terjangkau.",
-    price: "Mulai dari Rp 85.000",
-    image: "/images/kioshjh_menu1.webp",
-  },
+        name: "Gamis dan Hijab Syar’i",
+        description:
+          "Koleksi busana muslim berkualitas seperti gamis dan hijab syar’i dengan desain modern, bahan nyaman, serta harga terjangkau.",
+        price: "Mulai dari Rp 85.000",
+        image: "/images/kioshjh_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/kioshjh_galerifoto1.webp",
@@ -2952,7 +2952,7 @@ description:
       { day: "Minggu", hours: "07.00 - 13.00", isOpen: true },
     ],
   },
-  
+
   // KALIWUNGU
   {
     id: 50,
@@ -3272,11 +3272,11 @@ description:
     heroImage: "/images/segosambel_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Sego Sambel Lek Kas 2"',
     heroSubtitle:
-  "Rumah makan khas Nusantara yang menyajikan hidangan sambel pedas dan lauk goreng favorit dengan cita rasa autentik.",
-about:
-  "<strong>Sego Sambel Lek Kas 2</strong> menghadirkan masakan rumahan dengan rasa pedas khas sambel tradisional. Tersedia beragam paket lauk goreng seperti entok, bebek, dan lele, cocok untuk makan siang maupun malam.",
-description:
-  "Nikmati sensasi pedas gurih dari sambel racikan khas kami, dipadukan dengan lauk goreng pilihan dan nasi hangat. Semua menu disajikan dengan bumbu rempah asli Indonesia, halal, dan selalu segar.",
+      "Rumah makan khas Nusantara yang menyajikan hidangan sambel pedas dan lauk goreng favorit dengan cita rasa autentik.",
+    about:
+      "<strong>Sego Sambel Lek Kas 2</strong> menghadirkan masakan rumahan dengan rasa pedas khas sambel tradisional. Tersedia beragam paket lauk goreng seperti entok, bebek, dan lele, cocok untuk makan siang maupun malam.",
+    description:
+      "Nikmati sensasi pedas gurih dari sambel racikan khas kami, dipadukan dengan lauk goreng pilihan dan nasi hangat. Semua menu disajikan dengan bumbu rempah asli Indonesia, halal, dan selalu segar.",
     rating: "4.4 / 5",
     location: {
       address: "Kedungdowo, Kudus",
@@ -3292,27 +3292,27 @@ description:
       instagram: "-",
     },
     menus: [
-     {
-    name: "Paket Entok Goreng",
-    description:
-      "Entok goreng gurih disajikan dengan sambel pedas khas rumah makan dan nasi hangat.",
-    price: "Rp 25.000",
-    image: "/images/segosambael_menu1.webp",
-  },
-  {
-    name: "Paket Bebek Goreng",
-    description:
-      "Bebek goreng renyah dengan sambel bawang pedas dan lalapan segar.",
-    price: "Rp 27.000",
-    image: "/images/segosambael_menu2.webp",
-  },
-  {
-    name: "Paket Lele Goreng",
-    description:
-      "Lele goreng krispi berpadu dengan sambel tomat pedas dan nasi putih hangat.",
-    price: "Rp 20.000",
-    image: "/images/segosambael_menu3.webp",
-  },
+      {
+        name: "Paket Entok Goreng",
+        description:
+          "Entok goreng gurih disajikan dengan sambel pedas khas rumah makan dan nasi hangat.",
+        price: "Rp 25.000",
+        image: "/images/segosambael_menu1.webp",
+      },
+      {
+        name: "Paket Bebek Goreng",
+        description:
+          "Bebek goreng renyah dengan sambel bawang pedas dan lalapan segar.",
+        price: "Rp 27.000",
+        image: "/images/segosambael_menu2.webp",
+      },
+      {
+        name: "Paket Lele Goreng",
+        description:
+          "Lele goreng krispi berpadu dengan sambel tomat pedas dan nasi putih hangat.",
+        price: "Rp 20.000",
+        image: "/images/segosambael_menu3.webp",
+      },
     ],
     galleryImages: [
       "/images/segosambel_galerifoto1.webp",
@@ -3336,11 +3336,11 @@ description:
     heroImage: "/images/tokojamaah_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Jamaah"',
     heroSubtitle:
-  "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, bumbu masak, dan bahan kue dengan harga terjangkau.",
-about:
-  "<strong>Toko Jamaah</strong> merupakan toko bahan makanan yang berlokasi di Kudus. Menyediakan aneka bahan pokok, bumbu dapur, tepung, minyak, hingga cemilan ringan. Cocok untuk kebutuhan rumah tangga maupun usaha kuliner.",
-description:
-  "Toko Jamaah dikenal dengan produknya yang lengkap, harga bersahabat, dan pelayanan ramah. Menjadi pilihan praktis bagi warga Kudus untuk memenuhi kebutuhan dapur sehari-hari.",
+      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, bumbu masak, dan bahan kue dengan harga terjangkau.",
+    about:
+      "<strong>Toko Jamaah</strong> merupakan toko bahan makanan yang berlokasi di Kudus. Menyediakan aneka bahan pokok, bumbu dapur, tepung, minyak, hingga cemilan ringan. Cocok untuk kebutuhan rumah tangga maupun usaha kuliner.",
+    description:
+      "Toko Jamaah dikenal dengan produknya yang lengkap, harga bersahabat, dan pelayanan ramah. Menjadi pilihan praktis bagi warga Kudus untuk memenuhi kebutuhan dapur sehari-hari.",
     rating: "4.0 / 5",
     location: {
       address: "Jalan, Winong, Kudus",
@@ -3356,13 +3356,13 @@ description:
       instagram: "-",
     },
     menus: [
-     {
-     name: "Paket Bahan Makanan Lengkap",
-    description:
-      "Tersedia berbagai bahan makanan seperti tepung, gula, merica, dan garam untuk kebutuhan rumahan maupun usaha.",
-    price: "Mulai Rp 10.000",
-    image: "/images/tokojamaah_menu1.webp",
-  },
+      {
+        name: "Paket Bahan Makanan Lengkap",
+        description:
+          "Tersedia berbagai bahan makanan seperti tepung, gula, merica, dan garam untuk kebutuhan rumahan maupun usaha.",
+        price: "Mulai Rp 10.000",
+        image: "/images/tokojamaah_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/tokojemaah_galerifoto1.webp",
@@ -3385,11 +3385,11 @@ description:
     heroImage: "/images/tokojamaah_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "Toko Jamaah"',
     heroSubtitle:
-  "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, bumbu masak, dan bahan kue dengan harga terjangkau.",
-about:
-  "<strong>Toko Jamaah</strong> merupakan toko bahan makanan yang berlokasi di Kudus. Menyediakan aneka bahan pokok, bumbu dapur, tepung, minyak, hingga cemilan ringan. Cocok untuk kebutuhan rumah tangga maupun usaha kuliner.",
-description:
-  "Toko Jamaah dikenal dengan produknya yang lengkap, harga bersahabat, dan pelayanan ramah. Menjadi pilihan praktis bagi warga Kudus untuk memenuhi kebutuhan dapur sehari-hari.",
+      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, bumbu masak, dan bahan kue dengan harga terjangkau.",
+    about:
+      "<strong>Toko Jamaah</strong> merupakan toko bahan makanan yang berlokasi di Kudus. Menyediakan aneka bahan pokok, bumbu dapur, tepung, minyak, hingga cemilan ringan. Cocok untuk kebutuhan rumah tangga maupun usaha kuliner.",
+    description:
+      "Toko Jamaah dikenal dengan produknya yang lengkap, harga bersahabat, dan pelayanan ramah. Menjadi pilihan praktis bagi warga Kudus untuk memenuhi kebutuhan dapur sehari-hari.",
     rating: "4.0 / 5",
     location: {
       address: "Jalan, Winong, Kudus",
@@ -3405,13 +3405,13 @@ description:
       instagram: "-",
     },
     menus: [
-     {
-     name: "Paket Bahan Makanan Lengkap",
-    description:
-      "Tersedia berbagai bahan makanan seperti tepung, gula, merica, dan garam untuk kebutuhan rumahan maupun usaha.",
-    price: "Mulai Rp 10.000",
-    image: "/images/tokojamaah_menu1.webp",
-  },
+      {
+        name: "Paket Bahan Makanan Lengkap",
+        description:
+          "Tersedia berbagai bahan makanan seperti tepung, gula, merica, dan garam untuk kebutuhan rumahan maupun usaha.",
+        price: "Mulai Rp 10.000",
+        image: "/images/tokojamaah_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/tokojemaah_galerifoto1.webp",
@@ -3434,11 +3434,11 @@ description:
     heroImage: "/images/mmamanah_hero.webp",
     heroTitle: 'Informasi Lengkap tentang UMKM "MM Amanah"',
     heroSubtitle:
-  "Minimarket di Kudus yang menyediakan berbagai kebutuhan harian, bahan makanan, dan perlengkapan rumah tangga dengan harga terjangkau.",
-about:
-  "<strong>MM Amanah</strong> merupakan minimarket yang berlokasi di Kudus. Menyediakan berbagai kebutuhan sehari-hari seperti sembako, bahan dapur, makanan ringan, minuman, serta produk kebersihan rumah tangga. Dengan pelayanan ramah dan harga bersahabat, MM Amanah menjadi pilihan belanja praktis untuk keluarga.",
-description:
-  "MM Amanah menawarkan pengalaman belanja yang nyaman dengan produk lengkap dan harga kompetitif. Cocok untuk memenuhi kebutuhan rumah tangga maupun usaha kecil.",
+      "Minimarket di Kudus yang menyediakan berbagai kebutuhan harian, bahan makanan, dan perlengkapan rumah tangga dengan harga terjangkau.",
+    about:
+      "<strong>MM Amanah</strong> merupakan minimarket yang berlokasi di Kudus. Menyediakan berbagai kebutuhan sehari-hari seperti sembako, bahan dapur, makanan ringan, minuman, serta produk kebersihan rumah tangga. Dengan pelayanan ramah dan harga bersahabat, MM Amanah menjadi pilihan belanja praktis untuk keluarga.",
+    description:
+      "MM Amanah menawarkan pengalaman belanja yang nyaman dengan produk lengkap dan harga kompetitif. Cocok untuk memenuhi kebutuhan rumah tangga maupun usaha kecil.",
     rating: "4.4 / 5",
     location: {
       address: "Mijen, Kudus",
@@ -3454,13 +3454,13 @@ description:
       instagram: "-",
     },
     menus: [
-     {
-      name: "Snack & Minuman Dingin",
-    description:
-      "Tersedia berbagai camilan ringan seperti keripik, wafer, dan minuman dingin dalam kemasan — favorit pelanggan untuk teman santai.",
-    price: "Mulai Rp 5.000",
-    image: "/images/mmamanah_menu1.webp",
-  },
+      {
+        name: "Snack & Minuman Dingin",
+        description:
+          "Tersedia berbagai camilan ringan seperti keripik, wafer, dan minuman dingin dalam kemasan — favorit pelanggan untuk teman santai.",
+        price: "Mulai Rp 5.000",
+        image: "/images/mmamanah_menu1.webp",
+      },
     ],
     galleryImages: [
       "/images/mmamanah_galerifoto1.webp",
@@ -3478,105 +3478,105 @@ description:
     ],
   },
   {
-  id: 58,
-  name: "Toko Van Helen Serba 35000",
-  slug: "toko-van-helen",
-  heroImage: "/images/tokovanhelen_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Toko Van Helen Serba 35000"',
-  heroSubtitle:
-    "Toko pakaian di Kudus yang menawarkan busana trendi dan aksesori gaya dengan harga terjangkau hanya Rp 35.000-an.",
-  about:
-    "<strong>Toko Van Helen Serba 35000</strong> merupakan toko pakaian yang berlokasi di Kudus. Menyediakan berbagai pilihan busana kasual, fashion pria dan wanita, serta aksesori dengan harga satu harga Rp 35.000-an. Cocok untuk Anda yang ingin tampil stylish tanpa merogoh kocek dalam-dalam.",
-  description:
-    "Toko Van Helen Serba 35000 menghadirkan koleksi fashion terbaru dengan harga tetap Rp 35.000-an — pilihan ideal untuk belanja cepat, hemat, dan modis.",
-  rating: "4.1 / 5",
-  location: {
-    address: "Kedungdowo, Kaliwungu, Kudus",
-    fullAddress:
-      "6R32+6P2, Kedungdowo, Kec. Kaliwungu, Kabupaten Kudus, Jawa Tengah 59332",
-    mapsUrl: "https://maps.app.goo.gl/KicYoZSUDVdqBBBDA", 
-    embedUrl:
-      "https://www.google.com/maps?q=-6.7969869,110.801753&hl=id&z=17&output=embed",
-  },
-  contact: {
-    whatsapp: "-",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Busana Kasual & Aksesori",
-      description:
-        "Pilihan kaos, blouse, kemeja, dan aksesori seperti tas dan topi — semua dengan harga tetap Rp 35.000-an.",
-      price: "Rp 35.000",
-      image: "/images/tokovanhelen_menu1.webp",
+    id: 58,
+    name: "Toko Van Helen Serba 35000",
+    slug: "toko-van-helen",
+    heroImage: "/images/tokovanhelen_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Toko Van Helen Serba 35000"',
+    heroSubtitle:
+      "Toko pakaian di Kudus yang menawarkan busana trendi dan aksesori gaya dengan harga terjangkau hanya Rp 35.000-an.",
+    about:
+      "<strong>Toko Van Helen Serba 35000</strong> merupakan toko pakaian yang berlokasi di Kudus. Menyediakan berbagai pilihan busana kasual, fashion pria dan wanita, serta aksesori dengan harga satu harga Rp 35.000-an. Cocok untuk Anda yang ingin tampil stylish tanpa merogoh kocek dalam-dalam.",
+    description:
+      "Toko Van Helen Serba 35000 menghadirkan koleksi fashion terbaru dengan harga tetap Rp 35.000-an — pilihan ideal untuk belanja cepat, hemat, dan modis.",
+    rating: "4.1 / 5",
+    location: {
+      address: "Kedungdowo, Kaliwungu, Kudus",
+      fullAddress:
+        "6R32+6P2, Kedungdowo, Kec. Kaliwungu, Kabupaten Kudus, Jawa Tengah 59332",
+      mapsUrl: "https://maps.app.goo.gl/KicYoZSUDVdqBBBDA",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.7969869,110.801753&hl=id&z=17&output=embed",
     },
-  ],
-  galleryImages: [
-    "/images/tokovanhelen_galerifoto1.webp",
-    "/images/tokovanhelen_galerifoto2.webp",
-    "/images/tokovanhelen_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Selasa", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Rabu", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Kamis", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Jumat", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Sabtu", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Minggu", hours: "08.00 - 21.30", isOpen: true },
-  ],
-},
-{
-  id: 59,
-  name: "Lina Family",
-  slug: "lina-family",
-  heroImage: "/images/linafamily_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Lina Family"',
-  heroSubtitle:
-    "Toko pakaian keluarga di Kudus yang menyediakan busana trendi untuk pria, wanita, dan anak-anak dengan harga bersahabat.",
-  about:
-    "<strong>Lina Family</strong> merupakan toko pakaian yang berlokasi di Kudus, Jl. Kudus-Jepara Km. 5, Mijen, Kec. Kaliwungu. Menawarkan koleksi lengkap untuk seluruh keluarga — mulai busana harian hingga acara khusus. Fokus pada kenyamanan, gaya, dan harga kompetitif. :contentReference[oaicite:0]{index=0}",
-  description:
-    "Lina Family menghadirkan pilihan fashion lengkap untuk keluarga dengan model modern dan harga yang bersahabat. Cocok untuk belanja seluruh anggota keluarga dalam satu kunjungan.",
-  rating: "4.3 / 5",
-  location: {
-    address: "Madaran, Mijen, Kudus",
-    fullAddress:
-      "Jl. Raya Kudus - Jepara No.Km. 5, Madaran, Mijen, Kec. Kaliwungu, Kabupaten Kudus, Jawa Tengah 59332",
-    mapsUrl: "https://maps.app.goo.gl/piTqSMQqSr23UbLQ9", 
-    embedUrl:
-      "https://www.google.com/maps?q=-6.7921879,110.7955317&hl=id&z=17&output=embed", 
-  },
-  contact: {
-    whatsapp: "087746212705",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Pakaian Keluarga",
-      description:
-        "Busana pria, wanita & anak dari casual hingga formal dengan desain kekinian dan kenyamanan tinggi.",
-      price: "Mulai dari Rp 50.000",
-      image: "/images/linafamily_menu1.webp",
+    contact: {
+      whatsapp: "-",
+      email: "-",
+      instagram: "-",
     },
-  ],
-  galleryImages: [
-    "/images/linafamily_galerifoto1.webp",
-    "/images/linafamily_galerifoto2.webp",
-    "/images/linafamily_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "07.00 - 20.30", isOpen: true },
-    { day: "Selasa", hours: "07.00 - 20.30", isOpen: true },
-    { day: "Rabu", hours: "07.00 - 20.30", isOpen: true },
-    { day: "Kamis", hours: "07.00 - 20.30", isOpen: true },
-    { day: "Jumat", hours: "07.00 - 20.30", isOpen: true },
-    { day: "Sabtu", hours: "07.00 - 20.30", isOpen: true },
-    { day: "Minggu", hours: "07.00 - 20.30", isOpen: true },
-  ],
-},
+    menus: [
+      {
+        name: "Busana Kasual & Aksesori",
+        description:
+          "Pilihan kaos, blouse, kemeja, dan aksesori seperti tas dan topi — semua dengan harga tetap Rp 35.000-an.",
+        price: "Rp 35.000",
+        image: "/images/tokovanhelen_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/tokovanhelen_galerifoto1.webp",
+      "/images/tokovanhelen_galerifoto2.webp",
+      "/images/tokovanhelen_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.30", isOpen: true },
+    ],
+  },
+  {
+    id: 59,
+    name: "Lina Family",
+    slug: "lina-family",
+    heroImage: "/images/linafamily_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Lina Family"',
+    heroSubtitle:
+      "Toko pakaian keluarga di Kudus yang menyediakan busana trendi untuk pria, wanita, dan anak-anak dengan harga bersahabat.",
+    about:
+      "<strong>Lina Family</strong> merupakan toko pakaian yang berlokasi di Kudus, Jl. Kudus-Jepara Km. 5, Mijen, Kec. Kaliwungu. Menawarkan koleksi lengkap untuk seluruh keluarga — mulai busana harian hingga acara khusus. Fokus pada kenyamanan, gaya, dan harga kompetitif. :contentReference[oaicite:0]{index=0}",
+    description:
+      "Lina Family menghadirkan pilihan fashion lengkap untuk keluarga dengan model modern dan harga yang bersahabat. Cocok untuk belanja seluruh anggota keluarga dalam satu kunjungan.",
+    rating: "4.3 / 5",
+    location: {
+      address: "Madaran, Mijen, Kudus",
+      fullAddress:
+        "Jl. Raya Kudus - Jepara No.Km. 5, Madaran, Mijen, Kec. Kaliwungu, Kabupaten Kudus, Jawa Tengah 59332",
+      mapsUrl: "https://maps.app.goo.gl/piTqSMQqSr23UbLQ9",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.7921879,110.7955317&hl=id&z=17&output=embed",
+    },
+    contact: {
+      whatsapp: "087746212705",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Pakaian Keluarga",
+        description:
+          "Busana pria, wanita & anak dari casual hingga formal dengan desain kekinian dan kenyamanan tinggi.",
+        price: "Mulai dari Rp 50.000",
+        image: "/images/linafamily_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/linafamily_galerifoto1.webp",
+      "/images/linafamily_galerifoto2.webp",
+      "/images/linafamily_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "07.00 - 20.30", isOpen: true },
+      { day: "Selasa", hours: "07.00 - 20.30", isOpen: true },
+      { day: "Rabu", hours: "07.00 - 20.30", isOpen: true },
+      { day: "Kamis", hours: "07.00 - 20.30", isOpen: true },
+      { day: "Jumat", hours: "07.00 - 20.30", isOpen: true },
+      { day: "Sabtu", hours: "07.00 - 20.30", isOpen: true },
+      { day: "Minggu", hours: "07.00 - 20.30", isOpen: true },
+    ],
+  },
   // KOTA KUDUS
   {
     id: 60,
@@ -3952,219 +3952,219 @@ description:
     ],
   },
   {
-  id: 65,
-  name: "Treend Steak Kudus",
-  slug: "treend-steak-kudus",
-  heroImage: "/images/treendsteak_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang Restoran "Treend Steak Kudus"',
-  heroSubtitle:
-    "Restoran steak di Kudus yang menyajikan berbagai pilihan steak lezat dengan cita rasa khas dan harga terjangkau.",
-  about:
-    "<strong>Treend Steak Kudus</strong> adalah restoran yang menyajikan aneka steak premium dengan suasana santai dan nyaman, cocok untuk makan bersama keluarga atau teman. Menggunakan bahan berkualitas dan saus khas yang menggugah selera.",
-  description:
-    "Nikmati pengalaman kuliner terbaik di Treend Steak Kudus dengan menu steak daging sapi, ayam, dan seafood dengan saus istimewa buatan sendiri.",
-  rating: "4.3 / 5",
-  location: {
-    address: "Jl. Ganesha Raya No.2, Purwosari, Kudus",
-    fullAddress:
-      "Jl. Ganesha Raya No.2, Purwosari, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59316",
-    mapsUrl: "https://maps.app.goo.gl/uT2SPtZR9objQjEn7",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.803329,110.8261252&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "081227140405",
-    email: "-",
-    instagram: "treendsteakkudus",
-  },
-  menus: [
-    {
-      name: "Chicken Crispy Steak",
-      description:
-        "Potongan daging ayam crispy disajikan dengan saus lada hitam dan kentang goreng.",
-      price: "Mulai dari Rp 15.000",
-      image: "/images/treendsteak_menu1.webp",
+    id: 65,
+    name: "Treend Steak Kudus",
+    slug: "treend-steak-kudus",
+    heroImage: "/images/treendsteak_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang Restoran "Treend Steak Kudus"',
+    heroSubtitle:
+      "Restoran steak di Kudus yang menyajikan berbagai pilihan steak lezat dengan cita rasa khas dan harga terjangkau.",
+    about:
+      "<strong>Treend Steak Kudus</strong> adalah restoran yang menyajikan aneka steak premium dengan suasana santai dan nyaman, cocok untuk makan bersama keluarga atau teman. Menggunakan bahan berkualitas dan saus khas yang menggugah selera.",
+    description:
+      "Nikmati pengalaman kuliner terbaik di Treend Steak Kudus dengan menu steak daging sapi, ayam, dan seafood dengan saus istimewa buatan sendiri.",
+    rating: "4.3 / 5",
+    location: {
+      address: "Jl. Ganesha Raya No.2, Purwosari, Kudus",
+      fullAddress:
+        "Jl. Ganesha Raya No.2, Purwosari, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59316",
+      mapsUrl: "https://maps.app.goo.gl/uT2SPtZR9objQjEn7",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.803329,110.8261252&hl=id&z=15&output=embed",
     },
-    {
-      name: "Treend Steak",
-      description:
-        "Potongan daging sapi premium disajikan dengan saus spesial dan telur goreng.",
-      price: "Mulai dari Rp 30.000",
-      image: "/images/treendsteak_menu2.webp",
+    contact: {
+      whatsapp: "081227140405",
+      email: "-",
+      instagram: "treendsteakkudus",
     },
-  ],
-  galleryImages: [
-    "/images/treendsteak_galerifoto1.webp",
-    "/images/treendsteak_galerifoto2.webp",
-    "/images/treendsteak_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "10.00 - 21.00", isOpen: true },
-    { day: "Selasa", hours: "10.00 - 21.00", isOpen: true },
-    { day: "Rabu", hours: "10.00 - 21.00", isOpen: true },
-    { day: "Kamis", hours: "10.00 - 21.00", isOpen: true },
-    { day: "Jumat", hours: "10.00 - 21.00", isOpen: true },
-    { day: "Sabtu", hours: "10.00 - 21.00", isOpen: true },
-    { day: "Minggu", hours: "10.00 - 21.00", isOpen: true },
-  ],
-},
-{
-  id: 66,
-  name: "Larees Jaya Electronics",
-  slug: "larees-jaya-electronics",
-  heroImage: "/images/lareesjaya_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang Toko "Larees Jaya Electronics"',
-  heroSubtitle:
-    "Toko elektronik terpercaya di Kudus yang menyediakan berbagai kebutuhan rumah tangga dan peralatan elektronik modern.",
-  about:
-    "<strong>Larees Jaya Electronics</strong> merupakan toko yang menjual beragam produk elektronik seperti TV, kulkas, mesin cuci, kipas angin, dan perlengkapan rumah tangga lainnya dengan harga bersaing.",
-  description:
-    "Tempat terpercaya untuk mendapatkan produk elektronik berkualitas di Kudus. Menyediakan layanan ramah dan garansi resmi.",
-  rating: "4.9 / 5",
-  location: {
-    address: "Jl. Sunan Kudus, Kudus, Demaan, Kudus",
-    fullAddress:
-      "Jl. Sunan Kudus, Kudus, Demaan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59313",
-    mapsUrl: "https://maps.app.goo.gl/NJvA9WyUJWy2BfRdA",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.8077597,110.8395403&hl=id&z=15&output=embed",
+    menus: [
+      {
+        name: "Chicken Crispy Steak",
+        description:
+          "Potongan daging ayam crispy disajikan dengan saus lada hitam dan kentang goreng.",
+        price: "Mulai dari Rp 15.000",
+        image: "/images/treendsteak_menu1.webp",
+      },
+      {
+        name: "Treend Steak",
+        description:
+          "Potongan daging sapi premium disajikan dengan saus spesial dan telur goreng.",
+        price: "Mulai dari Rp 30.000",
+        image: "/images/treendsteak_menu2.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/treendsteak_galerifoto1.webp",
+      "/images/treendsteak_galerifoto2.webp",
+      "/images/treendsteak_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "10.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "10.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "10.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "10.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "10.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "10.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "10.00 - 21.00", isOpen: true },
+    ],
   },
-  contact: {
-    whatsapp: "0291438130",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Elektronik Rumah Tangga",
-      description:
-        "Beragam produk elektronik seperti TV, kulkas, mesin cuci, dan kipas angin dari berbagai merek ternama.",
-      price: "Mulai dari Rp 300.000",
-      image: "/images/lareesjaya_menu1.webp",
+  {
+    id: 66,
+    name: "Larees Jaya Electronics",
+    slug: "larees-jaya-electronics",
+    heroImage: "/images/lareesjaya_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang Toko "Larees Jaya Electronics"',
+    heroSubtitle:
+      "Toko elektronik terpercaya di Kudus yang menyediakan berbagai kebutuhan rumah tangga dan peralatan elektronik modern.",
+    about:
+      "<strong>Larees Jaya Electronics</strong> merupakan toko yang menjual beragam produk elektronik seperti TV, kulkas, mesin cuci, kipas angin, dan perlengkapan rumah tangga lainnya dengan harga bersaing.",
+    description:
+      "Tempat terpercaya untuk mendapatkan produk elektronik berkualitas di Kudus. Menyediakan layanan ramah dan garansi resmi.",
+    rating: "4.9 / 5",
+    location: {
+      address: "Jl. Sunan Kudus, Kudus, Demaan, Kudus",
+      fullAddress:
+        "Jl. Sunan Kudus, Kudus, Demaan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59313",
+      mapsUrl: "https://maps.app.goo.gl/NJvA9WyUJWy2BfRdA",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8077597,110.8395403&hl=id&z=15&output=embed",
     },
-  ],
-  galleryImages: [
-    "/images/lareesjaya_galerifoto1.webp",
-    "/images/lareesjaya_galerifoto2.webp",
-    "/images/lareesjaya_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "08.00 - 20.00", isOpen: true },
-    { day: "Selasa", hours: "08.00 - 20.00", isOpen: true },
-    { day: "Rabu", hours: "08.00 - 20.00", isOpen: true },
-    { day: "Kamis", hours: "08.00 - 20.00", isOpen: true },
-    { day: "Jumat", hours: "08.00 - 20.00", isOpen: true },
-    { day: "Sabtu", hours: "08.00 - 20.00", isOpen: true },
-    { day: "Minggu", hours: "08.30 - 14.00", isOpen: true },
-  ],
-},
-{
-  id: 67,
-  name: "Es Coklat Cokot Kudus",
-  slug: "es-coklat-cokot-kudus",
-  heroImage: "/images/escoklatcokotkudus_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang "Es Coklat Cokot Kudus"',
-  heroSubtitle:
-    "Kafe cokelat di Kudus dengan minuman cokelat dingin dan varian topping kekinian.",
-  about:
-    "<strong>Es Coklat Cokot Kudus</strong> menghadirkan minuman cokelat dengan rasa autentik dan topping beragam seperti keju, oreo, dan boba. Cocok untuk penggemar cokelat sejati.",
-  description:
-    "Tempat nongkrong favorit anak muda Kudus dengan harga terjangkau dan suasana santai.",
-  rating: "4.1 / 5",
-  location: {
-    address: "Pejaten, Langgardalem, Kudus",
-    fullAddress:
-      "Jl. Kyai Noorbadri Syahid, Pejaten, Langgardalem, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah",
-    mapsUrl: "https://maps.app.goo.gl/SSaBMBhcWiy7Fddw5",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.8056922,110.8357389&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "-",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Es Coklat Cokot",
-      description:
-        "Cokelat kental dingin dengan campuran bubuk oreo dan susu segar.",
-      price: "Rp 15.000",
-      image: "/images/escoklat_menu1.webp",
+    contact: {
+      whatsapp: "0291438130",
+      email: "-",
+      instagram: "-",
     },
-    {
-      name: "Roti slice",
-      description:
-        "Roti yang enak dipotong.",
-      price: "Rp 2.000",
-      image: "/images/escoklat_menu2.webp",
-    },
-  ],
-  galleryImages: [
-    "/images/escoklat_galerifoto1.webp",
-    "/images/escoklat_galerifoto2.webp",
-    "/images/escoklat_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Selasa", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Rabu", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Kamis", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Jumat", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Sabtu", hours: "09.00 - 21.00", isOpen: true },
-    { day: "Minggu", hours: "09.00 - 21.00", isOpen: true },
-  ],
-},
-{
-  id: 68,
-  name: "Richie Store Kudus",
-  slug: "richie-store-kudus",
-  heroImage: "/images/richiestore_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang Toko "Richie Store Kudus"',
-  heroSubtitle:
-    "Toko pakaian muslim dan fashion modern di Kudus dengan koleksi trendi dan harga bersahabat.",
-  about:
-    "<strong>Richie Store Kudus</strong> menyediakan busana muslim dan kasual untuk pria dan wanita. Koleksinya mencakup gamis, kemeja, dan kaus dengan desain simpel namun elegan.",
-  description:
-    "Toko fashion pilihan masyarakat Kudus untuk pakaian bergaya modern namun tetap sopan.",
-  rating: "4.9 / 5",
-  location: {
-    address: "Jl. Sunan Muria No.4, Barongan, Kudus",
-    fullAddress:
-      "Jl. Sunan Muria No.4, Barongan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59313",
-    mapsUrl: "https://maps.app.goo.gl/qqkTf71a1vBUvoYq6",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.8062037,110.8431931&hl=id&z=15&output=embed",
+    menus: [
+      {
+        name: "Elektronik Rumah Tangga",
+        description:
+          "Beragam produk elektronik seperti TV, kulkas, mesin cuci, dan kipas angin dari berbagai merek ternama.",
+        price: "Mulai dari Rp 300.000",
+        image: "/images/lareesjaya_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/lareesjaya_galerifoto1.webp",
+      "/images/lareesjaya_galerifoto2.webp",
+      "/images/lareesjaya_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 20.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 20.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 20.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 20.00", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 20.00", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 20.00", isOpen: true },
+      { day: "Minggu", hours: "08.30 - 14.00", isOpen: true },
+    ],
   },
-  contact: {
-    whatsapp: "-",
-    email: "-",
-    instagram: "richiestorepati",
-  },
-  menus: [
-    {
-      name: "Busana Pria & Wanita",
-      description:
-        "Koleksi pakaian modern dan modest wear dengan bahan berkualitas dan desain kekinian.",
-      price: "Mulai dari Rp 75.000",
-      image: "/images/richie_menu1.webp",
+  {
+    id: 67,
+    name: "Es Coklat Cokot Kudus",
+    slug: "es-coklat-cokot-kudus",
+    heroImage: "/images/escoklatcokotkudus_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang "Es Coklat Cokot Kudus"',
+    heroSubtitle:
+      "Kafe cokelat di Kudus dengan minuman cokelat dingin dan varian topping kekinian.",
+    about:
+      "<strong>Es Coklat Cokot Kudus</strong> menghadirkan minuman cokelat dengan rasa autentik dan topping beragam seperti keju, oreo, dan boba. Cocok untuk penggemar cokelat sejati.",
+    description:
+      "Tempat nongkrong favorit anak muda Kudus dengan harga terjangkau dan suasana santai.",
+    rating: "4.1 / 5",
+    location: {
+      address: "Pejaten, Langgardalem, Kudus",
+      fullAddress:
+        "Jl. Kyai Noorbadri Syahid, Pejaten, Langgardalem, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah",
+      mapsUrl: "https://maps.app.goo.gl/SSaBMBhcWiy7Fddw5",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8056922,110.8357389&hl=id&z=15&output=embed",
     },
-  ],
-  galleryImages: [
-    "/images/richie_galerifoto1.webp",
-    "/images/richie_galerifoto2.webp",
-    "/images/richie_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "09.00 - 21.30", isOpen: true },
-    { day: "Selasa", hours: "09.00 - 21.30", isOpen: true },
-    { day: "Rabu", hours: "09.00 - 21.30", isOpen: true },
-    { day: "Kamis", hours: "09.00 - 21.30", isOpen: true },
-    { day: "Jumat", hours: "09.00 - 21.30", isOpen: true },
-    { day: "Sabtu", hours: "09.00 - 21.30", isOpen: true },
-    { day: "Minggu", hours: "09.00 - 21.30", isOpen: true },
-  ],
-},
+    contact: {
+      whatsapp: "-",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Es Coklat Cokot",
+        description:
+          "Cokelat kental dingin dengan campuran bubuk oreo dan susu segar.",
+        price: "Rp 15.000",
+        image: "/images/escoklat_menu1.webp",
+      },
+      {
+        name: "Roti slice",
+        description:
+          "Roti yang enak dipotong.",
+        price: "Rp 2.000",
+        image: "/images/escoklat_menu2.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/escoklat_galerifoto1.webp",
+      "/images/escoklat_galerifoto2.webp",
+      "/images/escoklat_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "09.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "09.00 - 21.00", isOpen: true },
+    ],
+  },
+  {
+    id: 68,
+    name: "Richie Store Kudus",
+    slug: "richie-store-kudus",
+    heroImage: "/images/richiestore_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang Toko "Richie Store Kudus"',
+    heroSubtitle:
+      "Toko pakaian muslim dan fashion modern di Kudus dengan koleksi trendi dan harga bersahabat.",
+    about:
+      "<strong>Richie Store Kudus</strong> menyediakan busana muslim dan kasual untuk pria dan wanita. Koleksinya mencakup gamis, kemeja, dan kaus dengan desain simpel namun elegan.",
+    description:
+      "Toko fashion pilihan masyarakat Kudus untuk pakaian bergaya modern namun tetap sopan.",
+    rating: "4.9 / 5",
+    location: {
+      address: "Jl. Sunan Muria No.4, Barongan, Kudus",
+      fullAddress:
+        "Jl. Sunan Muria No.4, Barongan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59313",
+      mapsUrl: "https://maps.app.goo.gl/qqkTf71a1vBUvoYq6",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8062037,110.8431931&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "-",
+      email: "-",
+      instagram: "richiestorepati",
+    },
+    menus: [
+      {
+        name: "Busana Pria & Wanita",
+        description:
+          "Koleksi pakaian modern dan modest wear dengan bahan berkualitas dan desain kekinian.",
+        price: "Mulai dari Rp 75.000",
+        image: "/images/richie_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/richie_galerifoto1.webp",
+      "/images/richie_galerifoto2.webp",
+      "/images/richie_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "09.00 - 21.30", isOpen: true },
+      { day: "Selasa", hours: "09.00 - 21.30", isOpen: true },
+      { day: "Rabu", hours: "09.00 - 21.30", isOpen: true },
+      { day: "Kamis", hours: "09.00 - 21.30", isOpen: true },
+      { day: "Jumat", hours: "09.00 - 21.30", isOpen: true },
+      { day: "Sabtu", hours: "09.00 - 21.30", isOpen: true },
+      { day: "Minggu", hours: "09.00 - 21.30", isOpen: true },
+    ],
+  },
   // MEJOBO
   {
     id: 69,
@@ -4492,267 +4492,267 @@ description:
     ],
   },
   {
-  id: 74,
-  name: "Sate Kambing Pak Brewok Pekeng",
-  slug: "sate-kambing-pak-brewok",
-  heroImage: "/images/satekambing_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Sate Kambing Pak Brewok Pekeng"',
-  heroSubtitle:
-    "Warung sate kambing di Kudus yang menyajikan sate kambing empuk dengan bumbu lezat dan cita rasa khas lokal.",
-  about:
-    "<strong>Sate Kambing Pak Brewok Pekeng</strong> merupakan rumah makan yang berlokasi di Jl. Budi Utomo No.158, Pekeng, Gulang, Kec. Mejobo, Kabupaten Kudus. Menyajikan sate kambing dan gule kambing dengan resep tradisional dan pelayanan hangat. :contentReference[oaicite:0]{index=0}",
-  description:
-    "Nikmati sate kambing empuk dan gule kambing gurih di Sate Kambing Pak Brewok Pekeng — cocok untuk makan bersama keluarga maupun teman.",
-  rating: "4.3 / 5",
-  location: {
-    address: "Jl. Budi Utomo No.158, Pekeng, Gulang",
-    fullAddress:
-      "Jl. Budi Utomo No.158, Pekeng, Gulang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
-    mapsUrl: "https://maps.app.goo.gl/Zigj7mhWSbVb673W8",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.832874,110.8652271&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "081390443331",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-  name: "Sate Kambing",
-  description:
-    "Sate kambing muda yang dibakar dengan bumbu kecap, irisan bawang, dan sambal, disajikan bersama nasi atau lontong.",
-  price: "Mulai dari Rp 30.000",
-  image: "/images/satekambing_menu1.webp",
-},
-{
-  name: "Gule Kambing",
-  description:
-    "Kuah gule kambing beraroma rempah dengan daging yang lembut, cocok dinikmati selagi panas.",
-  price: "Mulai dari Rp 25.000",
-  image: "/images/satekambing_menu2.webp",
-},
-{
-  name: "Tongseng Kepala Kambing",
-  description:
-    "Tongseng kepala kambing dengan kuah kental manis-gurih khas pekeng, isi daging dan tulang lunak yang kaya rasa.",
-  price: "Mulai dari Rp 28.000",
-  image: "/images/satekambing_menu3.webp",
-},
-  ],
-  galleryImages: [
-    "/images/pakbrewok_galerifoto1.webp",
-    "/images/pakbrewok_galerifoto2.webp",
-    "/images/pakbrewok_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "10.30 - 21.00", isOpen: true },
-    { day: "Selasa", hours: "10.30 - 21.00", isOpen: true },
-    { day: "Rabu", hours: "10.30 - 21.00", isOpen: true },
-    { day: "Kamis", hours: "10.30 - 21.00", isOpen: true },
-    { day: "Jumat", hours: "10.30 - 21.00", isOpen: true },
-    { day: "Sabtu", hours: "10.30 - 21.00", isOpen: true },
-    { day: "Minggu", hours: "10.30 - 21.00", isOpen: true },
-  ],
-},
-{
-  id: 75,
-  name: "Loh Jinawi Olshop (Lapak Gelang Tasbih)",
-  slug: "loh-jinawi",
-  heroImage: "/images/lohjinawi_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Loh Jinawi Olshop (Lapak Gelang Tasbih)"',
-  heroSubtitle:
-    "Toko barang antik dan aksesoris tradisional di Kudus yang menawarkan gelang tasbih dan koleksi unik lainnya.",
-  about:
-    "<strong>Loh Jinawi Olshop (Lapak Gelang Tasbih)</strong> merupakan toko yang berlokasi di Bancak, Payaman, Mejobo, Kabupaten Kudus. Menyediakan gelang tasbih, barang antik, dan aksesoris tradisional dengan harga bersahabat dan koleksi eksklusif. :contentReference[oaicite:2]{index=2}",
-  description:
-    "Menjelajahi koleksi unik barang antik dan aksesoris tradisional di Loh Jinawi Olshop — cocok bagi kolektor maupun penggemar item tradisional.",
-  rating: "5 / 5",
-  location: {
-    address: "Bancak, Payaman Kudus",
-    fullAddress:
-      "5V6F+W2X, Bancak, Payaman, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
-    mapsUrl: "https://maps.app.goo.gl/f7UHSCHhTrWC2Kjx5",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.8376295,110.8726151&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "081390784335",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Gelang Tasbih & Antik",
-      description:
-        "Koleksi gelang tasbih kayu, batu, dan aksesoris tradisional serta barang antik pilihan.",
-      price: "Mulai dari Rp 40.000",
-      image: "/images/lohjinawi_menu1.webp",
+    id: 74,
+    name: "Sate Kambing Pak Brewok Pekeng",
+    slug: "sate-kambing-pak-brewok",
+    heroImage: "/images/satekambing_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Sate Kambing Pak Brewok Pekeng"',
+    heroSubtitle:
+      "Warung sate kambing di Kudus yang menyajikan sate kambing empuk dengan bumbu lezat dan cita rasa khas lokal.",
+    about:
+      "<strong>Sate Kambing Pak Brewok Pekeng</strong> merupakan rumah makan yang berlokasi di Jl. Budi Utomo No.158, Pekeng, Gulang, Kec. Mejobo, Kabupaten Kudus. Menyajikan sate kambing dan gule kambing dengan resep tradisional dan pelayanan hangat. :contentReference[oaicite:0]{index=0}",
+    description:
+      "Nikmati sate kambing empuk dan gule kambing gurih di Sate Kambing Pak Brewok Pekeng — cocok untuk makan bersama keluarga maupun teman.",
+    rating: "4.3 / 5",
+    location: {
+      address: "Jl. Budi Utomo No.158, Pekeng, Gulang",
+      fullAddress:
+        "Jl. Budi Utomo No.158, Pekeng, Gulang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/Zigj7mhWSbVb673W8",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.832874,110.8652271&hl=id&z=15&output=embed",
     },
-  ],
-  galleryImages: [
-    "/images/lohjinawi_galerifoto1.webp",
-    "/images/lohjinawi_galerifoto2.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "Buka 24 Jam", isOpen: true },
-    { day: "Selasa", hours: "Buka 24 Jam", isOpen: true },
-    { day: "Rabu", hours: "Buka 24 Jam", isOpen: true },
-    { day: "Kamis", hours: "Buka 24 Jam", isOpen: true },
-    { day: "Jumat", hours: "Buka 24 Jam", isOpen: true },
-    { day: "Sabtu", hours: "Buka 24 Jam", isOpen: true },
-    { day: "Minggu", hours: "Buka 24 Jam", isOpen: true },
-  ],
-},
-{
-  id: 76,
-  name: "Toko Auralia Jaya",
-  slug: "toko-auralia",
-  heroImage: "/images/tokoauralia_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Toko Auralia Jaya"',
-  heroSubtitle:
-    "Toko swalayan di Kudus yang menyediakan berbagai kebutuhan sehari-hari mulai dari sembako hingga perlengkapan rumah tangga.",
-  about:
-    "<strong>Toko Auralia Jaya</strong> merupakan swalayan yang berlokasi di Mejobo, Kudus. Menyediakan berbagai bahan pokok, alat rumah tangga, minuman, dan kebutuhan harian lengkap dalam satu tempat.",
-  description:
-    "Toko Auralia Jaya menawarkan belanja praktis dan cepat dengan produk lengkap untuk kebutuhan keluarga, mulai dari bahan makanan hingga alat kebersihan rumah.",
-  rating: "4.3 / 5",
-  location: {
-    address: "Pendem Kulon, Jepang, Kudus",
-    fullAddress:
-      "Pendem Kulon, Jepang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
-    mapsUrl: "https://maps.app.goo.gl/U5pSxKWHwwZKqAfk7",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.82967,110.86641&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "087805412326",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Paket Sembako & Rumah Tangga",
-      description:
-        "Gabungan bahan makanan pokok serta perlengkapan rumah tangga seperti sabun, deterjen, dan alat kebersihan.",
-      price: "Mulai dari Rp 20.000",
-      image: "/images/tokoaurelia_menu1.webp",
+    contact: {
+      whatsapp: "081390443331",
+      email: "-",
+      instagram: "-",
     },
-  ],
-  galleryImages: [
-    "/images/tokoauralia_galerifoto1.webp",
-    "/images/tokoauralia_galerifoto2.webp",
-    "/images/tokoauralia_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Selasa", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Rabu", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Kamis", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Jumat", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Sabtu", hours: "08.00 - 21.30", isOpen: true },
-    { day: "Minggu", hours: "08.00 - 21.30", isOpen: true },
-  ],
-},
-{
-  id: 77,
-  name: "Sekar Modiste",
-  slug: "sekar-modiste",
-  heroImage: "/images/sekar_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Sekar Modiste"',
-  heroSubtitle:
-    "Toko pakaian wanita di Kudus yang menyediakan berbagai busana dan layanan jahit/modifikasi dengan desain elegan.",
-  about:
-    "<strong>Sekar Modiste</strong> merupakan butik dan jasa jahit yang berlokasi di Mejobo, Kudus. Menyediakan busana wanita siap pakai, serta layanan jahit dan modifikasi sesuai permintaan pelanggan.",
-  description:
-    "Sekar Modiste membantu Anda tampil percaya diri dengan model pakaian wanita yang disesuaikan, mulai dari casual hingga formal, lengkap dengan layanan jahit profesional.",
-  rating: "4.8 / 5",
-  location: {
-    address: "Jepang, Kudus",
-    fullAddress:
-      "Unnamed Road, Jepang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
-    mapsUrl: "https://maps.app.goo.gl/bfh9QtPPVyCbt5zx9",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.8245474,110.8704026&hl=id&z=15&output=embed",
+    menus: [
+      {
+        name: "Sate Kambing",
+        description:
+          "Sate kambing muda yang dibakar dengan bumbu kecap, irisan bawang, dan sambal, disajikan bersama nasi atau lontong.",
+        price: "Mulai dari Rp 30.000",
+        image: "/images/satekambing_menu1.webp",
+      },
+      {
+        name: "Gule Kambing",
+        description:
+          "Kuah gule kambing beraroma rempah dengan daging yang lembut, cocok dinikmati selagi panas.",
+        price: "Mulai dari Rp 25.000",
+        image: "/images/satekambing_menu2.webp",
+      },
+      {
+        name: "Tongseng Kepala Kambing",
+        description:
+          "Tongseng kepala kambing dengan kuah kental manis-gurih khas pekeng, isi daging dan tulang lunak yang kaya rasa.",
+        price: "Mulai dari Rp 28.000",
+        image: "/images/satekambing_menu3.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/pakbrewok_galerifoto1.webp",
+      "/images/pakbrewok_galerifoto2.webp",
+      "/images/pakbrewok_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "10.30 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "10.30 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "10.30 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "10.30 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "10.30 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "10.30 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "10.30 - 21.00", isOpen: true },
+    ],
   },
-  contact: {
-    whatsapp: "-",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Busana & Jasa Jahit",
-      description:
-        "Pilihan dress, blouse, tunik, dan layanan jahit/ubah sesuai ukuran dan permintaan.",
-      price: "Mulai dari Rp 80.000",
-      image: "/images/sekar_menu1.webp",
+  {
+    id: 75,
+    name: "Loh Jinawi Olshop (Lapak Gelang Tasbih)",
+    slug: "loh-jinawi",
+    heroImage: "/images/lohjinawi_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Loh Jinawi Olshop (Lapak Gelang Tasbih)"',
+    heroSubtitle:
+      "Toko barang antik dan aksesoris tradisional di Kudus yang menawarkan gelang tasbih dan koleksi unik lainnya.",
+    about:
+      "<strong>Loh Jinawi Olshop (Lapak Gelang Tasbih)</strong> merupakan toko yang berlokasi di Bancak, Payaman, Mejobo, Kabupaten Kudus. Menyediakan gelang tasbih, barang antik, dan aksesoris tradisional dengan harga bersahabat dan koleksi eksklusif. :contentReference[oaicite:2]{index=2}",
+    description:
+      "Menjelajahi koleksi unik barang antik dan aksesoris tradisional di Loh Jinawi Olshop — cocok bagi kolektor maupun penggemar item tradisional.",
+    rating: "5 / 5",
+    location: {
+      address: "Bancak, Payaman Kudus",
+      fullAddress:
+        "5V6F+W2X, Bancak, Payaman, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/f7UHSCHhTrWC2Kjx5",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8376295,110.8726151&hl=id&z=15&output=embed",
     },
-  ],
-  galleryImages: [
-    "/images/sekar_galerifoto1.webp",
-    "/images/sekar_galerifoto2.webp",
-    "/images/sekar_galerifoto3.webp",
-    "/images/sekar_galerifoto4.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Rabu", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Kamis", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Jumat", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Sabtu", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
-  ],
-},
-{
-  id: 78,
-  name: "Hasna Fashion 01",
-  slug: "hasna-fashion",
-  heroImage: "/images/hasna_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Hasna Fashion 01"',
-  heroSubtitle:
-    "Toko pakaian muslim dan modern di Kudus yang menyediakan koleksi busana wanita dengan harga terjangkau.",
-  about:
-    "<strong>Hasna Fashion 01</strong> merupakan toko pakaian muslim yang berlokasi di Mejobo, Kudus. Menyediakan gamis, tunik, dan hijab dengan desain modern serta bahan nyaman untuk wanita muda hingga dewasa.",
-  description:
-    "Hasna Fashion 01 hadir untuk melengkapi gaya wanita muslimah dengan pilihan busana syar’i dan kasual dalam satu tempat belanja yang nyaman.",
-  rating: "4.5 / 5",
-  location: {
-    address: "Jalan Suryo Kusumo Gang 12, Jepang, Kudus",
-    fullAddress:
-      "Jalan Suryo Kusumo Gang 12, Jepang, RT.01/RW.10, Mejobo, Kabupaten Kudus",
-    mapsUrl: "https://maps.app.goo.gl/ZSPbCmwMSsy1sy6G8",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.8268955,110.8739949&hl=id&z=17&output=embed",
-  },
-  contact: {
-    whatsapp: "087828396335",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Busana Muslim Wanita",
-      description:
-        "Koleksi gamis, tunik, hijab & aksesori wanita dengan desain kekinian dan bahan nyaman.",
-      price: "Mulai dari Rp 65.000",
-      image: "/images/hasnafashion_menu1.webp",
+    contact: {
+      whatsapp: "081390784335",
+      email: "-",
+      instagram: "-",
     },
-  ],
-  galleryImages: [
-    "/images/hasnafashion_galerifoto1.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "07.30 - 21.00", isOpen: true },
-    { day: "Selasa", hours: "07.30 - 21.00", isOpen: true },
-    { day: "Rabu", hours: "07.30 - 21.00", isOpen: true },
-    { day: "Kamis", hours: "07.30 - 21.00", isOpen: true },
-    { day: "Jumat", hours: "07.30 - 21.00", isOpen: true },
-    { day: "Sabtu", hours: "07.30 - 21.00", isOpen: true },
-    { day: "Minggu", hours: "07.30 - 21.00", isOpen: true },
-  ],
-},
+    menus: [
+      {
+        name: "Gelang Tasbih & Antik",
+        description:
+          "Koleksi gelang tasbih kayu, batu, dan aksesoris tradisional serta barang antik pilihan.",
+        price: "Mulai dari Rp 40.000",
+        image: "/images/lohjinawi_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/lohjinawi_galerifoto1.webp",
+      "/images/lohjinawi_galerifoto2.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "Buka 24 Jam", isOpen: true },
+      { day: "Selasa", hours: "Buka 24 Jam", isOpen: true },
+      { day: "Rabu", hours: "Buka 24 Jam", isOpen: true },
+      { day: "Kamis", hours: "Buka 24 Jam", isOpen: true },
+      { day: "Jumat", hours: "Buka 24 Jam", isOpen: true },
+      { day: "Sabtu", hours: "Buka 24 Jam", isOpen: true },
+      { day: "Minggu", hours: "Buka 24 Jam", isOpen: true },
+    ],
+  },
+  {
+    id: 76,
+    name: "Toko Auralia Jaya",
+    slug: "toko-auralia",
+    heroImage: "/images/tokoauralia_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Toko Auralia Jaya"',
+    heroSubtitle:
+      "Toko swalayan di Kudus yang menyediakan berbagai kebutuhan sehari-hari mulai dari sembako hingga perlengkapan rumah tangga.",
+    about:
+      "<strong>Toko Auralia Jaya</strong> merupakan swalayan yang berlokasi di Mejobo, Kudus. Menyediakan berbagai bahan pokok, alat rumah tangga, minuman, dan kebutuhan harian lengkap dalam satu tempat.",
+    description:
+      "Toko Auralia Jaya menawarkan belanja praktis dan cepat dengan produk lengkap untuk kebutuhan keluarga, mulai dari bahan makanan hingga alat kebersihan rumah.",
+    rating: "4.3 / 5",
+    location: {
+      address: "Pendem Kulon, Jepang, Kudus",
+      fullAddress:
+        "Pendem Kulon, Jepang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/U5pSxKWHwwZKqAfk7",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.82967,110.86641&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "087805412326",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Paket Sembako & Rumah Tangga",
+        description:
+          "Gabungan bahan makanan pokok serta perlengkapan rumah tangga seperti sabun, deterjen, dan alat kebersihan.",
+        price: "Mulai dari Rp 20.000",
+        image: "/images/tokoaurelia_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/tokoauralia_galerifoto1.webp",
+      "/images/tokoauralia_galerifoto2.webp",
+      "/images/tokoauralia_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 21.30", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.30", isOpen: true },
+    ],
+  },
+  {
+    id: 77,
+    name: "Sekar Modiste",
+    slug: "sekar-modiste",
+    heroImage: "/images/sekar_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Sekar Modiste"',
+    heroSubtitle:
+      "Toko pakaian wanita di Kudus yang menyediakan berbagai busana dan layanan jahit/modifikasi dengan desain elegan.",
+    about:
+      "<strong>Sekar Modiste</strong> merupakan butik dan jasa jahit yang berlokasi di Mejobo, Kudus. Menyediakan busana wanita siap pakai, serta layanan jahit dan modifikasi sesuai permintaan pelanggan.",
+    description:
+      "Sekar Modiste membantu Anda tampil percaya diri dengan model pakaian wanita yang disesuaikan, mulai dari casual hingga formal, lengkap dengan layanan jahit profesional.",
+    rating: "4.8 / 5",
+    location: {
+      address: "Jepang, Kudus",
+      fullAddress:
+        "Unnamed Road, Jepang, Kec. Mejobo, Kabupaten Kudus, Jawa Tengah 59381",
+      mapsUrl: "https://maps.app.goo.gl/bfh9QtPPVyCbt5zx9",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8245474,110.8704026&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "-",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Busana & Jasa Jahit",
+        description:
+          "Pilihan dress, blouse, tunik, dan layanan jahit/ubah sesuai ukuran dan permintaan.",
+        price: "Mulai dari Rp 80.000",
+        image: "/images/sekar_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/sekar_galerifoto1.webp",
+      "/images/sekar_galerifoto2.webp",
+      "/images/sekar_galerifoto3.webp",
+      "/images/sekar_galerifoto4.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
+    ],
+  },
+  {
+    id: 78,
+    name: "Hasna Fashion 01",
+    slug: "hasna-fashion",
+    heroImage: "/images/hasna_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Hasna Fashion 01"',
+    heroSubtitle:
+      "Toko pakaian muslim dan modern di Kudus yang menyediakan koleksi busana wanita dengan harga terjangkau.",
+    about:
+      "<strong>Hasna Fashion 01</strong> merupakan toko pakaian muslim yang berlokasi di Mejobo, Kudus. Menyediakan gamis, tunik, dan hijab dengan desain modern serta bahan nyaman untuk wanita muda hingga dewasa.",
+    description:
+      "Hasna Fashion 01 hadir untuk melengkapi gaya wanita muslimah dengan pilihan busana syar’i dan kasual dalam satu tempat belanja yang nyaman.",
+    rating: "4.5 / 5",
+    location: {
+      address: "Jalan Suryo Kusumo Gang 12, Jepang, Kudus",
+      fullAddress:
+        "Jalan Suryo Kusumo Gang 12, Jepang, RT.01/RW.10, Mejobo, Kabupaten Kudus",
+      mapsUrl: "https://maps.app.goo.gl/ZSPbCmwMSsy1sy6G8",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.8268955,110.8739949&hl=id&z=17&output=embed",
+    },
+    contact: {
+      whatsapp: "087828396335",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Busana Muslim Wanita",
+        description:
+          "Koleksi gamis, tunik, hijab & aksesori wanita dengan desain kekinian dan bahan nyaman.",
+        price: "Mulai dari Rp 65.000",
+        image: "/images/hasnafashion_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/hasnafashion_galerifoto1.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "07.30 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "07.30 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "07.30 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "07.30 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "07.30 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "07.30 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "07.30 - 21.00", isOpen: true },
+    ],
+  },
   // UNDAAN
   {
     id: 79,
@@ -5063,155 +5063,155 @@ description:
     ],
   },
   {
-  id: 84,
-  name: "Ngabus Rejo",
-  slug: "ngabus-rejo",
-  heroImage: "/images/ngabusrejo_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Ngabus Rejo"',
-  heroSubtitle:
-    "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan harian dengan harga bersahabat.",
-  about:
-    "<strong>Ngabus Rejo</strong> adalah toko bahan makanan yang berlokasi di Kudus. Menyediakan kebutuhan pokok harian, bumbu, dan produk segar dengan kualitas baik dan harga kompetitif.",
-  description:
-    "Ngabus Rejo menawarkan berbagai bahan makanan dari sembako, sayur, hingga kebutuhan dapur lainnya. Cocok untuk belanja kebutuhan rumah tangga sehari-hari.",
-  rating: "3.7 / 5",
-  location: {
-    address: " Gabus, Medini, Kudus",
-    fullAddress:
-      "Medini, gg17, Gabus, Medini, Kec. Undaan, Kabupaten Demak, Jawa Tengah 59372",
-    mapsUrl: "https://maps.app.goo.gl/CbDihLmNiQoVPENg7",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.9201487,110.7887834&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "085757718417",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Bahan Makanan",
-      description:
-        "Sembako, bumbu dapur, sayuran segar, dan kebutuhan harian lainnya.",
-      price: "Mulai dari Rp 5.000",
-      image: "/images/ngabusrejo_menu1.webp",
+    id: 84,
+    name: "Ngabus Rejo",
+    slug: "ngabus-rejo",
+    heroImage: "/images/ngabusrejo_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Ngabus Rejo"',
+    heroSubtitle:
+      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan harian dengan harga bersahabat.",
+    about:
+      "<strong>Ngabus Rejo</strong> adalah toko bahan makanan yang berlokasi di Kudus. Menyediakan kebutuhan pokok harian, bumbu, dan produk segar dengan kualitas baik dan harga kompetitif.",
+    description:
+      "Ngabus Rejo menawarkan berbagai bahan makanan dari sembako, sayur, hingga kebutuhan dapur lainnya. Cocok untuk belanja kebutuhan rumah tangga sehari-hari.",
+    rating: "3.7 / 5",
+    location: {
+      address: " Gabus, Medini, Kudus",
+      fullAddress:
+        "Medini, gg17, Gabus, Medini, Kec. Undaan, Kabupaten Demak, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/CbDihLmNiQoVPENg7",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.9201487,110.7887834&hl=id&z=15&output=embed",
     },
-  ],
-  galleryImages: [
-    "/images/ngabusrejo_galerifoto1.webp",
-    "/images/ngabusrejo_galerifoto2.webp",
-    "/images/ngabusrejo_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "08.00 - 21.15", isOpen: true },
-    { day: "Selasa", hours: "08.00 - 21.15", isOpen: true },
-    { day: "Rabu", hours: "08.00 - 21.15", isOpen: true },
-    { day: "Kamis", hours: "08.00 - 21.15", isOpen: true },
-    { day: "Jumat", hours: "08.00 - 21.15", isOpen: true },
-    { day: "Sabtu", hours: "08.00 - 21.15", isOpen: true },
-    { day: "Minggu", hours: "08.00 - 21.15", isOpen: true },
-  ],
-},
-{
-  id: 85,
-  name: "Nano Distro",
-  slug: "nano-distro",
-  heroImage: "/images/nanodistro_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Nano Distro"',
-  heroSubtitle:
-    "Toko pakaian pria di Kudus yang menyediakan fashion casual dan trendi untuk anak muda.",
-  about:
-    "<strong>Nano Distro</strong> merupakan toko pakaian pria yang berlokasi di Kudus. Menyediakan pakaian casual, kaos, kemeja, dan aksesoris untuk gaya modern.",
-  description:
-    "Nano Distro menghadirkan koleksi pakaian pria dengan desain kekinian, nyaman dipakai, dan harga bersahabat.",
-  rating: "4.3 / 5",
-  location: {
-    address: " Ngemplak Kidul, Kalirejo, Kudus",
-    fullAddress:
-      "Jalan Kudus - Purwodadi RT.01/RW.01, Ngemplak Kidul, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
-    mapsUrl: "https://maps.app.goo.gl/YekBYVtWroV66iUt6",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.9240339,110.7927053&hl=id&z=15&output=embed",
-  },
-  contact: {
-    whatsapp: "085641349300",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Pakaian Pria",
-      description:
-        "Kaos, kemeja, jaket, dan aksesoris pria dengan desain modern.",
-      price: "Mulai dari Rp 50.000",
-      image: "/images/nanodistro_menu1.webp",
+    contact: {
+      whatsapp: "085757718417",
+      email: "-",
+      instagram: "-",
     },
-  ],
-  galleryImages: [
-    "/images/nanodistro_galerifoto1.webp",
-    "/images/nanodistro_galerifoto2.webp",
-    "/images/nanodistro_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "08.00 - 22.00", isOpen: true },
-    { day: "Selasa", hours: "08.00 - 22.00", isOpen: true },
-    { day: "Rabu", hours: "08.00 - 22.00", isOpen: true },
-    { day: "Kamis", hours: "08.00 - 22.00", isOpen: true },
-    { day: "Jumat", hours: "08.00 - 22.00", isOpen: true },
-    { day: "Sabtu", hours: "08.00 - 22.00", isOpen: true },
-    { day: "Minggu", hours: "08.00 - 22.00", isOpen: true },
-  ],
-},
-{
-  id: 86,
-  name: "Ilbabalanos Store",
-  slug: "ilbabalanos",
-  heroImage: "/images/ilbabalanos_hero.webp",
-  heroTitle: 'Informasi Lengkap tentang UMKM "Ilbabalanos Store"',
-  heroSubtitle:
-    "Toko pakaian di Kudus yang menyediakan berbagai model fashion untuk pria dan wanita.",
-  about:
-    "<strong>Ilbabalanos Store</strong> adalah toko pakaian di Kudus. Menyediakan pakaian pria dan wanita dengan kualitas baik dan desain kekinian.",
-  description:
-    "Ilbabalanos Store menghadirkan busana stylish untuk pria dan wanita dengan harga yang kompetitif.",
-  rating: "4.9 / 5",
-  location: {
-    address: "Ngemplak Lor Satu, Kalirejo, Kudus",
-    fullAddress:
-      "belakang Bank BRI kalirejo, Jl. Purwodadi - Kudus No.km15, RT.1/RW.3, Ngemplak Lor Satu, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
-    mapsUrl: "https://maps.app.goo.gl/4CYJUDiPPLuqimZq7",
-    embedUrl:
-      "https://www.google.com/maps?q=-6.9268485,110.791146&hl=id&z=15&output=embed",
+    menus: [
+      {
+        name: "Bahan Makanan",
+        description:
+          "Sembako, bumbu dapur, sayuran segar, dan kebutuhan harian lainnya.",
+        price: "Mulai dari Rp 5.000",
+        image: "/images/ngabusrejo_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/ngabusrejo_galerifoto1.webp",
+      "/images/ngabusrejo_galerifoto2.webp",
+      "/images/ngabusrejo_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.15", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.15", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.15", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.15", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 21.15", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 21.15", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.15", isOpen: true },
+    ],
   },
-  contact: {
-    whatsapp: "085747807706",
-    email: "-",
-    instagram: "-",
-  },
-  menus: [
-    {
-      name: "Pakaian Pria & Wanita",
-      description:
-        "Beragam model pakaian casual dan formal untuk pria & wanita dengan kualitas nyaman.",
-      price: "Mulai dari Rp 60.000",
-      image: "/images/ilbabalanos_menu1.webp",
+  {
+    id: 85,
+    name: "Nano Distro",
+    slug: "nano-distro",
+    heroImage: "/images/nanodistro_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Nano Distro"',
+    heroSubtitle:
+      "Toko pakaian pria di Kudus yang menyediakan fashion casual dan trendi untuk anak muda.",
+    about:
+      "<strong>Nano Distro</strong> merupakan toko pakaian pria yang berlokasi di Kudus. Menyediakan pakaian casual, kaos, kemeja, dan aksesoris untuk gaya modern.",
+    description:
+      "Nano Distro menghadirkan koleksi pakaian pria dengan desain kekinian, nyaman dipakai, dan harga bersahabat.",
+    rating: "4.3 / 5",
+    location: {
+      address: " Ngemplak Kidul, Kalirejo, Kudus",
+      fullAddress:
+        "Jalan Kudus - Purwodadi RT.01/RW.01, Ngemplak Kidul, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/YekBYVtWroV66iUt6",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.9240339,110.7927053&hl=id&z=15&output=embed",
     },
-  ],
-  galleryImages: [
-    "/images/ilbabalanos_galerifoto1.webp",
-    "/images/ilbabalanos_galerifoto2.webp",
-    "/images/ilbabalanos_galerifoto3.webp",
-  ],
-  openingHours: [
-    { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Rabu", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Kamis", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Jumat", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Sabtu", hours: "08.00 - 21.00", isOpen: true },
-    { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
-  ],
-},
+    contact: {
+      whatsapp: "085641349300",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Pakaian Pria",
+        description:
+          "Kaos, kemeja, jaket, dan aksesoris pria dengan desain modern.",
+        price: "Mulai dari Rp 50.000",
+        image: "/images/nanodistro_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/nanodistro_galerifoto1.webp",
+      "/images/nanodistro_galerifoto2.webp",
+      "/images/nanodistro_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 22.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 22.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 22.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 22.00", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 22.00", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 22.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 22.00", isOpen: true },
+    ],
+  },
+  {
+    id: 86,
+    name: "Ilbabalanos Store",
+    slug: "ilbabalanos",
+    heroImage: "/images/ilbabalanos_hero.webp",
+    heroTitle: 'Informasi Lengkap tentang UMKM "Ilbabalanos Store"',
+    heroSubtitle:
+      "Toko pakaian di Kudus yang menyediakan berbagai model fashion untuk pria dan wanita.",
+    about:
+      "<strong>Ilbabalanos Store</strong> adalah toko pakaian di Kudus. Menyediakan pakaian pria dan wanita dengan kualitas baik dan desain kekinian.",
+    description:
+      "Ilbabalanos Store menghadirkan busana stylish untuk pria dan wanita dengan harga yang kompetitif.",
+    rating: "4.9 / 5",
+    location: {
+      address: "Ngemplak Lor Satu, Kalirejo, Kudus",
+      fullAddress:
+        "belakang Bank BRI kalirejo, Jl. Purwodadi - Kudus No.km15, RT.1/RW.3, Ngemplak Lor Satu, Kalirejo, Kec. Undaan, Kabupaten Kudus, Jawa Tengah 59372",
+      mapsUrl: "https://maps.app.goo.gl/4CYJUDiPPLuqimZq7",
+      embedUrl:
+        "https://www.google.com/maps?q=-6.9268485,110.791146&hl=id&z=15&output=embed",
+    },
+    contact: {
+      whatsapp: "085747807706",
+      email: "-",
+      instagram: "-",
+    },
+    menus: [
+      {
+        name: "Pakaian Pria & Wanita",
+        description:
+          "Beragam model pakaian casual dan formal untuk pria & wanita dengan kualitas nyaman.",
+        price: "Mulai dari Rp 60.000",
+        image: "/images/ilbabalanos_menu1.webp",
+      },
+    ],
+    galleryImages: [
+      "/images/ilbabalanos_galerifoto1.webp",
+      "/images/ilbabalanos_galerifoto2.webp",
+      "/images/ilbabalanos_galerifoto3.webp",
+    ],
+    openingHours: [
+      { day: "Senin", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Selasa", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Rabu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Kamis", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Jumat", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Sabtu", hours: "08.00 - 21.00", isOpen: true },
+      { day: "Minggu", hours: "08.00 - 21.00", isOpen: true },
+    ],
+  },
 ];
 
 export default dataDetailUMKM;
