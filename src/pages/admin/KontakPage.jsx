@@ -517,14 +517,14 @@ export default function KontakAdminPage() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Gradient Border Effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-orange-400  rounded-2xl blur opacity-30"></div>
+              <div className="absolute -inset-1 bg-linear-to-r from-orange-400  rounded-2xl blur opacity-30"></div>
 
               <div className="relative bg-white rounded-2xl p-8">
                 {/* Header */}
                 <div className="flex justify-between items-start mb-6">
                   <div className="flex items-center gap-4">
                     <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full p-0.5">
+                      <div className="w-16 h-16 bg-linear-to-br from-orange-400 to-pink-500 rounded-full p-0.5">
                         <div className="w-full h-full bg-white rounded-full flex items-center justify-center text-2xl font-bold text-orange-600">
                           {selectedMessage.sender_name.charAt(0)}
                         </div>
@@ -612,7 +612,7 @@ export default function KontakAdminPage() {
                 {/* Info Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   {/* Email */}
-                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
+                  <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
@@ -653,7 +653,7 @@ export default function KontakAdminPage() {
                   </div>
 
                   {/* Phone */}
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
+                  <div className="bg-linear-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-xs font-semibold text-green-600 uppercase tracking-wider">
