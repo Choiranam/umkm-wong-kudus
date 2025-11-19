@@ -1,35 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { Icon } from "@iconify/react";
 import Layout from "../../components/admin/layout/Layout";
-import {
-  FaEye,
-  FaTrash,
-  FaSync,
-  FaFileExcel,
-  FaTimes,
-  FaStar,
-} from "react-icons/fa";
+import { FaSync, FaFileExcel, FaTimes } from "react-icons/fa";
 import api from "../../services/api.js";
 import * as XLSX from "xlsx";
+import Toast from "../../components/admin/Toast";
+import Pagination from "../../components/admin/Pagination";
+import DeleteModal from "../../components/admin/DeleteModal";
 
 export default function RatingAdminPage() {
   const [ratings, setRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastType, setToastType] = useState("success");
+  const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRating, setSelectedRating] = useState(null);
-  const modalRef = useRef(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [ratingToDelete, setRatingToDelete] = useState(null);
 
   const itemsPerPage = 5;
   const API_URL = "/rating";
 
-  const showToastMessage = (msg, type = "success") => {
-    setToastMessage(msg);
-    setToastType(type);
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
+  const showToast = (message, type = "success") => {
+    setToast({ show: true, message, type });
   };
 
   const fetchRatings = async () => {
@@ -47,40 +44,47 @@ export default function RatingAdminPage() {
         setAverageRating(avgRes.data.average);
       }
     } catch (err) {
-      showToastMessage("Gagal memuat data rating", "error");
+      showToast("Gagal memuat data rating", "error");
     } finally {
       setLoading(false);
     }
   };
 
-  const deleteRating = async (id) => {
-    if (!window.confirm("Hapus rating ini?")) return;
+  const openDeleteModal = (id) => {
+    setRatingToDelete(id);
+    setDeleteModalOpen(true);
+  };
+
+  const deleteRating = async () => {
+    if (!ratingToDelete) return;
 
     try {
-      const res = await api.delete(`${API_URL}/${id}`);
+      const res = await api.delete(`${API_URL}/${ratingToDelete}`);
       if (res.data.status) {
-        showToastMessage("Rating berhasil dihapus");
+        showToast("Rating berhasil dihapus", "success");
+        setDeleteModalOpen(false);
+        setRatingToDelete(null);
         fetchRatings();
       }
     } catch (err) {
-      showToastMessage("Gagal menghapus rating", "error");
+      showToast("Gagal menghapus rating", "error");
     }
   };
 
   const exportToExcel = () => {
     const exportData = ratings.map((r) => ({
-      Nama: `${r.name} ${r.name_last}`,
+      Nama: `${r.name} ${r.name_last || ""}`.trim(),
       Email: r.email,
       Rating: r.rating,
-      Komentar: r.comment,
+      Komentar: r.comment || "-",
       Waktu: new Date(r.created_at).toLocaleString("id-ID"),
     }));
 
     const ws = XLSX.utils.json_to_sheet(exportData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Rating");
-    XLSX.writeFile(wb, "Rating_UMKM_Wongkudus.xlsx");
-    showToastMessage("Berhasil export ke Excel", "success");
+    XLSX.writeFile(wb, "Rating_UMKM_WongKudus.xlsx");
+    showToast("Berhasil export ke Excel", "success");
   };
 
   useEffect(() => {
@@ -93,171 +97,115 @@ export default function RatingAdminPage() {
     currentPage * itemsPerPage
   );
 
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
-
-  const openDetail = (rating) => {
-    setSelectedRating(rating);
-  };
-
-  const closeDetail = () => {
-    setSelectedRating(null);
-  };
+  const openDetail = (rating) => setSelectedRating(rating);
+  const closeDetail = () => setSelectedRating(null);
 
   const StarRating = ({ value }) => (
     <div className="flex items-center gap-1">
       {[1, 2, 3, 4, 5].map((star) => (
-        <FaStar
+        <Icon
           key={star}
-          className={`w-4 h-4 ${
-            star <= value ? "text-yellow-400 fill-current" : "text-gray-300"
+          icon="mdi:star"
+          className={`w-5 h-5 ${
+            star <= value ? "text-yellow-500" : "text-gray-300"
           }`}
         />
       ))}
+      <span className="ml-2 font-medium text-gray-700">{value}.0</span>
     </div>
   );
 
   return (
     <Layout>
       <div className="flex-1 flex flex-col min-h-0">
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-3 md:p-4">
+        <main className="flex-1 overflow-y-auto bg-gray-50 p-4 md:p-6">
           <div className="max-w-7xl mx-auto">
-            {/* TOAST */}
-            {showToast && (
-              <div
-                className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 px-5 py-2.5 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in-out z-50 text-sm font-medium ${
-                  toastType === "success"
-                    ? "bg-green-100 text-green-800"
-                    : "bg-red-100 text-red-800"
-                }`}
-              >
-                <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                    toastType === "success" ? "bg-green-600" : "bg-red-600"
-                  }`}
-                >
-                  {toastType === "success" ? (
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414L9 13.414l4.707-4.707z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  )}
-                </div>
-                <span>{toastMessage}</span>
-              </div>
+            {/* Toast */}
+            {toast.show && (
+              <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast({ ...toast, show: false })}
+              />
             )}
 
-            {/* HEADER */}
-            <div className="flex justify-between items-center mb-5">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-800">
-                  Daftar Rating
-                </h1>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-sm text-gray-600">Rata-rata:</span>
-                  <div className="flex items-center gap-1">
-                    <span className="text-lg font-bold text-orange">
-                      {averageRating}
-                    </span>
-                    <FaStar className="w-5 h-5 text-yellow-400 fill-current" />
+            {/* Header */}
+            <div className="p-4 bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-800">
+                    Manajemen Rating & Ulasan
+                  </h1>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
+                    <span>Rata-rata Rating:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-bold text-orange-600">
+                        {averageRating.toFixed(1)}
+                      </span>
+                      <Icon
+                        icon="mdi:star"
+                        className="w-7 h-7 text-yellow-500"
+                      />
+                      <span>({ratings.length} ulasan)</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={exportToExcel}
-                  className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition text-sm font-medium"
-                >
-                  <FaFileExcel className="w-4 h-4" />
-                  Export Excel
-                </button>
-                <button
-                  onClick={fetchRatings}
-                  disabled={loading}
-                  className="flex items-center gap-2 bg-orange text-white px-4 py-2 rounded-full hover:bg-orange-dark transition text-sm font-medium"
-                >
-                  {loading ? (
-                    <>
-                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                          fill="none"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
-                      </svg>
-                      Memuat...
-                    </>
-                  ) : (
-                    <>
-                      <FaSync className="w-4 h-4" />
-                      Refresh
-                    </>
-                  )}
-                </button>
+                <div className="flex gap-3">
+                  <button
+                    onClick={exportToExcel}
+                    className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                  >
+                    <FaFileExcel className="w-5 h-5" />
+                    Export Excel
+                  </button>
+                  <button
+                    onClick={fetchRatings}
+                    disabled={loading}
+                    className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition"
+                  >
+                    {loading ? (
+                      "Memuat..."
+                    ) : (
+                      <>
+                        <FaSync className="w-5 h-5" /> Refresh
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* TABLE */}
+            {/* Loading */}
             {loading ? (
-              <div className="flex justify-center py-12">
-                <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-orange"></div>
+              <div className="text-center py-12">
+                <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-orange-500"></div>
               </div>
             ) : (
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                <div className="overflow-x-auto">
+              <>
+                {/* Desktop Table - SUDAH DIRAPIHIN 100% KAYAK YANG AWAL */}
+                <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 hidden md:block">
                   <table className="w-full text-sm">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="px-4 py-3 text-xs font-medium text-gray-500 uppercase text-center">
+                        <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                           No
                         </th>
-                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-center">
+                        <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Pengirim
                         </th>
-                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-center">
+                        <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Email
                         </th>
-                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-center">
+                        <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Rating
                         </th>
-                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-center">
+                        <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Komentar
                         </th>
-                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-center">
+                        <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Waktu
                         </th>
-                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-center">
+                        <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Aksi
                         </th>
                       </tr>
@@ -269,56 +217,74 @@ export default function RatingAdminPage() {
                             key={r.id}
                             className="hover:bg-gray-50 transition"
                           >
-                            <td className="px-4 py-3 text-gray-700 font-medium">
+                            {/* No */}
+                            <td className="px-6 py-4 text-center text-gray-700 font-medium">
                               {(currentPage - 1) * itemsPerPage + idx + 1}
                             </td>
-                            <td className="px-6 py-3">
-                              <div className="flex items-center gap-3">
+
+                            {/* Pengirim - RATA TENGAH */}
+                            <td className="px-6 py-4">
+                              <div className="flex flex-col items-center gap-2">
                                 <img
-                                  src={r.photo_profil}
+                                  src={
+                                    r.photo_profil ||
+                                    "https://via.placeholder.com/40?text=U"
+                                  }
                                   alt={r.name}
                                   className="w-10 h-10 rounded-full object-cover border"
-                                  onError={(e) => {
-                                    e.target.src =
-                                      "https://via.placeholder.com/40?text=Photo";
-                                  }}
+                                  onError={(e) =>
+                                    (e.target.src =
+                                      "https://via.placeholder.com/40?text=U")
+                                  }
                                 />
-                                <div>
-                                  <p className="font-medium text-gray-900">
-                                    {r.name} {r.name_last}
-                                  </p>
-                                </div>
+                                <span className="font-medium text-gray-900 text-center block">
+                                  {r.name} {r.name_last || ""}
+                                </span>
                               </div>
                             </td>
-                            <td className="px-6 py-3 text-gray-600">
+
+                            {/* Email - CENTER */}
+                            <td className="px-6 py-4 text-left text-gray-600">
                               {r.email}
                             </td>
-                            <td className="px-6 py-3 text-center">
+
+                            {/* Rating - CENTER */}
+                            <td className="px-6 py-4 text-left">
                               <StarRating value={r.rating} />
                             </td>
-                            <td className="px-6 py-3 text-gray-700 max-w-xs">
-                              <p className="truncate" title={r.comment}>
-                                {r.comment}
+
+                            {/* Komentar - Tetap truncate tapi center */}
+                            <td className="px-6 py-4 text-left">
+                              <p
+                                className="max-w-xs mx-auto truncate text-gray-700"
+                                title={r.comment || "-"}
+                              >
+                                {r.comment || "-"}
                               </p>
                             </td>
-                            <td className="px-6 py-3 text-xs text-gray-500 whitespace-nowrap">
+
+                            {/* Waktu - CENTER */}
+                            <td className="px-6 py-4 text-left text-xs text-gray-500 whitespace-nowrap">
                               {new Date(r.created_at).toLocaleString("id-ID")}
                             </td>
-                            <td className="px-6 py-3 text-center">
-                              <div className="flex justify-center gap-2">
+
+                            {/* Aksi - CENTER */}
+                            <td className="px-6 py-4 text-left">
+                              <div className="flex justify-center gap-4">
                                 <button
                                   onClick={() => openDetail(r)}
-                                  className="text-blue-600 hover:text-blue-700 transition"
-                                  title="Lihat Detail"
+                                  className="text-blue-600 hover:text-blue-800 transition"
                                 >
-                                  <FaEye className="w-4 h-4" />
+                                  <Icon icon="mdi:eye" className="w-5 h-5" />
                                 </button>
                                 <button
-                                  onClick={() => deleteRating(r.id)}
-                                  className="text-red-600 hover:text-red-700 transition"
-                                  title="Hapus"
+                                  onClick={() => openDeleteModal(r.id)}
+                                  className="text-red-600 hover:text-red-800 transition"
                                 >
-                                  <FaTrash className="w-4 h-4" />
+                                  <Icon
+                                    icon="mdi:trash-can-outline"
+                                    className="w-5 h-5"
+                                  />
                                 </button>
                               </div>
                             </td>
@@ -328,7 +294,7 @@ export default function RatingAdminPage() {
                         <tr>
                           <td
                             colSpan="7"
-                            className="px-4 py-12 text-center text-gray-500 italic"
+                            className="px-6 py-12 text-center text-gray-500 italic"
                           >
                             Belum ada rating.
                           </td>
@@ -338,130 +304,208 @@ export default function RatingAdminPage() {
                   </table>
                 </div>
 
-                {/* PAGINATION */}
-                {ratings.length > itemsPerPage && (
-                  <div className="flex justify-between items-center p-4 border-t text-sm text-gray-600">
-                    <span>
-                      Menampilkan {(currentPage - 1) * itemsPerPage + 1}-
-                      {Math.min(currentPage * itemsPerPage, ratings.length)}{" "}
-                      dari {ratings.length}
-                    </span>
-                    <div className="flex gap-1">
-                      <button
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-100 transition"
-                      >
-                        Prev
-                      </button>
-                      {[...Array(totalPages)].map((_, i) => (
+                {/* Mobile Card - SPACING LEBIH RAPI */}
+                <div className="grid grid-cols-1 gap-4 md:hidden">
+                  {currentRatings.map((r) => (
+                    <div
+                      key={r.id}
+                      className="bg-white rounded-lg shadow-sm border border-gray-200 p-5"
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <img
+                          src={
+                            r.photo_profil ||
+                            "https://via.placeholder.com/48?text=U"
+                          }
+                          alt={r.name}
+                          className="w-12 h-12 rounded-full object-cover border"
+                          onError={(e) =>
+                            (e.target.src =
+                              "https://via.placeholder.com/48?text=U")
+                          }
+                        />
+                        <div>
+                          <p className="font-semibold text-gray-900">
+                            {r.name} {r.name_last || ""}
+                          </p>
+                          <p className="text-sm text-gray-600">{r.email}</p>
+                        </div>
+                      </div>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-center gap-3">
+                          <span className="text-gray-600 font-medium">
+                            Rating:
+                          </span>
+                          <StarRating value={r.rating} />
+                        </div>
+                        <div>
+                          <p className="text-gray-700 italic leading-relaxed">
+                            "{r.comment || "Tidak ada komentar"}"
+                          </p>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          {new Date(r.created_at).toLocaleString("id-ID")}
+                        </p>
+                      </div>
+                      <div className="flex justify-end gap-5 mt-5">
                         <button
-                          key={i + 1}
-                          onClick={() => handlePageChange(i + 1)}
-                          className={`px-3 py-1 border rounded transition ${
-                            currentPage === i + 1
-                              ? "bg-orange text-white"
-                              : "hover:bg-gray-100"
-                          }`}
+                          onClick={() => openDetail(r)}
+                          className="text-blue-600"
                         >
-                          {i + 1}
+                          <Icon icon="mdi:eye" className="w-6 h-6" />
                         </button>
-                      ))}
-                      <button
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-100 transition"
-                      >
-                        Next
-                      </button>
+                        <button
+                          onClick={() => openDeleteModal(r.id)}
+                          className="text-red-600"
+                        >
+                          <Icon
+                            icon="mdi:trash-can-outline"
+                            className="w-6 h-6"
+                          />
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  ))}
+                </div>
+                {/* Pagination */}
+                {ratings.length > itemsPerPage && (
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                  />
                 )}
-              </div>
+              </>
             )}
           </div>
         </main>
 
-        {/* DETAIL MODAL */}
-        {selectedRating && (
-          <div
-            className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50 p-4"
-            onClick={closeDetail}
-          >
-            <div
-              ref={modalRef}
-              className="bg-white rounded-xl p-6 max-w-2xl w-full shadow-2xl max-h-screen overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
-                  Detail Rating
-                </h3>
-                <button
-                  onClick={closeDetail}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  <FaTimes className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <img
-                    src={selectedRating.photo_profil}
-                    alt={selectedRating.name}
-                    className="w-16 h-16 rounded-full object-cover border"
-                    onError={(e) => {
-                      e.target.src =
-                        "https://via.placeholder.com/64?text=Photo";
-                    }}
-                  />
-                  <div>
-                    <p className="text-lg font-semibold text-gray-900">
-                      {selectedRating.name} {selectedRating.name_last}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      {selectedRating.email}
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Rating</p>
-                  <StarRating value={selectedRating.rating} />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Komentar</p>
-                  <p className="text-gray-900 whitespace-pre-wrap">
-                    {selectedRating.comment}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Waktu</p>
-                  <p className="text-gray-900">
-                    {new Date(selectedRating.created_at).toLocaleString(
-                      "id-ID"
-                    )}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+       {selectedRating && (
+  <div
+    className="fixed inset-0 backdrop-blur-sm bg-black/10 flex items-center justify-center z-50 p-4 md:p-8"
+    onClick={closeDetail}
+  >
+    <div
+      className="relative bg-white rounded-2xl shadow-xl border border-gray-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* HEADER */}
+      <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl flex justify-between items-center">
+        <div>
+          <h3 className="text-2xl font-semibold text-gray-800">Detail Rating</h3>
+          <p className="text-sm text-gray-500">ID: #{selectedRating?.id || "-"}</p>
+        </div>
+        <button
+          onClick={closeDetail}
+          className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+        >
+          <FaTimes className="w-5 h-5 text-gray-600" />
+        </button>
+      </div>
 
-        <style jsx>{`
-          @keyframes fadeInOut {
-            0%,
-            100% {
-              opacity: 0;
+      {/* BODY */}
+      <div className="p-6 md:p-10 space-y-10">
+
+        {/* PROFILE */}
+        <div className="flex items-center gap-6">
+          <img
+            src={selectedRating?.photo_profil || "https://via.placeholder.com/120?text=User"}
+            alt={selectedRating?.name}
+            className="w-28 h-28 rounded-full object-cover border-4 border-gray-100 shadow"
+            onError={(e) =>
+              (e.target.src = "https://via.placeholder.com/120?text=User")
             }
-            10%,
-            90% {
-              opacity: 1;
-            }
-          }
-          .animate-fade-in-out {
-            animation: fadeInOut 3s ease-in-out;
-          }
-        `}</style>
+          />
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900">
+              {selectedRating?.name || "Nama"} {selectedRating?.name_last || ""}
+            </h2>
+            <p className="text-lg text-gray-600 mt-2">{selectedRating?.email || "-"}</p>
+          </div>
+        </div>
+
+        {/* RATING */}
+        <div className="text-center p-8 bg-gray-50 rounded-xl border border-gray-200">
+          <p className="text-sm font-semibold text-gray-600 mb-3">Rating</p>
+
+          <div className="flex justify-center gap-2 mb-3">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Icon
+                key={star}
+                icon="mdi:star"
+                className={`w-10 h-10 ${
+                  star <= (selectedRating?.rating || 0)
+                    ? "text-yellow-500"
+                    : "text-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+
+          <p className="text-5xl font-bold text-gray-800">
+            {(selectedRating?.rating || 0).toFixed(1)}
+          </p>
+        </div>
+
+        {/* KOMENTAR */}
+        <div className="space-y-3">
+          <p className="text-sm font-semibold text-gray-600 text-center">Komentar</p>
+          <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <p className="text-lg text-gray-800 text-center leading-relaxed italic">
+              {selectedRating?.comment?.trim()
+                ? `"${selectedRating.comment}"`
+                : <span className="text-gray-500">— Tidak ada komentar —</span>}
+            </p>
+          </div>
+        </div>
+
+        {/* TANGGAL */}
+        <div className="text-center border-t border-gray-200 pt-6">
+          <p className="text-xs font-semibold text-gray-600 mb-1">Dikirim pada</p>
+          <p className="text-lg text-gray-800">
+            {selectedRating?.created_at
+              ? new Date(selectedRating?.created_at).toLocaleString("id-ID", {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              : "-"}
+          </p>
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-2xl">
+        <div className="flex justify-end">
+          <button
+            onClick={closeDetail}
+            className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl shadow transition"
+          >
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+
+        {/* Delete Modal */}
+        <DeleteModal
+          isOpen={deleteModalOpen}
+          onClose={() => setDeleteModalOpen(false)}
+          onConfirm={deleteRating}
+          title="Hapus Rating"
+          message="Apakah Anda yakin ingin menghapus rating ini? Tindakan ini tidak dapat dibatalkan."
+          confirmText="Hapus"
+          icon="mdi:alert-outline"
+          iconColor="text-red-600"
+          iconBg="bg-red-100"
+          confirmColor="bg-red-600 hover:bg-red-700"
+        />
       </div>
     </Layout>
   );
