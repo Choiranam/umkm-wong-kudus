@@ -168,11 +168,8 @@ export default function KategoriUMKMPage() {
         </div>
 
         {loading ? (
-          <div className="flex justify-center items-center py-40">
-            <Icon
-              icon="svg-spinners:90-ring-with-bg"
-              className="w-16 h-16 text-orange-500"
-            />
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-orange-500"></div>
           </div>
         ) : filteredCategories.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -242,8 +239,14 @@ export default function KategoriUMKMPage() {
       </div>
 
       {modal.open && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-fadeIn">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 transform transition-all scale-100 opacity-100">
+        <div
+          onClick={resetForm}
+          className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-fadeIn"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 transform transition-all scale-100 opacity-100"
+          >
             <h2 className="text-2xl text-orange font-bold mb-6">
               {modal.edit ? "Edit" : "Tambah"} Kategori
             </h2>
@@ -305,8 +308,14 @@ export default function KategoriUMKMPage() {
       )}
 
       {umkmList.open && umkmList.category && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-fadeIn">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[85vh] flex flex-col">
+        <div
+          onClick={() => setUmkmList({ open: false, category: null })}
+          className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-fadeIn"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[85vh] flex flex-col"
+          >
             <div className="p-8 border-b border-gray-200">
               <h2 className="text-2xl text-orange font-bold">
                 UMKM di Kategori: {umkmList.category.name}
