@@ -163,7 +163,7 @@ const DetailArtikelPage = () => {
           </div>
 
           <div
-            className="prose prose-lg max-w-none text-dark leading-relaxed space-y-4 wrap-break-word"
+            className="prose prose-lg max-w-none text-dark leading-relaxed whitespace-pre-wrap break-words"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
         </div>
