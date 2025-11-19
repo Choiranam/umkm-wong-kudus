@@ -1,593 +1,380 @@
 import React, { useState, useEffect, useRef } from "react";
 import Layout from "../../components/admin/layout/Layout";
-import { FaEye, FaEdit, FaTrash, FaFilter, FaImage } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 import api from "../../services/api.js";
+import Toast from "../../components/admin/Toast";
+import DeleteModal from "../../components/admin/DeleteModal.jsx";
+
+const API_ARTIKEL = "/articles";
+const API_KATEGORI = "/categories-blog";
 
 export default function ArtikelPage() {
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-  const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
-  const [selectedArticle, setSelectedArticle] = useState(null);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastType, setToastType] = useState("success");
-
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("");
-  const itemsPerPage = 5;
+  const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState(null);
+  const [viewModal, setViewModal] = useState({ open: false, data: null });
+  const [editModal, setEditModal] = useState({ open: false, data: null });
+  const [deleteConfirm, setDeleteConfirm] = useState(null);
 
-  // Edit Form States
-  const [editImagePreview, setEditImagePreview] = useState("");
-  const [editImageName, setEditImageName] = useState("");
-  const [editContentLength, setEditContentLength] = useState(0);
+  const [form, setForm] = useState({
+    title: "",
+    author: "",
+    content: "",
+    category_blog_id: "",
+    image: null,
+  });
+  const [preview, setPreview] = useState(null);
   const fileInputRef = useRef(null);
 
-  const API_ARTIKEL = "https://api-umkmwongkudus.rplrus.com/api/articles";
-  const API_KATEGORI =
-    "https://api-umkmwongkudus.rplrus.com/api/categories-blog";
-
-  const MAX_CONTENT_LENGTH = 1000;
-
-  const navigate = useNavigate();
-
-  // === TOAST ===
-  const showToastMessage = (msg, type = "success") => {
-    setToastMessage(msg);
-    setToastType(type);
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3500);
+  const showToast = (message, type = "success") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
   };
 
-  // === GET TOKEN ===
-  const getToken = () =>
-    localStorage.getItem("token") || sessionStorage.getItem("token");
-
-  // === FETCH KATEGORI ===
   const fetchCategories = async () => {
     try {
       const res = await api.get(API_KATEGORI);
-      if (res.data.status) setCategories(res.data.data);
+      if (res.data.status) setCategories(res.data.data || []);
     } catch (err) {
       console.error(err);
     }
   };
 
-  // === FETCH ARTIKEL ===
-  const fetchArticles = async (categoryId = null) => {
-    setLoading(true);
+  const fetchArticles = async () => {
     try {
-      const url = categoryId
-        ? `${API_ARTIKEL}/category/${categoryId}`
-        : API_ARTIKEL;
-      const res = await api.get(url);
+      setLoading(true);
+      const res = await api.get(API_ARTIKEL);
       if (res.data.status) setArticles(res.data.data || []);
     } catch (err) {
-      showToastMessage("Gagal memuat artikel", "error");
+      showToast("Gagal memuat artikel", "error");
     } finally {
       setLoading(false);
     }
   };
 
-  // === HANDLE IMAGE CHANGE (EDIT) ===
-  const handleEditImageChange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (file.size > 5 * 1024 * 1024) {
-      showToastMessage("Ukuran gambar maksimal 5MB!", "error");
-      return;
-    }
-
-    const validTypes = ["image/jpeg", "image/jpg", "image/png"];
-    if (!validTypes.includes(file.type)) {
-      showToastMessage("Format gambar harus JPG atau PNG!", "error");
-      return;
-    }
-
-    setEditImageName(file.name);
-    const reader = new FileReader();
-    reader.onloadend = () => setEditImagePreview(reader.result);
-    reader.readAsDataURL(file);
-  };
-
-  // === HANDLE CONTENT CHANGE (EDIT) ===
-  const handleEditContentChange = (e) => {
-    const text = e.target.value;
-    setEditContentLength(text.length);
-  };
-
-  // === UPDATE ARTIKEL ===
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    formData.append("_method", "PUT");
-
-    const content = formData.get("content")?.trim();
-    if (!content) {
-      showToastMessage("Isi artikel wajib diisi!", "error");
-      return;
-    }
-    if (content.length > MAX_CONTENT_LENGTH) {
-      showToastMessage(
-        `Isi artikel maksimal ${MAX_CONTENT_LENGTH} karakter!`,
-        "error"
-      );
-      return;
-    }
-
-    const token = getToken();
-    if (!token) return showToastMessage("Token tidak ditemukan", "error");
-
-    try {
-      const res = await api.post(
-        `${API_ARTIKEL}/${selectedArticle.id}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      if (res.data.status) {
-        showToastMessage("Artikel berhasil diperbarui!", "success");
-        setIsEditModalOpen(false);
-        fetchArticles(selectedCategoryFilter);
-      }
-    } catch (err) {
-      const msg = err.response?.data?.message || "Gagal memperbarui artikel";
-      showToastMessage(msg, "error");
-    }
-  };
-
-  // === DELETE ===
-  const handleDelete = async () => {
-    const token = getToken();
-    if (!token) return showToastMessage("Token tidak ditemukan", "error");
-
-    try {
-      const res = await api.delete(`${API_ARTIKEL}/${selectedArticle.id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (res.data.status) {
-        showToastMessage("Artikel berhasil dinonaktifkan!", "success");
-        setIsConfirmDeleteOpen(false);
-        fetchArticles(selectedCategoryFilter);
-      }
-    } catch (err) {
-      showToastMessage(
-        err.response?.data?.message || "Gagal menghapus artikel",
-        "error"
-      );
-    }
-  };
-
-  // === MODAL HANDLERS ===
-  const handleView = (art) => {
-    setSelectedArticle(art);
-    setIsViewModalOpen(true);
-  };
-
-  const handleEdit = (art) => {
-    setSelectedArticle(art);
-    setEditImagePreview(art.image || "");
-    setEditImageName(art.image ? "Gambar saat ini" : "Belum ada gambar");
-    setEditContentLength(art.content?.length || 0);
-    setIsEditModalOpen(true);
-  };
-
-  const handleDeleteConfirm = (art) => {
-    setSelectedArticle(art);
-    setIsConfirmDeleteOpen(true);
-  };
-
-  const handleFilter = () => {
-    fetchArticles(selectedCategoryFilter || null);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) setCurrentPage(page);
-  };
-
-  // === PAGINATION ===
-  const totalPages = Math.ceil(articles.length / itemsPerPage);
-  const currentArticles = articles.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
-  // === LOAD DATA ===
   useEffect(() => {
     fetchCategories();
     fetchArticles();
   }, []);
 
-  // === TRUNCATE TEXT ===
-  const truncateText = (text, maxLength = 80) => {
-    if (!text) return "-";
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
-      : text;
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setForm((prev) => ({ ...prev, image: file }));
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const openEdit = (art) => {
+    setForm({
+      title: art.title,
+      author: art.author,
+      content: art.content || "",
+      category_blog_id: art.category_blog_id,
+      image: null,
+    });
+    setPreview(art.image || null);
+    setEditModal({ open: true, data: art });
+  };
+
+  const resetForm = () => {
+    setForm({
+      title: "",
+      author: "",
+      content: "",
+      category_blog_id: "",
+      image: null,
+    });
+    setPreview(null);
+    setEditModal({ open: false, data: null });
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const fd = new FormData();
+    fd.append("title", form.title);
+    fd.append("author", form.author);
+    fd.append("content", form.content);
+    fd.append("category_blog_id", form.category_blog_id);
+    fd.append("_method", "PUT");
+    if (form.image) fd.append("image", form.image);
+
+    try {
+      await api.post(`${API_ARTIKEL}/${editModal.data.id}`, fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      showToast("Artikel berhasil diperbarui");
+      resetForm();
+      fetchArticles();
+    } catch (err) {
+      showToast("Gagal memperbarui artikel", "error");
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await api.delete(`${API_ARTIKEL}/${deleteConfirm.id}`);
+      showToast("Artikel dinonaktifkan");
+      setDeleteConfirm(null);
+      fetchArticles();
+    } catch (err) {
+      showToast("Gagal menonaktifkan artikel", "error");
+    }
   };
 
   return (
     <Layout>
-      <div className="flex-1 flex flex-col min-h-0">
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-3 md:p-4">
-          <div className="max-w-7xl mx-auto">
-            {/* Toast */}
-            {showToast && (
-              <div
-                className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 px-5 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in-out z-50 ${
-                  toastType === "success"
-                    ? "bg-green-100 text-green-800"
-                    : "bg-red-100 text-red-800"
-                }`}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+
+      <div className="p-4 md:p-6 lg:p-8 max-w-full mx-auto">
+        <div className="p-4 bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 className="text-2xl font-bold text-gray-800">
+              Manajemen Artikel
+            </h1>
+            <div className="flex gap-3">
+              <Link
+                to="/artikel-admin/create"
+                className="flex items-center justify-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition whitespace-nowrap"
               >
-                <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center text-white ${
-                    toastType === "success" ? "bg-green-600" : "bg-red-600"
-                  }`}
-                >
-                  {toastType === "success" ? "Check" : "X"}
-                </div>
-                <span className="text-sm font-medium">{toastMessage}</span>
-              </div>
-            )}
-
-            {/* Header + Filter */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-3">
-              <h1 className="text-2xl font-bold text-gray-800">
-                Manajemen Artikel
-              </h1>
-              <div className="flex gap-2 w-full md:w-auto">
-                <select
-                  value={selectedCategoryFilter}
-                  onChange={(e) => setSelectedCategoryFilter(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange outline-none"
-                >
-                  <option value="">Semua Kategori</option>
-                  {categories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                      {cat.title}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  onClick={handleFilter}
-                  className="flex items-center gap-1 px-3 py-2 bg-orange text-white rounded-lg hover:bg-orange-dark transition"
-                >
-                  <FaFilter className="w-4 h-4" /> Filter
-                </button>
-                <Link
-                  to="/artikel-admin/create"
-                  className="flex items-center gap-2 bg-orange text-white px-4 py-2 rounded-lg hover:bg-orange-dark transition"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 4v16m8-8H4"
-                    />
-                  </svg>
-                  Tambah Artikel
-                </Link>
-              </div>
+                <Icon icon="mdi:plus" className="w-5 h-5" />
+                Tambah Artikel
+              </Link>
             </div>
-
-            {/* Loading */}
-            {loading && (
-              <div className="text-center py-8">
-                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange"></div>
-              </div>
-            )}
-
-            {/* Tabel */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 mt-1">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b border-gray-200">
-                  <tr>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
-                      No
-                    </th>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
-                      Judul
-                    </th>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
-                      Kategori
-                    </th>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
-                      Gambar
-                    </th>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
-                      Paragraf
-                    </th>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
-                      Status
-                    </th>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
-                      Aksi
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {currentArticles.length > 0 ? (
-                    currentArticles.map((art, idx) => (
-                      <tr key={art.id} className="hover:bg-gray-50 transition">
-                        <td className="px-4 py-3 text-center text-gray-700">
-                          {(currentPage - 1) * itemsPerPage + idx + 1}
-                        </td>
-                        <td className="px-4 py-3 text-center font-medium text-gray-900 max-w-xs truncate">
-                          {art.title}
-                        </td>
-                        <td className="px-4 py-3 text-center text-gray-600">
-                          {categories.find((c) => c.id == art.category_blog_id)
-                            ?.title || "-"}
-                        </td>
-                        <td className="px-4 py-3 text-center">
-                          {art.image ? (
-                            <img
-                              src={art.image}
-                              alt={art.title}
-                              className="w-16 h-16 object-cover rounded mx-auto"
-                            />
-                          ) : (
-                            <span className="text-gray-400 text-xs">
-                              Tidak ada
-                            </span>
-                          )}
-                        </td>
-                        <td className="px-4 py-3 text-center text-gray-600 text-xs max-w-xs">
-                          <div className="truncate" title={art.content}>
-                            {truncateText(art.content)}
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 text-center">
-                          <span
-                            className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                              art.status === "active"
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
-                            }`}
-                          >
-                            {art.status}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-center">
-                          <div className="flex justify-center gap-2">
-                            <button
-                              onClick={() => handleView(art)}
-                              className="text-blue-600 hover:text-blue-800"
-                            >
-                              <FaEye className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => handleEdit(art)}
-                              className="text-green-600 hover:text-green-800"
-                            >
-                              <FaEdit className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteConfirm(art)}
-                              className="text-red-600 hover:text-red-800"
-                            >
-                              <FaTrash className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td
-                        colSpan="7"
-                        className="px-4 py-8 text-center text-gray-500"
-                      >
-                        Belum ada artikel.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Pagination */}
-            {articles.length > itemsPerPage && (
-              <div className="flex justify-between items-center mt-4 text-sm text-gray-600">
-                <span>
-                  Menampilkan {(currentPage - 1) * itemsPerPage + 1}-
-                  {Math.min(currentPage * itemsPerPage, articles.length)} dari{" "}
-                  {articles.length}
-                </span>
-                <div className="flex gap-1">
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-100"
-                  >
-                    Previous
-                  </button>
-                  {[...Array(totalPages)].map((_, i) => (
-                    <button
-                      key={i + 1}
-                      onClick={() => handlePageChange(i + 1)}
-                      className={`px-3 py-1 border rounded ${
-                        currentPage === i + 1
-                          ? "bg-orange text-white"
-                          : "hover:bg-gray-100"
-                      }`}
-                    >
-                      {i + 1}
-                    </button>
-                  ))}
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-100"
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
-        </main>
+        </div>
 
-        {/* === MODAL VIEW ARTIKEL === */}
-        {isViewModalOpen && selectedArticle && (
-          <div className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl my-8 mx-4">
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-2xl font-bold text-gray-800">
-                    {selectedArticle.title}
-                  </h2>
-                  <button
-                    onClick={() => setIsViewModalOpen(false)}
-                    className="text-gray-500 hover:text-gray-700 transition"
-                  >
-                    <svg
-                      className="w-7 h-7"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-orange-500"></div>
+          </div>
+        ) : articles.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {articles.map((art) => (
+              <div
+                key={art.id}
+                className="bg-white rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col overflow-hidden"
+              >
+                <div className="p-6 grow">
+                  {art.image ? (
+                    <img
+                      src={art.image}
+                      alt={art.title}
+                      className="w-full h-48 object-cover rounded-xl mb-4 shadow-md"
+                    />
+                  ) : (
+                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-48 mb-4 flex items-center justify-center">
+                      <Icon
+                        icon="mdi:image-off"
+                        className="w-12 h-12 text-gray-400"
                       />
-                    </svg>
-                  </button>
+                    </div>
+                  )}
+                  <h3 className="text-xl font-bold text-gray-900 line-clamp-2">
+                    {art.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+                    {art.content?.replace(/<[^>]*>/g, "") || "Tidak ada konten"}
+                  </p>
+                </div>
+
+                <div className="border-t border-gray-100 bg-gray-50/50 p-5">
+                  <div className="flex justify-between items-center mb-4 text-sm">
+                    <span className="text-gray-700">Kategori</span>
+                    <span className="font-medium text-orange-600 truncate max-w-[180px]">
+                      {categories.find((c) => c.id == art.category_blog_id)
+                        ?.title || "-"}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2">
+                    <button
+                      onClick={() => setViewModal({ open: true, data: art })}
+                      className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition truncate"
+                    >
+                      <Icon icon="mdi:eye" className="w-4 h-4 shrink-0" />
+                      Lihat
+                    </button>
+
+                    <button
+                      onClick={() => openEdit(art)}
+                      className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-medium text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition truncate"
+                    >
+                      <Icon icon="mdi:pencil" className="w-4 h-4 shrink-0" />
+                      Edit
+                    </button>
+
+                    <button
+                      onClick={() => setDeleteConfirm(art)}
+                      className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 transition truncate"
+                    >
+                      <Icon
+                        icon="mdi:trash-can-outline"
+                        className="w-4 h-4 shrink-0"
+                      />
+                      Hapus
+                    </button>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-32 bg-white rounded-2xl shadow-xl">
+            <Icon
+              icon="mdi:folder-search-outline"
+              className="w-20 h-20 text-gray-300 mx-auto"
+            />
+            <h3 className="text-2xl font-semibold text-gray-700 mt-6">
+              Tidak Ada Artikel
+            </h3>
+            <p className="text-gray-500 mt-2">
+              Belum ada artikel yang ditambahkan.
+            </p>
+          </div>
+        )}
+      </div>
 
-              <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
-                {selectedArticle.image ? (
-                  <div className="rounded-xl overflow-hidden shadow-md">
-                    <img
-                      src={selectedArticle.image}
-                      alt={selectedArticle.title}
-                      className="w-full h-80 object-cover"
-                    />
-                  </div>
+      {viewModal.open && viewModal.data && (
+        <div
+          className="fixed inset-0 bg-black/45 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setViewModal({ open: false, data: null });
+            }
+          }}
+        >
+          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 w-full max-w-5xl h-[92vh] flex flex-col">
+            {/* Header - Tetap di atas */}
+            <div className="shrink-0 p-8 pb-4 border-b border-gray-100 flex justify-between items-start">
+              <h2 className="text-3xl font-bold text-gray-900">
+                {viewModal.data.title}
+              </h2>
+              <button
+                onClick={() => setViewModal({ open: false, data: null })}
+                className="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition shadow-sm"
+              >
+                <Icon icon="mdi:close" className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+
+            {/* Body - Scrollable */}
+            <div className="flex-1 overflow-y-auto px-8 pt-6 pb-10">
+              {/* Gambar */}
+              <div className="mb-8, mb-8">
+                {viewModal.data.image ? (
+                  <img
+                    src={viewModal.data.image}
+                    alt={viewModal.data.title}
+                    className="w-full h-96 object-cover rounded-2xl shadow-md"
+                  />
                 ) : (
-                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center text-gray-500">
-                    Tidak ada gambar
+                  <div className="w-full h-96 rounded-2xl bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <Icon
+                      icon="mdi:image-off"
+                      className="w-20 h-20 text-gray-400"
+                    />
                   </div>
                 )}
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              {/* Info Meta */}
+              <div className="mb-10 bg-gray-50 rounded-2xl p-6 shadow-inner border border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <p className="text-gray-500">Penulis</p>
-                    <p className="font-semibold text-gray-800">
-                      {selectedArticle.author}
+                    <p className="text-sm text-gray-500">Penulis</p>
+                    <p className="text-lg font-semibold text-gray-800">
+                      {viewModal.data.author}
                     </p>
                   </div>
                   <div>
-                    <p className="text-gray-500">Kategori</p>
-                    <p className="font-semibold text-gray-800">
+                    <p className="text-sm text-gray-500">Kategori</p>
+                    <p className="text-lg font-semibold text-orange-600">
                       {categories.find(
-                        (c) => c.id == selectedArticle.category_blog_id
+                        (c) => c.id == viewModal.data.category_blog_id
                       )?.title || "-"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-gray-500">Status</p>
+                    <p className="text-sm text-gray-500">Status</p>
                     <span
-                      className={`inline-flex px-3 py-1 text-xs font-bold rounded-full ${
-                        selectedArticle.status === "active"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
+                      className={`inline-flex mt-1 px-4 py-1.5 rounded-full text-sm font-semibold shadow ${
+                        viewModal.data.status === "active"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
                       }`}
                     >
-                      {selectedArticle.status.toUpperCase()}
+                      {viewModal.data.status.toUpperCase()}
                     </span>
                   </div>
                 </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                    Isi Artikel
-                  </h3>
-                  <div
-                    className="prose prose-lg max-w-none bg-gray-50 p-6 rounded-xl border border-gray-200"
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        selectedArticle.content ||
-                        "<em class='text-gray-400'>Tidak ada konten.</em>",
-                    }}
-                  />
-                </div>
               </div>
 
-              <div className="p-6 border-t border-gray-200 flex justify-end">
+              {/* ISI ARTIKEL - Ini yang paling penting, diberi ruang besar & scrollable */}
+              <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      viewModal.data.content ||
+                      "<em class='text-gray-400'>Tidak ada konten yang ditampilkan.</em>",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Footer - Tetap di bawah */}
+            <div className="shrink-0 p-8 border-t bg-gray-50 rounded-b-3xl">
+              <div className="flex justify-end">
                 <button
-                  onClick={() => setIsViewModalOpen(false)}
-                  className="px-6 py-2 bg-orange text-white rounded-lg hover:bg-orange-dark transition font-medium"
+                  onClick={() => setViewModal({ open: false, data: null })}
+                  className="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold shadow-md transition"
                 >
                   Tutup
                 </button>
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* === MODAL EDIT === */}
-        {isEditModalOpen && selectedArticle && (
-          <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-            <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-              <div className="p-6 border-b border-gray-200 sticky top-0 bg-white z-10">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-gray-800">
-                    Edit Artikel
-                  </h3>
-                  <button
-                    onClick={() => setIsEditModalOpen(false)}
-                    className="text-gray-500 hover:text-gray-700"
-                  >
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
+      {editModal.open && editModal.data && (
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              resetForm();
+            }
+          }}
+        >
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl">
+            <div className="max-h-[90vh] overflow-hidden">
+              <div className="p-8 border-b border-gray-200">
+                <h2 className="text-2xl font-bold text-orange">Edit Artikel</h2>
               </div>
 
-              <form onSubmit={handleUpdate} className="p-6 space-y-5">
-                {/* Kategori */}
+              <form
+                onSubmit={handleUpdate}
+                className="p-8 space-y-7 max-h-[calc(90vh-120px)] overflow-y-auto"
+              >
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Kategori *
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Kategori
                   </label>
                   <select
-                    name="category_blog_id"
-                    defaultValue={selectedArticle.category_blog_id}
+                    value={form.category_blog_id}
+                    onChange={(e) =>
+                      setForm({ ...form, category_blog_id: e.target.value })
+                    }
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange outline-none"
                   >
                     <option value="">Pilih Kategori</option>
                     {categories.map((cat) => (
@@ -598,115 +385,90 @@ export default function ArtikelPage() {
                   </select>
                 </div>
 
-                {/* Judul */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Judul *
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Judul Artikel
                   </label>
                   <input
                     type="text"
-                    name="title"
-                    defaultValue={selectedArticle.title}
+                    placeholder="Judul Artikel"
+                    value={form.title}
+                    onChange={(e) =>
+                      setForm({ ...form, title: e.target.value })
+                    }
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
                     required
-                    maxLength="200"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange outline-none"
                   />
                 </div>
 
-                {/* Penulis */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Penulis *
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Penulis
                   </label>
                   <input
                     type="text"
-                    name="author"
-                    defaultValue={selectedArticle.author}
+                    placeholder="Penulis"
+                    value={form.author}
+                    onChange={(e) =>
+                      setForm({ ...form, author: e.target.value })
+                    }
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange outline-none"
                   />
                 </div>
 
-                {/* Gambar + Preview */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
                     Gambar
                   </label>
-                  {editImagePreview && (
-                    <div className="mb-3">
+                  {preview && (
+                    <div className="mb-5">
                       <img
-                        src={editImagePreview}
-                        alt="Preview"
-                        className="w-48 h-48 object-cover rounded-lg shadow-md mx-auto"
+                        src={preview}
+                        alt="Preview gambar artikel"
+                        className="w-full max-w-2xl mx-auto h-80 object-cover rounded-2xl shadow-lg border-4 border-gray-100"
                       />
-                      <p className="text-center text-xs text-green-600 mt-1">
-                        {editImageName}
-                      </p>
                     </div>
                   )}
                   <input
                     type="file"
-                    name="image"
-                    accept="image/jpeg,image/jpg,image/png"
-                    ref={fileInputRef}
-                    onChange={handleEditImageChange}
-                    className="hidden"
+                    accept="image/*"
+                    onChange={handleFile}
+                    className="block w-full text-sm text-gray-600 
+                         file:mr-5 file:py-3 file:px-6 
+                         file:rounded-full file:border-0 
+                         file:bg-orange-50 file:text-orange-700 
+                         hover:file:bg-orange-100 cursor-pointer"
                   />
-                  <div
-                    onClick={() => fileInputRef.current?.click()}
-                    className="cursor-pointer border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-orange transition text-center"
-                  >
-                    <FaImage className="mx-auto text-4xl text-gray-400 mb-2" />
-                    <p className="text-sm">Klik untuk ganti gambar</p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      JPG, PNG, max 5MB
-                    </p>
-                  </div>
                 </div>
 
-                {/* Paragraf - Textarea Biasa (Resizable) */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Paragraf *{" "}
-                    <span className="text-xs text-gray-500">
-                      (Maksimal {MAX_CONTENT_LENGTH} karakter)
-                    </span>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Isi Artikel (HTML diperbolehkan)
                   </label>
                   <textarea
-                    name="content"
+                    placeholder="Isi Artikel (HTML diperbolehkan)"
+                    rows={12}
+                    value={form.content}
+                    onChange={(e) =>
+                      setForm({ ...form, content: e.target.value })
+                    }
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none font-mono text-sm leading-relaxed"
                     required
-                    defaultValue={selectedArticle.content}
-                    rows="10"
-                    maxLength={MAX_CONTENT_LENGTH}
-                    onChange={handleEditContentChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange outline-none resize-vertical"
-                    style={{ minHeight: "150px", maxHeight: "500px" }}
-                  ></textarea>
-                  <div className="flex justify-end text-xs text-gray-500 mt-1">
-                    <span
-                      className={
-                        editContentLength > MAX_CONTENT_LENGTH * 0.9
-                          ? "text-red-600"
-                          : ""
-                      }
-                    >
-                      {editContentLength}/{MAX_CONTENT_LENGTH}
-                    </span>
-                  </div>
+                  />
                 </div>
 
-                {/* Tombol */}
-                <div className="flex justify-end gap-3 pt-4 border-t">
+                <div className="flex justify-end gap-4 pt-6 border-t border-gray-200">
                   <button
                     type="button"
-                    onClick={() => setIsEditModalOpen(false)}
-                    className="px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
+                    onClick={resetForm}
+                    className="px-8 py-3.5 bg-gray-200 text-gray-800 rounded-xl font-medium hover:bg-gray-300 transition"
                   >
                     Batal
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 bg-orange text-white rounded-lg hover:bg-orange-dark font-medium flex items-center gap-2"
+                    className="px-8 py-3.5 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 transition shadow-lg hover:shadow-orange-500/30"
                   >
                     Simpan Perubahan
                   </button>
@@ -714,54 +476,35 @@ export default function ArtikelPage() {
               </form>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* === MODAL CONFIRM DELETE === */}
-        {isConfirmDeleteOpen && selectedArticle && (
-          <div className="fixed inset-0  bg-opacity-40 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl">
-              <h3 className="text-lg font-bold text-gray-800 mb-2">
-                Hapus Artikel?
-              </h3>
-              <p className="text-gray-600 text-sm mb-4">
-                Artikel <strong>{selectedArticle.title}</strong> akan
-                dinonaktifkan.
-              </p>
-              <div className="flex justify-end gap-2">
-                <button
-                  onClick={() => setIsConfirmDeleteOpen(false)}
-                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
-                >
-                  Batal
-                </button>
-                <button
-                  onClick={handleDelete}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-                >
-                  Nonaktifkan
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Animations */}
-        <style jsx>{`
-          @keyframes fadeInOut {
-            0%,
-            100% {
-              opacity: 0;
-            }
-            10%,
-            90% {
-              opacity: 1;
-            }
-          }
-          .animate-fade-in-out {
-            animation: fadeInOut 3s ease-in-out;
-          }
-        `}</style>
-      </div>
+      <DeleteModal
+        isOpen={!!deleteConfirm}
+        onClose={() => setDeleteConfirm(null)}
+        onConfirm={handleDelete}
+        title="Nonaktifkan Artikel?"
+        message={
+          <>
+            Apakah Anda yakin ingin <strong>menonaktifkan</strong> artikel:
+            <br />
+            <span className="font-semibold text-orange-600">
+              "{deleteConfirm?.title}"
+            </span>
+            ?
+            <br />
+            <span className="text-xs text-gray-500 mt-2 block">
+              Artikel tidak akan dihapus permanen, hanya dinonaktifkan.
+            </span>
+          </>
+        }
+        icon="mdi:trash-can-outline"
+        iconColor="text-red-600"
+        iconBg="bg-red-100"
+        confirmText="Ya, Nonaktifkan"
+        confirmColor="bg-red-600 hover:bg-red-700"
+        cancelText="Batal"
+      />
     </Layout>
   );
 }
