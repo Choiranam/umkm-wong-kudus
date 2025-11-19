@@ -118,8 +118,9 @@ export default function RatingAdminPage() {
   return (
     <Layout>
       <div className="flex-1 flex flex-col min-h-0">
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-4 md:p-6">
-          <div className="max-w-7xl mx-auto overflow-x-hidden">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 p-4 md:p-6">
+
+          <div className="max-w-7xl mx-auto">
             {/* Toast */}
             {toast.show && (
               <Toast
@@ -183,8 +184,8 @@ export default function RatingAdminPage() {
             ) : (
               <>
                 {/* Desktop Table - SUDAH DIRAPIHIN 100% KAYAK YANG AWAL */}
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto hidden md:block">
-                 <table className="w-full text-sm min-w-[900px]">
+                <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 hidden md:block overflow-x-hidden">
+                  <table className="w-full text-sm table-fixed">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
                         <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -244,7 +245,7 @@ export default function RatingAdminPage() {
                             </td>
 
                             {/* Email - CENTER */}
-                            <td className="px-6 py-4 text-left text-gray-600">
+                            <td className="px-6 py-4 text-left text-gray-600 max-w-[180px] truncate">
                               {r.email}
                             </td>
 
@@ -256,7 +257,7 @@ export default function RatingAdminPage() {
                             {/* Komentar - Tetap truncate tapi center */}
                             <td className="px-6 py-4 text-left">
                               <p
-                                className="max-w-xs mx-auto truncate text-gray-700"
+                                className="max-w-[200px] truncate text-gray-700"
                                 title={r.comment || "-"}
                               >
                                 {r.comment || "-"}
@@ -264,7 +265,7 @@ export default function RatingAdminPage() {
                             </td>
 
                             {/* Waktu - CENTER */}
-                            <td className="px-6 py-4 text-left text-xs text-gray-500 whitespace-nowrap">
+                            <td className="px-6 py-4 text-left text-xs text-gray-500 max-w-[140px] truncate">
                               {new Date(r.created_at).toLocaleString("id-ID")}
                             </td>
 
@@ -385,11 +386,10 @@ export default function RatingAdminPage() {
     className="fixed inset-0 backdrop-blur-sm bg-black/10 flex items-center justify-center z-50 p-4 md:p-8"
     onClick={closeDetail}
   >
-   <div
-  className="relative bg-white rounded-2xl shadow-xl border border-gray-200 max-w-2xl w-full max-h-[90vh] overflow-hidden"
-  onClick={(e) => e.stopPropagation()}
->
-  <div className="overflow-y-auto max-h-[90vh]">
+    <div
+      className="relative bg-white rounded-2xl shadow-xl border border-gray-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      onClick={(e) => e.stopPropagation()}
+    >
       {/* HEADER */}
       <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl flex justify-between items-center">
         <div>
@@ -475,7 +475,6 @@ export default function RatingAdminPage() {
                 })
               : "-"}
           </p>
-          </div>
         </div>
       </div>
 
