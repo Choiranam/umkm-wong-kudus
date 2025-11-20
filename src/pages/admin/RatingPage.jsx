@@ -114,7 +114,7 @@ export default function RatingAdminPage() {
       <span className="ml-2 font-medium text-gray-700">{value}.0</span>
     </div>
   );
-
+                                          
   return (
     <Layout>
       <div className="flex-1 flex flex-col min-h-0">
@@ -381,117 +381,157 @@ export default function RatingAdminPage() {
           </div>
         </main>
 
-       {selectedRating && (
+      {selectedRating && (
   <div
-    className="fixed inset-0 backdrop-blur-sm bg-black/10 flex items-center justify-center z-50 p-4 md:p-8"
-    onClick={closeDetail}
+    className="fixed inset-0 bg-black/45 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+    onClick={(e) => {
+      if (e.target === e.currentTarget) closeDetail();
+    }}
   >
-    <div
-      className="relative bg-white rounded-2xl shadow-xl border border-gray-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* HEADER */}
-      <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl flex justify-between items-center">
-        <div>
-          <h3 className="text-2xl font-semibold text-gray-800">Detail Rating</h3>
-          <p className="text-sm text-gray-500">ID: #{selectedRating?.id || "-"}</p>
+    <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 w-full max-w-3xl h-[92vh] flex flex-col overflow-hidden animate-[slideUp_0.3s_ease-out]">
+
+      {/* HEADER - TETAP DI ATAS */}
+      <div className="shrink-0 relative overflow-hidden">
+        {/* Decorative Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white opacity-50"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+        
+        <div className="relative p-8 pb-6 flex justify-between items-center">
+          <div className="text-left">
+            <h2 className="text-3xl font-bold text-gray-900 mb-1 text-left">
+              Detail Rating Pengguna
+            </h2>
+            <p className="text-gray-500 text-sm">Informasi lengkap penilaian pelanggan</p>
+          </div>
+
+          <button
+            onClick={closeDetail}
+            className="w-11 h-11 rounded-full bg-white hover:bg-gray-50 flex items-center justify-center transition shadow-lg border border-gray-200 hover:scale-110 transform"
+          >
+            <Icon icon="mdi:close" className="w-6 h-6 text-gray-600" />
+          </button>
         </div>
-        <button
-          onClick={closeDetail}
-          className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
-        >
-          <FaTimes className="w-5 h-5 text-gray-600" />
-        </button>
       </div>
 
-      {/* BODY */}
-      <div className="p-6 md:p-10 space-y-10">
+      {/* BODY - SCROLLABLE Y SAJA */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden px-8 pt-2 pb-10">
 
-        {/* PROFILE */}
-        <div className="flex items-center gap-6">
-          <img
-            src={selectedRating?.photo_profil || "https://via.placeholder.com/120?text=User"}
-            alt={selectedRating?.name}
-            className="w-28 h-28 rounded-full object-cover border-4 border-gray-100 shadow"
-            onError={(e) =>
-              (e.target.src = "https://via.placeholder.com/120?text=User")
-            }
-          />
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900">
-              {selectedRating?.name || "Nama"} {selectedRating?.name_last || ""}
-            </h2>
-            <p className="text-lg text-gray-600 mt-2">{selectedRating?.email || "-"}</p>
-          </div>
-        </div>
-
-        {/* RATING */}
-        <div className="text-center p-8 bg-gray-50 rounded-xl border border-gray-200">
-          <p className="text-sm font-semibold text-gray-600 mb-3">Rating</p>
-
-          <div className="flex justify-center gap-2 mb-3">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Icon
-                key={star}
-                icon="mdi:star"
-                className={`w-10 h-10 ${
-                  star <= (selectedRating?.rating || 0)
-                    ? "text-yellow-500"
-                    : "text-gray-300"
-                }`}
+        {/* PROFILE CARD */}
+        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
+          <div className="flex items-center gap-5 flex-1 text-left">
+            <div className="relative">
+              <img
+                src={
+                  selectedRating.photo_profil ||
+                  "https://via.placeholder.com/80?text=U"
+                }
+                alt="profil"
+                className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg"
               />
-            ))}
+              <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-orange-500 rounded-full border-4 border-white flex items-center justify-center">
+                <Icon icon="mdi:check" className="w-4 h-4 text-white" />
+              </div>
+            </div>
+            <div className="flex-1">
+              <p className="text-xl font-bold text-gray-900 mb-1">
+                {selectedRating.name} {selectedRating.name_last || ""}
+              </p>
+              <div className="flex items-center gap-2 text-gray-500">
+                <Icon icon="mdi:email-outline" className="w-4 h-4" />
+                <p className="text-sm">{selectedRating.email}</p>
+              </div>
+            </div>
           </div>
-
-          <p className="text-5xl font-bold text-gray-800">
-            {(selectedRating?.rating || 0).toFixed(1)}
-          </p>
         </div>
 
-        {/* KOMENTAR */}
-        <div className="space-y-3">
-          <p className="text-sm font-semibold text-gray-600 text-center">Komentar</p>
-          <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-            <p className="text-lg text-gray-800 text-center leading-relaxed italic">
-              {selectedRating?.comment?.trim()
-                ? `"${selectedRating.comment}"`
-                : <span className="text-gray-500">— Tidak ada komentar —</span>}
+        {/* STAR RATING CARD */}
+        <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 mb-6 border border-orange-100 shadow-sm">
+          <p className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide flex items-center gap-2">
+            <Icon icon="mdi:star-circle" className="w-5 h-5 text-orange-500" />
+            Penilaian
+          </p>
+          <div className="flex items-center gap-3 text-left">
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Icon
+                  key={i}
+                  icon="mdi:star"
+                  className={`w-8 h-8 transition-transform hover:scale-110 ${
+                    i <= selectedRating.rating
+                      ? "text-yellow-500 drop-shadow-md"
+                      : "text-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="ml-2 flex items-baseline gap-1">
+              <span className="text-4xl font-bold text-gray-900">
+                {selectedRating.rating}
+              </span>
+              <span className="text-2xl font-medium text-gray-500">.0</span>
+            </div>
+          </div>
+          <div className="mt-3 flex items-center gap-2">
+            <div className="h-2 bg-gray-200 rounded-full flex-1 overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full transition-all duration-500"
+                style={{ width: `${(selectedRating.rating / 5) * 100}%` }}
+              ></div>
+            </div>
+            <span className="text-sm font-medium text-gray-600">{(selectedRating.rating / 5) * 100}%</span>
+          </div>
+        </div>
+
+        {/* KOMENTAR CARD */}
+        <div className="bg-white rounded-2xl p-6 border-2 border-gray-200 mb-6 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-start gap-2 mb-3 text-left">
+            <Icon icon="mdi:comment-text-outline" className="w-5 h-5 text-orange-500" />
+            <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Komentar</p>
+          </div>
+          <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+            <p className="text-gray-800 leading-relaxed text-base text-left">
+              {selectedRating.comment || <em className="text-gray-400">Tidak ada komentar.</em>}
             </p>
           </div>
         </div>
 
-        {/* TANGGAL */}
-        <div className="text-center border-t border-gray-200 pt-6">
-          <p className="text-xs font-semibold text-gray-600 mb-1">Dikirim pada</p>
-          <p className="text-lg text-gray-800">
-            {selectedRating?.created_at
-              ? new Date(selectedRating?.created_at).toLocaleString("id-ID", {
-                  weekday: "long",
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
-              : "-"}
-          </p>
+        {/* WAKTU CARD */}
+        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+          <div className="flex items-center gap-2 mb-2">
+            <Icon icon="mdi:clock-outline" className="w-5 h-5 text-orange-500" />
+            <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Dikirim Pada</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="bg-orange-100 rounded-lg p-3">
+              <Icon icon="mdi:calendar" className="w-6 h-6 text-orange-600" />
+            </div>
+            <p className="text-gray-800 font-medium text-base">
+              {new Date(selectedRating.created_at).toLocaleString("id-ID", {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              })}
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* FOOTER */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-2xl">
-        <div className="flex justify-end">
-          <button
-            onClick={closeDetail}
-            className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl shadow transition"
-          >
-            Tutup
-          </button>
-        </div>
+      {/* FOOTER - TETAP DI BAWAH */}
+      <div className="shrink-0 p-8 pt-6 border-t bg-gradient-to-b from-gray-50 to-white rounded-b-3xl flex justify-end items-center gap-3">
+        <button
+          onClick={closeDetail}
+          className="px-8 py-3 bg-orange-500 text-white rounded-xl font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2"
+        >
+          Tutup
+        </button>
       </div>
     </div>
   </div>
 )}
+
 
 
         {/* Delete Modal */}
