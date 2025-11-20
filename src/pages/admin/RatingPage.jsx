@@ -114,7 +114,7 @@ export default function RatingAdminPage() {
       <span className="ml-2 font-medium text-gray-700">{value}.0</span>
     </div>
   );
-
+                                          
   return (
     <Layout>
       <div className="flex-1 flex flex-col min-h-0">
@@ -514,6 +514,7 @@ export default function RatingAdminPage() {
             </div>
           </div>
         )}
+
 
         {/* Delete Modal */}
         <DeleteModal

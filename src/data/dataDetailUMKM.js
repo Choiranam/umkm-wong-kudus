@@ -215,7 +215,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "6285866640818",
       email: "-",
-      instagram: "-",
+      instagram: "es.cincau.pasundan_",
     },
     menus: [
       {
@@ -332,7 +332,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085641742274",
       email: "-",
-      instagram: "-",
+      instagram: "restomvr.kudus",
     },
     menus: [
       {
@@ -522,7 +522,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "-",
       email: "-",
-      instagram: "-",
+      instagram: "siskanuna_boutique",
     },
     menus: [
       {
@@ -586,7 +586,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085711556655",
       email: "-",
-      instagram: "-",
+      instagram: "terebatik.idn",
     },
     menus: [
       {
@@ -888,7 +888,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "081326425112",
       email: "-",
-      instagram: "-",
+      instagram: "ayamgepreksai_official",
     },
     menus: [
       {
@@ -1127,7 +1127,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085815271237",
       email: "-",
-      instagram: "arfanoutfit",
+      instagram: "arfanoutfitkudus",
     },
     menus: [
       {
@@ -1267,7 +1267,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "-",
       email: "-",
-      instagram: "-",
+      instagram: "warungmakanmbahsapar",
     },
     menus: [
       {
@@ -1540,7 +1540,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "-",
       email: "-",
-      instagram: "-",
+      instagram: "kasehito_",
     },
     menus: [
       {
@@ -1586,7 +1586,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085710221752",
       email: "-",
-      instagram: "-",
+      instagram: "basina.food",
     },
     menus: [
       {
@@ -1880,7 +1880,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "628562765946",
       email: "-",
-      instagram: "-",
+      instagram: "cakrawala.segosambel",
     },
     menus: [
       {
@@ -1949,7 +1949,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085641756023",
       email: "-",
-      instagram: "-",
+      instagram: "oporpanggangkudus",
     },
     menus: [
       {
@@ -2036,7 +2036,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "08562707781",
       email: "-",
-      instagram: "-",
+      instagram: "warungenthogpakbadi",
     },
     menus: [
       {
@@ -2179,7 +2179,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "-",
       email: "-",
-      instagram: "-",
+      instagram: "kedai_es_bangmaman",
     },
     menus: [
       {
@@ -2870,7 +2870,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "08156577137",
       email: "-",
-      instagram: "-",
+      instagram: "js_muslim_collection_kudus",
     },
     menus: [
       {
@@ -3113,7 +3113,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "-",
       email: "-",
-      instagram: "-",
+      instagram: "tehatea_indonesia",
     },
     menus: [
       {
@@ -3166,7 +3166,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "0895383599877",
       email: "-",
-      instagram: "-",
+      instagram: "warungmakan2putra",
     },
     menus: [
       {
@@ -3238,7 +3238,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085691006788",
       email: "-",
-      instagram: "-",
+      instagram: "jasaangkut464",
     },
     menus: [
       {
@@ -3289,7 +3289,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "081466712358",
       email: "-",
-      instagram: "-",
+      instagram: "segosambel_lekkas",
     },
     menus: [
       {
@@ -3365,56 +3365,6 @@ export const dataDetailUMKM = [
       },
     ],
     galleryImages: [
-      "/images/tokojemaah_galerifoto1.webp",
-      "/images/tokojemaah_galerifoto2.webp",
-    ],
-    openingHours: [
-      { day: "Senin", hours: "08.00 - 17.00", isOpen: true },
-      { day: "Selasa", hours: "08.00 - 17.00", isOpen: true },
-      { day: "Rabu", hours: "08.00 - 17.00", isOpen: true },
-      { day: "Kamis", hours: "08.00 - 17.00", isOpen: true },
-      { day: "Jumat", hours: "08.00 - 17.00", isOpen: true },
-      { day: "Sabtu", hours: "08.00 - 17.00", isOpen: true },
-      { day: "Minggu", hours: "08.00 - 17.00", isOpen: true },
-    ],
-  },
-  {
-    id: 56,
-    name: "Toko Jamaah",
-    slug: "toko-jamaah",
-    heroImage: "/images/tokojamaah_hero.webp",
-    heroTitle: 'Informasi Lengkap tentang UMKM "Toko Jamaah"',
-    heroSubtitle:
-      "Toko bahan makanan di Kudus yang menyediakan berbagai kebutuhan dapur, bumbu masak, dan bahan kue dengan harga terjangkau.",
-    about:
-      "<strong>Toko Jamaah</strong> merupakan toko bahan makanan yang berlokasi di Kudus. Menyediakan aneka bahan pokok, bumbu dapur, tepung, minyak, hingga cemilan ringan. Cocok untuk kebutuhan rumah tangga maupun usaha kuliner.",
-    description:
-      "Toko Jamaah dikenal dengan produknya yang lengkap, harga bersahabat, dan pelayanan ramah. Menjadi pilihan praktis bagi warga Kudus untuk memenuhi kebutuhan dapur sehari-hari.",
-    rating: "4.0 / 5",
-    location: {
-      address: "Jalan, Winong, Kudus",
-      fullAddress:
-        "6QCR+G39, Jalan, Winong, Kaliwungu, Kudus Regency, Central Java 59332",
-      mapsUrl: "https://maps.app.goo.gl/EQWarx4Kj8qRdgGq9",
-      embedUrl:
-        "https://www.google.com/maps?q=-6.7787026,110.7902339&hl=id&z=15&output=embed",
-    },
-    contact: {
-      whatsapp: "-",
-      email: "-",
-      instagram: "-",
-    },
-    menus: [
-      {
-        name: "Paket Bahan Makanan Lengkap",
-        description:
-          "Tersedia berbagai bahan makanan seperti tepung, gula, merica, dan garam untuk kebutuhan rumahan maupun usaha.",
-        price: "Mulai Rp 10.000",
-        image: "/images/tokojamaah_menu1.webp",
-      },
-    ],
-    galleryImages: [
-      "/images/tokojemaah_galerifoto1.webp",
       "/images/tokojemaah_galerifoto2.webp",
     ],
     openingHours: [
@@ -4032,7 +3982,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "0291438130",
       email: "-",
-      instagram: "-",
+      instagram: "lareesjaya.electronics",
     },
     menus: [
       {
@@ -4082,7 +4032,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "-",
       email: "-",
-      instagram: "-",
+      instagram: "escoklatcokot.kudus",
     },
     menus: [
       {
@@ -4515,7 +4465,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "081390443331",
       email: "-",
-      instagram: "-",
+      instagram: "satekambing_pakbrewok",
     },
     menus: [
       {
@@ -4628,7 +4578,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "087805412326",
       email: "-",
-      instagram: "-",
+      instagram: "toko_auralia_jaya_kudus",
     },
     menus: [
       {
@@ -4678,7 +4628,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "-",
       email: "-",
-      instagram: "-",
+      instagram: "sekar_modiste20",
     },
     menus: [
       {
@@ -4778,7 +4728,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085278090870",
       email: "-",
-      instagram: "-",
+      instagram: "seblakqueen_prasmanan",
     },
     menus: [
       {
@@ -5136,7 +5086,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085641349300",
       email: "-",
-      instagram: "-",
+      instagram: "nanodistro",
     },
     menus: [
       {
@@ -5186,7 +5136,7 @@ export const dataDetailUMKM = [
     contact: {
       whatsapp: "085747807706",
       email: "-",
-      instagram: "-",
+      instagram: "ilbabalanos_store",
     },
     menus: [
       {
