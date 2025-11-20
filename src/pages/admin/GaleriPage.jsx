@@ -259,7 +259,7 @@ export default function GaleriUMKM() {
                         currentItems.map((g, i) => {
                           const umkm = umkms.find((u) => u.id === g.umkm_id);
                           return (
-                            <tr key={g.id} className="hover:bg-gray-50">
+                            <tr key={g.id} className="hover:bg-gray-50 text-dark">
                               <td className="px-5 py-3 text-center text-gray-700">
                                 {(currentPage - 1) * itemsPerPage + i + 1}
                               </td>

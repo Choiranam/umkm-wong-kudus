@@ -11,7 +11,7 @@ export default function Layout({ children }) {
   const renderContent = () => {
     if (activeTab === "Files") return <FilesComponent />;
     if (activeTab === "Calendar") return <CalendarComponent />;
-    if (activeTab === "Aktivitas") return <AktivitasComponent />;
+    if (activeTab === "Aktivities") return <AktivitasComponent />;
 
     // Kalau belum pilih tab, tampilkan children atau teks default
     return (

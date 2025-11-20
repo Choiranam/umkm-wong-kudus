@@ -115,7 +115,7 @@ export default function InfoProfilePage() {
                 <button
                   onClick={handleSubmit}
                   disabled={isLoading}
-                  className="px-6 py-2.5 bg-orange text-white rounded-xl hover:bg-orange-dark font-medium transition flex items-center gap-2"
+                  className="px-6 py-2.5 bg-orange-500 text-white rounded-xl hover:bg-orange-dark font-medium transition flex items-center gap-2"
                 >
                   {isLoading ? (
                     <>

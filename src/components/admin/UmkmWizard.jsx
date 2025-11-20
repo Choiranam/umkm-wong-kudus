@@ -13,23 +13,18 @@ export default function UmkmWizard({
 }) {
   const {
     wizardStep,
-    setWizardStep,
-    isWizardStarted,
     loading,
     toast,
     basicData,
     openingHours,
-    setOpeningHours,
     listingData,
-    setListingData,
     contactData,
-    setContactData,
     locationData,
-    setLocationData,
     galleryPreviews,
     menuItems,
     isEditMode,
     isDirty,
+    isWizardStarted,
     handleClose,
     handleBack,
     handleBasicChange,
@@ -291,7 +286,6 @@ export default function UmkmWizard({
                                 name="rating"
                                 value={basicData.rating}
                                 onChange={handleBasicChange}
-                                maxLength="3"
                                 className="form-input"
                                 required
                               />
@@ -488,7 +482,7 @@ export default function UmkmWizard({
                               value={locationData.address}
                               onChange={handleLocationChange}
                               className="form-input"
-                              placeholder="Ngemplik Rt04/02, Sukoharjo, Gribig, Kec. Gebog..."
+                              placeholder="Alamat singkat"
                               required
                             ></textarea>
                           </FormInput>
@@ -499,7 +493,7 @@ export default function UmkmWizard({
                               value={locationData.full_address}
                               onChange={handleLocationChange}
                               className="form-input"
-                              placeholder="Ngemplik Rt04/02, Sukoharjo, Gribig, Kec. Gebog, Kabupaten Kudus, Jawa Tengah 59333"
+                              placeholder="Alamat lengkap"
                             ></textarea>
                           </FormInput>
                           <FormInput label="Maps URL">
@@ -509,7 +503,7 @@ export default function UmkmWizard({
                               value={locationData.maps_url}
                               onChange={handleLocationChange}
                               className="form-input"
-                              placeholder="https://maps.app.goo.gl/..."
+                              placeholder="URL Google Maps"
                             />
                           </FormInput>
                           <FormInput label="Embed URL">
@@ -519,7 +513,7 @@ export default function UmkmWizard({
                               value={locationData.embed_url}
                               onChange={handleLocationChange}
                               className="form-input"
-                              placeholder="https://www.google.com/maps/embed?pb=..."
+                              placeholder="URL Embed Maps"
                             />
                           </FormInput>
                         </div>

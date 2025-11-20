@@ -210,15 +210,15 @@ export default function KategoriPage() {
                         currentCategories.map((cat, i) => (
                           <tr
                             key={cat.id}
-                            className="hover:bg-gray-50 transition"
+                            className="hover:bg-gray-50 transition text-dark"
                           >
                             <td className="px-5 py-3 text-gray-700">
                               {(currentPage - 1) * itemsPerPage + i + 1}
                             </td>
-                            <td className="px-4 py-3 text-left font-medium text-gray-900">
+                            <td className="px-4 py-3 text-left font-medium">
                               {cat.title}
                             </td>
-                            <td className="px-4 py-3 text-left text-gray-600 text-sm">
+                            <td className="px-4 py-3 text-left text-sm">
                               {cat.description || "-"}
                             </td>
                             <td className="px-4 py-3 text-left">

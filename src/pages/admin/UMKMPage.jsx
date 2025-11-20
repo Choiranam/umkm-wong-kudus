@@ -298,7 +298,7 @@ export default function UMKMPage() {
                     <tbody className="divide-y divide-gray-200">
                       {currentUmkms.length > 0 ? (
                         currentUmkms.map((u, i) => (
-                          <tr key={u.id} className="hover:bg-gray-50">
+                          <tr key={u.id} className="hover:bg-gray-50 text-dark">
                             <td className="px-5 py-3">
                               {(currentPage - 1) * itemsPerPage + i + 1}
                             </td>
