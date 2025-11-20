@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "/images/logo_navbar_footer.webp";
 import useLogin from "../../services/useLogin";
 import AuthService from "../../services/authService";
+import Toast from "../../components/admin/Toast";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,9 +12,21 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
-  const [showPopup, setShowPopup] = useState(false);
+
+  const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
 
   const { login, loading, error } = useLogin();
+
+  const showToast = (msg, type = "success") => {
+    setToast({ show: true, message: msg, type });
+  };
+
+  const hideToast = () =>
+    setToast({ show: false, message: "", type: "success" });
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -37,6 +50,12 @@ const LoginPage = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      showToast(error, "error");
+    }
+  }, [error]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await login(email, password, remember);
@@ -52,21 +71,17 @@ const LoginPage = () => {
         localStorage.removeItem("remember_me");
       }
 
-      setShowPopup(true);
+      showToast("Login berhasil! Mengalihkan...", "success");
       setTimeout(() => {
         navigate("/dashboard", { replace: true });
-      }, 1000);
-    } else {
-      setShowPopup(false);
+      }, 1200);
     }
   };
 
   return (
     <div className="bg-light min-h-screen flex flex-col">
-      {showPopup && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white py-2 px-4 rounded shadow animate-fade-in z-50">
-          Login berhasil! Mengalihkan...
-        </div>
+      {toast.show && (
+        <Toast message={toast.message} type={toast.type} onClose={hideToast} />
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 flex-1">
@@ -129,10 +144,6 @@ const LoginPage = () => {
             >
               {loading ? "Loading..." : "Login"}
             </button>
-
-            {error && (
-              <p className="text-red-600 text-sm mt-3 text-center">{error}</p>
-            )}
           </form>
         </div>
 
@@ -144,16 +155,6 @@ const LoginPage = () => {
           />
         </div>
       </div>
-
-      <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-in-out;
-        }
-      `}</style>
     </div>
   );
 };

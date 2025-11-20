@@ -319,15 +319,10 @@ export default function ArtikelPage() {
               </div>
 
               {/* ISI ARTIKEL - Ini yang paling penting, diberi ruang besar & scrollable */}
-              <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      viewModal.data.content ||
-                      "<em class='text-gray-400'>Tidak ada konten yang ditampilkan.</em>",
-                  }}
-                />
-              </div>
+              <div
+                className="prose prose-lg text-left max-w-none text-dark leading-relaxed whitespace-pre-wrap wrap-break-word"
+                dangerouslySetInnerHTML={{ __html: viewModal.data.content }}
+              />
             </div>
 
             {/* Footer - Tetap di bawah */}

@@ -507,7 +507,6 @@ const KontakPage = () => {
             website ini.
           </p>
           <form onSubmit={handleReviewSubmit} className="space-y-6">
-            {/* === FOTO PROFIL + DRAG & DROP === */}
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="relative group" ref={dropRef}>
                 <div
@@ -623,8 +622,6 @@ const KontakPage = () => {
                     if (file) handleFileSelect(file);
                   }}
                 />
-
-                {/* === MENU FOTO DENGAN ANIMASI STAGGERED === */}
                 <Transition
                   show={showPhotoMenu && profilePic}
                   enter="transition ease-out duration-200"
@@ -816,8 +813,6 @@ const KontakPage = () => {
             </button>
           </form>
         </div>
-
-        {/* === MODAL LIHAT FOTO === */}
         {showPhotoModal && profilePic && (
           <div
             className="fixed inset-0 bg-black/60 flex items-center justify-center z-9999 p-4 overflow-hidden"
@@ -842,8 +837,6 @@ const KontakPage = () => {
             </div>
           </div>
         )}
-
-        {/* === CROPPER MODAL === */}
         {showCropper && tempImage && (
           <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-9999 p-4"
