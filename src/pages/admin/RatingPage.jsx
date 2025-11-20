@@ -406,7 +406,6 @@ export default function RatingAdminPage() {
                   <FaTimes className="w-5 h-5 text-gray-600" />
                 </button>
               </div>
-
               {/* BODY */}
               <div className="p-6 md:p-10 space-y-10">
                 {/* PROFILE */}

@@ -295,7 +295,7 @@ export default function KontakAdminPage() {
                     </div>
 
                     {/* STATUS */}
-                    <div className="bg-gradient-to-br rounded-2xl p-6 border border-gray-100 shadow-sm mb-6">
+                    <div className="bg-linear-to-br rounded-2xl p-6 border border-gray-100 shadow-sm mb-6">
                       <div className="flex flex-col text-left">
                         <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide flex items-center gap-2 mb-2">
                           <Icon icon="mdi:email-mark-as-unread" className="w-5 h-5 text-orange-500" />
@@ -340,7 +340,7 @@ export default function KontakAdminPage() {
                     </div>
 
                     {/* WAKTU */}
-                    <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm mt-6">
+                    <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm mt-6">
                       <div className="flex items-center gap-2 mb-2">
                         <Icon icon="mdi:clock-outline" className="w-5 h-5 text-orange-500" />
                         <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Dikirim Pada</p>
@@ -358,7 +358,7 @@ export default function KontakAdminPage() {
                     </div>
                   </div>
 
-                  <div className="shrink-0 p-8 pt-6 border-t bg-gradient-to-b from-gray-50 to-white rounded-b-3xl flex justify-end items-center">
+                  <div className="shrink-0 p-8 pt-6 border-t bg-linear-to-b from-gray-50 to-white rounded-b-3xl flex justify-end items-center">
                     <button
                       onClick={() => setSelectedMessage(null)}
                       className="px-8 py-3 bg-orange-500 text-white rounded-xl font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2"
