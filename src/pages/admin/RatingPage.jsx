@@ -119,7 +119,6 @@ export default function RatingAdminPage() {
     <Layout>
       <div className="flex-1 flex flex-col min-h-0">
         <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 p-4 md:p-6">
-
           <div className="max-w-7xl mx-auto">
             {/* Toast */}
             {toast.show && (
@@ -271,7 +270,7 @@ export default function RatingAdminPage() {
 
                             {/* Aksi - CENTER */}
                             <td className="px-6 py-4 text-left">
-                              <div className="flex justify-center gap-4">
+                              <div className="flex justify-start gap-4">
                                 <button
                                   onClick={() => openDetail(r)}
                                   className="text-blue-600 hover:text-blue-800 transition"
@@ -381,118 +380,140 @@ export default function RatingAdminPage() {
           </div>
         </main>
 
-       {selectedRating && (
-  <div
-    className="fixed inset-0 backdrop-blur-sm bg-black/10 flex items-center justify-center z-50 p-4 md:p-8"
-    onClick={closeDetail}
-  >
-    <div
-      className="relative bg-white rounded-2xl shadow-xl border border-gray-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* HEADER */}
-      <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl flex justify-between items-center">
-        <div>
-          <h3 className="text-2xl font-semibold text-gray-800">Detail Rating</h3>
-          <p className="text-sm text-gray-500">ID: #{selectedRating?.id || "-"}</p>
-        </div>
-        <button
-          onClick={closeDetail}
-          className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
-        >
-          <FaTimes className="w-5 h-5 text-gray-600" />
-        </button>
-      </div>
-
-      {/* BODY */}
-      <div className="p-6 md:p-10 space-y-10">
-
-        {/* PROFILE */}
-        <div className="flex items-center gap-6">
-          <img
-            src={selectedRating?.photo_profil || "https://via.placeholder.com/120?text=User"}
-            alt={selectedRating?.name}
-            className="w-28 h-28 rounded-full object-cover border-4 border-gray-100 shadow"
-            onError={(e) =>
-              (e.target.src = "https://via.placeholder.com/120?text=User")
-            }
-          />
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900">
-              {selectedRating?.name || "Nama"} {selectedRating?.name_last || ""}
-            </h2>
-            <p className="text-lg text-gray-600 mt-2">{selectedRating?.email || "-"}</p>
-          </div>
-        </div>
-
-        {/* RATING */}
-        <div className="text-center p-8 bg-gray-50 rounded-xl border border-gray-200">
-          <p className="text-sm font-semibold text-gray-600 mb-3">Rating</p>
-
-          <div className="flex justify-center gap-2 mb-3">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Icon
-                key={star}
-                icon="mdi:star"
-                className={`w-10 h-10 ${
-                  star <= (selectedRating?.rating || 0)
-                    ? "text-yellow-500"
-                    : "text-gray-300"
-                }`}
-              />
-            ))}
-          </div>
-
-          <p className="text-5xl font-bold text-gray-800">
-            {(selectedRating?.rating || 0).toFixed(1)}
-          </p>
-        </div>
-
-        {/* KOMENTAR */}
-        <div className="space-y-3">
-          <p className="text-sm font-semibold text-gray-600 text-center">Komentar</p>
-          <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-            <p className="text-lg text-gray-800 text-center leading-relaxed italic">
-              {selectedRating?.comment?.trim()
-                ? `"${selectedRating.comment}"`
-                : <span className="text-gray-500">— Tidak ada komentar —</span>}
-            </p>
-          </div>
-        </div>
-
-        {/* TANGGAL */}
-        <div className="text-center border-t border-gray-200 pt-6">
-          <p className="text-xs font-semibold text-gray-600 mb-1">Dikirim pada</p>
-          <p className="text-lg text-gray-800">
-            {selectedRating?.created_at
-              ? new Date(selectedRating?.created_at).toLocaleString("id-ID", {
-                  weekday: "long",
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
-              : "-"}
-          </p>
-        </div>
-      </div>
-
-      {/* FOOTER */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-2xl">
-        <div className="flex justify-end">
-          <button
+        {selectedRating && (
+          <div
+            className="fixed inset-0 backdrop-blur-sm bg-black/10 flex items-center justify-center z-50 p-4 md:p-8"
             onClick={closeDetail}
-            className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl shadow transition"
           >
-            Tutup
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+            <div
+              className="relative bg-white rounded-2xl shadow-xl border border-gray-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* HEADER */}
+              <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl flex justify-between items-center">
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-800">
+                    Detail Rating
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    ID: #{selectedRating?.id || "-"}
+                  </p>
+                </div>
+                <button
+                  onClick={closeDetail}
+                  className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+                >
+                  <FaTimes className="w-5 h-5 text-gray-600" />
+                </button>
+              </div>
 
+              {/* BODY */}
+              <div className="p-6 md:p-10 space-y-10">
+                {/* PROFILE */}
+                <div className="flex items-center gap-6">
+                  <img
+                    src={
+                      selectedRating?.photo_profil ||
+                      "https://via.placeholder.com/120?text=User"
+                    }
+                    alt={selectedRating?.name}
+                    className="w-28 h-28 rounded-full object-cover border-4 border-gray-100 shadow"
+                    onError={(e) =>
+                      (e.target.src =
+                        "https://via.placeholder.com/120?text=User")
+                    }
+                  />
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900">
+                      {selectedRating?.name || "Nama"}{" "}
+                      {selectedRating?.name_last || ""}
+                    </h2>
+                    <p className="text-lg text-gray-600 mt-2">
+                      {selectedRating?.email || "-"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* RATING */}
+                <div className="text-center p-8 bg-gray-50 rounded-xl border border-gray-200">
+                  <p className="text-sm font-semibold text-gray-600 mb-3">
+                    Rating
+                  </p>
+
+                  <div className="flex justify-center gap-2 mb-3">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Icon
+                        key={star}
+                        icon="mdi:star"
+                        className={`w-10 h-10 ${
+                          star <= (selectedRating?.rating || 0)
+                            ? "text-yellow-500"
+                            : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <p className="text-5xl font-bold text-gray-800">
+                    {(selectedRating?.rating || 0).toFixed(1)}
+                  </p>
+                </div>
+
+                {/* KOMENTAR */}
+                <div className="space-y-3">
+                  <p className="text-sm font-semibold text-gray-600 text-center">
+                    Komentar
+                  </p>
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
+                    <p className="text-lg text-gray-800 text-center leading-relaxed italic">
+                      {selectedRating?.comment?.trim() ? (
+                        `"${selectedRating.comment}"`
+                      ) : (
+                        <span className="text-gray-500">
+                          — Tidak ada komentar —
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                {/* TANGGAL */}
+                <div className="text-center border-t border-gray-200 pt-6">
+                  <p className="text-xs font-semibold text-gray-600 mb-1">
+                    Dikirim pada
+                  </p>
+                  <p className="text-lg text-gray-800">
+                    {selectedRating?.created_at
+                      ? new Date(selectedRating?.created_at).toLocaleString(
+                          "id-ID",
+                          {
+                            weekday: "long",
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )
+                      : "-"}
+                  </p>
+                </div>
+              </div>
+
+              {/* FOOTER */}
+              <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-2xl">
+                <div className="flex justify-end">
+                  <button
+                    onClick={closeDetail}
+                    className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl shadow transition"
+                  >
+                    Tutup
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Delete Modal */}
         <DeleteModal
