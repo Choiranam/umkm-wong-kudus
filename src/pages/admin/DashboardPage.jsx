@@ -1,22 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/admin/layout/Layout";
-import {
-  RefreshCw,
-  Download,
-  Settings,
-  Tag,
-  Store,
-  MapPin,
-  MessageCircle,
-  User,
-  Plus, // <-- TAMBAHAN
-  Pencil, // <-- TAMBAHAN
-  Trash2, // <-- TAMBAHAN
-} from "lucide-react";
-import api from "../../services/api"; // sesuaikan path ke file api.js kamu
-import AuthService from "../../services/authService"; // sesuaikan path
+import { Icon } from "@iconify/react";
+import api from "../../services/api";
+import Toast from "../../components/admin/Toast";
 
-// Kunci untuk localStorage
 const REMINDERS_KEY = "dashboardReminders";
 
 export default function Dashboard() {
@@ -32,35 +19,48 @@ export default function Dashboard() {
 
   const [adminTeam, setAdminTeam] = useState([]);
   const [loadingTeam, setLoadingTeam] = useState(true);
+  const [loadingStats, setLoadingStats] = useState(true);
 
-  // --- State untuk Reminder ---
   const [reminders, setReminders] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [currentText, setCurrentText] = useState("");
   const [editingId, setEditingId] = useState(null);
-  // --- Akhir State Reminder ---
 
-  const endpoints = [
-    "https://api-umkmwongkudus.rplrus.com/api/categories/total",
-    "https://api-umkmwongkudus.rplrus.com/api/umkm/total",
-    "https://api-umkmwongkudus.rplrus.com/api/kecamatan/total",
-    "https://api-umkmwongkudus.rplrus.com/api/blog-category/total",
-    "https://api-umkmwongkudus.rplrus.com/api/blog/total",
-    "https://api-umkmwongkudus.rplrus.com/api/contact-umkm/total",
-    "https://api-umkmwongkudus.rplrus.com/api/rating/total",
-  ];
+  const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
 
-  // Fetch statistik utama (tanpa auth)
+  const showToast = (msg, type = "success") => {
+    setToast({ show: true, message: msg, type });
+  };
+
+  const hideToast = () =>
+    setToast({ show: false, message: "", type: "success" });
+
   const fetchStats = async () => {
-    // ... (kode fetchStats Anda tetap sama)
+    setLoadingStats(true);
     try {
+      const endpoints = [
+        "/categories/total",
+        "/umkm/total",
+        "/kecamatan/total",
+        "/blog-category/total",
+        "/blog/total",
+        "/contact-umkm/total",
+        "/rating/total",
+      ];
+
       const res = await Promise.all(
-        endpoints.map((url) =>
-          fetch(url)
-            .then((r) => r.json())
-            .catch(() => null)
+        endpoints.map((ep) =>
+          api
+            .get(ep)
+            .then((r) => r.data)
+            .catch(() => ({}))
         )
       );
+
       setData({
         kategori: res[0]?.total_categories || 0,
         umkm: res[1]?.total_umkm || 0,
@@ -70,60 +70,40 @@ export default function Dashboard() {
         pesan: res[5]?.total_contact_umkm || 0,
         rating: res[6]?.total_rating || 0,
       });
-    } catch (e) {
-      console.error("Error fetch stats:", e);
+    } catch {
+      showToast("Gagal memuat statistik", "error");
+    } finally {
+      setLoadingStats(false);
     }
   };
 
-  // Fetch data tim admin → PAKAI BEARER TOKEN
   const fetchAdminTeam = async () => {
-    // ... (kode fetchAdminTeam Anda tetap sama)
     try {
       setLoadingTeam(true);
-      const response = await api.get("/users/all");
-      if (
-        response.data &&
-        response.data.status &&
-        Array.isArray(response.data.data)
-      ) {
-        setAdminTeam(response.data.data);
+      const res = await api.get("/users/all");
+      if (res.data.status && Array.isArray(res.data.data)) {
+        setAdminTeam(res.data.data);
       } else {
         setAdminTeam([]);
       }
-    } catch (err) {
-      console.error(
-        "Gagal mengambil data admin:",
-        err.response?.data || err.message
-      );
+    } catch {
       setAdminTeam([]);
     } finally {
       setLoadingTeam(false);
     }
   };
 
-  // Refresh semua data
-  const fetchAllData = () => {
+  const fetchAll = () => {
     fetchStats();
     fetchAdminTeam();
   };
 
   useEffect(() => {
-    // Cek autentikasi & set token (jika belum)
-    if (AuthService.isAuthenticated()) {
-      fetchAllData();
-    } else {
-      // Optional: redirect ke login jika belum login
-      // window.location.href = "/login";
-    }
-
-    // -- TAMBAHAN: Muat reminders dari localStorage saat komponen mount --
-    const storedReminders = localStorage.getItem(REMINDERS_KEY);
-    if (storedReminders) {
-      setReminders(JSON.parse(storedReminders));
-    }
+    fetchAll();
+    const saved = localStorage.getItem(REMINDERS_KEY);
+    if (saved) setReminders(JSON.parse(saved));
   }, []);
 
-  // -- TAMBAHAN: Simpan reminders ke localStorage setiap kali 'reminders' berubah --
   useEffect(() => {
     localStorage.setItem(REMINDERS_KEY, JSON.stringify(reminders));
   }, [reminders]);
@@ -148,15 +128,11 @@ export default function Dashboard() {
     "Rating",
   ];
 
-  // --- FUNGSI CRUD UNTUK REMINDER ---
-
   const handleShowForm = (reminder = null) => {
     if (reminder) {
-      // Mode Edit
       setEditingId(reminder.id);
       setCurrentText(reminder.text);
     } else {
-      // Mode Tambah
       setEditingId(null);
       setCurrentText("");
     }
@@ -171,329 +147,274 @@ export default function Dashboard() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!currentText.trim()) return; // Jangan simpan jika kosong
+    if (!currentText.trim()) return;
 
     if (editingId) {
-      // Update (Edit)
       setReminders(
         reminders.map((r) =>
           r.id === editingId ? { ...r, text: currentText } : r
         )
       );
     } else {
-      // Create (Tambah)
-      const newReminder = {
-        id: Date.now(), // ID unik sederhana
-        text: currentText,
-      };
-      setReminders([...reminders, newReminder]);
+      setReminders([...reminders, { id: Date.now(), text: currentText }]);
     }
-    handleCancel(); // Reset form
+    handleCancel();
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("Yakin ingin menghapus reminder ini?")) {
+    if (confirm("Yakin ingin menghapus reminder ini?")) {
       setReminders(reminders.filter((r) => r.id !== id));
     }
   };
 
-  // --- AKHIR FUNGSI CRUD REMINDER ---
-
   return (
     <Layout>
-      {/* Perbaikan layout anti-scroll dari sebelumnya */}
-      <div className="h-screen bg-gray-50/70 p-4">
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-full flex flex-col">
-          {/* Header */}
-          <div className="bg-linear-to-r from-orange-500 to-amber-600 px-5 py-4">
-            {/* ... (kode header Anda tetap sama) ... */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-              <div>
-                <h1 className="text-2xl font-bold text-white">
-                  Dashboard Admin
-                </h1>
-                <p className="text-orange-100 text-sm">
-                  UMKM Wong Kudus – Live Statistics
-                </p>
+      {toast.show && (
+        <Toast message={toast.message} type={toast.type} onClose={hideToast} />
+      )}
+
+      <div className="p-4 md:p-6 lg:p-8">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="flex flex-col items-start gap-1">
+              <h1 className="text-2xl font-bold text-gray-800 text-left">
+                Dashboard Admin
+              </h1>
+              <p className="text-sm text-gray-600 text-left">
+                UMKM Wong Kudus – Live Statistics
+              </p>
+            </div>
+            <button
+              onClick={fetchAll}
+              className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-xl transition"
+            >
+              <Icon icon="mdi:refresh" className="w-5 h-5" />
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
+          <div className="bg-linear-to-br from-orange-500 to-amber-600 rounded-2xl p-5 text-white shadow-md">
+            <Icon icon="mdi:tag-outline" className="w-9 h-9 opacity-80 mb-2" />
+            <p className="text-sm opacity-90">Kategori</p>
+            <p className="text-2xl font-bold">
+              {loadingStats ? "—" : data.kategori}
+            </p>
+          </div>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
+            <Icon
+              icon="mdi:store-outline"
+              className="w-9 h-9 text-orange-600 mb-2"
+            />
+            <p className="text-sm text-gray-600">UMKM</p>
+            <p className="text-2xl font-bold text-gray-900">
+              {loadingStats ? "—" : data.umkm}
+            </p>
+          </div>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
+            <Icon
+              icon="mdi:map-marker-outline"
+              className="w-9 h-9 text-orange-600 mb-2"
+            />
+            <p className="text-sm text-gray-600">Kecamatan</p>
+            <p className="text-2xl font-bold text-gray-900">
+              {loadingStats ? "—" : data.kecamatan}
+            </p>
+          </div>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
+            <Icon
+              icon="mdi:message-outline"
+              className="w-9 h-9 text-orange-600 mb-2"
+            />
+            <p className="text-sm text-gray-600">Pesan Masuk</p>
+            <p className="text-2xl font-bold text-gray-900">
+              {loadingStats ? "—" : data.pesan}
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+              <h3 className="text-lg font-bold text-gray-800 mb-10">
+                Statistik Sistem
+              </h3>
+              <div className="grid grid-cols-7 gap-3">
+                {chartData.map((value, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div className="relative w-full h-36">
+                      <div
+                        className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-orange-600 to-amber-500 rounded-t-xl transition-all duration-1000"
+                        style={{
+                          height: `${(value / maxValue) * 100}%`,
+                          minHeight: value > 0 ? "10px" : "0px",
+                        }}
+                      />
+                      <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-sm font-bold text-gray-700">
+                        {value}
+                      </span>
+                    </div>
+                    <span className="text-xs text-gray-600 mt-2">
+                      {labels[i]}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={fetchAllData}
-                  className="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-xs font-medium border border-white/30 transition"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  Refresh Data
-                </button>
-                <button className="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-xs font-medium border border-white/30 transition">
-                  <Download className="w-4 h-4" />
-                  Export
-                </button>
-                <button className="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-xs font-medium border border-white/30 transition">
-                  <Settings className="w-4 h-4" />
-                  Pengaturan
-                </button>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-bold text-gray-800">
+                  Reminder Hari Ini
+                </h3>
+                {!showForm && (
+                  <button
+                    onClick={() => handleShowForm()}
+                    className="flex items-center gap-2 text-sm bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl transition"
+                  >
+                    <Icon icon="mdi:plus" className="w-5 h-5" />
+                    Tambah
+                  </button>
+                )}
+              </div>
+
+              {showForm && (
+                <form onSubmit={handleSubmit} className="mb-4 space-y-3">
+                  <input
+                    type="text"
+                    value={currentText}
+                    onChange={(e) => setCurrentText(e.target.value)}
+                    placeholder={
+                      editingId ? "Edit reminder..." : "Tulis reminder baru..."
+                    }
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    autoFocus
+                  />
+                  <div className="flex justify-end gap-3">
+                    <button
+                      type="button"
+                      onClick={handleCancel}
+                      className="px-5 py-2.5 bg-gray-200 text-gray-800 rounded-xl hover:bg-gray-300 transition"
+                    >
+                      Batal
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-5 py-2.5 bg-orange-500 text-white rounded-xl hover:bg-orange-600 transition"
+                    >
+                      {editingId ? "Simpan" : "Tambah"}
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              <div className="space-y-3">
+                {reminders.length > 0
+                  ? reminders.map((r) => (
+                      <div
+                        key={r.id}
+                        className="flex items-center justify-between bg-orange-50 border border-orange-200 rounded-xl p-4"
+                      >
+                        <p className="text-sm text-orange-900 flex-1 pr-4">
+                          {r.text}
+                        </p>
+                        <div className="flex gap-3">
+                          <button
+                            onClick={() => handleShowForm(r)}
+                            className="text-orange-600 hover:text-orange-800"
+                          >
+                            <Icon icon="mdi:pencil" className="w-5 h-5" />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(r.id)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <Icon
+                              icon="mdi:trash-can-outline"
+                              className="w-5 h-5"
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  : !showForm && (
+                      <p className="text-center text-gray-500 py-6 text-sm">
+                        Belum ada reminder hari ini.
+                      </p>
+                    )}
               </div>
             </div>
           </div>
 
-          {/* Konten dengan scroll internal */}
-          <div className="p-4 md:p-5 overflow-y-auto flex-1">
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-              {/* ... (kode stat cards Anda tetap sama) ... */}
-              <div className="bg-linear-to-br from-orange-500 to-amber-600 rounded-xl p-4 text-white shadow-sm">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="text-orange-100 text-xs">Kategori</p>
-                    <p className="text-3xl font-bold">{data.kategori}</p>
-                  </div>
-                  <Tag className="w-7 h-7 opacity-80" />
-                </div>
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-bold text-gray-800">Tim Admin</h3>
+                {loadingTeam && (
+                  <span className="text-sm text-gray-500">memuat...</span>
+                )}
               </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="text-gray-600 text-xs">UMKM</p>
-                    <p className="text-3xl font-bold text-gray-900">
-                      {data.umkm}
-                    </p>
-                  </div>
-                  <Store className="w-7 h-7 text-orange-600" />
-                </div>
-              </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="text-gray-600 text-xs">Kecamatan</p>
-                    <p className="text-3xl font-bold text-gray-900">
-                      {data.kecamatan}
-                    </p>
-                  </div>
-                  <MapPin className="w-7 h-7 text-orange-600" />
-                </div>
-              </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="text-gray-600 text-xs">Pesan Masuk</p>
-                    <p className="text-3xl font-bold text-gray-900">
-                      {data.pesan}
-                    </p>
-                  </div>
-                  <MessageCircle className="w-7 h-7 text-orange-600" />
-                </div>
+              <div className="space-y-4">
+                {adminTeam.length > 0
+                  ? adminTeam.map((user) => (
+                      <div key={user.id} className="flex items-center gap-4">
+                        {user.foto_profil ? (
+                          <img
+                            src={user.foto_profil}
+                            alt={user.name}
+                            className="w-10 h-10 rounded-full object-cover shadow"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 bg-linear-to-br from-orange-500 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow">
+                            {user.name?.[0].toUpperCase() || "?"}
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-gray-900 truncate">
+                            {user.name || "Tanpa Nama"}
+                          </p>
+                          <p className="text-xs text-gray-500">{user.email}</p>
+                        </div>
+                        <span className="text-xs px-3 py-1 rounded-full bg-green-100 text-green-700">
+                          Online
+                        </span>
+                      </div>
+                    ))
+                  : !loadingTeam && (
+                      <p className="text-center text-gray-500 py-6 text-sm">
+                        Tidak ada data admin
+                      </p>
+                    )}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-              {/* Left: Chart + Reminder */}
-              <div className="lg:col-span-2 space-y-5">
-                {/* Chart (sudah diperbaiki) */}
-                <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-                  <h3 className="text-sm font-semibold text-gray-800 mb-4">
-                    Statistik Sistem
-                  </h3>
-                  <div className="flex items-end justify-around h-44 gap-2">
-                    {chartData.map((value, i) => (
-                      <div
-                        key={i}
-                        className="flex flex-col items-center flex-1"
-                      >
-                        <div className="relative w-full mb-2 h-36">
-                          <div
-                            className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-orange-600 to-amber-500 rounded-t-md transition-all duration-1000 ease-out"
-                            style={{
-                              height: `${(value / maxValue) * 100}%`,
-                              minHeight: value > 0 ? "8px" : "0px",
-                            }}
-                          />
-                          <div className="absolute inset-x-0 -top-6 text-xs font-semibold text-gray-700 text-center">
-                            {value}
-                          </div>
-                        </div>
-                        <span className="text-[10px] text-gray-500 mt-1 whitespace-nowrap">
-                          {labels[i]}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* === BLOK REMINDER YANG DIMODIFIKASI === */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-sm font-semibold text-gray-800">
-                      Reminder Hari Ini
-                    </h3>
-                    {!showForm && (
-                      <button
-                        onClick={() => handleShowForm()}
-                        className="flex items-center gap-1 text-xs bg-orange-500 hover:bg-orange-600 text-white px-2 py-1 rounded-md transition"
-                      >
-                        <Plus className="w-3 h-3" />
-                        Tambah
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Form Tambah/Edit */}
-                  {showForm && (
-                    <form onSubmit={handleSubmit} className="mb-3 space-y-2">
-                      <input
-                        type="text"
-                        value={currentText}
-                        onChange={(e) => setCurrentText(e.target.value)}
-                        placeholder={
-                          editingId
-                            ? "Edit reminder..."
-                            : "Tulis reminder baru..."
-                        }
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-orange-500"
-                      />
-                      <div className="flex justify-end gap-2">
-                        <button
-                          type="button"
-                          onClick={handleCancel}
-                          className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded-md"
-                        >
-                          Batal
-                        </button>
-                        <button
-                          type="submit"
-                          className="text-xs bg-orange-600 hover:bg-orange-700 text-white px-3 py-1 rounded-md"
-                        >
-                          {editingId ? "Simpan" : "Tambah"}
-                        </button>
-                      </div>
-                    </form>
-                  )}
-
-                  {/* Daftar Reminders */}
-                  <div className="space-y-2">
-                    {reminders.length > 0
-                      ? reminders.map((reminder) => (
-                          <div
-                            key={reminder.id}
-                            className="flex justify-between items-center bg-orange-50 border border-orange-100 text-orange-800 rounded-lg p-3 text-sm"
-                          >
-                            <p className="flex-1 wrap-break-word">
-                              {reminder.text}
-                            </p>
-                            <div className="flex gap-2 ml-2 shrink-0">
-                              <button
-                                onClick={() => handleShowForm(reminder)}
-                                className="text-orange-600 hover:text-orange-800"
-                              >
-                                <Pencil className="w-4 h-4" />
-                              </button>
-                              <button
-                                onClick={() => handleDelete(reminder.id)}
-                                className="text-red-500 hover:text-red-700"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </button>
-                            </div>
-                          </div>
-                        ))
-                      : !showForm && (
-                          <p className="text-xs text-gray-500 text-center py-2">
-                            Tidak ada reminder hari ini.
-                          </p>
-                        )}
-                  </div>
-                </div>
-                {/* === AKHIR BLOK REMINDER === */}
-              </div>
-
-              {/* Right: Tim Admin + Progress */}
-              <div className="space-y-5">
-                {/* TIM ADMIN */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                  {/* ... (kode Tim Admin Anda tetap sama) ... */}
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-sm font-semibold text-gray-800">
-                      Tim Admin
-                    </h3>
-                    {loadingTeam && (
-                      <span className="text-xs text-gray-500">memuat...</span>
-                    )}
-                  </div>
-                  <div className="space-y-3">
-                    {adminTeam.length > 0 ? (
-                      adminTeam.map((user) => (
-                        <div key={user.id} className="flex items-center gap-3">
-                          {user.foto_profil ? (
-                            <img
-                              src={user.foto_profil}
-                              alt={user.name}
-                              className="w-9 h-9 rounded-full object-cover shadow"
-                              onError={(e) => {
-                                e.target.src = "";
-                                e.target.style.display = "none";
-                                e.target.nextElementSibling.style.display =
-                                  "flex";
-                              }}
-                            />
-                          ) : null}
-                          <div
-                            className={`w-9 h-9 bg-gradient- h-0.5to-br from-orange-500 to-amber-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow ${
-                              user.foto_profil ? "hidden" : "flex"
-                            }`}
-                          >
-                            {user.name?.charAt(0).toUpperCase() || "?"}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium truncate">
-                              {user.name || "Tanpa Nama"}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              {user.email}
-                            </p>
-                          </div>
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
-                            Online
-                          </span>
-                        </div>
-                      ))
-                    ) : !loadingTeam ? (
-                      <p className="text-xs text-gray-500 text-center py-4">
-                        Tidak ada data admin
-                      </p>
-                    ) : null}
-                  </div>
-                </div>
-
-                {/* Progress Bulan Ini */}
-                <div className="bg-linear-to-br from-orange-500 to-amber-600 rounded-xl p-5 text-white text-center">
-                  {/* ... (kode Progress Anda tetap sama) ... */}
-                  <h3 className="text-sm font-semibold mb-3">
-                    Progress Bulan Ini
-                  </h3>
-                  <div className="relative w-28 h-28 mx-auto">
-                    <svg viewBox="0 0 120 120" className="-rotate-90">
-                      <circle
-                        cx="60"
-                        cy="60"
-                        r="50"
-                        stroke="#991b1b"
-                        strokeWidth="14"
-                        fill="none"
-                      />
-                      <circle
-                        cx="60"
-                        cy="60"
-                        r="50"
-                        stroke="white"
-                        strokeWidth="14"
-                        fill="none"
-                        strokeDasharray="314"
-                        strokeDashoffset={314 - 314 * 0.78}
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <p className="text-3xl font-black">78%</p>
-                    </div>
-                  </div>
+            <div className="bg-linear-to-br from-orange-500 to-amber-600 rounded-2xl p-7 text-white text-center shadow-lg">
+              <h3 className="text-lg font-bold mb-5">Progress Bulan Ini</h3>
+              <div className="relative w-32 h-32 mx-auto">
+                <svg viewBox="0 0 128 128" className="-rotate-90">
+                  <circle
+                    cx="64"
+                    cy="64"
+                    r="56"
+                    stroke="#fdba74"
+                    strokeWidth="14"
+                    fill="none"
+                  />
+                  <circle
+                    cx="64"
+                    cy="64"
+                    r="56"
+                    stroke="white"
+                    strokeWidth="14"
+                    fill="none"
+                    strokeDasharray="352"
+                    strokeDashoffset={352 - 352 * 0.78}
+                    className="transition-all duration-1000"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="text-3xl font-black">78%</p>
                 </div>
               </div>
             </div>

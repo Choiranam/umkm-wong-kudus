@@ -120,7 +120,7 @@ export default function KontakAdminPage() {
                 {/* Judul + Tombol */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                   <div>
-                    <h1 className="text-2xl font-bold text-gray-800">Kotak Masuk Kontak</h1>
+                    <h1 className="text-2xl font-bold text-left text-gray-800">Kontak UMKM</h1>
                     <p className="text-sm text-gray-600 mt-1">
                       Total: <span className="font-bold">{contacts.length}</span> pesan | 
                       Menampilkan: <span className="font-bold">{data.length}</span> data
@@ -159,7 +159,7 @@ export default function KontakAdminPage() {
                       }}
                       className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-sm transition-all transform hover:scale-105 shadow-md ${
                         activeTab === tab.key
-                          ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-orange-300"
+                          ? "bg-linear-to-r from-orange-500 to-orange-600 text-white shadow-orange-300"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
@@ -277,7 +277,7 @@ export default function KontakAdminPage() {
                   <div className="p-8">
                     <div className="flex justify-between items-start mb-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-2xl font-bold text-white">
+                        <div className="w-16 h-16 bg-linear-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-2xl font-bold text-white">
                           {selectedMessage.sender_name.charAt(0)}
                         </div>
                         <div>
