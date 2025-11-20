@@ -282,29 +282,6 @@ export default function KontakAdminPage() {
                         <div className="w-16 h-16 bg-linear-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-2xl font-bold text-white">
                           {selectedMessage.sender_name.charAt(0)}
                         </div>
-                        <div>
-                          <h3 className="text-2xl font-bold text-gray-900">
-                            {selectedMessage.sender_name} {selectedMessage.sender_name_last || ""}
-                          </h3>
-                          <p className="text-sm text-gray-500">Pengirim Pesan</p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => setSelectedMessage(null)}
-                        className="w-11 h-11 rounded-full bg-white hover:bg-gray-50 flex items-center justify-center transition shadow-lg border border-gray-200 hover:scale-110 transform"
-                      >
-                        <Icon icon="mdi:close" className="w-6 h-6 text-gray-600" />
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 overflow-y-auto overflow-x-hidden px-8 pt-2 pb-10">
-                    {/* PROFILE */}
-                    <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
-                      <div className="flex items-center gap-5">
-                        <div className="w-20 h-20 rounded-full bg-linear-to-br from-orange-400 to-pink-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg">
-                          {selectedMessage.sender_name.charAt(0)}
-                        </div>
                         <div className="text-left">
                           <p className="text-xl font-bold text-gray-900 mb-1">
                             {selectedMessage.sender_name} {selectedMessage.sender_name_last || ""}
