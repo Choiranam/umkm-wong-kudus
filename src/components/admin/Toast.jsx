@@ -11,7 +11,7 @@ export default function Toast({ message, type = "success", onClose }) {
       icon: "mdi:alert",
       color: "bg-yellow-500 text-black",
     },
-    error: {
+    error: {  
       icon: "mdi:alert-circle",
       color: "bg-red-600 text-white",
     },

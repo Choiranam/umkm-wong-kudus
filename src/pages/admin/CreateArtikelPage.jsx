@@ -150,8 +150,6 @@ export default function CreateArtikelPage() {
       <div className="flex-1 flex flex-col min-h-0">
         <main className="flex-1 overflow-y-auto bg-gray-50 p-4 md:p-6">
           <div className="max-w-5xl mx-auto">
-
-            {/* Toast */}
             {showToast && (
               <div
                 className={`fixed bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 z-50 animate-pulse ${
@@ -170,8 +168,6 @@ export default function CreateArtikelPage() {
                 <span className="font-medium">{toastMessage}</span>
               </div>
             )}
-
-            {/* HEADER – persis seperti contoh yang kamu kasih */}
             <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200 mb-8">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div className="flex items-center gap-4">
@@ -209,12 +205,8 @@ export default function CreateArtikelPage() {
                 </div>
               </div>
             </div>
-
-            {/* FORM CARD */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <form id="formArtikel" onSubmit={handleSubmit} className="p-6 md:p-8 space-y-7">
-
-                {/* Kategori */}
                 <div>
                   <label className="block text-sm text-left font-semibold text-gray-700 mb-2">
                     Kategori <span className="text-red-500">*</span>
@@ -232,8 +224,6 @@ export default function CreateArtikelPage() {
                     ))}
                   </select>
                 </div>
-
-                {/* Judul */}
                 <div>
                   <label className="block text-sm text-left font-semibold text-gray-700 mb-2">
                     Judul Artikel <span className="text-red-500">*</span>
@@ -248,8 +238,6 @@ export default function CreateArtikelPage() {
                   />
                   <p className="text-xs text-left text-gray-500 mt-1">Maksimal 200 karakter • Harus unik</p>
                 </div>
-
-                {/* Penulis */}
                 <div>
                   <label className="block text-sm text-left font-semibold text-gray-700 mb-2">
                     Penulis <span className="text-red-500">*</span>
@@ -262,8 +250,6 @@ export default function CreateArtikelPage() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
                   />
                 </div>
-
-                {/* Upload Gambar */}
                 <div>
                   <label className="block text-sm text-left font-semibold text-gray-700 mb-2">
                     Gambar Utama <span className="text-red-500">*</span>
@@ -301,8 +287,6 @@ export default function CreateArtikelPage() {
                     )}
                   </div>
                 </div>
-
-                {/* Isi Artikel */}
                 <div>
                   <label className="block text-sm text-left font-semibold text-gray-700 mb-2">
                     Isi Artikel <span className="text-red-500">*</span>

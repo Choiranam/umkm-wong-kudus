@@ -130,7 +130,7 @@ export default function KontakAdminPage() {
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                   <div>
-                    <h1 className="text-2xl font-bold text-gray-800">Kotak Masuk Kontak</h1>
+                    <h1 className="text-2xl font-bold text-left text-gray-800">Kontak UMKM</h1>
                     <p className="text-sm text-gray-600 mt-1">
                       Total: <span className="font-bold">{contacts.length}</span> pesan | 
                       Menampilkan: <span className="font-bold">{data.length}</span> data
@@ -166,7 +166,7 @@ export default function KontakAdminPage() {
                       onClick={() => { setActiveTab(tab.key); setCurrentPage(1); }}
                       className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-sm transition-all transform hover:scale-105 shadow-md ${
                         activeTab === tab.key
-                          ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-orange-300"
+                          ? "bg-linear-to-r from-orange-500 to-orange-600 text-white shadow-orange-300"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
@@ -276,18 +276,18 @@ export default function KontakAdminPage() {
                   className="bg-white rounded-3xl shadow-2xl border border-gray-100 w-full max-w-3xl h-[92vh] flex flex-col overflow-hidden animate-[slideUp_0.3s_ease-out]"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* HEADER, BODY, FOOTER — TETAP SAMA PERSIS */}
-                  <div className="shrink-0 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br via-white opacity-50"></div>
-                    <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
-                    <div className="relative p-8 pb-6 flex justify-between items-start text-left">
-                      <div className="text-left">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-1">
-                          Detail Pesan Pengguna
-                        </h2>
-                        <p className="text-gray-500 text-sm">
-                          Informasi lengkap pesan masuk
-                        </p>
+                  <div className="p-8">
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-linear-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-2xl font-bold text-white">
+                          {selectedMessage.sender_name.charAt(0)}
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-gray-900">
+                            {selectedMessage.sender_name} {selectedMessage.sender_name_last || ""}
+                          </h3>
+                          <p className="text-sm text-gray-500">Pengirim Pesan</p>
+                        </div>
                       </div>
                       <button
                         onClick={() => setSelectedMessage(null)}
@@ -300,9 +300,9 @@ export default function KontakAdminPage() {
 
                   <div className="flex-1 overflow-y-auto overflow-x-hidden px-8 pt-2 pb-10">
                     {/* PROFILE */}
-                    <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
+                    <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
                       <div className="flex items-center gap-5">
-                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg">
+                        <div className="w-20 h-20 rounded-full bg-linear-to-br from-orange-400 to-pink-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg">
                           {selectedMessage.sender_name.charAt(0)}
                         </div>
                         <div className="text-left">
@@ -318,7 +318,7 @@ export default function KontakAdminPage() {
                     </div>
 
                     {/* STATUS */}
-                    <div className="bg-gradient-to-br rounded-2xl p-6 border border-gray-100 shadow-sm mb-6">
+                    <div className="bg-linear-to-br rounded-2xl p-6 border border-gray-100 shadow-sm mb-6">
                       <div className="flex flex-col text-left">
                         <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide flex items-center gap-2 mb-2">
                           <Icon icon="mdi:email-mark-as-unread" className="w-5 h-5 text-orange-500" />
@@ -363,7 +363,7 @@ export default function KontakAdminPage() {
                     </div>
 
                     {/* WAKTU */}
-                    <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm mt-6">
+                    <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm mt-6">
                       <div className="flex items-center gap-2 mb-2">
                         <Icon icon="mdi:clock-outline" className="w-5 h-5 text-orange-500" />
                         <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Dikirim Pada</p>
@@ -381,7 +381,7 @@ export default function KontakAdminPage() {
                     </div>
                   </div>
 
-                  <div className="shrink-0 p-8 pt-6 border-t bg-gradient-to-b from-gray-50 to-white rounded-b-3xl flex justify-end items-center">
+                  <div className="shrink-0 p-8 pt-6 border-t bg-linear-to-b from-gray-50 to-white rounded-b-3xl flex justify-end items-center">
                     <button
                       onClick={() => setSelectedMessage(null)}
                       className="px-8 py-3 bg-orange-500 text-white rounded-xl font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2"

@@ -97,10 +97,10 @@ export default function InfoProfilePage() {
           <div className="bg-white rounded-2xl shadow-sm p-6 mb-8">
             <div className="flex justify-between items-center">
               <div>
-                <h1 className="text-2xl font-bold text-gray-800">
+                <h1 className="text-2xl text-left font-bold text-gray-800">
                   Account Information
                 </h1>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-left text-gray-500 mt-1">
                   Perbarui Foto Profil dan Informasi anda disini
                 </p>
               </div>
