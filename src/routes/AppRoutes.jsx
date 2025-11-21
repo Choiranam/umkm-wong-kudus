@@ -27,6 +27,7 @@ import KategoriUMKMPage from "../pages/admin/KategoriUmkmPage.jsx";
 import DetailKategoriUmkm from "../pages/admin/DetailKategoriUmkm.jsx";
 import GaleriUMKM from "../pages/admin/GaleriPage.jsx";
 import UserRoute from "./UserRoute.jsx";
+import Layout from "../components/admin/layout/Layout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,30 @@ const router = createBrowserRouter([
         element: (
           <UserRoute>
             <DashboardPage />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/files",
+        element: (
+          <UserRoute>
+            <Layout />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/calendar",
+        element: (
+          <UserRoute>
+            <Layout />
+          </UserRoute>
+        ),
+      },
+      {
+        path: "/activities",
+        element: (
+          <UserRoute>
+            <Layout />
           </UserRoute>
         ),
       },
