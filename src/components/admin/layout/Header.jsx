@@ -1,16 +1,33 @@
 import React, { useRef, useState, useEffect } from "react";
 import SearchBar from "../ui/SearchBar";
 import { Bell, ChevronDown, LogOut, User } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import api from "../../../services/api.js";
 
 export default function Header({ activeTab, setActiveTab }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const dropdownRef = useRef(null);
   const API_USER = "/user";
+
+  const currentTab = () => {
+    if (location.pathname.includes("/files")) return "Files";
+    if (location.pathname.includes("/calendar")) return "Calendar";
+    if (location.pathname.includes("/activities")) return "Activities";
+    return null;
+  };
+
+  const handleTabClick = (tab) => {
+    const paths = {
+      Files: "/files",
+      Calendar: "/calendar",
+      Activities: "/activities",
+    };
+    navigate(paths[tab]);
+  };
 
   const fetchUser = async () => {
     try {
@@ -37,7 +54,7 @@ export default function Header({ activeTab, setActiveTab }) {
   };
 
   const getButtonClass = (tabName) =>
-    activeTab === tabName
+    currentTab() === tabName
       ? "px-4 py-2 bg-orange-100 text-orange-700 rounded-lg text-sm font-medium hover:bg-orange-200 transition"
       : "px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition";
 
@@ -84,19 +101,19 @@ export default function Header({ activeTab, setActiveTab }) {
           <div className="flex gap-2">
             <button
               className={getButtonClass("Files")}
-              onClick={() => setActiveTab("Files")}
+              onClick={() => handleTabClick("Files")}
             >
               Files
             </button>
             <button
               className={getButtonClass("Calendar")}
-              onClick={() => setActiveTab("Calendar")}
+              onClick={() => handleTabClick("Calendar")}
             >
               Calendar
             </button>
             <button
               className={getButtonClass("Activities")}
-              onClick={() => setActiveTab("Activities")}
+              onClick={() => handleTabClick("Activities")}
             >
               Activities
             </button>

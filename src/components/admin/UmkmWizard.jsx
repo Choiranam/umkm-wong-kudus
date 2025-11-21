@@ -323,6 +323,7 @@ export default function UmkmWizard({
                               <label className="font-medium text-gray-700 sm:col-span-1">
                                 {h.day}
                               </label>
+
                               <FormInput label="Jam Buka" small>
                                 <select
                                   value={h.open}
@@ -333,8 +334,8 @@ export default function UmkmWizard({
                                       e.target.value
                                     )
                                   }
-                                  className="form-input"
                                   disabled={!h.is_open}
+                                  className="form-input disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
                                 >
                                   {timeOptions.map((time) => (
                                     <option key={time} value={time}>
@@ -343,6 +344,7 @@ export default function UmkmWizard({
                                   ))}
                                 </select>
                               </FormInput>
+
                               <FormInput label="Jam Tutup" small>
                                 <select
                                   value={h.close}
@@ -353,8 +355,8 @@ export default function UmkmWizard({
                                       e.target.value
                                     )
                                   }
-                                  className="form-input"
                                   disabled={!h.is_open}
+                                  className="form-input disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
                                 >
                                   {timeOptions.map((time) => (
                                     <option key={time} value={time}>
@@ -363,6 +365,7 @@ export default function UmkmWizard({
                                   ))}
                                 </select>
                               </FormInput>
+
                               <FormInput label="Status" small>
                                 <select
                                   value={h.is_open}
@@ -655,20 +658,6 @@ export default function UmkmWizard({
                         >
                           {wizardStep === 1 ? "Batal" : "Kembali"}
                         </button>
-
-                        {isEditMode && isDirty && (
-                          <button
-                            type="button"
-                            onClick={runCurrentStepSubmit}
-                            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center justify-center gap-2 disabled:opacity-50"
-                            disabled={loading}
-                          >
-                            {loading && (
-                              <div className="w-5 h-5 border-2 border-white border-b-transparent rounded-full animate-spin"></div>
-                            )}
-                            Simpan
-                          </button>
-                        )}
 
                         <div className="flex gap-2">
                           {isEditMode ? (

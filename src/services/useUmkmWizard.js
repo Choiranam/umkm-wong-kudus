@@ -116,15 +116,12 @@ export const useUmkmWizard = ({
 
     const onlyNumbers = (val) => {
         if (!val) return "";
-        // Bersihkan karakter '-' juga dari input WA jika ada sisa seeder
         return String(val).replace(/[^0-9]/g, "");
     };
 
-    // PENTING: Fungsi ini membersihkan data '-' dari seeder agar tidak dianggap value valid
     const cleanValue = (val) => {
         if (!val) return "";
         const strVal = String(val).trim();
-        // Hapus value sampah seperti "null", "undefined", atau tanda strip "-"
         if (strVal === "null" || strVal === "undefined" || strVal === "NULL" || strVal === "-") return "";
         return strVal;
     };
@@ -199,12 +196,22 @@ export const useUmkmWizard = ({
                 const updatedHours = INITIAL_HOURS.map((h) => {
                     const found = data.find((d) => d.day === h.day);
                     if (found) {
-                        const [open, close] = (found.hours || "00:00 - 00:00").split(" - ");
+                        let openTime = "08:00";
+                        let closeTime = "17:00";
+
+                        if (found.hours && found.hours !== "Tutup" && found.hours.includes("-")) {
+                            const parts = found.hours.split("-");
+                            if (parts.length >= 2) {
+                                openTime = parts[0].trim().replace(/\./g, ':');
+                                closeTime = parts[1].trim().replace(/\./g, ':');
+                            }
+                        }
+
                         return {
                             ...h,
-                            open: open || "00:00",
-                            close: close || "00:00",
-                            is_open: found.is_open,
+                            open: openTime,
+                            close: closeTime,
+                            is_open: parseInt(found.is_open),
                             id: found.id,
                         };
                     }
@@ -230,18 +237,15 @@ export const useUmkmWizard = ({
                 }
             }
 
-            // PENTING: Bersihkan data kontak saat load
             if (contactRes.data && contactRes.data.status && contactRes.data.data) {
                 const c = contactRes.data.data;
-
-                // Bersihkan WA: hapus strip "-", ambil angka saja. Jika kosong/strip jadikan "62"
                 let cleanWA = onlyNumbers(c.whatsapp);
                 if (!cleanWA) cleanWA = "62";
 
                 setContactData({
                     whatsapp: cleanWA,
-                    email: cleanValue(c.email), // Ubah "-" jadi ""
-                    instagram: cleanValue(c.instagram), // Ubah "-" jadi ""
+                    email: cleanValue(c.email),
+                    instagram: cleanValue(c.instagram),
                 });
             }
 
@@ -522,7 +526,6 @@ export const useUmkmWizard = ({
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const cleanEmail = cleanValue(contactData.email);
 
-        // Jika email bersih tidak kosong, baru validasi regex
         if (cleanEmail !== "") {
             if (!emailRegex.test(cleanEmail)) {
                 showToast("Format email tidak valid. Contoh: nama@domain.com", "error");
@@ -543,8 +546,6 @@ export const useUmkmWizard = ({
             const waRaw = onlyNumbers(contactData.whatsapp);
             const waFinal = (waRaw && waRaw !== "62") ? waRaw : "";
             fd.append("whatsapp", waFinal);
-
-            // Gunakan cleanValue saat kirim untuk mengubah "-" jadi ""
             fd.append("email", cleanValue(contactData.email));
             fd.append("instagram", cleanValue(contactData.instagram));
 

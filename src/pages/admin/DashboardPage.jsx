@@ -195,43 +195,64 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
-          <div className="bg-linear-to-br from-orange-500 to-amber-600 rounded-2xl p-5 text-white shadow-md">
-            <Icon icon="mdi:tag-outline" className="w-9 h-9 opacity-80 mb-2" />
-            <p className="text-sm opacity-90">Kategori</p>
-            <p className="text-2xl font-bold">
-              {loadingStats ? "—" : data.kategori}
-            </p>
-          </div>
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
-            <Icon
-              icon="mdi:store-outline"
-              className="w-9 h-9 text-orange-600 mb-2"
-            />
-            <p className="text-sm text-gray-600">UMKM</p>
-            <p className="text-2xl font-bold text-gray-900">
-              {loadingStats ? "—" : data.umkm}
-            </p>
-          </div>
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
-            <Icon
-              icon="mdi:map-marker-outline"
-              className="w-9 h-9 text-orange-600 mb-2"
-            />
-            <p className="text-sm text-gray-600">Kecamatan</p>
-            <p className="text-2xl font-bold text-gray-900">
-              {loadingStats ? "—" : data.kecamatan}
-            </p>
-          </div>
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
-            <Icon
-              icon="mdi:message-outline"
-              className="w-9 h-9 text-orange-600 mb-2"
-            />
-            <p className="text-sm text-gray-600">Pesan Masuk</p>
-            <p className="text-2xl font-bold text-gray-900">
-              {loadingStats ? "—" : data.pesan}
-            </p>
-          </div>
+          {[
+            {
+              icon: "mdi:tag-outline",
+              label: "Kategori",
+              value: data.kategori,
+            },
+            {
+              icon: "mdi:store-outline",
+              label: "UMKM",
+              value: data.umkm,
+            },
+            {
+              icon: "mdi:map-marker-outline",
+              label: "Kecamatan",
+              value: data.kecamatan,
+            },
+            {
+              icon: "mdi:message-outline",
+              label: "Pesan Masuk",
+              value: data.pesan,
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="
+        group bg-white border border-gray-200 rounded-2xl shadow-sm
+        p-5 transition-all duration-300 flex flex-col items-start text-left
+        hover:bg-linear-to-br hover:from-orange-500 hover:to-amber-600
+        hover:border-transparent hover:shadow-md
+      "
+            >
+              <Icon
+                icon={item.icon}
+                className="
+          w-9 h-9 mb-2 text-orange-600 transition-all duration-300
+          group-hover:text-white
+        "
+              />
+
+              <p
+                className="
+          text-sm text-gray-600 transition-all duration-300
+          group-hover:text-white/90
+        "
+              >
+                {item.label}
+              </p>
+
+              <p
+                className="
+          text-2xl font-bold text-gray-900 transition-all duration-300
+          group-hover:text-white
+        "
+              >
+                {loadingStats ? "—" : item.value}
+              </p>
+            </div>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
