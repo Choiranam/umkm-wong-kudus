@@ -11,9 +11,8 @@ export default function Layout({ children }) {
   const renderContent = () => {
     if (activeTab === "Files") return <FilesComponent />;
     if (activeTab === "Calendar") return <CalendarComponent />;
-    if (activeTab === "Aktivities") return <AktivitasComponent />;
+    if (activeTab === "Activities") return <AktivitasComponent />;
 
-    // Kalau belum pilih tab, tampilkan children atau teks default
     return (
       <div className="text-gray-400 text-center text-sm">
         {children || "Pilih tab di atas untuk melihat konten"}

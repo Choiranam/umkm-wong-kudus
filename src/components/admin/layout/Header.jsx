@@ -95,8 +95,8 @@ export default function Header({ activeTab, setActiveTab }) {
               Calendar
             </button>
             <button
-              className={getButtonClass("Aktivitas")}
-              onClick={() => setActiveTab("Aktivitas")}
+              className={getButtonClass("Activities")}
+              onClick={() => setActiveTab("Activities")}
             >
               Activities
             </button>
