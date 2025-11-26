@@ -9,7 +9,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import UMKMCard from "../components/UMKMCard";
 import NotFoundPage from "./NotFoundPage";
 import api from "../services/api";
-import { getBaseUrl } from "../utils/getBaseUrl";
 
 const StickyInfo = ({ data, onClose, isMobile }) => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
@@ -314,10 +313,47 @@ const DetailUMKMPage = () => {
               };
               setUmkmData(formattedData);
 
-              const otherUMKM = allUMKM.filter((item) => item.slug !== slug);
-              const shuffled = [...otherUMKM].sort(() => Math.random() - 0.5);
-              const count = isMobile ? 4 : 5;
-              setRelatedUMKM(shuffled.slice(0, count));
+              const otherUMKM = allUMKM.filter(
+                (item) => item.id !== targetUMKM.id
+              );
+              const currentCategory = targetUMKM.category?.name;
+              const currentLocation =
+                targetUMKM.kecamatan || targetUMKM.location;
+
+              const categoryMatches = otherUMKM
+                .filter((item) => item.category?.name === currentCategory)
+                .sort(() => Math.random() - 0.5);
+              const selectedCategory = categoryMatches.slice(0, 2);
+
+              const selectedIds = new Set(
+                selectedCategory.map((item) => item.id)
+              );
+
+              const locationMatches = otherUMKM
+                .filter((item) => {
+                  const itemLoc = item.kecamatan || item.location;
+                  return (
+                    !selectedIds.has(item.id) && itemLoc === currentLocation
+                  );
+                })
+                .sort(() => Math.random() - 0.5);
+              const selectedLocation = locationMatches.slice(0, 2);
+
+              selectedLocation.forEach((item) => selectedIds.add(item.id));
+
+              const remaining = otherUMKM
+                .filter((item) => !selectedIds.has(item.id))
+                .sort(() => Math.random() - 0.5);
+
+              const needed =
+                5 - (selectedCategory.length + selectedLocation.length);
+              const selectedRandom = remaining.slice(0, Math.max(0, needed));
+
+              setRelatedUMKM([
+                ...selectedCategory,
+                ...selectedRandom,
+                ...selectedLocation,
+              ]);
             } else {
               setUmkmData(null);
             }
@@ -334,7 +370,7 @@ const DetailUMKMPage = () => {
     };
 
     if (slug) fetchData();
-  }, [slug, isMobile]);
+  }, [slug]);
 
   useEffect(() => {
     if (showMobilePopup || selectedImage) {
