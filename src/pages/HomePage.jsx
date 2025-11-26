@@ -12,6 +12,7 @@ import SearchBar from "../components/SearchBar";
 import { useRef, useState, useEffect } from "react";
 import UMKMScrollSection from "../components/UMKMScrollSection";
 import api from "../services/api";
+import UMKMMap from "../components/UMKMMap";
 
 const HomePage = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -195,7 +196,11 @@ const HomePage = () => {
 
   const categories = [
     { name: "Makanan", slug: "makanan", icon: "fluent:food-16-regular" },
-    { name: "Minuman",slug: "minuman",icon: "fluent:drink-to-go-24-regular",},
+    {
+      name: "Minuman",
+      slug: "minuman",
+      icon: "fluent:drink-to-go-24-regular",
+    },
     { name: "Jasa", slug: "jasa", icon: "ph:wrench" },
     { name: "Barang", slug: "barang", icon: "lucide:package-open" },
     { name: "Lainnya", slug: "lainnya", icon: "basil:other-1-outline" },
@@ -301,7 +306,7 @@ const HomePage = () => {
 
       <section
         ref={heroRef}
-        className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60 overflow-hidden"
+        className="relative bg-cover bg-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-60"
         style={{
           backgroundImage: loadIframe
             ? "none"
@@ -336,7 +341,7 @@ const HomePage = () => {
 
         <div className="absolute inset-0 bg-dark/50"></div>
 
-        <div className="relative z-10 container mx-auto px-4 py-24 sm:py-20 md:py-24 lg:py-32">
+        <div className="relative z-40 container mx-auto px-4 py-24 sm:py-20 md:py-24 lg:py-32">
           <motion.div
             className="max-w-3xl text-start"
             initial={{ opacity: 0, y: 40 }}
@@ -561,7 +566,19 @@ const HomePage = () => {
 
       <section
         data-aos="fade-up"
-        className="relative py-4 mb-14 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-transparent overflow-hidden"
+        className="px-4 md:px-8 lg:px-20 xl:px-50 mb-2 relative"
+      >
+        <h2 className="text-xl sm:text-2xl text-start text-dark mb-4">
+          <span className="font-bold">Temukan</span>{" "}
+          <span className="font-normal">UMKM Kudus</span>
+        </h2>
+
+        <UMKMMap />
+      </section>
+
+      <section
+        data-aos="fade-up"
+        className="relative py-4 mb-14 sm:mb-20 px-4 md:px-8 lg:px-20 xl:px-50 bg-transparent overflow-hidden mt-20"
       >
         <AnimatedIconBackground iconCount={15} color="text-orange" />
 
