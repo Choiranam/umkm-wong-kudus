@@ -67,8 +67,8 @@ const createPinIcon = (category) => {
   const svg = svgIcons[category] || svgIcons["Lainnya"];
 
   const html = renderToStaticMarkup(
-    <div style={{ position: "relative", width: "44px", height: "58px" }}>
-      <svg width="44" height="58" viewBox="0 0 44 58">
+    <div style={{ position: "relative", width: "32px", height: "42px" }}>
+      <svg width="32" height="42" viewBox="0 0 44 58">
         <path
           d="M22 0C9.8 0 0 9.8 0 22c0 16.2 22 36 22 36s22-19.8 22-36C44 9.8 34.2 0 22 0z"
           fill={color}
@@ -81,10 +81,10 @@ const createPinIcon = (category) => {
       <div
         style={{
           position: "absolute",
-          top: "5px",
+          top: "4px",
           left: 0,
           width: "100%",
-          height: "34px",
+          height: "26px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -98,9 +98,9 @@ const createPinIcon = (category) => {
   return L.divIcon({
     html,
     className: "custom-pin-icon",
-    iconSize: [44, 58],
-    iconAnchor: [22, 58],
-    popupAnchor: [0, -58],
+    iconSize: [32, 42],
+    iconAnchor: [16, 42],
+    popupAnchor: [0, -42],
   });
 };
 
