@@ -296,7 +296,7 @@ export default function KontakAdminPage() {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="shrink-0 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br via-white opacity-50"></div>
+                    <div className="absolute inset-0 bg-linear-to-br via-white opacity-50"></div>
                     <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
                     <div className="relative p-8 pb-6 flex justify-between items-start text-left">
                       <div className="text-left">
@@ -318,9 +318,9 @@ export default function KontakAdminPage() {
 
                   <div className="flex-1 overflow-y-auto overflow-x-hidden px-8 pt-2 pb-10">
                     {/* PROFILE */}
-                    <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
+                    <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
                       <div className="flex items-center gap-5">
-                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg">
+                        <div className="w-20 h-20 rounded-full bg-linear-to-br from-orange-400 to-pink-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg">
                           {selectedMessage.sender_name.charAt(0)}
                         </div>
                         <div className="text-left">
@@ -336,7 +336,7 @@ export default function KontakAdminPage() {
                     </div>
 
                     {/* STATUS */}
-                    <div className="bg-gradient-to-br rounded-2xl p-6 border border-gray-100 shadow-sm mb-6">
+                    <div className="bg-linear-to-br rounded-2xl p-6 border border-gray-100 shadow-sm mb-6">
                       <div className="flex flex-col text-left">
                         <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide flex items-center gap-2 mb-2">
                           <Icon icon="mdi:email-mark-as-unread" className="w-5 h-5 text-orange-500" />
@@ -386,7 +386,7 @@ export default function KontakAdminPage() {
                     </div>
 
                     {/* WAKTU */}
-                    <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm mt-6">
+                    <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm mt-6">
                       <div className="flex items-center gap-2 mb-2">
                         <Icon icon="mdi:clock-outline" className="w-5 h-5 text-orange-500" />
                         <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Dikirim Pada</p>
@@ -404,7 +404,7 @@ export default function KontakAdminPage() {
                     </div>
                   </div>
 
-                  <div className="shrink-0 p-8 pt-6 border-t bg-gradient-to-b from-gray-50 to-white rounded-b-3xl flex justify-end items-center">
+                  <div className="shrink-0 p-8 pt-6 border-t bg-linear-to-b from-gray-50 to-white rounded-b-3xl flex justify-end items-center">
                     <button
                       onClick={() => setSelectedMessage(null)}
                       className="px-8 py-3 bg-orange-500 text-white rounded-xl font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2"
