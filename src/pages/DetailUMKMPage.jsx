@@ -303,9 +303,12 @@ const DetailUMKMPage = () => {
                 })),
                 menus: apiData.menus.map((menu) => ({
                   ...menu,
-                  image: menu.image.startsWith("http")
-                    ? menu.image
-                    : `https://api-umkmwongkudus.rplrus.com/storage/${menu.image}`,
+                  image: menu.image
+                    ? menu.image.startsWith("http")
+                      ? menu.image
+                      : `https://api-umkmwongkudus.rplrus.com/storage/${menu.image}`
+                    : null,
+                  alt: menu.name || "Menu",
                 })),
                 galleryImages: apiData.gallery.map((g) => g.image),
               };
@@ -403,8 +406,8 @@ const DetailUMKMPage = () => {
                   >
                     <div className="relative w-full aspect-4/3 overflow-hidden">
                       <img
-                        src={menu.image}
-                        alt={menu.name}
+                        src={menu.image || ""}
+                        alt={menu.alt}
                         className="w-full h-full object-cover rounded-[5px] transition-transform duration-300 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
