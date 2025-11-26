@@ -6,17 +6,23 @@ export default function FormInput({
   fullWidth,
   small,
   children,
+  className,
 }) {
   return (
-    <div className={fullWidth ? "md:col-span-2" : ""}>
+    <div className={`${fullWidth ? "md:col-span-2" : ""} ${className || ""}`}>
       <label
         className={`block ${
-          small ? "text-xs" : "text-sm"
-        } font-medium text-gray-700 mb-1`}
+          small
+            ? "text-xs text-gray-500 uppercase tracking-wide"
+            : "text-sm text-gray-700"
+        } font-medium mb-1.5 ml-0.5`}
       >
-        {label} {required && <span className="text-red-500">*</span>}
+        {label}
+        {required && (
+          <span className="text-red-500 text-sm leading-none ml-0.5">*</span>
+        )}
       </label>
-      {children}
+      <div className="relative">{children}</div>
     </div>
   );
 }
