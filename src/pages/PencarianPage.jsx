@@ -26,24 +26,50 @@ const PencarianPage = () => {
     }
 
     setLoading(true);
-
-    if (abortRef.current) {
-      abortRef.current.abort();
-    }
+    if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
     abortRef.current = controller;
 
     api
-      .get("/umkm", { params: { search: query }, signal: controller.signal })
+      .get("/umkm", {
+        params: { search: query },
+        signal: controller.signal,
+      })
       .then((res) => {
-        const data = Array.isArray(res?.data?.data) ? res.data.data : [];
-
+        const rawData = Array.isArray(res?.data?.data) ? res.data.data : [];
         const q = query.toLowerCase();
 
-        const filtered = data.filter((item) => {
-          const name = (item?.name || "").toString().toLowerCase();
-          return name.includes(q);
-        });
+        const filtered = rawData
+          .map((umkm) => {
+            const menus = umkm.menus || [];
+            const matchingMenus = menus
+              .filter((menu) => (menu?.name || "").toLowerCase().includes(q))
+              .slice(0, 3);
+
+            return {
+              ...umkm,
+              matchingMenus,
+            };
+          })
+          .filter((umkm) => {
+            const name = (umkm?.name || "").toLowerCase();
+            const menus = umkm.menus || [];
+
+            const hasNameMatch = name.includes(q);
+            const hasMenuMatch = menus.some((menu) =>
+              (menu?.name || "").toLowerCase().includes(q)
+            );
+            const hasOtherMatch =
+              (umkm?.hero_subtitle || "").toLowerCase().includes(q) ||
+              (umkm?.description || "").toLowerCase().includes(q) ||
+              (umkm?.about || "").replace(/<[^>]*>/g, "").toLowerCase().includes(q) ||
+              (umkm?.listing?.subtitle || "").toLowerCase().includes(q) ||
+              (umkm?.category?.name || "").toLowerCase().includes(q) ||
+              (umkm?.category?.desc || "").toLowerCase().includes(q) ||
+              (umkm?.kecamatan || "").toLowerCase().includes(q);
+
+            return hasNameMatch || hasMenuMatch || hasOtherMatch;
+          });
 
         setHasilPencarian(filtered);
       })
@@ -82,7 +108,7 @@ const PencarianPage = () => {
             />
             <h2 className="text-base sm:text-lg font-semibold text-dark flex flex-wrap gap-2">
               Hasil Pencarian untuk{" "}
-              <span className="italic font-normal max-w-full wrap-break-word">
+              <span className="italic font-normal max-w-full break-words">
                 "{keyword}"
               </span>
             </h2>
@@ -104,13 +130,13 @@ const PencarianPage = () => {
           <p className="text-center text-dark text-base">Mencari data...</p>
         ) : hasilPencarian.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 justify-items-center">
-            {hasilPencarian.map((umkm, index) => (
+            {hasilPencarian.map((umkm) => (
               <Link
-                key={umkm.id ?? index}
+                key={umkm.id || umkm.slug}
                 to={`/detail-umkm/${umkm.slug}`}
                 className="block w-full"
               >
-                <UMKMCard data={umkm} />
+                <UMKMCard data={umkm} searchKeyword={keyword} />
               </Link>
             ))}
           </div>

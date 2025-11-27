@@ -18,41 +18,30 @@ const getCurrentDayIndo = () => {
 const isOpenNow = (hours) => {
   if (!hours) return false;
   let trimmed = hours.trim();
-
   trimmed = trimmed.replace(/[–—]/g, "-").toLowerCase();
-
   if (trimmed === "buka 24 jam") return true;
-
   if (trimmed === "tutup") return false;
-
   const parts = trimmed.split("-").map((s) => s.trim());
   if (parts.length !== 2) return false;
-
   const [openStr, closeStr] = parts;
   const [openH, openM] = openStr.split(".").map(Number);
   const [closeH, closeM] = closeStr.split(".").map(Number);
-
   if (isNaN(openH) || isNaN(openM) || isNaN(closeH) || isNaN(closeM))
     return false;
-
   const now = new Date();
   const today = now.getDate();
-
   let openTime = new Date(now);
   openTime.setHours(openH, openM, 0, 0);
-
   let closeTime = new Date(now);
   closeTime.setHours(closeH, closeM, 0, 0);
-
   if (closeH < openH || (closeH === openH && closeM < openM)) {
     closeTime.setDate(today + 1);
   }
-
   const current = now.getTime();
   return current >= openTime.getTime() && current <= closeTime.getTime();
 };
 
-export default function UMKMCard({ data }) {
+export default function UMKMCard({ data, searchKeyword }) {
   const safeCategory = data?.category?.name || "Lainnya";
   const safeName = data?.name || "";
   const rating = data?.rating || "0.0";
@@ -60,6 +49,7 @@ export default function UMKMCard({ data }) {
   const imageUrl = data?.hero_image || "/placeholder-image.webp";
   const subtitle = data?.hero_subtitle || data?.listing?.subtitle || "";
   const location = data?.kecamatan || data?.location || "";
+  const matchingMenus = data?.matchingMenus || [];
 
   const todayIndo = getCurrentDayIndo();
   const todaySchedule = openingHours.find((s) => s.day === todayIndo);
@@ -102,6 +92,8 @@ export default function UMKMCard({ data }) {
       (cat) => cat?.name?.toLowerCase() === safeCategory?.toLowerCase()
     )?.icon || "fluent:food-16-regular";
 
+  const hasMatchingMenus = searchKeyword && matchingMenus.length > 0;
+
   return (
     <motion.div
       className="w-full max-w-[260px] bg-transparent rounded-[5px] overflow-hidden cursor-pointer group"
@@ -115,7 +107,6 @@ export default function UMKMCard({ data }) {
           className="w-full h-40 object-cover"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
-
         <div className="absolute top-2 left-2 bg-light backdrop-blur-sm text-xs font-semibold text-dark px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
           <Icon
             icon="mdi:star"
@@ -140,6 +131,24 @@ export default function UMKMCard({ data }) {
         <p className="text-dark/60 text-xs mt-1 line-clamp-2 mb-3">
           {subtitle}
         </p>
+
+        {hasMatchingMenus && (
+          <div className="mb-3 -mt-1">
+            <p className="text-xs text-orange font-semibold mb-1">
+              Menu terkait:
+            </p>
+            <div className="flex flex-wrap gap-1">
+              {matchingMenus.map((menu, i) => (
+                <span
+                  key={i}
+                  className="text-xs bg-orange/10 text-orange px-2 py-0.5 rounded-full truncate max-w-full"
+                >
+                  {menu.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="border-t border-gray-200 my-3" />
 

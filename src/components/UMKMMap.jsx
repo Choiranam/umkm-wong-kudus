@@ -173,12 +173,26 @@ const UMKMMap = () => {
               position={[coords.lat, coords.lng]}
               icon={createPinIcon(category)}
             >
-              <Popup maxWidth={280} closeButton={false}>
-                <div className="p-2">
-                  <Link to={`/detail-umkm/${u.slug}`}>
+              <Popup
+                longitude={u.longitude}
+                latitude={u.latitude}
+                anchor="bottom"
+                offset={[0, -5]}
+                closeButton={true}
+                closeOnClick={false}
+                maxWidth="none"
+                className="
+    p-0 
+    [&_.mapboxgl-popup-content]:!p-0 
+    [&_.mapboxgl-popup-content]:!rounded-xl 
+    [&_.mapboxgl-popup-content]:shadow-2xl
+  "
+              >
+                <Link to={`/detail-umkm/${u.slug}`}>
+                  <div className="!m-0 !p-0">
                     <UMKMCard data={u} />
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </Popup>
             </Marker>
           );
