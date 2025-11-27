@@ -48,7 +48,6 @@ const SearchBar = () => {
     }
 
     setLoading(true);
-
     if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
     abortRef.current = controller;
@@ -65,10 +64,11 @@ const SearchBar = () => {
 
         const termLower = debouncedTerm.toLowerCase();
         const results = [];
+        const seenSlugs = new Set();
 
         rawData.forEach((umkm) => {
-          const name = (umkm.name || "").toLowerCase();
           const slug = umkm.slug;
+          const nameLower = (umkm.name || "").toLowerCase();
           const heroImage = umkm.hero_image || umkm.listing?.image;
           const rating = umkm.rating || "0";
           const menus = umkm.menus || [];
@@ -86,51 +86,55 @@ const SearchBar = () => {
             .join(" ")
             .toLowerCase();
 
-          let hasMenuMatch = false;
+          let hasMatch = false;
+          let bestScore = 0;
+          let bestDisplay = umkm.name;
+          let bestImage = heroImage;
+          let bestType = "umkm";
 
           menus.forEach((menu) => {
             const menuNameLower = (menu.name || "").toLowerCase();
             if (menuNameLower.includes(termLower)) {
-              hasMenuMatch = true;
+              hasMatch = true;
               const score = menuNameLower.startsWith(termLower) ? 1000 : 500;
-              results.push({
-                type: "menu",
-                displayName: `${menu.name} - ${umkm.name}`,
-                image: menu.image || heroImage,
-                rating,
-                slug,
-                score,
-              });
+              if (score > bestScore) {
+                bestScore = score;
+                bestDisplay = `${menu.name} - ${umkm.name}`;
+                bestImage = menu.image || heroImage;
+                bestType = "menu";
+              }
             }
           });
 
-          if (name.includes(termLower)) {
-            const score = name.startsWith(termLower) ? 900 : 400;
+          if (nameLower.includes(termLower)) {
+            hasMatch = true;
+            const score = nameLower.startsWith(termLower) ? 900 : 400;
+            if (score > bestScore) {
+              bestScore = score;
+              bestDisplay = umkm.name;
+              bestImage = heroImage;
+              bestType = "umkm";
+            }
+          } else if (searchTexts.includes(termLower)) {
+            hasMatch = true;
+            bestScore = Math.max(bestScore, 100);
+          }
+
+          if (hasMatch && !seenSlugs.has(slug)) {
+            seenSlugs.add(slug);
             results.push({
-              type: "umkm",
-              displayName: umkm.name,
-              image: heroImage,
+              type: bestType,
+              displayName: bestDisplay,
+              image: bestImage,
               rating,
               slug,
-              score: hasMenuMatch ? score - 50 : score,
-            });
-          } else if (
-            searchTexts.includes(termLower) &&
-            results.every((r) => r.slug !== slug)
-          ) {
-            results.push({
-              type: "umkm",
-              displayName: umkm.name,
-              image: heroImage,
-              rating,
-              slug,
-              score: 100,
+              score: bestScore || 100,
             });
           }
         });
 
         results.sort((a, b) => b.score - a.score);
-        setSuggestions(results.slice(0, 8));
+        setSuggestions(results);
       })
       .catch(() => setSuggestions([]))
       .finally(() => setLoading(false));
@@ -161,34 +165,24 @@ const SearchBar = () => {
 
   const handleKeyDown = (e) => {
     if (!suggestions.length) return;
-
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setHighlightIndex((prev) =>
-        prev < suggestions.length - 1 ? prev + 1 : 0
-      );
+      setHighlightIndex((prev) => (prev + 1) % suggestions.length);
     }
-
     if (e.key === "ArrowUp") {
       e.preventDefault();
-      setHighlightIndex((prev) =>
-        prev > 0 ? prev - 1 : suggestions.length - 1
-      );
+      setHighlightIndex((prev) => (prev - 1 + suggestions.length) % suggestions.length);
     }
-
     if (e.key === "Enter" && highlightIndex >= 0) {
       e.preventDefault();
       handleSuggestionClick(suggestions[highlightIndex].slug);
     }
   };
 
+  const displaySuggestions = suggestions.slice(0, 8);
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="grow relative"
-      id="searchForm"
-      ref={containerRef}
-    >
+    <form onSubmit={handleSubmit} className="grow relative" ref={containerRef}>
       <div className="relative">
         <input
           type="text"
@@ -224,13 +218,14 @@ const SearchBar = () => {
       </div>
 
       <AnimatePresence>
-        {isInputFocused && (suggestions.length > 0 || loading) && (
+        {isInputFocused && (displaySuggestions.length > 0 || loading) && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
             className="absolute z-100 inset-x-0 top-full mt-1 shadow-lg"
+            data-lenis-prevent
           >
             <div className="bg-light rounded-lg shadow-lg overflow-hidden">
               <div className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-orange/30 scrollbar-track-transparent px-2 py-2">
@@ -241,13 +236,11 @@ const SearchBar = () => {
                   </div>
                 )}
 
-                {suggestions.map((item, i) => (
+                {displaySuggestions.map((item, i) => (
                   <div
                     key={`${item.type}-${item.slug}-${i}`}
                     className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors rounded-lg mx-2 ${
-                      highlightIndex === i
-                        ? "bg-orange/20"
-                        : "hover:bg-orange/10"
+                      highlightIndex === i ? "bg-orange/20" : "hover:bg-orange/10"
                     }`}
                     onMouseEnter={() => setHighlightIndex(i)}
                     onMouseDown={(e) => e.preventDefault()}
@@ -263,18 +256,13 @@ const SearchBar = () => {
                         />
                       ) : (
                         <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                          <Icon
-                            icon="mingcute:image-line"
-                            className="text-2xl text-gray-500"
-                          />
+                          <Icon icon="mingcute:image-line" className="text-2xl text-gray-500" />
                         </div>
                       )}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <p className="text-dark font-medium truncate">
-                        {item.displayName}
-                      </p>
+                      <p className="text-dark font-medium truncate">{item.displayName}</p>
                       <p className="text-xs text-dark/60">
                         {item.type === "menu" ? "Menu" : "UMKM"}
                       </p>
@@ -282,13 +270,8 @@ const SearchBar = () => {
 
                     {item.rating && parseFloat(item.rating) > 0 && (
                       <div className="flex items-center gap-1 text-sm">
-                        <Icon
-                          icon="mingcute:star-fill"
-                          className="text-yellow-500"
-                        />
-                        <span className="text-dark font-medium">
-                          {item.rating}
-                        </span>
+                        <Icon icon="mingcute:star-fill" className="text-yellow-500" />
+                        <span className="text-dark font-medium">{item.rating}</span>
                       </div>
                     )}
                   </div>

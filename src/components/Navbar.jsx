@@ -10,24 +10,42 @@ const Navbar = ({ forceDark = false }) => {
   else if (pathname === "/kontak") activeMenu = "kontak";
   else if (pathname === "/tentang-kami") activeMenu = "tentang-kami";
   else if (pathname.startsWith("/kategori")) activeMenu = "kategori";
+  
   const activeKategoriSlug = new URLSearchParams(search).get("slug");
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isKategoriOpen, setIsKategoriOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    setTimeout(() => {
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }, 0); 
+    
     setScrollY(0);
     setIsMobileMenuOpen(false);
     setIsKategoriOpen(false);
   }, [pathname]);
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    setTimeout(() => {
+        if (window.lenis) {
+          window.lenis.scrollTo(0, { immediate: true });
+        } else {
+          window.scrollTo(0, 0);
+        }
+    }, 0); 
   }, []);
+
   const isAtTop = forceDark ? false : scrollY <= 50;
   const bgColor = forceDark
     ? "bg-light shadow-sm"
@@ -49,6 +67,7 @@ const Navbar = ({ forceDark = false }) => {
     : isAtTop && !isMobileMenuOpen
     ? "/images/logo_kudus.webp"
     : "/images/logo_navbar_footer.webp";
+  
   const kategoriItems = [
     { icon: "fluent:food-16-regular", text: "Makanan", slug: "makanan" },
     { icon: "fluent:drink-to-go-24-regular", text: "Minuman", slug: "minuman" },
@@ -56,6 +75,7 @@ const Navbar = ({ forceDark = false }) => {
     { icon: "lucide:package-open", text: "Barang", slug: "barang" },
     { icon: "basil:other-1-outline", text: "Lainnya", slug: "lainnya" },
   ];
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full ${bgColor} px-8 py-2.5 z-50 transition-all duration-500 ease-in-out`}
@@ -173,10 +193,11 @@ const Navbar = ({ forceDark = false }) => {
         </div>
         <Link
           to="/artikel"
-          className="hidden lg:block px-5 py-2.5 bg-orange text-white text-base font-medium rounded-md transition-all duration-300 transform hover:bg-[#D96230] hover:scale-[1.05] hover:shadow-lg hover:shadow-orange/30 active:scale-[0.97] whitespace-nowrap"
+          className="hidden lg:block px-6 py-2.5 bg-orange text-white font-semibold text-base rounded-md  hover:bg-orange-500 transition-colors "
         >
           Baca Artikel UMKM
         </Link>
+
         <button
           className={`lg:hidden p-2 rounded-md transition-colors cursor-pointer ${textColor} ${hoverText}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
