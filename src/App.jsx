@@ -5,7 +5,7 @@ import NetworkToast from "./components/NetworkToast";
 import { Toaster } from "react-hot-toast";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
-
+import Cursor from "./components/Cursor.jsx";
 function App() {
   useEffect(() => {
     document.documentElement.classList.add("waiting");
@@ -35,6 +35,7 @@ function App() {
 
   return (
     <div>
+      <Cursor />
       <Toaster
         position="top-center"
         containerClassName="!top-4 md:!top-auto md:!bottom-4 md:!left-4 md:!right-auto"

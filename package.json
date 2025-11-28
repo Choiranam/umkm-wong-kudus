@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run optimize:images && vite build",
+    "build": "vite build && npm run optimize:images",
     "lint": "eslint .",
     "preview": "vite preview",
     "optimize:images": "node scripts/convert-to-webp.js && node scripts/replace-image-refs.js"

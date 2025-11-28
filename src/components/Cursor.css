@@ -1,0 +1,33 @@
+.cursor-dot {
+    display: none;
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid orange;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, opacity 0.3s ease;
+
+    opacity: 1;
+}
+
+.cursor-hover {
+    width: 50px;
+    height: 50px;
+    border-color: orange;
+}
+
+@media (max-width: 768px) {
+    .cursor-outline {
+        display: none !important;
+    }
+}

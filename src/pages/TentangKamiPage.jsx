@@ -32,7 +32,7 @@ const TentangKamiPage = () => {
             Cerita di Balik UMKM Wong Kudus
           </>
         }
-        subtitle="Kami percaya setiap usaha lokal memiliki potensi besar untuk berkembang. Melalui platform ini, kami hadir untuk membantu UMKM Kudus agar lebih dikenal luas dengan dukungan teknologi digital."
+        subtitle="Melalui platform ini, kami hadir untuk membantu UMKM Kudus agar lebih dikenal luas dengan dukungan teknologi digital."
         className="text-center px-4 md:px-0"
       />
 
