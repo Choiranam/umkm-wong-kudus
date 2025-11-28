@@ -12,8 +12,7 @@ export default function Layout({ children }) {
   const getActiveTab = () => {
     if (location.pathname.includes("/files")) return "Files";
     if (location.pathname.includes("/calendar")) return "Calendar";
-    if (location.pathname.includes("/activities"))
-      return "Activities";
+    if (location.pathname.includes("/activities")) return "Activities";
     return null;
   };
 
@@ -35,7 +34,9 @@ export default function Layout({ children }) {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Header />
-        <main className="flex-1 overflow-auto p-6">{renderContent()}</main>
+        <main className="flex-1 overflow-auto p-6" data-lenis-prevent>
+          {renderContent()}
+        </main>
       </div>
     </div>
   );
